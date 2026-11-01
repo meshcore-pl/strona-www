@@ -15,7 +15,7 @@ Zmiany dotyczące `mapa.meshcorepolska.org` znajdziesz osobno: kliknij ikonę `i
 
 ## v1.10.1
 1. Poprawiono [Generator regionów](https://meshcorepolska.org/generator-regionow) - przypisania kanałów i zakresów oraz wygląd. Dodano wybór regionów lokalnych i zapamiętywanie ustawień.
-2. Zaktualizowano dokumentację regionalizacji i rozszerzono informacje o prywatności na liście analizatorów.
+2. Zaktualizowano dokumentację regionalizacji.
 3. Usprawniono działanie strony offline (service worker). Przy pierwszej wizycie nie jest już pobierana cała witryna wraz z dokumentacją - w tle zapisują się tylko niezbędne zasoby, a kolejne podstrony trafiają do pamięci podręcznej dopiero po ich odwiedzeniu.
 4. Zmieniono wygląd powiadomień o utracie i przywróceniu połączenia: mniejsze zaokrąglenie rogów, a ostrzeżenie o braku internetu ma teraz kolor żółty zamiast czerwonego. Ich kod jest wspólny i ładowany z CDN, dzięki czemu używają go również [docs.meshcorepolska.org](https://docs.meshcorepolska.org) oraz Flasher.
 5. Połączono wspólne pliki CSS (zmienne, przyciski, nawigacja, stopka i inne) w jeden plik `global.css`, co ogranicza liczbę żądań. Wygląd strony pozostał bez zmian.
