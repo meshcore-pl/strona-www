@@ -120,7 +120,8 @@ const MESHCORE_REGIONS = {
 		},
 		rze: {
 			name: 'Rzeszów',
-			scope: 'pl-rze',
+			scope: 'rze',
+			parentScope: 'pl',
 			channels: ['#rzeszow'],
 			voivodeships: ['pk'],
 		},
@@ -222,22 +223,28 @@ const parseCurrentRegions = text => {
 
 const getVoivodeshipScope = code => MESHCORE_REGIONS.voivodeships[code].scope;
 
+const getRegionScopes = region => Array.isArray(region.scope) ? region.scope : [region.scope];
+
 const getAutomaticRegions = codes => Object.values(MESHCORE_REGIONS.localRegions)
 	.filter(region => region.automatic && codes.some(code => region.voivodeships.includes(code)));
 
-const getLocalScopes = codes => getAutomaticRegions(codes).map(region => region.scope);
+const getLocalScopes = codes => [...new Set(getAutomaticRegions(codes).flatMap(getRegionScopes))];
 
 const buildTree = (home, city, neighbors) => {
 	const codes = [...new Set([home, ...neighbors])];
 	const localScopes = getLocalScopes(codes);
 	const configuredScopes = new Set([RG_ROOT, ...codes.map(getVoivodeshipScope), ...localScopes]);
-	const homeRegion = { name: getVoivodeshipScope(home), children: city && !configuredScopes.has(city) ? [{ name: city, children: [] }] : [] };
+	const cityConfig = Object.values(MESHCORE_REGIONS.localRegions).find(region => getRegionScopes(region).includes(city));
+	const cityRegion = city && !configuredScopes.has(city) ? [{ name: city, children: [] }] : [];
+	const cityAtRoot = cityConfig?.parentScope === RG_ROOT;
+	const homeRegion = { name: getVoivodeshipScope(home), children: cityAtRoot ? [] : cityRegion };
 	return {
 		name: RG_ROOT,
 		children: [
 			homeRegion,
 			...codes.slice(1).map(code => ({ name: getVoivodeshipScope(code), children: [] })),
 			...localScopes.map(name => ({ name, children: [] })),
+			...(cityAtRoot ? cityRegion : []),
 		],
 	};
 };
@@ -280,16 +287,16 @@ const buildCommands = ({ tree, firmware, setDefault }) => {
 const buildTreePreview = tree => ['*^ F', ...flattenTree(tree).map(({ name, depth }) => `${' '.repeat(depth)}${name} F`)].join('\n');
 
 const channelsForScope = scope => {
-	const region = [MESHCORE_REGIONS.country, ...Object.values(MESHCORE_REGIONS.voivodeships), ...Object.values(MESHCORE_REGIONS.localRegions)]
-		.find(config => config.scope === scope);
-	const channels = region?.channels;
-	return (channels?.length ? channels : ['Brak danych']).map(channel => ({ channel, scope }));
+	const regions = [MESHCORE_REGIONS.country, ...Object.values(MESHCORE_REGIONS.voivodeships), ...Object.values(MESHCORE_REGIONS.localRegions)]
+		.filter(config => getRegionScopes(config).includes(scope));
+	const channels = regions.flatMap(region => region.channels.map(channel => ({ channel, scope: region.scope })));
+	return channels.length ? channels : [{ channel: 'Brak danych', scope }];
 };
 
 const buildChannels = (home, city, neighbors) => {
 	const codes = [...new Set([home, ...neighbors])];
 	const scopes = [...new Set([RG_ROOT, ...codes.map(getVoivodeshipScope), ...getLocalScopes(codes), ...(city ? [city] : [])])];
-	const channels = scopes.flatMap(channelsForScope);
+	const channels = [...new Map(scopes.flatMap(channelsForScope).map(row => [JSON.stringify(row), row])).values()];
 	const commonChannels = MESHCORE_REGIONS.commonChannels.map(channel => {
 		const regional = channels.findLast(row => row.channel === channel);
 		return regional || { channel, scope: null };
@@ -312,15 +319,16 @@ const validateLocalScope = (city, home) => {
 	if (new TextEncoder().encode(city).length > RG_MAX_NAME_BYTES) errors.push(`Nazwa regionu może mieć maksymalnie ${RG_MAX_NAME_BYTES} bajtów.`);
 
 	const voivodeship = Object.values(MESHCORE_REGIONS.voivodeships).find(config => config.scope === city);
+	const regions = Object.values(MESHCORE_REGIONS.localRegions).filter(config => getRegionScopes(config).includes(city));
+	const belongsToHome = regions.some(region => region.voivodeships.includes(home));
 
 	if (city === RG_ROOT) {
 		errors.push(`Nazwa „${city}” jest zarezerwowana dla regionu krajowego.`);
-	} else if (voivodeship) {
+	} else if (voivodeship && !belongsToHome) {
 		errors.push(`Nazwa „${city}” jest już zajęta przez województwo ${voivodeship.name}.`);
 	}
 
-	const region = Object.values(MESHCORE_REGIONS.localRegions).find(config => config.scope === city);
-	if (region && !region.voivodeships.includes(home)) errors.push(`Region „${region.name}” nie należy do wybranego województwa.`);
+	if (regions.length && !belongsToHome) errors.push(`Region „${regions[0].name}” nie należy do wybranego województwa.`);
 
 	return errors;
 };
@@ -343,20 +351,21 @@ const renderLocalRegions = (home, scope = '') => {
 
 	const regions = Object.values(MESHCORE_REGIONS.localRegions)
 		.filter(region => !region.automatic && region.voivodeships.includes(home));
+	const regionValue = region => getRegionScopes(region).find(value => value !== getVoivodeshipScope(home)) ?? getRegionScopes(region)[0];
 
 	select.replaceChildren(
 		new Option('Brak dodatkowego regionu', ''),
-		...regions.map(({ name, scope: value }) => new Option(`${name} (${value})`, value)),
+		...regions.map(region => new Option(`${region.name} (${getRegionScopes(region).join(', ')})`, regionValue(region))),
 		new Option('Własny region...', RG_CUSTOM_SCOPE)
 	);
 
 	const validScope = !validateLocalScope(scope, home).length ? scope : '';
-	const known = regions.some(region => region.scope === validScope);
+	const known = regions.find(region => getRegionScopes(region).includes(validScope));
 	const automaticRegions = getAutomaticRegions([home]);
-	const automatic = automaticRegions.some(region => region.scope === validScope);
+	const automatic = automaticRegions.some(region => getRegionScopes(region).includes(validScope));
 
 	if (known) {
-		select.value = validScope;
+		select.value = regionValue(known);
 	} else if (validScope && !automatic) {
 		select.value = RG_CUSTOM_SCOPE;
 	} else {
@@ -480,10 +489,14 @@ const renderOutput = () => {
 			} else if (value === null) {
 				td.textContent = 'Bez regionu';
 			} else {
-				const code = document.createElement('code');
-				code.textContent = value;
 				if (index === 1 && optionalScope) td.append('Bez regionu lub ');
-				td.append(code);
+				const values = Array.isArray(value) ? value : [value];
+				values.forEach((scopeValue, scopeIndex) => {
+					if (scopeIndex) td.append(values.length === 2 ? ' oraz ' : ', ');
+					const code = document.createElement('code');
+					code.textContent = scopeValue;
+					td.append(code);
+				});
 			}
 
 			if (index === 1 && channel === 'Public') td.append(' (kanał domyślny, dostępny od razu)');
