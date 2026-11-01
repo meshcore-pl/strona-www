@@ -3,11 +3,12 @@ title: Regulamin serwera Discord MeshCore Polska
 description: Regulamin obowiązujący na serwerze Discord MeshCore Polska - zasady kultury, treści zakazane oraz konsekwencje ich łamania.
 canonical: /dokumentacja/discord/regulamin
 createdAt: 12.07.2026
-updatedAt: 25.10.2026
+updatedAt: 1.11.2026
 ---
 
 # Regulamin serwera Discord MeshCore Polska {toc: Regulamin serwera}
-Zależy nam na swobodnej, kulturalnej i pomocnej atmosferze. Szanujemy wolność słowa oraz wymianę opinii, jednak oczekujemy, że będą one wyrażane z zachowaniem kultury osobistej i szacunku wobec innych.
+Zależy nam na swobodnej, kulturalnej atmosferze i wzajemnej pomocy.
+Szanujemy wolność słowa oraz prawo do wyrażania własnych poglądów, jednak oczekujemy, że dyskusje będą prowadzone z zachowaniem kultury osobistej i szacunku wobec innych.
 Większość dorosłych osób doskonale wie, jak należy zachowywać się w kontakcie z innymi, dlatego nie chcemy tworzyć tutaj długiej listy zakazów.
 Wystarczy zdrowy rozsądek, uprzejmość i świadomość, że po drugiej stronie też jest człowiek.
 Nie tolerujemy także hipokryzji, osób sprzeciwiających się liberalizmowi oraz malkontentów.
@@ -29,19 +30,21 @@ Nie spamuj, nie zalewaj kanałów tą samą treścią i nie wrzucaj przypadkowyc
 Jeśli masz coś do dodania, upewnij się, że wnosi to coś do dyskusji, a nie tylko zaśmieca czat.
 
 ## 5. Pisz w odpowiednich kanałach
-Tematy o MeshCore prowadź na `#generalny` lub w odpowiednim kanale technicznym. Luźne rozmowy i dyskusje niezwiązane z MeshCore (np. politykę) wrzucaj na `#off-topic`.
-Nie oznaczaj administracji bez potrzeby. Jeśli sprawa nie jest pilna, poczekaj na odpowiedź społeczności. Dzięki temu na serwerze łatwiej utrzymać porządek, a ważne tematy nie giną w przypadkowych dyskusjach.
+Rozmowy o MeshCore prowadź na kanale `#「💬」generalny` lub na odpowiednim kanale technicznym. Luźne rozmowy i dyskusje niezwiązane z MeshCore (np. o polityce) prowadź na kanale `#「🗨️」off-topic`.
+Nie oznaczaj administracji bez potrzeby. Jeśli sprawa nie jest pilna, poczekaj na odpowiedź społeczności.
+Dzięki temu na serwerze łatwiej utrzymać porządek, a ważne tematy nie giną w przypadkowych dyskusjach.
 
 ## 6. Pomoc techniczna i cudza praca zarobkowa
-Pomaganie sobie jest mile widziane, ale serwer nie jest darmowym zapleczem technicznym do realizowania cudzych zleceń, pracy u klienta albo projektów zarobkowych.
+Wzajemna pomoc jest mile widziana, ale serwer nie jest darmowym zapleczem technicznym do realizowania cudzych zleceń, pracy u klienta albo projektów zarobkowych.
 Jeśli pracujesz komercyjnie, jesteś u klienta albo rozwiązujesz problem w ramach płatnej usługi, nie oczekuj, że społeczność będzie regularnie wykonywać za Ciebie diagnostykę albo analizę problemu.
 Pojedyncze, naturalne pytania są w porządku. Natarczywe proszenie o pomoc przy pracy zarobkowej, szczególnie co chwilę i bez własnego wkładu, nie jest w porządku.
 
 ## 7. Reklamy i sprzedaż
-Nie wrzucaj reklam, ofert komercyjnych ani autopromocji bez związku z rozmową.
-Okazjonalna sprzedaż czy wymiana jest w porządku, dopóki dzieje się naturalnie i nie zamienia serwera w tablicę ogłoszeń.
-Dotyczy to na przykład sprzedania komuś płytki, anteny, obudowy albo wydruku 3D.
-Jeśli chcesz regularnie promować swój sklep, usługę czy projekt, stanowcze nie.
+Nie publikuj reklam, ofert komercyjnych ani treści autopromocyjnych niezwiązanych z tematyką serwera.
+Okazjonalna sprzedaż lub wymiana sprzętu jest dozwolona, o ile jest związana z tematyką serwera i nie przekształca go w miejsce prowadzenia działalności handlowej.
+Dotyczy to na przykład sprzedaży płytek elektronicznych, anten, obudów czy wydruków 3D.
+Regularne promowanie własnych sklepów, usług lub projektów w celach komercyjnych jest zabronione bez zgody administracji.
+Powyższe ograniczenia nie dotyczą zarządu, który ma prawo publikować oferty, ogłoszenia i treści promocyjne związane z działalnością oraz rozwojem społeczności.
 
 ## 8. Transakcje na własną odpowiedzialność
 Sprzedaż, kupno i wymiana sprzętu między użytkownikami są dozwolone, ale odbywają się wyłącznie na odpowiedzialność stron.
@@ -54,22 +57,26 @@ Pamiętaj, że w internecie nic nie ginie, więc nie pisz publicznie rzeczy, kt�
 [Tutaj](https://meshcorepolska.org/dokumentacja/meshcore/wprowadzenie#legalnosc-i-duty-cycle) znajdziesz więcej informacji na temat prawa.
 
 ## 10. Prywatność i lokalizacje RPT
-Szanujmy swoją prywatność nawzajem. Lokalizacjami repeaterów możesz wymieniać się bezpośrednio z innymi, ale nie publikuj dokładnych adresów ani pozycji z dokładnością do konkretnego mieszkania, domu czy posesji.
-Po szczegóły, takie jak lokalizacja, nazwa użytkownika na MeshCore czy posiadane repeatery, sięgnij przez komendę `/kontakt <@użytkownik>` albo stronę www profilu. Udostępnianie dokładnych lokalizacji bez potrzeby będzie usuwane.
+Szanuj prywatność innych użytkowników. Informacjami o lokalizacji repeaterów możesz dzielić się prywatnie.
+Nie publikuj jednak dokładnych adresów ani współrzędnych wskazujących na konkretny dom, mieszkanie czy posesję.
+Lokalizację, nazwę użytkownika w sieci MeshCore oraz posiadane repeatery możesz sprawdzić za pomocą komendy `/kontakt <@użytkownik>` lub na stronie profilu (wkrótce na meshcoreprofiles.com).
+Wpisy ujawniające dokładne lokalizacje bez uzasadnionej potrzeby będą usuwane.
 
 > [!WARNING]
 > Nigdy nie ustawiaj dokładnej lokalizacji swojego repeatera na mapie!
 
 ## 11. Cudze wiadomości i dane
-Zrzuty publicznych wiadomości z MeshCore możesz publikować, o ile nie naruszają niczyjej prywatności. Prywatnych wiadomości nie udostępniaj bez zgody autora, niezależnie od tego, czy pochodzą z Discorda, MeshCore czy innego komunikatora.
+Zrzuty publicznych wiadomości z MeshCore możesz publikować, o ile nie naruszają niczyjej prywatności.
+Prywatnych wiadomości nie udostępniaj bez zgody autora, niezależnie od tego, czy pochodzą z Discorda, MeshCore czy innego komunikatora.
 Nie publikuj też cudzych danych osobowych, adresów, numerów telefonu ani dokładnych lokalizacji. Takie rzeczy szybko robią się problemem, nawet jeśli na początku wygląda to niewinnie.
 
 ## 12. Zasady Discorda
 Korzystając z serwera, przestrzegasz też zasad Discorda, czyli [Terms of Service](https://discord.com/terms) oraz [Community Guidelines](https://discord.com/guidelines). To, co jest zakazane przez Discorda, jest zakazane także tutaj - logiczne.
 
 ## 13. Konsekwencje
-Za łamanie zasad administracja może usuwać treści i reagować zależnie od sytuacji: ostrzeżeniem, wyciszeniem, wyrzuceniem albo banem. Im poważniejsze naruszenie i im więcej masz już na koncie, tym ostrzejsza może być reakcja.
-Nie ma u nas taryfikatora kar. Tak jak pisaliśmy wcześniej, większość dorosłych osób jest świadoma tego, co robi.
+Za łamanie zasad administracja może usuwać treści oraz stosować ostrzeżenia, wyciszenia, wyrzucenia z serwera lub bany.
+Rodzaj konsekwencji zależy od wagi naruszenia oraz wcześniejszego zachowania użytkownika.
+Nie stosujemy sztywnego taryfikatora kar. Zakładamy, że każdy dorosły użytkownik jest świadomy swoich działań i rozumie, jakie mogą być ich konsekwencje.
 
 ## 14. Odwołania
-Jeśli uważasz, że ban albo inna decyzja administracji była niesłuszna, wyślij maila na **contact@sefinek.net**. Podaj swój nick i napisz dość treściwe odwołanie.
+Jeśli uważasz, że ban albo inna decyzja administracji były niesłuszne, wyślij e-mail na adres **contact@sefinek.net**. Podaj swój nick i uzasadnij odwołanie.

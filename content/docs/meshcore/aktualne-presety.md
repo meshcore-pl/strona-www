@@ -17,7 +17,7 @@ Konfigurujesz swojego companiona albo stawiasz dopiero repeater? Trzymaj się pr
 > Jeśli zegar repeatera wyprzedza czas rzeczywisty, użyj `clkreboot`, a po restarcie zsynchronizuj go ponownie z poziomu aplikacji.
 
 > [!TIP]
-> Trzymasz na sieci bota? Nie stawiaj go na `Public` ani `#test`. Stwórz mu dedykowany kanał (np. `#botwarszawa`), żeby nie zaśmiecał głównych kanałów.
+> Uruchamiasz bota w sieci? Nie używaj do tego kanałów `Public` ani `#test`. Utwórz dla niego osobny kanał (np. `#botwarszawa`), żeby nie zaśmiecał standardowych kanałów.
 
 ## Dokładne ustawienia
 
@@ -32,8 +32,9 @@ Zależy Ci na odrobinę większej prędkości transmisji? Zmień samo `CR` na `5
 Oba warianty są ze sobą kompatybilne - urządzenie na `CR8` bez problemu nawiąże kontakt z urządzeniem na `CR5` i odwrotnie.
 
 ## Oznaczenia repeaterów
-Masz solidnego, w pełni off-gridowego repeatera (zasilanego z panelu słonecznego i akumulatora, postawionego na stałe)? Dopisz mu na końcu nazwy gwiazdkę lub emotkę słońca, np. `Mój Solarny Repeater ☀️`.
-Dzięki temu każdy, kto zerknie na mapę, od razu zobaczy, ile urządzeń przetrwa lokalną awarię zasilania.
+Masz solidny repeater zamontowany na stałe, który działa niezależnie od sieci energetycznej dzięki panelowi słonecznemu i akumulatorowi?
+Dodaj na końcu jego nazwy gwiazdkę (*) lub symbol słońca, np. `Mój Solarny Repeater ☀️`.
+Dzięki temu każdy będzie mógł łatwo sprawdzić na mapie, które repeatery mogą działać również podczas lokalnej awarii zasilania.
 
 ## Higiena sieci
 
@@ -73,16 +74,16 @@ set flood.advert.interval 12  # interwał advertów do wszystkich
 ```
 
 ### 2 repeatery obok siebie?
-Tak, to możliwe, np. jeden na antenie kierunkowej, a drugi na dookólnej. Warto zmienić kilka ustawień, żeby ograniczyć kolizje pakietów.
+Tak, to możliwe, np. jeden na antenie kierunkowej, a drugi na dookólnej. Warto jednak zmienić kilka ustawień, żeby ograniczyć kolizje pakietów.
 
-`flood.advert.interval` ustaw zgodnie z sekcją wyżej (zależnie od wielkości miejscowości).
-Każdemu kolejnemu repeaterowi w tej samej lokalizacji dodaj do tej wartości `1`, żeby ich adverty do wszystkich przypadkowo nie wystrzeliły w dokładnie tym samym momencie.
+Ustaw `flood.advert.interval` zgodnie z zaleceniami z poprzedniej sekcji (zależnie od wielkości miejscowości).
+Dla każdego kolejnego repeatera w tej samej lokalizacji zwiększ tę wartość o `1`, żeby ich adverty nie wystrzeliły przypadkiem w tym samym momencie (choć w praktyce jest to raczej mało prawdopodobne).
 
 > [!IMPORTANT]
-> `txdelay` i `direct.txdelay` to nie stały czas oczekiwania, tylko górna granica losowego opóźnienia. Dopuszczalny zakres to **0-2**.
-> Ustawienie np. 2 sekund nie oznacza, że repeater odpowie dopiero po 2 sekundach - opóźnienie zostanie wylosowane gdzieś w tym zakresie.  
-> Domyślnie to **0.5** (`txdelay`) i **0.2** (`direct.txdelay`).  
-> Każdemu kolejnemu repeaterowi w tej samej lokalizacji ustaw wyraźnie wyższą wartość niż poprzedniemu (w granicach 0-2) - inaczej oba mogą wylosować zbliżone opóźnienie i zderzyć się ze sobą.
+> Parametry `txdelay` i `direct.txdelay` określają zakres losowego opóźnienia przed przekazaniem pakietu. Dopuszczalne wartości to **0-2**.
+> Nie są to jednak sekundy! Faktyczny czas oczekiwania zależy od długości transmisji pakietu. Im wyższa wartość, tym większy zakres losowania.
+> Domyślnie jest to **0.5** (`txdelay`) i **0.3** (`direct.txdelay`) dla repeaterów.
+> Dla każdego kolejnego repeatera w tej samej lokalizacji ustaw wyższe wartości (w granicach 0-2), żeby zmniejszyć ryzyko kolizji pakietów. Pamiętaj jednak, że nawet różne ustawienia nie dają pełnej gwarancji uniknięcia kolizji.
 
 #### Repeater 1
 ```mccli

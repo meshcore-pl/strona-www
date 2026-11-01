@@ -9,7 +9,7 @@ themeColor: '#90020e'
 
 # Nasze logo i banery - materiały graficzne MeshCore Polska {toc: Nasze logo}
 Loga, banery i faviconki serwera MeshCore Polska możesz pobierać i używać swobodnie.
-Nie używaj ich tak, żeby wyglądało, że reprezentujesz projekt MeshCore albo administrację serwera, jeśli nie masz na to zgody.
+Bez odpowiedniej zgody nie używaj ich w sposób sugerujący, że reprezentujesz projekt MeshCore albo administrację serwera.
 
 ## Loga
 ![Logo MeshCore Polska](/images/brand/logo-1.jpg)
@@ -29,5 +29,5 @@ Nie używaj ich tak, żeby wyglądało, że reprezentujesz projekt MeshCore albo
 - [apple-touch-icon.png](/images/logo/apple-touch-icon.png)
 
 ## Banery
-![Banner MeshCore Polska](/images/brand/banner-1.jpg)
-![Banner MeshCore Polska](/images/brand/banner-2.jpg)
+![Baner MeshCore Polska](/images/brand/banner-1.jpg)
+![Baner MeshCore Polska](/images/brand/banner-2.jpg)

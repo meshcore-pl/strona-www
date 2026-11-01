@@ -3,7 +3,7 @@ title: Noise Floor w MeshCore - pomiar szumu i zakłóceń
 description: Czym jest Noise Floor w MeshCore, jak poprawnie go zmierzyć, znaleźć źródło zakłóceń i kiedy warto zastosować filtr BPF.
 canonical: /dokumentacja/meshcore/noise-floor
 createdAt: 13.07.2026
-updatedAt: 22.08.2026
+updatedAt: 1.11.2026
 themeColor: '#1a1c20'
 ---
 
@@ -42,11 +42,11 @@ Jeśli zasilasz płytkę przez PoE, częstym powodem może okazać się nawet sa
 
 ## Kiedy filtr ma sens?
 Filtr może pomóc, gdy odbiornik jest zagłuszany przez silne sygnały spoza naszej częstotliwości. Pamiętaj, że nie usunie on zakłóceń występujących dokładnie na 869,618 MHz.
-Najpierw zmień lokalizację i wyklucz pobliską elektronikę, a dopiero potem kupuj filtr.
+Najpierw zmień lokalizację urządzenia i sprawdź, czy źródłem zakłóceń jest pobliska elektronika. Dopiero potem rozważ zakup filtra.
 
 ## Polecane filtry BPF
-1. [Goły filtr](https://pl.aliexpress.com/item/1005007438690164.html): tania opcja. Płytkę można dodatkowo zabezpieczyć np. kolejną warstwą termokurczu.
-2. [Filtr z obudową](https://pl.aliexpress.com/item/1005007509062592.html): zalecana opcja, jeśli budżet nie boli. NF raczej nie poprawi się względem pierwszej propozycji, ale filtr w takiej wersji może przetrwać znacznie dłużej.
+1. [Filtr bez obudowy](https://pl.aliexpress.com/item/1005007438690164.html): tania opcja. Płytkę można dodatkowo zabezpieczyć np. kolejną warstwą rurki termokurczliwej.
+2. [Filtr z obudową](https://pl.aliexpress.com/item/1005007509062592.html): zalecana opcja, jeśli pozwala na to budżet. NF raczej nie poprawi się w porównaniu z pierwszą propozycją, ale filtr w takiej wersji może przetrwać znacznie dłużej.
 
 ## Mam filtr, co dalej?
 Przed wdrożeniem koniecznie sprawdź jego maksymalną dopuszczalną moc wejściową. Jeśli wynosi ona 20 dBm (zwykle filtry mają właśnie taki limit), ustaw moc nadawania na nie więcej niż 20 dBm (100 mW).

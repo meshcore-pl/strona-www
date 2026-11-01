@@ -3,17 +3,17 @@ title: Wprowadzenie do MeshCore - pojęcia i przepisy
 description: Słownik pojęć MeshCore (preset, SF, CR, advert), role urządzeń oraz zasady legalnego nadawania w paśmie 868-869 MHz - limity ERP i duty cycle 10%.
 canonical: /dokumentacja/meshcore/wprowadzenie
 createdAt: 13.07.2026
-updatedAt: 15.10.2026
+updatedAt: 1.11.2026
 ---
 
 # Wprowadzenie do MeshCore: pojęcia, role urządzeń i legalne nadawanie {toc: Wprowadzenie}
-Dziękujemy za zainteresowanie tematem! Prosimy pamiętać, iż dokumentacja jest nadal w trakcie prac. Sama domena `meshcorepolska.org` nie ma jeszcze nawet czterech miesięcy.
-Witryna wraz z dokumentacją jest open source - kod źródłowy znajdziesz na [GitHubie](https://github.com/meshcore-pl/strona-www). Zapraszamy was wszystkich na [naszą grupę na Discordzie](https://meshcorepolska.org/discord).
+Dziękujemy za zainteresowanie tematem! Dokumentacja jest nadal w trakcie opracowywania.
+Kod źródłowy witryny i treść dokumentacji znajdziesz na [GitHubie](https://github.com/meshcore-pl/strona-www). Zapraszamy także do [naszej społeczności na Discordzie](https://meshcorepolska.org/discord).
 
 > [!WARNING]
 > Nigdy nie ustawiaj dokładnej lokalizacji swojego repeatera na [mapie](https://mapa.meshcorepolska.org)!
 > Raczej nie chcesz, żeby cały świat znał dokładne położenie Twojego urządzenia.
-> Zwykle są one montowane na dachach, balkonach lub masztach w ogrodzie, dlatego precyzyjny punkt na publicznej mapie może naprowadzić intruza wprost na Twoją posiadłość.
+> Repeatery są zwykle montowane na dachach, balkonach lub masztach w ogrodach, dlatego precyzyjny punkt na publicznej mapie może naprowadzić intruza wprost na Twoją posesję.
 > Podawaj pozycję z odchyleniem rzędu kilkuset metrów od rzeczywistego miejsca - to w zupełności wystarczy do orientacyjnego przedstawienia pokrycia sieci.
 
 > [!IMPORTANT]
@@ -24,8 +24,7 @@ Witryna wraz z dokumentacją jest open source - kod źródłowy znajdziesz na [G
 > Więcej informacji znajdziesz [w tym dokumencie](https://meshcorepolska.org/dokumentacja/meshcore/profile-meshcore).
 
 ## Podstawowe pojęcia
-Niektóre polskie określenia zostały przyjęte przez naszą społeczność. Nazwy w kolumnie Pojęcie są zgodne z tłumaczeniem używanym w polskiej wersji aplikacji MeshCore.
-Nie znajdziesz więc tutaj żadnej rozbieżności ani nie pomylisz się przy czymkolwiek.
+Niektóre polskie określenia zostały przyjęte przez naszą społeczność. Nazwy w kolumnie „Pojęcie” odpowiadają tłumaczeniu używanemu w polskiej wersji aplikacji MeshCore, co ułatwia odnalezienie opisanych funkcji.
 
 | Pojęcie                        | Angielska nazwa          | Co oznacza?                                                                                                                                                                  |
 |--------------------------------|:-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -60,7 +59,7 @@ O roli urządzenia decyduje oprogramowanie (firmware), nie sama płytka. Ten sam
 
 ### Companion (kompan)
 - Urządzenie osobiste. Parujesz je z telefonem lub komputerem przez Bluetooth albo USB, a następnie za jego pośrednictwem wysyłasz i odbierasz wiadomości.
-- Jeżeli przez pewien czas aplikacja będzie wyłączona lub połączenie Bluetooth zostanie zerwane, wiadomości będą zapisywane w buforze. Ma on określony limit, po jego przekroczeniu najstarsze wiadomości zostaną nadpisywane. Po ponownym połączeniu się ze swoim companionem uzyskasz wgląd w to, co działo się podczas Twojej nieobecności.
+- Jeżeli przez pewien czas aplikacja będzie wyłączona lub połączenie Bluetooth zostanie zerwane, wiadomości będą zapisywane w buforze. Ma on ograniczoną pojemność. Po jej przekroczeniu najstarsze wiadomości będą nadpisywane. Po ponownym połączeniu się ze swoim companionem zobaczysz zachowane wiadomości z czasu Twojej nieobecności.
 - Companion samodzielnie nie przekazuje dalej wiadomości innych użytkowników. Aby komunikacja mogła wykroczyć poza bezpośredni zasięg radiowy, w pobliżu musi znajdować się repeater lub room-peater.
 
 ### Repeater (RPT)
@@ -71,7 +70,7 @@ O roli urządzenia decyduje oprogramowanie (firmware), nie sama płytka. Ten sam
 ### Room serwer (RS)
 - Pełni rolę lokalnej tablicy ogłoszeń dla wiadomości grupowych. Na liście kontaktów widnieje jak zwykłe urządzenie, przechowuje historię wiadomości i pokazuje je po podaniu hasła.
 - Jedno urządzenie obsługuje tylko jeden kanał - każdy działa niezależnie. Tak jak w repeaterze, Bluetooth jest domyślnie wyłączony.
-- Prywatność takiego serwera zależy wyłącznie od ciebie - dopóki nie zmienisz domyślnego hasła, dołączy do niego każdy.
+- Prywatność takiego serwera zależy wyłącznie od Ciebie - dopóki nie zmienisz domyślnego hasła, dołączy do niego każdy.
 
 ### Room-peater
 - Room-peater to repeater i room serwer połączone w jednym urządzeniu i jednym firmware. Jednocześnie przechowuje wiadomości grupowe i przekazuje pakiety dalej w eter.
@@ -96,7 +95,7 @@ set repeat off  # wraca do room serwera
 ```
 
 ### Domyślne hasła
-Zaraz po sflashowaniu firmware, repeater i room serwer mają ustawione fabryczne hasła:
+Bezpośrednio po wgraniu oprogramowania repeater i room serwer mają ustawione fabryczne hasła:
 - konto administratora: `password`
 - konto gościa: `hello`
 

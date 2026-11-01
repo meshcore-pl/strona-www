@@ -3,7 +3,7 @@ title: Seeed XIAO nRF52840 - pinout
 description: Pinout płytki Seeed Studio XIAO nRF52840 - piny GPIO/ADC/SPI/I2C od strony górnej oraz układ zarządzania baterią (BAT+/BAT-, SWD) od spodu.
 canonical: /dokumentacja/schematy/xiao-nrf52840
 createdAt: 21.08.2026
-updatedAt: 22.08.2026
+updatedAt: 1.11.2026
 themeColor: '#47a376'
 ---
 
@@ -26,11 +26,11 @@ Miniaturowa płytka z MCU `nRF52840` (BLE) od Seeed Studio, wykorzystywana w nie
 </div>
 
 ## Zarządzanie baterią
-Logika ładowania sterowana jest przez cztery piny:
+Do sterowania ładowaniem i monitorowania baterii służą cztery piny:
 - `P0.31` / `32` (`VBAT_ADC`) - wejście analogowe do pomiaru napięcia baterii
-- `P0.14` / `14` (`READ_EN`) - stan niski włącza odczyt, a wysoki oszczędzanie energii
+- `P0.14` / `14` (`READ_EN`) - stan niski włącza odczyt, a wysoki włącza oszczędzanie energii
 - `P0.13` / `22` (`CHG_CTRL`) - stan niski oznacza szybkie ładowanie (100 mA), a wysoki standardowe (50 mA)
-- `P0.17` (`CHG_STAT`) - stan niski oznacza ładowanie, a wysoki pełną baterię lub bezczynność
+- `P0.17` (`CHG_STAT`) - stan niski oznacza ładowanie, a wysoki pełne naładowanie baterii lub bezczynność
 
 > [!NOTE]
 > Numeracja pinów zależy od użytego rdzenia w Arduino IDE - format na diagramie to `Mbed Core / Non-Mbed Core`.

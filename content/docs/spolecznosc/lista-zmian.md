@@ -3,12 +3,12 @@ title: Lista zmian meshcorepolska.org
 description: Historia aktualizacji strony meshcorepolska.org, wersja po wersji - nowe funkcje, poprawki i zmiany w kodzie oraz treści.
 canonical: /dokumentacja/spolecznosc/lista-zmian
 createdAt: 2.08.2026
-updatedAt: 31.10.2026
+updatedAt: 1.11.2026
 ---
 
 # Lista zmian na stronie meshcorepolska.org {toc: Lista zmian}
 Poniżej znajdziesz listę zmian wprowadzanych na stronie meshcorepolska.org.  
-Zmiany dla `mapa.meshcorepolska.org` znajdziesz osobno - pod ikoną `i` w prawym dolnym rogu tamtej strony, przycisk `Lista zmian`.
+Zmiany dotyczące `mapa.meshcorepolska.org` znajdziesz osobno: kliknij ikonę `i` w prawym dolnym rogu tamtej strony, a następnie przycisk `Lista zmian`.
 
 > [!NOTE]
 > Jeśli po aktualizacji strona nie wyświetla się poprawnie, wykonaj twarde odświeżenie kombinacją `CTRL + F5`.
@@ -21,10 +21,11 @@ Zmiany dla `mapa.meshcorepolska.org` znajdziesz osobno - pod ikoną `i` w prawym
 5. Połączono wspólne pliki CSS (zmienne, przyciski, nawigacja, stopka i inne) w jeden plik `global.css`, co ogranicza liczbę żądań. Wygląd strony pozostał bez zmian.
 6. Gdy wkleisz link do strony dokumentacji lub wpisu w Aktualnościach (np. na Discordzie), podgląd pokazuje teraz obrazek z tej strony zamiast ogólnego banera, a kolor paska w podglądzie i w przeglądarce na telefonie pasuje do tego obrazka.
 7. Płynniej zmienia się wygląd paska nawigacji podczas przewijania - tło, rozmycie i ramka narastają stopniowo zamiast przełączać się skokowo.
-8. Poprawiono wyśrodkowanie obrazów w trybie pełnoekranowym (powiększenie zdjęć), a kliknięcie z Ctrl, Cmd, Shift lub środkowym przyciskiem myszy otwiera obraz jak zwykły link.
+8. Poprawiono wyśrodkowanie obrazów w trybie pełnoekranowym (powiększenie zdjęć). Kliknięcie z wciśniętym klawiszem Ctrl, Cmd lub Shift albo użycie środkowego przycisku myszy otwiera obraz jak zwykły link.
 9. Dane strukturalne artykułów (schema.org) zawierają teraz typ `Article`.
 10. Zaktualizowano zależności backendu.
-11. Inne ulepszenia oraz poprawki.
+11. Zmiany jakościowe w treści dokumentacji.
+12. Inne ulepszenia oraz poprawki.
 
 ## v1.10.0
 1. Strona jest teraz dostępna również offline! Po jej wcześniejszym załadowaniu możesz korzystać z niej bez połączenia z internetem.
@@ -115,7 +116,7 @@ Zmiany dla `mapa.meshcorepolska.org` znajdziesz osobno - pod ikoną `i` w prawym
 1. Dodano podstronę Aktualności (`/aktualnosci`) z newsami i changelogami MeshCore.
 2. Dodano zabezpieczenie captcha (Cloudflare Turnstile) w formularzu kontaktowym (`/kontakt`).
 3. Dodano nowe treści w dokumentacji.
-4. Odświeżony wygląd strony - m.in. nowe efekty tła i kart.
+4. Odświeżono wygląd strony - m.in. efekty tła i kart.
 
 ## v1.3.0
 1. Dodano podstronę Kontakt (`/kontakt`).
