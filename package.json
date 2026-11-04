@@ -15,6 +15,7 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
+    "indexnow": "node global/IndexNow.js",
     "m": "ncu -u && npm install && npm update",
     "pull": "git pull origin main && git submodule update --init",
     "theme-colors": "node scripts/themeColors.js",
