@@ -32,4 +32,4 @@ Warto zauważyć, że ustawienie **UI Theme** decyduje też o jasnym/ciemnym mot
 ## Pobieranie
 Wersja v9.7 jest już dostępna dla [LilyGo T-Deck](https://www.lilygo.cc/products/t-deck-plus-1?variant=51618501951669&bg_ref=cq3pUU7cD3), [T-Pager](https://www.lilygo.cc/products/t-lora-pager?bg_ref=cq3pUU7cD3) oraz [T-Watch S3 Plus](https://www.lilygo.cc/products/t-watch-s3-plus?variant=52457652224181&bg_ref=cq3pUU7cD3). Wkrótce trafi też do pozostałych kolorowych urządzeń, takich jak Heltec V4 Expansion Kit i inne.
 
-Firmware jest już dostępny w [MeshCore.io Flasher](https://flasher.meshcore.io), gotowy do łatwej instalacji.
+Firmware jest już dostępny w [MeshCore Flasher](https://flasher.meshcore.io), gotowy do łatwej instalacji.
