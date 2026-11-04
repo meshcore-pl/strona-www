@@ -619,11 +619,11 @@ body[data-page="news"] .section__inner {
 }
 
 .footer__group-title {
-	margin: 0 0 4px;
+	margin: 0;
 	color: var(--text);
 	font-family: var(--font-mono);
-	font-size: 12px;
-	font-weight: 500;
+	font-size: 13px;
+	font-weight: 600;
 	letter-spacing: .1em;
 	text-transform: uppercase;
 }

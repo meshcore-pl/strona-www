@@ -520,13 +520,22 @@
 		const packetValue = document.getElementById('map-packets-value');
 		const speedValue = document.getElementById('map-speed-value');
 		const nodeCount = document.getElementById('map-node-count');
+
+		const updateRangeFill = input => {
+			const progress = (Number(input.value) - Number(input.min)) / (Number(input.max) - Number(input.min));
+			input.style.setProperty('--range-progress', String(progress));
+		};
+
 		const syncControls = () => {
 			density.value = String(settings.spacing);
 			packetLimit.value = String(settings.packets);
 			packetValue.value = packetLimit.value;
 			speed.value = String(settings.speed);
 			speedValue.value = `${settings.speed.toLocaleString('pl-PL')}×`;
+			updateRangeFill(packetLimit);
+			updateRangeFill(speed);
 		};
+
 		const rebuild = () => {
 			nodes = createNodes(settings.seed, settings.spacing);
 			({ edges, edgeIndex, adjacency, edgeHeat } = createGraph(nodes));
@@ -538,6 +547,7 @@
 				draw(0);
 			}
 		};
+
 		density.addEventListener('change', () => {
 			settings.spacing = Number(density.value);
 			saveSettings();
@@ -546,14 +556,19 @@
 		packetLimit.addEventListener('input', () => {
 			settings.packets = Number(packetLimit.value);
 			packetValue.value = packetLimit.value;
+			updateRangeFill(packetLimit);
 			if (packets.length > settings.packets) packets.length = settings.packets;
-			saveSettings();
 		});
 		speed.addEventListener('input', () => {
 			settings.speed = Number(speed.value);
 			speedValue.value = `${settings.speed.toLocaleString('pl-PL')}×`;
-			saveSettings();
+			updateRangeFill(speed);
 		});
+
+		for (const input of [packetLimit, speed]) {
+			input.addEventListener('change', () => saveSettings());
+		}
+
 		document.getElementById('map-shuffle').addEventListener('click', () => {
 			settings.seed = Math.floor(Math.random() * 0x100000000);
 			saveSettings();
@@ -565,6 +580,7 @@
 			syncControls();
 			rebuild();
 		});
+
 		const toggle = document.getElementById('map-settings-toggle');
 		const panel = document.getElementById('map-settings-panel');
 		const positionPanel = () => {
@@ -586,6 +602,7 @@
 			panel.style.top = `${top}px`;
 			panel.dataset.positioned = '';
 		};
+
 		toggle.addEventListener('click', event => {
 			event.preventDefault();
 			if (panel.matches(':popover-open')) {
@@ -600,15 +617,18 @@
 		panel.addEventListener('toggle', () => {
 			toggle.setAttribute('aria-expanded', String(panel.matches(':popover-open')));
 		});
+
 		window.addEventListener('resize', positionPanel);
 		document.addEventListener('scroll', event => {
 			if (!panel.contains(event.target)) positionPanel();
 		}, { capture: true, passive: true });
+
 		if (reducedMotion) {
 			packetLimit.disabled = true;
 			speed.disabled = true;
 			document.getElementById('map-motion-note').hidden = false;
 		}
+
 		nodeCount.textContent = `Węzły: ${nodes.length} · połączenia: ${edges.length}`;
 		syncControls();
 		controls.hidden = false;

@@ -91,8 +91,16 @@
 	object-fit: cover;
 }
 
-#cta .btn {
+#cta__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
 	margin-top: 24px;
+}
+
+#cta__actions .btn {
+	padding: 10px 16px;
+	font-size: 15px;
 }
 
 #outro #footer {
