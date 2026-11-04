@@ -6,7 +6,7 @@ tags: [Lista zmian, Aplikacja]
 ---
 
 # Śledzenie trasy do i od repeatera w aplikacji MeshCore 1.49.0
-22 sierpnia 2026 ukazała się wersja **1.49.0** oficjalnej aplikacji MeshCore. Plik jest możliwy do pobrania pod linkiem [files.liamcottle.net/MeshCore/v1.49.0](https://files.liamcottle.net/MeshCore/v1.49.0).
+22 sierpnia 2026 ukazała się wersja **1.49.0** oficjalnej aplikacji MeshCore. Plik jest możliwy do pobrania pod linkiem [files.liamcottle.net/MeshCore/v1.49.0](https://files.liamcottle.net/MeshCore/v1.49.0/).
 
 ## Lista zmian
 - Dodano możliwość śledzenia aktualnej trasy do i od repeatera

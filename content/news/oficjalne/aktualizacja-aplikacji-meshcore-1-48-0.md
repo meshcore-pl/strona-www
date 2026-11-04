@@ -7,7 +7,7 @@ tags: [Lista zmian, Aplikacja]
 ---
 
 # Powiadomienia push w aplikacji webowej MeshCore 1.48.0
-15 sierpnia 2026 ukazała się wersja **1.48.0** oficjalnej aplikacji MeshCore. Plik jest możliwy do pobrania pod linkiem [files.liamcottle.net/MeshCore/v1.48.0](https://files.liamcottle.net/MeshCore/v1.48.0).
+15 sierpnia 2026 ukazała się wersja **1.48.0** oficjalnej aplikacji MeshCore. Plik jest możliwy do pobrania pod linkiem [files.liamcottle.net/MeshCore/v1.48.0](https://files.liamcottle.net/MeshCore/v1.48.0/).
 
 ## Lista zmian
 - Dodano możliwość przeglądania regionów wykrytych repeaterów

@@ -64,34 +64,6 @@
 	margin: 6px 0 0;
 }
 
-.rg-field select, .rg-field input[type="text"], .rg-field textarea {
-	width: 100%;
-	padding: 11px 14px;
-	border: 1px solid var(--border-strong);
-	border-radius: 10px;
-	background: var(--bg);
-	color: var(--text);
-	font-family: var(--font-body);
-	font-size: 15px;
-	transition: border-color .15s ease, box-shadow .15s ease;
-}
-
-.rg-field select {
-	padding-right: 36px;
-	background-image: linear-gradient(45deg, transparent 50%, var(--text-muted) 50%), linear-gradient(135deg, var(--text-muted) 50%, transparent 50%);
-	background-repeat: no-repeat;
-	background-position: calc(100% - 16px) 50%, calc(100% - 11px) 50%;
-	background-size: 5px 5px;
-	cursor: pointer;
-	-webkit-appearance: none;
-	appearance: none;
-}
-
-.rg-field select option {
-	background: var(--card);
-	color: var(--text);
-}
-
 .rg-field textarea {
 	display: block;
 	min-height: 120px;
@@ -99,12 +71,6 @@
 	font-family: var(--font-mono);
 	font-size: 14px;
 	resize: vertical;
-}
-
-.rg-field select:focus, .rg-field input[type="text"]:focus, .rg-field textarea:focus {
-	border-color: var(--red-bright);
-	outline: 0;
-	box-shadow: 0 0 0 3px var(--red-glow);
 }
 
 .rg-checks {

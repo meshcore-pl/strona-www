@@ -6,7 +6,7 @@ tags: [Lista zmian, Aplikacja, Tłumaczenia]
 ---
 
 # CLI companiona i konfiguracja Wi-Fi w aplikacji MeshCore 1.50.0
-25 września 2026 ukazała się wersja **1.50.0** oficjalnej aplikacji MeshCore. Plik jest możliwy do pobrania pod linkiem [files.liamcottle.net/MeshCore/v1.50.0](https://files.liamcottle.net/MeshCore/v1.50.0).
+25 września 2026 ukazała się wersja **1.50.0** oficjalnej aplikacji MeshCore. Plik jest możliwy do pobrania pod linkiem [files.liamcottle.net/MeshCore/v1.50.0](https://files.liamcottle.net/MeshCore/v1.50.0/).
 
 ## Lista zmian
 - Dodano przycisk wiersza poleceń w szczegółach kontaktu companiona, umożliwiający zdalne zarządzanie innymi companionami
@@ -30,7 +30,7 @@ tags: [Lista zmian, Aplikacja, Tłumaczenia]
 - Zaktualizowano treść komunikatu o odblokowaniu zdalnego zarządzania na wszystkich urządzeniach, aby jasno wskazywała platformę
 
 ## Brakujące tłumaczenia
-Z powodu chwilowej niedyspozycji nie udało się na czas przetłumaczyć części nowych tekstów w aplikacji. Do czasu uzupełnienia tłumaczeń będą one wyświetlane po angielsku.
+Z powodu chwilowej niedyspozycji nie udało nam się na czas przetłumaczyć części nowych tekstów w aplikacji. Do czasu uzupełnienia tłumaczeń będą one wyświetlane po angielsku.
 
 | Tekst w aplikacji                                                              | Sugerowane tłumaczenie                                                  |
 |--------------------------------------------------------------------------------|-------------------------------------------------------------------------|

@@ -1,8 +1,4 @@
 @media (max-width: 1600px) {
-	#hero__inner {
-		gap: 112px;
-	}
-
 	.about, #profile {
 		gap: 96px;
 	}
@@ -13,7 +9,7 @@
 }
 
 @media (max-width: 1100px) {
-	#hero__inner, .about, #profile {
+	.about, #profile {
 		gap: 80px;
 	}
 
@@ -95,8 +91,12 @@
 		max-width: 460px;
 	}
 
+	#hero__map-tools, #hero__map-caption {
+		text-align: left;
+	}
+
 	#hero__map-caption {
-		white-space: nowrap;
+		font-size: 9px;
 	}
 
 	.about, #profile, #cta__inner {

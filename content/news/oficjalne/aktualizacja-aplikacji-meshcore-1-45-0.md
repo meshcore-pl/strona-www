@@ -7,7 +7,7 @@ tags: [Lista zmian, Aplikacja]
 ---
 
 # Nowy kreator konfiguracji w aplikacji MeshCore 1.45.0
-14 czerwca 2026 ukazała się wersja **1.45.0** oficjalnej aplikacji MeshCore. Plik jest możliwy do pobrania pod linkiem [files.liamcottle.net/MeshCore/v1.45.0](https://files.liamcottle.net/MeshCore/v1.45.0).
+14 czerwca 2026 ukazała się wersja **1.45.0** oficjalnej aplikacji MeshCore. Plik jest możliwy do pobrania pod linkiem [files.liamcottle.net/MeshCore/v1.45.0](https://files.liamcottle.net/MeshCore/v1.45.0/).
 
 ## Lista zmian
 - Dodano nowy interfejs wprowadzający do wstępnej konfiguracji urządzenia

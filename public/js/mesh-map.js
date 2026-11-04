@@ -6,7 +6,7 @@
 	const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 	const RED = '255, 51, 82';
-	const GREEN = '61, 220, 132';
+	const WHITE = '238, 241, 248';
 
 	const BORDER = [
 		[18.491, 54.805], [18.304, 54.868], [18.198, 54.868], [17.856, 54.860], [17.621, 54.808], [17.319, 54.784], [17.061, 54.714], [16.925, 54.627],
@@ -55,12 +55,30 @@
 		['SZC', 14.553, 53.429], ['LUB', 22.568, 51.246], ['BIA', 23.169, 53.133],
 		['KAT', 19.024, 50.265], ['BYD', 18.008, 53.124], ['RZE', 22.005, 50.041],
 		['OLS', 20.480, 53.778], ['KIE', 20.629, 50.866], ['ZGA', 15.506, 51.936],
-		['PIL', 16.738, 53.151, true], ['WAL', 16.472, 53.272], ['TOR', 18.598, 53.014, true],
+		['WAL', 16.472, 53.272], ['TOR', 18.598, 53.014, true],
 		['KAL', 18.081, 51.762], ['OPO', 17.925, 50.675], ['CZE', 19.124, 50.811],
 		['GOR', 15.229, 52.737], ['KOS', 16.181, 54.190, true], ['ELB', 19.404, 54.156, true],
 		['SUW', 22.930, 54.111], ['PLO', 19.700, 52.546], ['RAD', 21.147, 51.403],
 		['TAR', 20.986, 50.013, true], ['ZAM', 23.252, 50.723],
+		['SLU', 17.028, 54.464], ['CHO', 17.565, 53.695], ['ELK', 22.365, 53.828],
+		['OST', 21.576, 53.086], ['SIE', 22.291, 52.167], ['BIP', 23.133, 52.032],
+		['LEG', 16.161, 51.207], ['NS', 20.698, 49.621],
 	];
+
+	const CITY_NAMES = {
+		WAW: 'Warszawa', KRK: 'Kraków', GDA: 'Gdańsk',
+		WRO: 'Wrocław', POZ: 'Poznań', LDZ: 'Łódź',
+		SZC: 'Szczecin', LUB: 'Lublin', BIA: 'Białystok',
+		KAT: 'Katowice', BYD: 'Bydgoszcz', RZE: 'Rzeszów',
+		OLS: 'Olsztyn', KIE: 'Kielce', ZGA: 'Zielona Góra',
+		WAL: 'Wałcz', TOR: 'Toruń', KAL: 'Kalisz',
+		OPO: 'Opole', CZE: 'Częstochowa', GOR: 'Gorzów Wielkopolski',
+		KOS: 'Koszalin', ELB: 'Elbląg', SUW: 'Suwałki',
+		PLO: 'Płock', RAD: 'Radom', TAR: 'Tarnów', ZAM: 'Zamość',
+		SLU: 'Słupsk', CHO: 'Chojnice', ELK: 'Ełk',
+		OST: 'Ostrołęka', SIE: 'Siedlce', BIP: 'Biała Podlaska',
+		LEG: 'Legnica', NS: 'Nowy Sącz',
+	};
 
 	const mulberry32 = a => () => {
 		a |= 0; a = a + 0x6D2B79F5 | 0;
@@ -93,11 +111,6 @@
 
 	const borderPath = projectedBorder.map(normalize);
 
-	const nodes = CITIES.map(([code, lon, lat, below]) => {
-		const [x, y] = normalize(project(lon, lat));
-		return { x, y, lon, lat, code, city: true, below: !!below };
-	});
-
 	const distToBorder = (lon, lat) => {
 		const px = lon * COS_LAT, py = lat;
 		let min = Infinity;
@@ -114,24 +127,35 @@
 		return min;
 	};
 
-	const rand = mulberry32(869525);
-	let attempts = 0;
-	while (nodes.length < 62 && attempts < 8000) {
-		attempts++;
-		let lon, lat;
-		if (rand() < 0.55) {
-			const city = CITIES[Math.floor(rand() * CITIES.length)];
-			lon = city[1] + (rand() - 0.5) * 1.9;
-			lat = city[2] + (rand() - 0.5) * 1.2;
-		} else {
-			lon = 14.12 + rand() * 10.05;
-			lat = 49.05 + rand() * 5.8;
+	const createNodes = (seed, spacing) => {
+		const result = CITIES.map(([code, lon, lat, below]) => {
+			const [x, y] = normalize(project(lon, lat));
+			return { x, y, lon, lat, code, city: true, below: !!below };
+		});
+		const rand = mulberry32(seed);
+		const candidates = [];
+		for (let i = 0; i < 768; i++) {
+			const lon = 14.12 + rand() * 10.05;
+			const lat = 49.05 + rand() * 5.8;
+			if (!pointInPolygon(lon, lat, BORDER) || distToBorder(lon, lat) < 0.24) continue;
+			const [x, y] = normalize(project(lon, lat));
+			const distance = Math.min(...result.map(n => Math.hypot(n.x - x, n.y - y)));
+			candidates.push({ x, y, lon, lat, distance });
 		}
-		if (!pointInPolygon(lon, lat, BORDER) || distToBorder(lon, lat) < 0.07) continue;
-		const [x, y] = normalize(project(lon, lat));
-		if (nodes.some(n => Math.hypot(n.x - x, n.y - y) < 0.058)) continue;
-		nodes.push({ x, y, lon, lat, city: false });
-	}
+		while (result.length < 90) {
+			let best = null;
+			for (const candidate of candidates) {
+				if (!best || candidate.distance > best.distance) best = candidate;
+			}
+			if (!best || best.distance < spacing) break;
+			const { x, y, lon, lat } = best;
+			result.push({ x, y, lon, lat, city: false });
+			for (const candidate of candidates) {
+				candidate.distance = Math.min(candidate.distance, Math.hypot(candidate.x - x, candidate.y - y));
+			}
+		}
+		return result;
+	};
 
 	const orient = (ax, ay, bx, by, cx, cy) => (bx - ax) * (cy - ay) - (by - ay) * (cx - ax);
 	const segmentInside = (a, b) => {
@@ -144,70 +168,103 @@
 			const o4 = orient(c1lon, c1lat, c2lon, c2lat, b.lon, b.lat);
 			if (o1 * o2 < 0 && o3 * o4 < 0) return false;
 		}
+		for (let i = 1; i < 8; i++) {
+			const t = i / 8;
+			if (distToBorder(a.lon + (b.lon - a.lon) * t, a.lat + (b.lat - a.lat) * t) < 0.12) return false;
+		}
 		return true;
 	};
 
-	const edges = [];
-	const edgeIndex = new Map();
-	const adjacency = nodes.map(() => []);
-	nodes.forEach((node, i) => {
-		nodes
-			.map((other, j) => ({ j, d: Math.hypot(other.x - node.x, other.y - node.y) }))
-			.filter(({ j, d }) => j !== i && d < 0.2 && segmentInside(node, nodes[j]))
-			.sort((a, b) => a.d - b.d)
-			.slice(0, 3)
-			.forEach(({ j }) => {
-				const key = i < j ? `${i}-${j}` : `${j}-${i}`;
-				if (edgeIndex.has(key)) return;
-				edgeIndex.set(key, edges.length);
-				edges.push([i < j ? i : j, i < j ? j : i]);
-				adjacency[i].push(j);
-				adjacency[j].push(i);
-			});
-	});
+	const createGraph = nodes => {
+		const edges = [];
+		const edgeIndex = new Map();
+		const adjacency = nodes.map(() => []);
+		const connect = (i, j) => {
+			const a = Math.min(i, j), b = Math.max(i, j);
+			const key = `${a}-${b}`;
+			if (edgeIndex.has(key)) return;
+			edgeIndex.set(key, edges.length);
+			edges.push([a, b]);
+			adjacency[a].push(b);
+			adjacency[b].push(a);
+		};
+		nodes.forEach((node, i) => {
+			nodes
+				.map((other, j) => ({ j, d: Math.hypot(other.x - node.x, other.y - node.y) }))
+				.filter(({ j, d }) => j !== i && d < 0.2 && segmentInside(node, nodes[j]))
+				.sort((a, b) => a.d - b.d)
+				.slice(0, 3)
+				.forEach(({ j }) => connect(i, j));
+		});
 
-	const componentOf = new Int32Array(nodes.length);
-	const labelComponents = () => {
-		componentOf.fill(-1);
-		let count = 0;
-		for (let i = 0; i < nodes.length; i++) {
-			if (componentOf[i] !== -1) continue;
-			const queue = [i];
-			componentOf[i] = count;
-			while (queue.length) {
-				adjacency[queue.pop()].forEach(n => {
-					if (componentOf[n] === -1) {
-						componentOf[n] = count;
-						queue.push(n);
-					}
-				});
+		const componentOf = new Int32Array(nodes.length);
+		const labelComponents = () => {
+			componentOf.fill(-1);
+			let count = 0;
+			for (let i = 0; i < nodes.length; i++) {
+				if (componentOf[i] !== -1) continue;
+				const queue = [i];
+				componentOf[i] = count;
+				while (queue.length) {
+					adjacency[queue.pop()].forEach(n => {
+						if (componentOf[n] === -1) {
+							componentOf[n] = count;
+							queue.push(n);
+						}
+					});
+				}
+				count++;
 			}
-			count++;
+			return count;
+		};
+		while (labelComponents() > 1) {
+			let best = null;
+			for (let i = 0; i < nodes.length; i++) {
+				for (let j = i + 1; j < nodes.length; j++) {
+					if (componentOf[i] === componentOf[j]) continue;
+					const d = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
+					if ((!best || d < best.d) && segmentInside(nodes[i], nodes[j])) best = { i, j, d };
+				}
+			}
+			if (!best) break;
+			connect(best.i, best.j);
 		}
-		return count;
+		return { edges, edgeIndex, adjacency, edgeHeat: new Float32Array(edges.length) };
 	};
-	while (labelComponents() > 1) {
-		let best = null, fallback = null;
-		for (let i = 0; i < nodes.length; i++) {
-			for (let j = i + 1; j < nodes.length; j++) {
-				if (componentOf[i] === componentOf[j]) continue;
-				const d = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
-				if (!fallback || d < fallback.d) fallback = { i, j, d };
-				if ((!best || d < best.d) && segmentInside(nodes[i], nodes[j])) best = { i, j, d };
-			}
-		}
-		if (!best) best = fallback;
-		edgeIndex.set(`${best.i}-${best.j}`, edges.length);
-		edges.push([best.i, best.j]);
-		adjacency[best.i].push(best.j);
-		adjacency[best.j].push(best.i);
-	}
 
-	const edgeHeat = new Float32Array(edges.length);
+	const defaults = { seed: 869525, spacing: 0.075, packets: 10, speed: 1 };
+	const settingsKey = 'meshcore.meshMap.settings';
+	const loadSettings = () => {
+		const restored = { ...defaults };
+		try {
+			const saved = JSON.parse(localStorage.getItem(settingsKey));
+			if (!saved || typeof saved !== 'object' || Array.isArray(saved)) return restored;
+			if (Number.isInteger(saved.seed) && saved.seed >= 0 && saved.seed <= 0xFFFFFFFF) restored.seed = saved.seed;
+			if ([0.1, 0.075, 0.055].includes(saved.spacing)) restored.spacing = saved.spacing;
+			if (Number.isInteger(saved.packets) && saved.packets >= 1 && saved.packets <= 16) restored.packets = saved.packets;
+			if (Number.isFinite(saved.speed) && saved.speed >= 0.5 && saved.speed <= 2 && Number.isInteger(saved.speed * 4)) restored.speed = saved.speed;
+		} catch {
+			return restored;
+		}
+		return restored;
+	};
+	const settings = loadSettings();
+	const saveSettings = (reset = false) => {
+		try {
+			if (reset) localStorage.removeItem(settingsKey);
+			else localStorage.setItem(settingsKey, JSON.stringify(settings));
+			return true;
+		} catch {
+			return false;
+		}
+	};
+	let nodes = createNodes(settings.seed, settings.spacing);
+	let { edges, edgeIndex, adjacency, edgeHeat } = createGraph(nodes);
 	const packets = [];
 	const rings = [];
 	let width = 0, height = 0, scale = 1, offsetX = 0, offsetY = 0, dpr = 1;
 	let staticLayer = null;
+	const cityHitAreas = [];
 
 	const toPx = n => [offsetX + n.x * scale, offsetY + n.y * scale];
 	const geoToPx = (lon, lat) => {
@@ -225,6 +282,8 @@
 	};
 
 	const buildStatic = () => {
+		cityHitAreas.length = 0;
+		canvas.removeAttribute('title');
 		staticLayer = document.createElement('canvas');
 		staticLayer.width = canvas.width;
 		staticLayer.height = canvas.height;
@@ -276,6 +335,7 @@
 			if (!node.city) return;
 			const [x, y] = toPx(node);
 			s.beginPath();
+			cityHitAreas.push({ x: x - 12, y: y - 12, width: 24, height: 24, name: CITY_NAMES[node.code] });
 			s.arc(x, y, 5.5, 0, Math.PI * 2);
 			s.strokeStyle = 'rgba(238, 241, 248, 0.16)';
 			s.lineWidth = 1;
@@ -292,7 +352,17 @@
 				const [x, y] = toPx(node);
 				const alignRight = node.x > 0.8;
 				s.textAlign = alignRight ? 'right' : 'left';
-				s.fillText(node.code, x + (alignRight ? -9 : 9), y + (node.below ? 16 : -8));
+				const labelX = x + (alignRight ? -9 : 9);
+				const labelY = y + (node.below ? 16 : -8);
+				const labelWidth = s.measureText(node.code).width;
+				s.fillText(node.code, labelX, labelY);
+				cityHitAreas.push({
+					x: labelX - (alignRight ? labelWidth : 0) - 3,
+					y: labelY - 12,
+					width: labelWidth + 6,
+					height: 16,
+					name: CITY_NAMES[node.code],
+				});
 			});
 			s.shadowBlur = 0;
 		}
@@ -315,20 +385,24 @@
 	};
 
 	const spawnPacket = () => {
-		const start = Math.floor(Math.random() * nodes.length);
-		const path = [start];
-		const visited = new Set(path);
-		let current = start;
-		const hops = Math.min(3 + Math.floor(Math.log(1 - Math.random()) / Math.log(0.6)), 12);
-		for (let h = 0; h < hops; h++) {
-			const options = adjacency[current].filter(n => !visited.has(n));
-			if (!options.length) break;
-			const next = options[Math.floor(Math.random() * options.length)];
-			path.push(next);
-			visited.add(next);
-			current = next;
+		const start = Math.floor(Math.random() * CITIES.length);
+		const destination = (start + 1 + Math.floor(Math.random() * (CITIES.length - 1))) % CITIES.length;
+		const previous = new Int32Array(nodes.length).fill(-1);
+		const queue = [start];
+		previous[start] = start;
+		for (let head = 0; head < queue.length && previous[destination] === -1; head++) {
+			const current = queue[head];
+			for (const next of adjacency[current]) {
+				if (previous[next] !== -1) continue;
+				previous[next] = current;
+				queue.push(next);
+			}
 		}
-		if (path.length > 1) packets.push({ path, seg: 0, t: 0 });
+		if (previous[destination] === -1) return;
+		const path = [destination];
+		while (path[path.length - 1] !== start) path.push(previous[path[path.length - 1]]);
+		path.reverse();
+		packets.push({ path, seg: 0, t: 0 });
 	};
 
 	const heatUp = (a, b) => {
@@ -366,11 +440,11 @@
 
 		rings.forEach(ring => {
 			ctx.save();
-			ctx.shadowColor = `rgba(${GREEN}, 0.8)`;
+			ctx.shadowColor = `rgba(${WHITE}, 0.8)`;
 			ctx.shadowBlur = 8 * (1 - ring.p);
 			ctx.beginPath();
 			ctx.arc(ring.x, ring.y, ring.r, 0, Math.PI * 2);
-			ctx.strokeStyle = `rgba(${GREEN}, ${0.5 * (1 - ring.p)})`;
+			ctx.strokeStyle = `rgba(${WHITE}, ${0.5 * (1 - ring.p)})`;
 			ctx.lineWidth = 1.5;
 			ctx.stroke();
 			ctx.restore();
@@ -424,6 +498,122 @@
 		});
 	};
 
+	canvas.addEventListener('pointermove', event => {
+		const rect = canvas.getBoundingClientRect();
+		if (!rect.width || !rect.height) return;
+		const x = (event.clientX - rect.left) * width / rect.width;
+		const y = (event.clientY - rect.top) * height / rect.height;
+		const hit = cityHitAreas.find(area => x >= area.x && x <= area.x + area.width && y >= area.y && y <= area.y + area.height);
+		if (hit) {
+			if (canvas.title !== hit.name) canvas.title = hit.name;
+		} else {
+			canvas.removeAttribute('title');
+		}
+	});
+	canvas.addEventListener('pointerleave', () => canvas.removeAttribute('title'));
+
+	const controls = document.getElementById('mesh-map-settings');
+	if (controls) {
+		const density = document.getElementById('map-density');
+		const packetLimit = document.getElementById('map-packets');
+		const speed = document.getElementById('map-speed');
+		const packetValue = document.getElementById('map-packets-value');
+		const speedValue = document.getElementById('map-speed-value');
+		const nodeCount = document.getElementById('map-node-count');
+		const syncControls = () => {
+			density.value = String(settings.spacing);
+			packetLimit.value = String(settings.packets);
+			packetValue.value = packetLimit.value;
+			speed.value = String(settings.speed);
+			speedValue.value = `${settings.speed.toLocaleString('pl-PL')}×`;
+		};
+		const rebuild = () => {
+			nodes = createNodes(settings.seed, settings.spacing);
+			({ edges, edgeIndex, adjacency, edgeHeat } = createGraph(nodes));
+			packets.length = 0;
+			rings.length = 0;
+			nodeCount.textContent = `Węzły: ${nodes.length} · połączenia: ${edges.length}`;
+			if (width && height) {
+				buildStatic();
+				draw(0);
+			}
+		};
+		density.addEventListener('change', () => {
+			settings.spacing = Number(density.value);
+			saveSettings();
+			rebuild();
+		});
+		packetLimit.addEventListener('input', () => {
+			settings.packets = Number(packetLimit.value);
+			packetValue.value = packetLimit.value;
+			if (packets.length > settings.packets) packets.length = settings.packets;
+			saveSettings();
+		});
+		speed.addEventListener('input', () => {
+			settings.speed = Number(speed.value);
+			speedValue.value = `${settings.speed.toLocaleString('pl-PL')}×`;
+			saveSettings();
+		});
+		document.getElementById('map-shuffle').addEventListener('click', () => {
+			settings.seed = Math.floor(Math.random() * 0x100000000);
+			saveSettings();
+			rebuild();
+		});
+		document.getElementById('map-reset').addEventListener('click', () => {
+			Object.assign(settings, defaults);
+			saveSettings(true);
+			syncControls();
+			rebuild();
+		});
+		const toggle = document.getElementById('map-settings-toggle');
+		const panel = document.getElementById('map-settings-panel');
+		const positionPanel = () => {
+			if (!panel.matches(':popover-open')) return;
+			const anchor = toggle.getBoundingClientRect();
+			const viewportWidth = document.documentElement.clientWidth;
+			const viewportHeight = document.documentElement.clientHeight;
+			const gutter = 16;
+			const gap = 12;
+			const panelWidth = panel.getBoundingClientRect().width;
+			const fitsLeft = anchor.left - gap - panelWidth >= gutter;
+			panel.dataset.placement = fitsLeft ? 'left' : 'bottom';
+			const panelHeight = panel.getBoundingClientRect().height;
+			const left = fitsLeft ? anchor.left - gap - panelWidth : (viewportWidth - panelWidth) / 2;
+			const top = fitsLeft
+				? Math.max(gutter, Math.min(anchor.bottom - panelHeight, viewportHeight - panelHeight - gutter))
+				: viewportHeight - panelHeight - gutter;
+			panel.style.left = `${left}px`;
+			panel.style.top = `${top}px`;
+			panel.dataset.positioned = '';
+		};
+		toggle.addEventListener('click', event => {
+			event.preventDefault();
+			if (panel.matches(':popover-open')) {
+				panel.hidePopover();
+			} else {
+				panel.removeAttribute('data-positioned');
+				panel.showPopover({ source: toggle });
+				positionPanel();
+			}
+			toggle.setAttribute('aria-expanded', String(panel.matches(':popover-open')));
+		});
+		panel.addEventListener('toggle', () => {
+			toggle.setAttribute('aria-expanded', String(panel.matches(':popover-open')));
+		});
+		window.addEventListener('resize', positionPanel);
+		document.addEventListener('scroll', event => {
+			if (!panel.contains(event.target)) positionPanel();
+		}, { capture: true, passive: true });
+		if (reducedMotion) {
+			packetLimit.disabled = true;
+			speed.disabled = true;
+			document.getElementById('map-motion-note').hidden = false;
+		}
+		nodeCount.textContent = `Węzły: ${nodes.length} · połączenia: ${edges.length}`;
+		syncControls();
+		controls.hidden = false;
+	}
+
 	if (reducedMotion) {
 		const render = () => resize() && draw(0);
 		if (!render()) requestAnimationFrame(render);
@@ -440,11 +630,11 @@
 		const dt = Math.min(time - lastTime || 16, 50);
 		lastTime = time;
 
-		if (packets.length < 7) {
+		if (packets.length < settings.packets) {
 			spawnTimer -= dt;
 			if (spawnTimer <= 0) {
 				spawnPacket();
-				spawnTimer = 500 + Math.random() * 700;
+				spawnTimer = 350 + Math.random() * 450;
 			}
 		}
 
@@ -453,7 +643,7 @@
 			const from = nodes[packet.path[packet.seg]];
 			const to = nodes[packet.path[packet.seg + 1]];
 			const segLen = Math.max(Math.hypot(to.x - from.x, to.y - from.y) * scale, 1);
-			packet.t += (dt * 0.2) / segLen;
+			packet.t += (dt * 0.2 * settings.speed) / segLen;
 			if (packet.t >= 1) {
 				heatUp(packet.path[packet.seg], packet.path[packet.seg + 1]);
 				packet.seg++;

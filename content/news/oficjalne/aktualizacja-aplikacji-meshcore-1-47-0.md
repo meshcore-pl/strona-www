@@ -7,7 +7,7 @@ tags: [Lista zmian, Aplikacja]
 ---
 
 # Mapa tras i udostępnianie kanałów w aplikacji MeshCore 1.47.0
-10 lipca 2026 ukazała się wersja **1.47.0** oficjalnej aplikacji MeshCore. Plik jest możliwy do pobrania pod linkiem [files.liamcottle.net/MeshCore/v1.47.0](https://files.liamcottle.net/MeshCore/v1.47.0).
+10 lipca 2026 ukazała się wersja **1.47.0** oficjalnej aplikacji MeshCore. Plik jest możliwy do pobrania pod linkiem [files.liamcottle.net/MeshCore/v1.47.0](https://files.liamcottle.net/MeshCore/v1.47.0/).
 
 ## Lista zmian
 - Dodano nową kartę mapy na ekranie podglądu trasy

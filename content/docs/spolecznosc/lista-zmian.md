@@ -3,7 +3,7 @@ title: Lista zmian meshcorepolska.org
 description: Historia aktualizacji strony meshcorepolska.org, wersja po wersji - nowe funkcje, poprawki i zmiany w kodzie oraz treści.
 canonical: /dokumentacja/spolecznosc/lista-zmian
 createdAt: 2.08.2026
-updatedAt: 1.11.2026
+updatedAt: 4.11.2026
 ---
 
 # Lista zmian na stronie meshcorepolska.org {toc: Lista zmian}
@@ -12,6 +12,17 @@ Zmiany dotyczące `mapa.meshcorepolska.org` znajdziesz osobno: kliknij ikonę `i
 
 > [!NOTE]
 > Jeśli po aktualizacji strona nie wyświetla się poprawnie, wykonaj twarde odświeżenie kombinacją `CTRL + F5`.
+
+## v1.10.2
+1. Rozbudowano i poprawiono wizualizację sieci na stronie głównej. Dodano ustawienia gęstości węzłów, liczby i tempa pakietów oraz losowanie układu.
+2. Poprawiono wygląd i treść sekcji hero na stronie głównej, w tym układ na urządzeniach mobilnych.
+3. Poprawiono Generator regionów, w tym konfigurację zakresu `rze` dla kanału `#rzeszow`. Dodano też zrzut ekranu pokazujący, gdzie można znaleźć CLI repeatera.
+4. Dodano polskie tłumaczenie [zmian w Ripple UI 12.3](https://meshcorepolska.org/aktualnosci/oprogramowanie/aktualizacja-ripple-12-3) w Aktualnościach.
+5. Dodano wpis [Zmiany w aplikacji MeshCore 1.51.0](https://meshcorepolska.org/aktualnosci/lista-zmian/aktualizacja-aplikacji-meshcore-1-51-0) w Aktualnościach wraz z tabelą brakujących tłumaczeń.
+6. Poprawiono treść dokumentacji, uzupełniono tagi aktualności oraz zoptymalizowano obrazki. Uzupełniono też metadane grafik o opisy, autorstwo i informacje o prawach autorskich.
+7. Uzupełniono końcowe ukośniki w linkach do pobierania aplikacji MeshCore.
+8. Zaktualizowano zależności backendu do najnowszych wersji.
+9. Inne drobne poprawki.
 
 ## v1.10.1
 1. Poprawiono [Generator regionów](https://meshcorepolska.org/generator-regionow) - przypisania kanałów i zakresów oraz wygląd. Dodano wybór regionów lokalnych i zapamiętywanie ustawień.

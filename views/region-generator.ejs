@@ -12,7 +12,8 @@
 			<article class="prose prose--narrow rg-page">
 				<p class="eyebrow">Narzędzie</p>
 				<h1>Generator komend CLI regionów MeshCore</h1>
-				<p>Wersja beta, aktualizacja: 30.10.2026.</p>
+				<p>Wersja beta, ostatnia aktualizacja: 30.10.2026</p>
+
 				<p>
 					Regiony ustawia się zarówno na companionach, jak i na repeaterach.
 					Na companionie możesz ustawić region osobno dla każdego kanału lub wybrać <a href="/dokumentacja/meshcore/regionalizacja-wiadomosci#domyslny-zakres">domyślny zakres</a> dla całego urządzenia.
@@ -26,7 +27,7 @@
 
 				<h2>Konfiguracja repeatera krok po kroku</h2>
 				<ol>
-					<li>Otwórz wiersz poleceń (CLI) repeatera jako administrator.</li>
+					<li>Otwórz <a href="/images/screens/administrator-repeatera-cli.jpg" data-lightbox aria-label="Administrator repeatera MeshCore - otwieranie wiersza poleceń (CLI)">wiersz poleceń (CLI)</a> repeatera jako administrator.</li>
 					<li>Wpisz <code>region</code>. Jeśli repeater ma już jakieś regiony poza <code>*</code>, usuń je komendami z narzędzia <a href="#usuwanie-regionow">Usuwanie obecnych regionów</a>.</li>
 					<li>Wybierz wersję firmware repeatera i swoje województwo. Opcjonalnie dodaj sąsiednie województwa oraz region lokalny.</li>
 					<li>Wpisuj wygenerowane komendy po kolei.</li>
@@ -60,7 +61,7 @@
 						<form class="rg-card" id="rg-form" autocomplete="off">
 							<div class="rg-field">
 								<label for="rg-fw">Wersja firmware repeatera</label>
-								<select id="rg-fw">
+								<select class="form-control" id="rg-fw">
 									<option value="116">1.16 lub nowsza (komenda region def)</option>
 									<option value="115">1.15 (komendy region put)</option>
 									<option value="old">starsza niż 1.15 (region put + allowf)</option>
@@ -77,7 +78,7 @@
 
 							<div class="rg-field">
 								<label for="rg-home">Twoje województwo</label>
-								<select id="rg-home"></select>
+								<select class="form-control" id="rg-home"></select>
 							</div>
 
 							<fieldset class="rg-field">
@@ -88,13 +89,13 @@
 
 							<div class="rg-field">
 								<label for="rg-city">Region lokalny (opcjonalnie)</label>
-								<select id="rg-city" aria-describedby="rg-local-hint"></select>
+								<select class="form-control" id="rg-city" aria-describedby="rg-local-hint"></select>
 								<p class="rg-hint" id="rg-local-hint">Wybierz region lokalny swojego województwa lub podaj własny.</p>
 							</div>
 
 							<div class="rg-field" id="rg-custom-region" hidden>
 								<label for="rg-custom-scope">Własny region (scope)</label>
-								<input type="text" id="rg-custom-scope" maxlength="29" spellcheck="false" placeholder="Nazwa regionu uzgodniona lokalnie" disabled>
+								<input class="form-control" type="text" id="rg-custom-scope" maxlength="29" spellcheck="false" placeholder="Nazwa regionu uzgodniona lokalnie" disabled>
 								<p class="rg-hint">Wpisz nazwę uzgodnioną z lokalną społecznością. Jeśli nie ma danych o kanałach tego regionu, tabela pokaże „Brak danych”.</p>
 							</div>
 
@@ -195,7 +196,7 @@
 				<form class="rg-card" id="rc-form" autocomplete="off">
 					<div class="rg-field">
 						<label for="rc-current">Wynik komendy region</label>
-						<textarea id="rc-current" rows="6" spellcheck="false" placeholder="*^ F&#10; pl F&#10;  pl-zp F&#10;  wlkp F&#10;  zachod F"></textarea>
+						<textarea class="form-control" id="rc-current" rows="6" spellcheck="false" placeholder="*^ F&#10; pl F&#10;  pl-zp F&#10;  wlkp F&#10;  zachod F"></textarea>
 					</div>
 				</form>
 
@@ -209,4 +210,4 @@
 	</section>
 </main>
 
-<%- include('./includes/footer.ejs', { scripts: ['/js/region-generator.js'] }) %>
+<%- include('./includes/footer.ejs', { scripts: ['/js/region-generator.js', '/js/lightbox.js'] }) %>

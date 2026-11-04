@@ -15,9 +15,9 @@
 				<p class="eyebrow">869,618 MHz &middot; 62,5 kHz &middot; SF8 &middot; CR8</p>
 				<h1>MeshCore Polska <span>Komunikacja bez internetu i GSM</span></h1>
 				<p id="hero__lead">
-					MeshCore Polska to ogólnopolska społeczność użytkowników sieci MeshCore.
-					Budujemy niezależną sieć komunikacji LoRa, która działa bez internetu, zasięgu GSM i centralnej infrastruktury.
-					Sprawdź dokumentację, uruchom własny węzeł i buduj sieć razem z nami!
+					MeshCore Polska to ogólnopolska społeczność rozwijająca niezależną sieć mesh opartą na technologii LoRa.
+					Wysyłaj wiadomości tekstowe bez internetu i zasięgu GSM, korzystając z własnych urządzeń radiowych.
+					Sprawdź mapę węzłów, poznaj dokumentację i uruchom własny repeater. Dołącz do społeczności i rozwijaj sieć MeshCore razem z nami!
 				</p>
 				<div class="hero__actions">
 					<a href="/dokumentacja/meshcore" class="btn btn--primary" title="Przewodnik po MeshCore od społeczności MeshCore Polska">Jak zacząć z MeshCore</a>
@@ -29,9 +29,39 @@
 					<span class="stat">Witryna: <strong>v<%= v %></strong></span>
 				</div>
 			</div>
-			<div id="hero__map" aria-hidden="true">
-				<canvas id="mesh-map"></canvas>
-				<p id="hero__map-caption">Węzły i pakiety w sieci &middot; wizualizacja</p>
+			<div id="hero__map">
+				<div id="hero__map-visual">
+					<canvas id="mesh-map" aria-hidden="true"></canvas>
+					<p id="hero__map-caption">Węzły i pakiety w sieci &middot; wizualizacja</p>
+				</div>
+				<div id="hero__map-tools">
+					<div id="mesh-map-settings" hidden>
+						<button type="button" class="btn btn--secondary" id="map-settings-toggle" popovertarget="map-settings-panel" aria-expanded="false">Ustawienia mapy</button>
+						<div class="map-settings__panel" id="map-settings-panel" popover role="dialog" aria-labelledby="map-settings-title">
+							<div class="map-settings__header">
+								<h2 id="map-settings-title">Ustawienia wizualizacji</h2>
+								<button type="button" class="map-settings__close" popovertarget="map-settings-panel" popovertargetaction="hide" aria-label="Zamknij ustawienia">×</button>
+							</div>
+							<p>Eksperymentuj z mapą. To wizualizacja, nie dane rzeczywistej sieci.</p>
+							<label for="map-density">Gęstość węzłów</label>
+							<select class="form-control" id="map-density">
+								<option value="0.1">Mała</option>
+								<option value="0.075" selected>Domyślna</option>
+								<option value="0.055">Duża</option>
+							</select>
+							<p class="map-settings__count" aria-live="polite" id="map-node-count"></p>
+							<label for="map-packets">Pakiety jednocześnie <output id="map-packets-value" for="map-packets">10</output></label>
+							<input id="map-packets" type="range" min="1" max="16" value="10">
+							<label for="map-speed">Tempo pakietów <output id="map-speed-value" for="map-speed">1×</output></label>
+							<input id="map-speed" type="range" min="0.5" max="2" step="0.25" value="1">
+							<p id="map-motion-note" hidden>Animacja jest wyłączona zgodnie z ustawieniami ograniczonego ruchu.</p>
+							<div class="map-settings__actions">
+								<button type="button" id="map-shuffle" class="btn btn--secondary">Losuj układ</button>
+								<button type="button" id="map-reset" class="btn btn--secondary">Ustawienia fabryczne</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
