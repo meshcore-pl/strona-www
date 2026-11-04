@@ -5,7 +5,7 @@ createdAt: 30.04.2026
 updatedAt: 22.08.2026
 themeColor: '#494a54'
 sourceUrl: https://blog.meshcore.io/2026/04/30/ripple-9.7
-tags: [Oprogramowanie]
+tags: [Oprogramowanie, Lista zmian]
 ---
 
 # Jasny i ciemny motyw interfejsu oraz map w Ripple 9.7

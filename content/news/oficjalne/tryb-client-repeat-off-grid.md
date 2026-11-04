@@ -5,7 +5,7 @@ createdAt: 13.02.2026
 updatedAt: 22.08.2026
 themeColor: '#71b8b1'
 sourceUrl: https://blog.meshcore.io/2026/02/13/off-grid-client-repeat-mode
-tags: [Oprogramowanie]
+tags: [Oprogramowanie, Poradnik]
 ---
 
 # Client repeat - urządzenia klienckie jako repeatery

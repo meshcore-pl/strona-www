@@ -5,7 +5,7 @@ createdAt: 28.03.2026
 updatedAt: 22.08.2026
 themeColor: '#bfa280'
 sourceUrl: https://blog.meshcore.io/2026/03/28/twatch-s3-plus
-tags: [Oprogramowanie, Sprzęt]
+tags: [Oprogramowanie, Sprzęt, Poradnik]
 ---
 
 # Ripple zyskuje obsługę GPS i LoRa na T-Watch S3 Plus

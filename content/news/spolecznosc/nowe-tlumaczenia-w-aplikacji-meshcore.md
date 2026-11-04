@@ -2,7 +2,7 @@
 title: Nowe tłumaczenia aplikacji MeshCore
 description: 8 lipca 2026 do oficjalnej aplikacji MeshCore trafiły nowe ciągi znaków w interfejsie. Przetłumaczyliśmy je już na język polski - oto pełna lista zmian.
 createdAt: 9.07.2026
-tags: [Tłumaczenia, Aplikacja]
+tags: [Tłumaczenia, Aplikacja, Lista zmian]
 ---
 
 # Nowe tłumaczenia w oficjalnej aplikacji MeshCore

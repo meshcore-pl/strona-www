@@ -2,7 +2,7 @@
 title: Zmiany w aplikacji MeshCore 1.50.0 - CLI i ustawienia Wi-Fi
 description: W aplikacji MeshCore 1.50.0 pojawia się lokalne i zdalne CLI companiona oraz ekran ustawień Wi-Fi. Przeczytaj listę zmian i wymagania dotyczące firmware.
 createdAt: 25.09.2026
-tags: [Lista zmian, Aplikacja]
+tags: [Lista zmian, Aplikacja, Tłumaczenia]
 ---
 
 # CLI companiona i konfiguracja Wi-Fi w aplikacji MeshCore 1.50.0

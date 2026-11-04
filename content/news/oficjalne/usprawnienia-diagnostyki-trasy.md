@@ -5,7 +5,7 @@ createdAt: 6.03.2026
 updatedAt: 22.08.2026
 themeColor: '#253a55'
 sourceUrl: https://blog.meshcore.io/2026/03/06/path-diagnostics-improvements
-tags: [Oprogramowanie]
+tags: [Oprogramowanie, Aplikacja]
 ---
 
 # Wielobajtowe skróty trasy i wykrywanie pętli w MeshCore

@@ -5,7 +5,7 @@ createdAt: 5.04.2026
 updatedAt: 22.08.2026
 themeColor: '#668496'
 sourceUrl: https://blog.meshcore.io/2026/04/04/heltecv4-maps
-tags: [Oprogramowanie, Sprzęt]
+tags: [Oprogramowanie, Sprzęt, Poradnik]
 ---
 
 # Ripple v9.4 - kafelki mapy na Heltec V4
