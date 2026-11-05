@@ -3,21 +3,30 @@ title: Presety EU/UK Narrow - zalecana konfiguracja radia
 description: Zalecany preset EU/UK Narrow dla sieci MeshCore w Polsce - ustawienia radia, interwały advertów, podwójne potwierdzenia i oznaczenia repeaterów off-grid.
 canonical: /dokumentacja/meshcore/aktualne-presety
 createdAt: 25.07.2026
-updatedAt: 3.08.2026
+updatedAt: 5.11.2026
 ---
 
 # Presety i konfiguracja radia w sieci MeshCore {toc: Presety i konfiguracja}
 Konfigurujesz swojego companiona albo stawiasz dopiero repeater? Trzymaj się presetu **EU/UK Narrow** - to on jest dziś przyjętym standardem ogólnopolskiej sieci.
 
 > [!IMPORTANT]
-> Niestety nie wszędzie tak jest. [MeshCore Południe](https://meshcoresouth.pl) - obejmujące Bielsko-Białą, Śląsk i Małopolskę - postawiło na własny preset (`SF6` zamiast `SF8`, reszta parametrów zgodna z EU/UK Narrow). Stawia na gęstość i szybszą wymianę pakietów w miastach kosztem zasięgu. To świadoma decyzja, nie chaos - ale niekompatybilność utrudnia spięcie się we wspólną, ogólnopolską infrastrukturę.
-> Jeśli planujesz uruchomić własny repeater, postaw właśnie na `EU/UK Narrow`. Im więcej urządzeń na wspólnym presecie, tym silniejsza sieć dla wszystkich.
+> Nie cała Polska korzysta z tych samych ustawień radiowych. [MeshCore Południe](https://meshcoresouth.pl) postawiło na własny preset (`SF6` zamiast `SF8`, pozostałe parametry zgodne z `EU/UK Narrow`).
+> Takie rozwiązanie sprzyja szybszej wymianie pakietów w gęstej sieci miejskiej, ale odbywa się to kosztem zasięgu.
+> Urządzenia pracujące na `SF8` nie mogą bezpośrednio komunikować się z repeaterami działającymi na `SF6` i odwrotnie. Brak kompatybilności utrudnia połączenie lokalnych węzłów we wspólną, ogólnopolską infrastrukturę.
+>
+> Węzły pracujące na `SF6` można znaleźć głównie w województwach śląskim i opolskim oraz w części Małopolski.
+> Co ciekawe, spośród wszystkich krajów widocznych [na mapie](https://mapa.meshcorepolska.org/?lat=52.1537&lon=19.3250&zoom=7&types=2&freq=869&sf=6&cr=8,7,5,6&bw=62.5,250,125&updated=2025-03-01&added=2025-03-01&cluster=10&region=pl) Polska jest jedynym, w którym część węzłów działa na `SF6`.
+> Możesz to sprawdzić samodzielnie, korzystając z filtrów parametrów radiowych.
+>
+> **Planujesz uruchomić własny repeater?** Wybierz `EU/UK Narrow` (`SF8`), jeśli chcesz pomóc w rozbudowie wspólnej, ogólnopolskiej sieci.
+> Im więcej urządzeń działa na tych samych ustawieniach, tym łatwiej łączyć kolejne miejscowości i regiony w jedną, spójną infrastrukturę.
 
 > [!NOTE]
 > Jeśli zegar repeatera wyprzedza czas rzeczywisty, użyj `clkreboot`, a po restarcie zsynchronizuj go ponownie z poziomu aplikacji.
 
 > [!TIP]
-> Uruchamiasz bota w sieci? Nie używaj do tego kanałów `Public` ani `#test`. Utwórz dla niego osobny kanał (np. `#botwarszawa`), żeby nie zaśmiecał standardowych kanałów.
+> Uruchamiasz w sieci bota? Nie używaj do tego kanałów `Public` ani `#test`. Utwórz dla niego osobny kanał (np. `#botwarszawa`), żeby nie zaśmiecał standardowych kanałów.
+
 
 ## Dokładne ustawienia
 
@@ -31,20 +40,22 @@ Konfigurujesz swojego companiona albo stawiasz dopiero repeater? Trzymaj się pr
 Zależy Ci na odrobinę większej prędkości transmisji? Zmień samo `CR` na `5`, reszta zostaje bez zmian.
 Oba warianty są ze sobą kompatybilne - urządzenie na `CR8` bez problemu nawiąże kontakt z urządzeniem na `CR5` i odwrotnie.
 
+
 ## Oznaczenia repeaterów
 Masz solidny repeater zamontowany na stałe, który działa niezależnie od sieci energetycznej dzięki panelowi słonecznemu i akumulatorowi?
 Dodaj na końcu jego nazwy gwiazdkę (*) lub symbol słońca, np. `Mój Solarny Repeater ☀️`.
 Dzięki temu każdy będzie mógł łatwo sprawdzić na mapie, które repeatery mogą działać również podczas lokalnej awarii zasilania.
+
 
 ## Higiena sieci
 
 ### Rozgłoszenia (adverty)
 Im gęściej obstawiona okolica, tym łatwiej zapchać sieć samymi advertami. Dlatego dla Warszawy zalecane są dłuższe odstępy niż dla reszty kraju:
 
-| Obszar       | Advert 0-hop                          | Advert do wszystkich    |
-|--------------|---------------------------------------|-------------------------|
-| Warszawa     | wyłączone                             | nie mniej niż 12 godzin |
-| Reszta kraju | nie mniej niż 3 godziny lub wyłączone | nie mniej niż 7 godzin  |
+| Zagęszczenie węzłów | Advert 0-hop                        | Advert do wszystkich  |
+|---------------------|-------------------------------------|-----------------------|
+| Duże                | wyłączone                           | co najmniej 16 godzin |
+| Małe                | co najmniej 4 godziny lub wyłączone | co najmniej 7 godzin  |
 
 Czym są w ogóle adverty? Zobacz [Wprowadzenie > Podstawowe pojęcia](https://meshcorepolska.org/dokumentacja/meshcore/wprowadzenie#podstawowe-pojecia).
 
@@ -70,20 +81,22 @@ set flood.advert.interval 7   # interwał advertów do wszystkich
 #### Duże miasta (np. Warszawa, Poznań, Łódź)
 ```mccli
 set multi.acks 0              # wyłączone - zalecane w dużych sieciach (wartość domyślna)
-set flood.advert.interval 12  # interwał advertów do wszystkich
+set flood.advert.interval 17  # interwał advertów do wszystkich
 ```
 
 ### 2 repeatery obok siebie?
 Tak, to możliwe, np. jeden na antenie kierunkowej, a drugi na dookólnej. Warto jednak zmienić kilka ustawień, żeby ograniczyć kolizje pakietów.
 
-Ustaw `flood.advert.interval` zgodnie z zaleceniami z poprzedniej sekcji (zależnie od wielkości miejscowości).
-Dla każdego kolejnego repeatera w tej samej lokalizacji zwiększ tę wartość o `1`, żeby ich adverty nie wystrzeliły przypadkiem w tym samym momencie (choć w praktyce jest to raczej mało prawdopodobne).
+Ustaw `flood.advert.interval` zgodnie z zaleceniami z poprzedniej sekcji, zależnie od zagęszczenia i aktywności węzłów w okolicy.
+Różne interwały nie gwarantują, że adverty obu repeaterów nie zostaną nadane jednocześnie.
 
 > [!IMPORTANT]
 > Parametry `txdelay` i `direct.txdelay` określają zakres losowego opóźnienia przed przekazaniem pakietu. Dopuszczalne wartości to **0-2**.
 > Nie są to jednak sekundy! Faktyczny czas oczekiwania zależy od długości transmisji pakietu. Im wyższa wartość, tym większy zakres losowania.
-> Domyślnie jest to **0.5** (`txdelay`) i **0.3** (`direct.txdelay`) dla repeaterów.
-> Dla każdego kolejnego repeatera w tej samej lokalizacji ustaw wyższe wartości (w granicach 0-2), żeby zmniejszyć ryzyko kolizji pakietów. Pamiętaj jednak, że nawet różne ustawienia nie dają pełnej gwarancji uniknięcia kolizji.
+> Domyślnie jest to **0.5** (`txdelay`) i **0.2** (`direct.txdelay`). Możesz przetestować większe współczynniki opóźnienia na jednym z repeaterów.
+> Nawet przy różnych ustawieniach oba repeatery mogą nadać jednocześnie. Wyższe wartości mogą też wydłużyć przekazywanie wiadomości.
+
+Poniższe wartości są przykładowe, a nie uniwersalnie zalecane dla dwóch repeaterów obok siebie. Sprawdź ich wpływ na kolizje i czas dostarczania wiadomości w swojej lokalizacji. Interwał advertów w przykładach odpowiada wariantowi dla małego zagęszczenia węzłów.
 
 #### Repeater 1
 ```mccli
@@ -95,6 +108,6 @@ set direct.txdelay 0.2    # domyślna górna granica
 #### Repeater 2
 ```mccli
 set flood.advert.interval 8
-set txdelay 1.5           # wyraźnie wyżej niż repeater 1, w granicach 0-2
-set direct.txdelay 1      # wyraźnie wyżej niż repeater 1, w granicach 0-2
+set txdelay 1.5           # wyżej niż repeater 1, w granicach 0-2
+set direct.txdelay 1      # wyżej niż repeater 1, w granicach 0-2
 ```

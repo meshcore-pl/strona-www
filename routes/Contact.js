@@ -30,7 +30,10 @@ router.post('/api/v1/kontakt', limiter.contactForm, async (req, res) => {
 		const senderError = await verifySender({ email: fields.email, token: body['cf-turnstile-response'], ip: req.ip });
 		if (senderError) errors.push(senderError);
 	}
-	if (errors.length) return res.status(400).json({ success: false, status: 400, message: 'Formularz zawiera błędy.', data: { errors } });
+	if (errors.length) {
+		console.log(`Contact form rejected for ${req.ip}: ${errors.join(' | ')}`);
+		return res.status(400).json({ success: false, status: 400, message: 'Formularz zawiera błędy.', data: { errors } });
+	}
 
 	console.log(`New contact message received from ${fields.email}`);
 

@@ -11,8 +11,9 @@ const tips = [
 	'Czy wiesz, że ta strona działa także offline? Wcześniej odwiedzone podstrony możesz przeglądać bez internetu.',
 	'Czy wiesz, że generator regionów przygotuje komendy CLI dla Twojego repeatera oraz zakresy kanałów dla companiona?',
 	'Czy wiesz, że regionalizacja pozwala ograniczyć przekazywanie wiadomości kanałowych do wybranego obszaru?',
-	'Czy wiesz, że w MeshCore Profiles możesz powiązać swój publiczny profil z urządzeniami i ułatwić innym kontakt?',
+	// 'Czy wiesz, że w MeshCore Profiles możesz powiązać swój publiczny profil z urządzeniami i ułatwić innym kontakt?',
 	'Czy wiesz, że kontakty i kanały MeshCore można udostępniać za pomocą kodów QR?',
+	'Czy wiesz, że Polska jest jedynym krajem, w którym część sieci MeshCore korzysta z SF6?',
 ];
 
 module.exports = {
