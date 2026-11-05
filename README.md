@@ -7,7 +7,7 @@ Jego celem jest wspieranie rozwoju zdecentralizowanej komunikacji radiowej, popu
 - 🌐 **Strona internetowa:** [meshcorepolska.org](https://meshcorepolska.org)
 - 📖 **Dokumentacja:** [meshcorepolska.org/dokumentacja](https://meshcorepolska.org/dokumentacja)
 - 📢 **Aktualności:** [meshcorepolska.org/aktualnosci](https://meshcorepolska.org/aktualnosci)
-- 💬 **Społeczność Discord:** [Dołącz do serwera](https://meshcorepolska.org/discord)
+- 💬 **Społeczność na Discordzie:** [Dołącz na serwer](https://meshcorepolska.org/discord)
 
 ## 🤝 Współtworzenie projektu
 Projekt jest otwarty na wkład społeczności. Każda pomoc jest mile widziana, niezależnie od tego, czy dotyczy rozwoju strony, poprawiania błędów, rozbudowy funkcjonalności czy aktualizacji dokumentacji.
