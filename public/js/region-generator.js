@@ -60,6 +60,7 @@ const MESHCORE_REGIONS = {
 			scope: 'pl-pk',
 			channels: ['#podkarpackie', '#testing'],
 			neighbors: ['ma', 'sk', 'lu'],
+			discordUrl: 'https://discord.gg/G7spWkppwd',
 		},
 		pd: {
 			name: 'podlaskie',
@@ -222,12 +223,8 @@ const parseCurrentRegions = text => {
 };
 
 const getVoivodeshipScope = code => MESHCORE_REGIONS.voivodeships[code].scope;
-
 const getRegionScopes = region => Array.isArray(region.scope) ? region.scope : [region.scope];
-
-const getAutomaticRegions = codes => Object.values(MESHCORE_REGIONS.localRegions)
-	.filter(region => region.automatic && codes.some(code => region.voivodeships.includes(code)));
-
+const getAutomaticRegions = codes => Object.values(MESHCORE_REGIONS.localRegions).filter(region => region.automatic && codes.some(code => region.voivodeships.includes(code)));
 const getLocalScopes = codes => [...new Set(getAutomaticRegions(codes).flatMap(getRegionScopes))];
 
 const buildTree = (home, city, neighbors) => {
@@ -303,7 +300,6 @@ const buildChannels = (home, city, neighbors) => {
 	});
 
 	const regionalChannels = channels.filter(({ channel }) => !MESHCORE_REGIONS.commonChannels.includes(channel));
-
 	return [
 		{ channel: 'Public', scope: RG_ROOT },
 		...commonChannels,
@@ -329,7 +325,6 @@ const validateLocalScope = (city, home) => {
 	}
 
 	if (regions.length && !belongsToHome) errors.push(`Region „${regions[0].name}” nie należy do wybranego województwa.`);
-
 	return errors;
 };
 
@@ -377,8 +372,8 @@ const renderLocalRegions = (home, scope = '') => {
 	const hint = regions.length
 		? 'Lista zawiera niektóre regiony lokalne. Możesz podać też własny region.'
 		: 'Brak znanych regionów lokalnych dla tego województwa. W razie potrzeby wybierz „Własny region”.';
-	const automaticNames = automaticRegions.map(region => region.name);
 
+	const automaticNames = automaticRegions.map(region => region.name);
 	hintElement.textContent = automaticNames.length
 		? `${hint} Dodawane automatycznie: ${automaticNames.join(', ')}.`
 		: hint;
@@ -425,9 +420,7 @@ const saveSettings = () => {
 const limitNeighbors = () => {
 	const inputs = [...document.querySelectorAll('#rg-neighbors input')];
 	const limitReached = inputs.filter(input => input.checked).length >= RG_MAX_NEIGHBORS;
-	inputs.forEach(input => {
-		input.disabled = limitReached && !input.checked;
-	});
+	inputs.forEach(input => input.disabled = limitReached && !input.checked);
 };
 
 const renderNeighbors = (home, selected = null) => {
@@ -451,20 +444,25 @@ const renderNeighbors = (home, selected = null) => {
 };
 
 const renderOutput = () => {
-	const home = document.getElementById('rg-home').value;
-	const city = getSelectedLocalScope();
 	const firmware = document.getElementById('rg-fw').value;
 	document.getElementById('rg-fw-warning').hidden = firmware === '116';
+
 	const defaultInput = document.getElementById('rg-default');
 	defaultInput.disabled = firmware === 'old';
 	const setDefault = defaultInput.checked && !defaultInput.disabled;
+
 	const neighbors = [...document.querySelectorAll('#rg-neighbors input:checked')].map(input => input.value);
 
+	const city = getSelectedLocalScope();
+	const home = document.getElementById('rg-home').value;
 	const errors = validateLocalScope(city, home);
+
 	const errorsBox = document.getElementById('rg-errors');
-	const result = document.getElementById('rg-result');
 	errorsBox.hidden = !errors.length;
+
+	const result = document.getElementById('rg-result');
 	result.hidden = errors.length > 0;
+
 	document.getElementById('rg-output').hidden = false;
 
 	if (errors.length) {
@@ -478,7 +476,9 @@ const renderOutput = () => {
 
 	const tree = buildTree(home, city, neighbors);
 	setCommands(buildCommands({ tree, firmware, setDefault }));
+
 	document.getElementById('rg-tree').textContent = buildTreePreview(tree);
+
 	document.getElementById('rg-channels').replaceChildren(...buildChannels(home, city, neighbors).map(({ channel, scope }) => {
 		const tr = document.createElement('tr');
 		const optionalScope = channel === 'Public' || MESHCORE_REGIONS.commonChannels.includes(channel);
@@ -505,12 +505,15 @@ const renderOutput = () => {
 		});
 		return tr;
 	}));
+
 	document.getElementById('rg-community-groups').replaceChildren(...[RG_ROOT, home, ...neighbors].map(code => {
 		const tr = document.createElement('tr');
 		const region = document.createElement('td');
 		const config = code === RG_ROOT ? MESHCORE_REGIONS.country : MESHCORE_REGIONS.voivodeships[code];
-		const name = code === RG_ROOT ? 'Polska (region krajowy)' : config.name;
+
+		const name = code === RG_ROOT ? 'Krajowy' : config.name;
 		region.textContent = name.charAt(0).toUpperCase() + name.slice(1);
+
 		const server = document.createElement('td');
 		const url = config.discordUrl;
 		if (url) {
