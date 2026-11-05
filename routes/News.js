@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const RenderError = require('../utils/renderError.js');
 const news = require('../services/news.js');
+const RenderError = require('../utils/renderError.js');
 const { getRandomTip } = require('../content/tips.js');
 
 router.get('/aktualnosci', (req, res) => res.render('news/index.ejs', { posts: news.posts, tags: news.tags, tip: getRandomTip() }));

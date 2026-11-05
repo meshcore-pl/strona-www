@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const RenderError = require('../utils/renderError.js');
 const { getScript, ENDPOINTS, OFFLINE_HEADER } = require('../services/serviceWorker/index.js');
+const RenderError = require('../utils/renderError.js');
 const pages = require('../content/pages.js');
 const regionGeneratorBlocked = false;
 

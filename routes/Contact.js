@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { validateFields, verifySender, deliver } = require('../services/contact.js');
 const limiter = require('../middlewares/ratelimit.js');
+const { validateFields, verifySender, deliver } = require('../services/contact.js');
 const { getRandomTip } = require('../content/tips.js');
 
 const EMPTY_VALUES = { username: '', email: '', message: '' };

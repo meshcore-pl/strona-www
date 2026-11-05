@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const RenderError = require('../utils/renderError.js');
 const docs = require('../services/docs.js');
+const RenderError = require('../utils/renderError.js');
 const buildSchema = require('../utils/schema.js');
 const { getRandomTip } = require('../content/tips.js');
 
