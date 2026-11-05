@@ -6,10 +6,10 @@ createdAt: 17.07.2026
 updatedAt: 5.11.2026
 ---
 
-# Spis publicznych analizatorów (CoreScope) sieci MeshCore {toc: Spis analizatorów}
+# Spis publicznych analizatorów sieci MeshCore {toc: Spis analizatorów}
 
 ## Globalne
-- [analyzer.marwoj.net](https://analyzer.marwoj.net)
+- [analyzer.marwoj.net](https://analyzer.marwoj.net) (analizator marwoja korzysta z danych meshcorekrk)
 
 
 ## Regionalne
