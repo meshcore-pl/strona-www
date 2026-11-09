@@ -22,7 +22,7 @@
     "update": "npm run pull && npm ci --omit=dev && pm2 restart mcwww"
   },
   "allowScripts": {
-    "msgpackr-extract@3.0.6": true
+    "msgpackr-extract@3.0.7": true
   },
   "dependencies": {
     "@sefinek/email-validator": "^2.1.0",
