@@ -35,7 +35,16 @@ if (isProd) app.set('trust proxy', 1);
 app.set('view engine', 'ejs');
 app.locals.domain = `${DOMAIN}${isProd ? '' : `:${PORT}`}`;
 app.locals.cdn = CDN_SEFINEK_URL;
-app.locals.v = version;
+const [releaseVersion, buildMetadata] = version.split('+');
+const buildDate = (/^(\d{4})(\d{2})(\d{2})$/).exec(buildMetadata || '');
+app.locals.v = releaseVersion;
+app.locals.versionDate = '';
+if (buildDate) {
+	const [, year, month, day] = buildDate;
+	const isoDate = `${year}-${month}-${day}`;
+	const date = new Date(`${isoDate}T00:00:00Z`);
+	if (!Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === isoDate) app.locals.versionDate = `${day}.${month}.${year}`;
+}
 app.locals.buildSchema = buildSchema;
 app.locals.pluralizePolish = pluralizePolish;
 
