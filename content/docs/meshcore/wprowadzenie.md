@@ -17,7 +17,7 @@ Kod źródłowy witryny i treść dokumentacji znajdziesz na [GitHubie](https://
 > Podawaj pozycję z odchyleniem rzędu kilkuset metrów od rzeczywistego miejsca - to w zupełności wystarczy do orientacyjnego przedstawienia pokrycia sieci.
 
 > [!IMPORTANT]
-> Oficjalna strona internetowa projektu MeshCore to tylko i wyłącznie [meshcore.io](https://meshcore.io), nie [meshcore.co.uk](https://meshcore.co.uk)!
+> Oficjalna strona internetowa projektu MeshCore to tylko i wyłącznie [meshcore.io](https://meshcore.io), nie meshcore.co.uk!
 
 > [!NOTE]
 > W planach mamy serwis [meshcoreprofiles.com](https://meshcoreprofiles.com), który połączy publiczne profile operatorów z mapą węzłów MeshCore z całego świata.
