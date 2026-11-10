@@ -61,7 +61,7 @@ const _ogImageAlt = locals.image ? (image.alt || locals.articleTitle || title) :
 		docs: ['docs', 'docs/cards', 'docs/layout', 'docs/sidebar', 'docs/content', 'docs/responsive'],
 	};
 	const pageSheets = (locals.css ? (Array.isArray(css) ? css : [css]) : []).flatMap(sheet => BUNDLES[sheet] || sheet);
-	[...BASE_SHEETS, ...pageSheets, 'mourning'].forEach(sheet => { %><link rel="stylesheet" href="<%= sheet.startsWith('http') ? sheet : `/css/${sheet}.css` %>"<%= sheet.startsWith('http') ? ' crossorigin' : '' %>>
+	[...BASE_SHEETS, ...pageSheets].forEach(sheet => { %><link rel="stylesheet" href="<%= sheet.startsWith('http') ? sheet : `/css/${sheet}.css` %>"<%= sheet.startsWith('http') ? ' crossorigin' : '' %>>
 	<% }) %>
 
 	<!-- schema.org -->
@@ -84,8 +84,6 @@ const _ogImageAlt = locals.image ? (image.alt || locals.articleTitle || title) :
 	</script>
 </head>
 <body data-page="<%= locals.page || '' %>" data-cdn="<%= cdn %>">
-<%- include('./mourning.ejs') %>
-<script src="/js/mourning.js" defer></script>
 <header id="nav">
 	<div id="nav__inner">
 		<a href="/" id="nav__brand">
