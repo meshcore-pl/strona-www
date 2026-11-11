@@ -7,10 +7,11 @@ const verifyTurnstile = require('./turnstile.js');
 
 const SUBJECT = 'Kontakt przez formularz MeshCore Polska';
 
-exports.validateFields = ({ username, email, message }) => {
+exports.validateFields = ({ username, email, subject = '', message }) => {
 	const errors = [];
-	if (username.length < 2 || username.length > 64) errors.push('Nazwa użytkownika musi mieć od 2 do 64 znaków.');
+	if (username.length < 2 || username.length > 45) errors.push('Nazwa użytkownika musi mieć od 2 do 45 znaków.');
 	if (!emailValidator(email)) errors.push('Podaj poprawny adres e-mail.');
+	if (subject.length > 120 || /[\r\n]/.test(subject)) errors.push('Tytuł może mieć maksymalnie 120 znaków i musi mieścić się w jednym wierszu.');
 	if (message.length < 10 || message.length > 4000) errors.push('Wiadomość musi mieć od 10 do 4000 znaków.');
 	return errors;
 };
@@ -22,12 +23,13 @@ exports.verifySender = async ({ email, token, ip }) => {
 	return null;
 };
 
-exports.deliver = async ({ username, email, message }, domain) => {
+exports.deliver = async ({ username, email, subject, message }, domain) => {
+	const mailSubject = subject || SUBJECT;
 	const adminMail = await sendMail({
 		from: `MeshCore Polska <${process.env.MAILER_AUTH_USER}>`,
 		replyTo: { name: username, address: email },
 		to: `Sefinek <${process.env.MAILER_AUTH_USER}>`,
-		subject: SUBJECT,
+		subject: mailSubject,
 		text: `// Wiadomość od ${username} (${email})\n\n${message}`,
 	});
 
@@ -35,7 +37,7 @@ exports.deliver = async ({ username, email, message }, domain) => {
 		from: `Sefinek <${process.env.MAILER_AUTH_USER}>`,
 		replyTo: `Sefinek <${process.env.MAILER_AUTH_USER}>`,
 		to: { name: username, address: email },
-		subject: SUBJECT,
+		subject: mailSubject,
 		inReplyTo: adminMail.messageId,
 		references: [adminMail.messageId],
 		...confirmationMail(username, domain),

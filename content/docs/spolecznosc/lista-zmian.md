@@ -3,7 +3,7 @@ title: Lista zmian meshcorepolska.org
 description: Historia aktualizacji strony meshcorepolska.org, wersja po wersji - nowe funkcje, poprawki i zmiany w kodzie oraz treści.
 canonical: /dokumentacja/spolecznosc/lista-zmian
 createdAt: 2.08.2026
-updatedAt: 4.11.2026
+updatedAt: 11.11.2026
 ---
 
 # Lista zmian na stronie meshcorepolska.org {toc: Lista zmian}
@@ -12,6 +12,14 @@ Zmiany dotyczące `mapa.meshcorepolska.org` znajdziesz osobno: kliknij ikonę `i
 
 > [!NOTE]
 > Jeśli po aktualizacji strona nie wyświetla się poprawnie, wykonaj twarde odświeżenie kombinacją `CTRL + F5`.
+
+## v1.10.3
+1. Rozbudowano porównanie sprzętu na stronie głównej i dodano Wio Tracker L1 Pro.
+2. Uzupełniono „Od zera do pierwszej wiadomości” na stronie głównej o dodatkowe informacje.
+3. Dodano przycisk „Zapytaj o wydruk”, otwierający formularz kontaktowy z gotowym tytułem wiadomości.
+4. Poprawiono wygląd przycisków. Inne, drobne poprawki w stylach.
+5. Nagłówki w Aktualnościach nie chowają się już pod nawigacją (navbar) po otwarciu linku do sekcji.
+6. Dodano na stronie głównej sekcję informującą o działaniu witryny offline.
 
 ## v1.10.2
 1. Rozbudowano i poprawiono wizualizację sieci na stronie głównej. Dodano ustawienia gęstości węzłów, liczby i tempa pakietów oraz losowanie układu.

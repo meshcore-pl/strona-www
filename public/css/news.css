@@ -222,6 +222,12 @@ a.news-source--spolecznosc:hover {
 	transition-duration: 0.06s;
 }
 
+@media (prefers-reduced-motion: reduce) {
+	.news-post-card {
+		transition: none;
+	}
+}
+
 .news-post-card__head {
 	display: flex;
 	justify-content: space-between;
@@ -271,6 +277,10 @@ a.news-source--spolecznosc:hover {
 .news-post-card__tags .news-tag {
 	padding: 3px 11px;
 	font-size: 11px;
+}
+
+.news-content :is(h1, h2, h3, h4, h5, h6) {
+	scroll-margin-top: calc(var(--nav-h) + 24px);
 }
 
 .news-content {

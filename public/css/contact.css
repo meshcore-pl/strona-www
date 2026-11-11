@@ -1,5 +1,5 @@
 .section--kontakt {
-	padding-top: calc(68px + var(--nav-h));
+	padding-top: calc(32px + var(--nav-h));
 }
 
 #contact-inner {
@@ -9,6 +9,12 @@
 
 #contact-lead {
 	margin: 0 0 28px;
+}
+
+#contact-privacy {
+	margin: 16px 0 0;
+	color: var(--text-muted);
+	font-size: 14px;
 }
 
 #contact-card {
@@ -36,27 +42,9 @@
 	text-transform: uppercase;
 }
 
-.contact-form__field input, .contact-form__field textarea {
-	width: 100%;
-	padding: 11px 14px;
-	border: 1px solid var(--border-strong);
-	border-radius: 10px;
-	background: var(--bg);
-	color: var(--text);
-	font-family: var(--font-body);
-	font-size: 15px;
-	transition: border-color .15s ease, box-shadow .15s ease;
-}
-
 .contact-form__field textarea {
 	min-height: 160px;
 	resize: vertical;
-}
-
-.contact-form__field input:focus, .contact-form__field textarea:focus {
-	border-color: var(--red-bright);
-	outline: 0;
-	box-shadow: 0 0 0 3px var(--red-glow);
 }
 
 #contact-form__hp {

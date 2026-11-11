@@ -69,12 +69,12 @@
 	text-align: right;
 }
 
-.docs-pagination__description {
+.docs-pagination__link .docs-pagination__description {
 	display: -webkit-box;
 	overflow: hidden;
 	margin: 0;
 	color: var(--text-muted);
-	font-size: 15px!important;
+	font-size: 15px;
 	text-overflow: ellipsis;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 2;
@@ -117,6 +117,6 @@
 	font-weight: 700;
 }
 
-.docs-toc__link--h3 {
-	padding-left: 22px !important;
+.docs-toc__list .docs-toc__link--h3 {
+	padding-left: 22px;
 }

@@ -3,7 +3,7 @@ title: Wprowadzenie do MeshCore - pojęcia i przepisy
 description: Słownik pojęć MeshCore (preset, SF, CR, advert), role urządzeń oraz zasady legalnego nadawania w paśmie 868-869 MHz - limity ERP i duty cycle 10%.
 canonical: /dokumentacja/meshcore/wprowadzenie
 createdAt: 13.07.2026
-updatedAt: 1.11.2026
+updatedAt: 11.11.2026
 ---
 
 # Wprowadzenie do MeshCore: pojęcia, role urządzeń i legalne nadawanie {toc: Wprowadzenie}
@@ -28,7 +28,7 @@ Niektóre polskie określenia zostały przyjęte przez naszą społeczność. Na
 
 | Pojęcie                        | Angielska nazwa          | Co oznacza?                                                                                                                                                                  |
 |--------------------------------|:-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Preset                         |                          | Zestaw ustawień radia (częstotliwość, szerokość pasma, SF, CR). Urządzenia muszą mieć ten sam preset, żeby się ze sobą komunikować (z wyjątkiem CR).                         |
+| Preset                         |                          | Ustawienia radia (częstotliwość, szerokość pasma, SF, CR). Do komunikacji urządzenia potrzebują tego samego presetu, z wyjątkiem CR.                         |
 | Współczynnik rozpraszania (SF) | Spreading Factor         | Wyższa wartość ułatwia odbiór słabszego sygnału, ale wydłuża czas nadawania.                                                                                                 |
 | Współczynnik kodowania (CR)    | Coding Rate              | Określa ilość danych dodawanych w celu korekcji błędów. Większa odporność oznacza dłuższy czas nadawania.                                                                    |
 | RX                             | Receive                  | Odbieranie pakietów radiowych przez urządzenie.                                                                                                                              |
@@ -36,7 +36,7 @@ Niektóre polskie określenia zostały przyjęte przez naszą społeczność. Na
 | Duty cycle                     |                          | Maksymalny procent czasu w ciągu godziny, w jakim urządzenie może nadawać. Patrz [Legalność i duty cycle](#legalnosc-i-duty-cycle) niżej.                                    |
 | ERP                            | Effective Radiated Power | Rzeczywista moc promieniowana przez antenę (moc nadajnika + zysk anteny). Patrz [Legalność i duty cycle](#legalnosc-i-duty-cycle) niżej.                                     |
 | Noise Floor (NF)               | Noise Floor              | Poziom szumu i zakłóceń odbieranych przez radio - im bardziej ujemny wynik, tym lepiej. [Czytaj więcej](https://meshcorepolska.org/dokumentacja/meshcore/noise-floor).       |
-| Companion                      |                          | Urządzenie LoRa, które łączy się z telefonem lub komputerem przez Bluetooth lub USB. Służy do wysyłania i odbierania wiadomości.                                             |
+| Companion                      |                          | Urządzenie LoRa do komunikacji z telefonu lub komputera przez Bluetooth, USB, Wi-Fi lub Ethernet, zależnie od modelu i firmware.          |
 | Repeater (RPT)                 |                          | Węzeł (tzw. przekaźnik), który przekazuje dalej odebrane pakiety w eter i zwiększa zasięg sieci.                                                                             |
 | Room serwer (RS)               |                          | Osobny firmware, zwykle używany do grupowych rozmów lokalnych. Przechowuje historię wiadomości i udostępnia ją użytkownikom po połączeniu.                                   |
 | Room-peater                    |                          | Repeater i room serwer połączone w jednym firmware. Patrz [Role urządzeń](#role-urzadzen) niżej.                                                                             |
@@ -52,14 +52,16 @@ Niektóre polskie określenia zostały przyjęte przez naszą społeczność. Na
 > Przejdź do dokumentu [Presety i konfiguracja](https://meshcorepolska.org/dokumentacja/meshcore/aktualne-presety), aby dowiedzieć się więcej na temat ustawień radiowych oraz poprawnej konfiguracji.
 
 > [!TIP]
-> Odpowiedź w rodzaju `Szczecin 9h` na kanale oznacza, że Twoja wiadomość doleciała do danej osoby (w Szczecinie) po 9 hopach. Jest to powszechnie stosowany sposób potwierdzania odbioru.
+> Wysłałeś wiadomość na kanale, a ktoś odpowiedział Ci na nią np. „Szczecin 8h”? To potwierdzenie, że Twoja wiadomość dotarła do Szczecina po 8 hopach.
 
 ## Role urządzeń
 O roli urządzenia decyduje oprogramowanie (firmware), nie sama płytka. Ten sam sprzęt (np. Heltec V4) może pracować jako `companion`, `repeater`, `room serwer` albo `room-peater`.
 
 ### Companion (kompan)
-- Urządzenie osobiste. Parujesz je z telefonem lub komputerem przez Bluetooth albo USB, a następnie za jego pośrednictwem wysyłasz i odbierasz wiadomości.
-- Jeżeli przez pewien czas aplikacja będzie wyłączona lub połączenie Bluetooth zostanie zerwane, wiadomości będą zapisywane w buforze. Ma on ograniczoną pojemność. Po jej przekroczeniu najstarsze wiadomości będą nadpisywane. Po ponownym połączeniu się ze swoim companionem zobaczysz zachowane wiadomości z czasu Twojej nieobecności.
+- Urządzenie osobiste. Łączysz je z aplikacją na telefonie lub komputerze, a następnie za jego pośrednictwem wysyłasz i odbierasz wiadomości. Dostępne połączenia zależą od sprzętu i firmware: Bluetooth LE (BLE), USB, Wi-Fi, a w niektórych modelach także Ethernet.
+- Od MeshCore 1.18.0 m.in. Heltec V3, V4, V4 R8, Wireless Paper, RAK3112, XIAO S3 i XIAO S3 WIO obsługują BLE i Wi-Fi w jednym firmware. Elecrow ThinkNode M7 obsługuje także Ethernet. Wio Tracker L1 Pro i SenseCAP T1000-E nie mają łączności Wi-Fi.
+- Dane sieci Wi-Fi można ustawić po połączeniu przez BLE w aplikacji MeshCore od wersji 1.50.0. Sam port USB nie oznacza możliwości połączenia z aplikacją: w wariantach BLE + Wi-Fi opisanych dla wydania 1.18.0 służy on do logów diagnostycznych. Szczegóły znajdziesz w [opisie zmian MeshCore 1.18.0](/aktualnosci/lista-zmian/aktualizacja-firmware-meshcore-1-18-0#firmware-companiona-z-wieloma-interfejsami-ble-wi-fi) i [oficjalnym wpisie twórców](https://blog.meshcore.io/2026/10/15/release-1-18-0).
+- Jeżeli przez pewien czas aplikacja będzie wyłączona lub połączenie z companionem zostanie zerwane, wiadomości będą zapisywane w buforze. Ma on ograniczoną pojemność. Po jej przekroczeniu najstarsze wiadomości będą nadpisywane. Po ponownym połączeniu się ze swoim companionem zobaczysz zachowane wiadomości z czasu Twojej nieobecności.
 - Companion samodzielnie nie przekazuje dalej wiadomości innych użytkowników. Aby komunikacja mogła wykroczyć poza bezpośredni zasięg radiowy, w pobliżu musi znajdować się repeater lub room-peater.
 
 ### Repeater (RPT)

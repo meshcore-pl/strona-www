@@ -42,17 +42,23 @@
 								<button type="button" class="map-settings__close" popovertarget="map-settings-panel" popovertargetaction="hide" aria-label="Zamknij ustawienia">×</button>
 							</div>
 							<p>Eksperymentuj z mapą. To wizualizacja, nie dane rzeczywistej sieci.</p>
-							<label for="map-density">Gęstość węzłów</label>
-							<select class="form-control" id="map-density">
-								<option value="0.1">Mała</option>
-								<option value="0.075" selected>Domyślna</option>
-								<option value="0.055">Duża</option>
-							</select>
-							<p class="map-settings__count" aria-live="polite" id="map-node-count"></p>
-							<label for="map-packets">Pakiety jednocześnie <output id="map-packets-value" for="map-packets">10</output></label>
-							<input id="map-packets" type="range" min="1" max="16" value="10">
-							<label for="map-speed">Tempo pakietów <output id="map-speed-value" for="map-speed">1×</output></label>
-							<input id="map-speed" type="range" min="0.5" max="2" step="0.25" value="1">
+							<div class="map-settings__field">
+								<label for="map-density">Gęstość węzłów</label>
+								<select class="form-control" id="map-density">
+									<option value="0.1">Mała</option>
+									<option value="0.075" selected>Domyślna</option>
+									<option value="0.055">Duża</option>
+								</select>
+								<p class="map-settings__count" aria-live="polite" id="map-node-count"></p>
+							</div>
+							<div class="map-settings__field">
+								<label for="map-packets">Pakiety jednocześnie <output id="map-packets-value" for="map-packets">10</output></label>
+								<input id="map-packets" type="range" min="1" max="16" value="10">
+							</div>
+							<div class="map-settings__field">
+								<label for="map-speed">Tempo pakietów <output id="map-speed-value" for="map-speed">1×</output></label>
+								<input id="map-speed" type="range" min="0.5" max="2" step="0.25" value="1">
+							</div>
 							<p id="map-motion-note" hidden>Animacja jest wyłączona zgodnie z ustawieniami ograniczonego ruchu.</p>
 							<div class="map-settings__actions">
 								<button type="button" id="map-shuffle" class="btn btn--secondary">Losuj układ</button>
@@ -147,71 +153,137 @@
 		</div>
 	</section>
 
-	<section class="section" aria-labelledby="tyle-wystarczy-aby-zaczac">
+	<section class="section section--equipment" aria-labelledby="tyle-wystarczy-aby-zaczac">
 		<div class="section__inner">
 			<div class="section__head">
-				<p class="eyebrow">Rekomendowany sprzęt</p>
+				<p class="eyebrow">Dobierz sprzęt do zastosowania</p>
 				<h2 id="tyle-wystarczy-aby-zaczac"><a href="#tyle-wystarczy-aby-zaczac" class="heading-anchor">Tyle wystarczy, aby zacząć</a></h2>
 			</div>
 
 			<p class="section__lead">
-				Do pierwszego kontaktu z siecią wystarczy companion, czyli niewielkie urządzenie LoRa za około 180-220 zł, które łączy się z telefonem przez Bluetooth.
-				Na telefonie potrzebujesz jedynie <a href="https://play.google.com/store/apps/details?id=com.liamcottle.meshcore.android&amp;hl=pl" target="_blank" rel="noopener">aplikacji MeshCore</a>. Bez obaw - przetłumaczyliśmy ją na język polski.
-				Oprogramowanie układowe (czyli firmware) wgrasz <a href="https://flasher.meshcore.io" target="_blank" rel="noopener">bezpośrednio przez przeglądarkę</a>. Podczas konfiguracji pamiętaj, aby wybrać <a href="/dokumentacja/meshcore/aktualne-presety">odpowiedni preset</a>.
+				Na początek wystarczy urządzenie obsługujące MeshCore w paśmie 868 MHz oraz <a href="https://play.google.com/store/apps/details?id=com.liamcottle.meshcore.android&amp;hl=pl" target="_blank" rel="noopener">aplikacja</a> na telefon, dostępna także po polsku.
 			</p>
 
-			<div class="cards">
-				<div class="card">
-					<a class="card__img-link" href="https://flasher.meshcore.io/img/sensecap_t1000e.svg" data-lightbox aria-label="Powiększ grafikę SenseCAP T1000-E">
-						<img class="card__img card__img--sensecap" src="https://flasher.meshcore.io/img/sensecap_t1000e.svg" alt="Urządzenie SenseCAP Card Tracker T1000-E zgodne z MeshCore" width="848" height="1264" loading="lazy">
+			<div class="equipment-roles">
+				<p><strong>Companion</strong> pozwala wysyłać i odbierać wiadomości na telefonie lub komputerze. Łączysz się z nim przez Bluetooth LE, USB lub Wi-Fi, zależnie od modelu i wersji firmware.</p>
+				<p><strong>Repeater</strong> przekazuje wiadomości innych użytkowników i zwiększa zasięg sieci. Zwykle nie potrzeba własnego repeatera, aby zacząć przygodę.</p>
+			</div>
+
+			<div class="equipment-grid">
+				<article class="card equipment-card equipment-card--recommended" aria-labelledby="equipment-wio">
+					<div class="equipment-card__badges"><span class="equipment-badge equipment-badge--companion">Companion</span><span class="equipment-badge">Gotowy zestaw</span></div>
+					<a class="equipment-card__image" href="https://flasher.meshcore.io/img/wio_tracker_l1.svg" data-lightbox aria-label="Powiększ grafikę Wio Tracker L1 Pro">
+						<img src="https://flasher.meshcore.io/img/wio_tracker_l1.svg" alt="Wio Tracker L1 Pro z ekranem i zewnętrzną anteną" width="200" height="160" loading="lazy">
 					</a>
-					<h3>SenseCAP T1000-E</h3>
-					<p class="card__price">około 219 zł</p>
-					<p>Gotowe urządzenie wielkości karty płatniczej, z obudową, akumulatorem i odbiornikiem GPS w zestawie. Dobry wybór, jeśli nie chcesz samodzielnie składać urządzenia ani dobierać baterii, anten.</p>
-				</div>
-				<div class="card">
-					<a class="card__img-link" href="https://flasher.meshcore.io/img/heltec_v4.svg" data-lightbox aria-label="Powiększ grafikę Heltec V4.3">
-						<img class="card__img card__img--heltec" src="https://flasher.meshcore.io/img/heltec_v4.svg" alt="Płytka Heltec V4.3 do sieci MeshCore" width="1440" height="736" loading="lazy">
+					<p class="equipment-card__use">Polecamy na start i w teren</p>
+					<h3 id="equipment-wio">Wio Tracker L1 Pro</h3>
+					<p>Gotowy companion z GPS, ekranem OLED o przekątnej 1,3 cala i baterią 2000 mAh. Na jednym ładowaniu powinien działać 4-6 dni.</p>
+					<ul class="equipment-card__features">
+						<li>Energooszczędny nRF52840 + SX1262</li>
+						<li>Zewnętrzna, wymienna antena LoRa</li>
+						<li>Bluetooth LE, ładowanie przez USB-C</li>
+					</ul>
+					<p class="equipment-card__detail">Aby jeszcze bardziej zwiększyć zasięg, możesz wymienić fabryczną antenę na <a href="/dokumentacja/meshcore/anteny#elastyczna-antena-gizont-10-dbi">elastyczny model GIZONT (10 dBi)</a>, a przewód RF1.13 wewnątrz obudowy zastąpić <a href="/dokumentacja/meshcore/anteny#przewod-antenowy">RG178</a>.</p>
+					<a class="equipment-card__link" href="https://www.seeedstudio.com/Wio-Tracker-L1-Pro-for-Meshcore-p-6717.html" target="_blank" rel="noopener">Wersja MeshCore u producenta ↗</a>
+				</article>
+
+				<article class="card equipment-card" aria-labelledby="equipment-sensecap">
+					<div class="equipment-card__badges"><span class="equipment-badge equipment-badge--companion">Companion</span><span class="equipment-badge">Gotowy zestaw</span></div>
+					<a class="equipment-card__image" href="https://flasher.meshcore.io/img/sensecap_t1000e.svg" data-lightbox aria-label="Powiększ grafikę SenseCAP T1000-E">
+						<img src="https://flasher.meshcore.io/img/sensecap_t1000e.svg" alt="Kieszonkowy SenseCAP T1000-E" width="848" height="1264" loading="lazy">
 					</a>
-					<h3>Heltec V4.3</h3>
-					<p class="card__price">około 183 zł</p>
-					<p>Tania i łatwo dostępna płytka z ekranem OLED, oparta na układzie ESP32. W sam raz na pierwszego companiona MeshCore. Baterię możesz podłączyć do gniazda Bat z tyłu urządzenia.</p>
-				</div>
-				<div class="card">
-					<a class="card__img-link" href="https://flasher.meshcore.io/img/rak_4631.svg" data-lightbox aria-label="Powiększ grafikę WisBlock RAK4631">
-						<img class="card__img card__img--rak" src="https://flasher.meshcore.io/img/rak_4631.svg" alt="Płytka WisBlock RAK4631 do repeatera MeshCore" width="1280" height="832" loading="lazy">
+					<p class="equipment-card__use">Do kieszeni i na co dzień</p>
+					<h3 id="equipment-sensecap">SenseCAP T1000-E</h3>
+					<p>Tracker wielkości karty płatniczej, z GPS i akumulatorem 700 mAh. Mieści się w kieszeni, można go też przypiąć do plecaka.</p>
+					<ul class="equipment-card__features">
+						<li>nRF52840 + LR1110</li>
+						<li>Obudowa IP65, bez wystającej anteny</li>
+						<li>Połączenie przez Bluetooth LE</li>
+					</ul>
+					<p class="equipment-card__detail">Ma wbudowaną antenę i nie ma ekranu. Do ładowania służy przewód ze złączem magnetycznym. Polecamy go szczególnie tam, gdzie działa wiele repeaterów.</p>
+					<a class="equipment-card__link" href="https://wiki.seeedstudio.com/t1000_e_intro/" target="_blank" rel="noopener">Specyfikacja producenta ↗</a>
+				</article>
+
+				<article class="card equipment-card" aria-labelledby="equipment-heltec">
+					<div class="equipment-card__badges"><span class="equipment-badge equipment-badge--companion">Companion</span><span class="equipment-badge">Do złożenia</span></div>
+					<a class="equipment-card__image" href="https://flasher.meshcore.io/img/heltec_v4.svg" data-lightbox aria-label="Powiększ grafikę Heltec V4.3">
+						<img src="https://flasher.meshcore.io/img/heltec_v4.svg" alt="Płytka Heltec V4.3 z ekranem OLED" width="1440" height="736" loading="lazy">
 					</a>
-					<h3>WisBlock RAK4631</h3>
-					<p class="card__price">około 123 zł</p>
-					<p>Klasyka wśród repeaterów. Dzięki układowi nRF52 pobiera bardzo mało energii i dobrze sprawdza się przy zasilaniu off-grid. Wariant (szósty) z RAK4631 i płytką bazową RAK19003 będzie wystarczający.</p>
+					<p class="equipment-card__use">Do domu i na biurko</p>
+					<h3 id="equipment-heltec">Heltec V4.3</h3>
+					<p>Płytka do samodzielnego złożenia companiona. Antenę, akumulator i obudowę dobierasz samodzielnie.</p>
+					<ul class="equipment-card__features">
+						<li>ESP32-S3 + SX1262</li>
+						<li>Wariant z OLED i portem USB-C</li>
+						<li>BLE i Wi-Fi w firmware MeshCore 1.18+</li>
+					</ul>
+					<p class="equipment-card__detail">Obudowę możesz wydrukować na drukarce 3D. Po połączeniu Helteca z domowym Wi-Fi możesz obsługiwać go z telefonu lub komputera w tej samej sieci.</p>
+					<a class="equipment-card__link" href="https://heltec.org/project/wifi-lora-32-v4/" target="_blank" rel="noopener">Warianty u producenta ↗</a>
+				</article>
+
+				<article class="card equipment-card" aria-labelledby="equipment-rak">
+					<div class="equipment-card__badges"><span class="equipment-badge equipment-badge--repeater">Repeater</span><span class="equipment-badge">Do złożenia</span></div>
+					<a class="equipment-card__image" href="https://flasher.meshcore.io/img/rak_4631.svg" data-lightbox aria-label="Powiększ grafikę WisBlock RAK4631">
+						<img src="https://flasher.meshcore.io/img/rak_4631.svg" alt="Moduł WisBlock RAK4631 na płytce bazowej" width="1280" height="832" loading="lazy">
+					</a>
+					<p class="equipment-card__use">Do rozbudowy sieci</p>
+					<h3 id="equipment-rak">WisBlock RAK4631</h3>
+					<p>Energooszczędny moduł, który polecamy do repeaterów zasilanych z panelu słonecznego.</p>
+					<ul class="equipment-card__features">
+						<li>nRF52840 + SX1262</li>
+						<li>Modułowy system WisBlock</li>
+						<li>Wymaga płytki bazowej, np. RAK19003</li>
+					</ul>
+					<p class="equipment-card__detail">Użyj osobnej <a href="/dokumentacja/schematy/cn3791-mppt">ładowarki CN3791 z MPPT</a> zamiast wbudowanego w płytkę bazową wejścia na panel słoneczny. Do montażu na zewnątrz potrzebna jest szczelna obudowa.</p>
+					<a class="equipment-card__link" href="https://docs.rakwireless.com/product-categories/wisblock/rak4631/overview/" target="_blank" rel="noopener">Dokumentacja producenta ↗</a>
+				</article>
+			</div>
+
+			<p class="equipment-connectivity"><strong>Jak działa łączność przez Wi-Fi?</strong> Companion łączy się z routerem, a Ty korzystasz z niego w aplikacji na telefonie lub komputerze podłączonym do tej samej sieci lokalnej. Nie musisz wtedy być w zasięgu Bluetooth. Nie każde urządzenie obsługuje Wi-Fi - zależy to od modelu i wersji firmware. <a href="/aktualnosci/lista-zmian/aktualizacja-firmware-meshcore-1-18-0#firmware-companiona-z-wieloma-interfejsami-ble-wi-fi">Więcej o obsłudze Wi-Fi w MeshCore</a>.</p>
+
+			<p class="equipment-connectivity"><strong>Czym jest Bluetooth LE (BLE)?</strong> Bluetooth Low Energy to energooszczędny sposób bezprzewodowego łączenia telefonu z companionem. Nie wymaga routera ani internetu, ale telefon musi znajdować się w zasięgu Bluetooth urządzenia. Wiadomości między companionami i repeaterami są przesyłane przez LoRa.</p>
+
+			<aside class="equipment-checklist" aria-labelledby="equipment-before-buying">
+				<h3 id="equipment-before-buying">Przed zakupem sprawdź trzy rzeczy</h3>
+				<ol>
+					<li>
+						<h4>Pasmo 868 MHz</h4>
+						<p>Wybierz urządzenie i antenę na pasmo 868 MHz. Warianty przeznaczone wyłącznie na 433 lub 915 MHz nie obsługują <a href="/dokumentacja/meshcore/aktualne-presety">używanego w Polsce presetu EU/UK (Narrow)</a>.</p>
+					</li>
+					<li>
+						<h4>Obsługa MeshCore</h4>
+						<p>Sprawdź, czy <a href="https://flasher.meshcore.io" target="_blank" rel="noopener">flasher MeshCore</a> obsługuje wybrany model. Jeśli urządzenie ma wgrany Meshtastic, zmień oprogramowanie na MeshCore.</p>
+					</li>
+					<li>
+						<h4>Pobór energii</h4>
+						<p>Płytki z nRF52 pobierają mniej prądu niż te z ESP32. Warto o tym pamiętać, jeśli companion ma długo działać na akumulatorze albo repeater ma być zasilany z panelu słonecznego.</p>
+					</li>
+				</ol>
+			</aside>
+
+			<div class="equipment-support">
+				<div class="equipment-help">
+					<div>
+						<h3>Nie wiesz, co wybrać?</h3>
+						<p>Zależy Ci na długim czasie pracy na baterii, niewielkich wymiarach czy łączności przez Wi-Fi? Napisz na Discordzie, czego potrzebujesz i jaki masz budżet. Pomożemy dobrać sprzęt.</p>
+					</div>
+					<a href="/discord" class="btn btn--secondary" target="_blank" rel="noopener">Zapytaj na Discordzie</a>
 				</div>
-				<div class="card">
-					<h3>Nie wiesz, co wybrać?</h3>
-					<p>Napisz na naszym <a href="/discord" target="_blank" rel="noopener">Discordzie</a>. Pomożemy dobrać sprzęt do Twojego budżetu, sposobu zasilania i planowanego zastosowania.</p>
+
+				<div id="print-offer">
+					<div id="print-offer__copy">
+						<h3>Masz płytkę, ale brakuje Ci obudowy?</h3>
+						<p>Możemy wydrukować dla Ciebie obudowę na drukarce 3D. Podaj model swojej płytki.</p>
+					</div>
+					<div id="print-offer__actions">
+						<a href="/kontakt?temat=Pro%C5%9Bba%20o%20wydruk%203D%20-%20MeshCore%20Polska" class="btn btn--secondary">Zapytaj o wydruk</a>
+						<a href="mailto:contact@sefinek.net?subject=Pro%C5%9Bba%20o%20wydruk%203D%20-%20MeshCore%20Polska" class="btn btn--secondary">E-mail</a>
+					</div>
 				</div>
 			</div>
 
-			<div id="cards__note">
-				<b>Warto wiedzieć</b>
-				<ul>
-					<li>Kupując sprzęt do polskiej sieci MeshCore, wybieraj wersję obsługującą pasmo 868 MHz. Warianty przeznaczone wyłącznie dla 915 MHz lub 433 MHz nie będą zgodne z <a href="/dokumentacja/meshcore/aktualne-presety">używanym przez nas presetem EU/UK (Narrow)</a>.</li>
-					<li>Płytki z układem nRF52 pobierają zauważalnie mniej energii niż konstrukcje oparte na ESP32. Lepiej sprawdzają się więc w urządzeniach zasilanych z akumulatorów i paneli fotowoltaicznych. RAK4631 jest przy tym pewniejszym wyborem na repeater niż Xiao.</li>
-					<li>Do repeatera wybierz ogniwa Li-Ion, na przykład 18650. Dobrze znoszą dużą liczbę cykli ładowania i są łatwo dostępne. Ogniwa Li-Po zostaw raczej do przenośnych companionów, w których liczą się niewielkie wymiary i masa.</li>
-				</ul>
-			</div>
-
-			<div id="print-offer">
-				<div id="print-offer__copy">
-					<h3>Posiadam płytkę, ale nie mam obudowy (a chcę)</h3>
-					<p>Żaden problem! Możemy wydrukować dla Ciebie obudowę na drukarce 3D, dopasowaną do wybranej płytki i sposobu jej wykorzystania.</p>
-				</div>
-				<div id="print-offer__actions">
-					<a href="/kontakt" class="btn btn--secondary">Skontaktuj się</a>
-					<a href="mailto:contact@sefinek.net" class="btn btn--secondary">E-mail</a>
-				</div>
-			</div>
-
-			<p id="cards__soon">Zajrzyj też do <a href="/dokumentacja/meshcore">naszej dokumentacji</a>, gdzie znajdziesz poradniki, listę anten, instrukcje konfiguracji i wiele więcej!</p>
+			<p class="equipment-disclaimer"><strong>Nie jesteśmy dystrybutorem sprzętu.</strong> Ceny, dostępność i zawartość zestawów sprawdź u sprzedawcy.</p>
+			<p id="cards__soon">Sprzęt wybrany? Przejdź do <a href="#od-zera-do-pierwszej-wiadomosci">szybkiego startu</a> lub zajrzyj do <a href="/dokumentacja/meshcore">dokumentacji MeshCore</a>.</p>
 		</div>
 	</section>
 
@@ -223,28 +295,28 @@
 						<p class="eyebrow">Szybki start</p>
 						<h2 id="od-zera-do-pierwszej-wiadomosci"><a href="#od-zera-do-pierwszej-wiadomosci" class="heading-anchor">Od zera do pierwszej wiadomości</a></h2>
 					</div>
-					<p class="section__lead">Oto najkrótsza droga do wysłania pierwszej wiadomości w sieci MeshCore. Wszystkie szczegóły znajdziesz w <a href="/dokumentacja">pełnej dokumentacji</a>.</p>
+					<p class="section__lead">Oto najkrótsza droga do wysłania pierwszej wiadomości w sieci MeshCore. To tylko podstawowa konfiguracja. Zdecydowanie zalecamy skonfigurowanie <a href="/dokumentacja/meshcore/regionalizacja-wiadomosci">regionów</a> i ustawienie <a href="/aktualnosci/oprogramowanie/usprawnienia-diagnostyki-trasy">rozmiaru skrótu trasy</a> na <strong>2 lub 3 bajty, nigdy 1 bajt</strong>. Wszystkie szczegóły znajdziesz w <a href="/dokumentacja">pełnej dokumentacji</a>.</p>
 
 					<ol id="timeline">
 						<li class="timeline__step">
 							<span class="timeline__marker">1</span>
 							<div class="timeline__step-body">
-								<h3>Kup płytkę</h3>
-								<p>Companion za około 180-220 zł, np. Heltec V4.3 lub SenseCAP T1000-E. Koniecznie w wersji na pasmo 868 MHz.</p>
+								<h3>Wybierz companiona</h3>
+								<p>Wybierz np. Wio Tracker L1 Pro, SenseCAP T1000-E lub Heltec V4.3. Sprawdź obsługę pasma 868 MHz i zawartość zestawu w <a href="#tyle-wystarczy-aby-zaczac">porównaniu sprzętu</a>.</p>
 							</div>
 						</li>
 						<li class="timeline__step">
 							<span class="timeline__marker">2</span>
 							<div class="timeline__step-body">
 								<h3>Podłącz antenę</h3>
-								<p>Dokręć antenę dostrojoną pod 868 MHz, zanim włączysz urządzenie. Nadawanie bez anteny może uszkodzić moduł radiowy.</p>
+								<p>Jeśli urządzenie ma zewnętrzną antenę, podłącz ją przed włączeniem. Powinna być dostrojona do pasma 868 MHz. W T1000-E antena jest już wbudowana.</p>
 							</div>
 						</li>
 						<li class="timeline__step">
 							<span class="timeline__marker">3</span>
 							<div class="timeline__step-body">
 								<h3>Wgraj firmware</h3>
-								<p>Podłącz płytkę kablem USB i wgraj oprogramowanie przez <a href="https://flasher.meshcore.io" target="_blank" rel="noopener">flasher.meshcore.io</a>, bezpośrednio z przeglądarki.</p>
+								<p>Jeśli urządzenie nie ma jeszcze MeshCore, podłącz je przewodem USB do transmisji danych i wgraj oprogramowanie przez <a href="https://flasher.meshcore.io" target="_blank" rel="noopener">flasher.meshcore.io</a>, bezpośrednio z przeglądarki.</p>
 							</div>
 						</li>
 						<li class="timeline__step">
@@ -416,6 +488,21 @@
 				Możesz rozmawiać pod pseudonimem, korzystać z tematycznych kanałów i łatwo znaleźć osoby o podobnych zainteresowaniach.
 				A dlaczego nie tradycyjne forum? Wolimy aktywną społeczność i rozmowy na bieżąco, zamiast kolejnego miejsca, które z czasem opustoszeje.
 				Wiedzę i poradniki gromadzimy w <a href="/dokumentacja">dokumentacji</a>, a dyskusje, pomoc techniczną i wspólne ustalenia prowadzimy na <a href="/discord" target="_blank" rel="noopener">Discordzie</a>.
+			</p>
+		</div>
+	</section>
+
+	<section class="section section--alt" aria-labelledby="strona-dziala-offline">
+		<div class="section__inner">
+			<div class="section__head">
+				<p class="eyebrow">Wiedza dostępna także w terenie</p>
+				<h2 id="strona-dziala-offline"><a href="#strona-dziala-offline" class="heading-anchor">Ta strona działa również offline</a></h2>
+			</div>
+
+			<p class="section__lead">
+				Przed wyjściem w teren otwórz potrzebne poradniki w naszej <a href="/dokumentacja">dokumentacji</a>.
+				Przeglądarka zapisuje odwiedzone podstrony, aby można było wrócić do nich także bez dostępu do internetu.
+				Nie musisz niczego instalować. Nowe treści, aktualne dane i usługi zewnętrzne wymagają połączenia z siecią.
 			</p>
 		</div>
 	</section>

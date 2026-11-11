@@ -20,7 +20,7 @@
 }
 
 .section__head:has(+ .section__lead) {
-	margin-bottom: 20px;
+	margin-bottom: 6px;
 }
 
 .section__lead {

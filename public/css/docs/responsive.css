@@ -94,3 +94,9 @@
 		inset: var(--nav-h-live, var(--nav-h)) 0 0 0;
 	}
 }
+
+@media (prefers-reduced-motion: reduce) {
+	#docs-sidebar, .docs-group-card, .docs-page-card, .docs-page-card__arrow {
+		transition: none;
+	}
+}

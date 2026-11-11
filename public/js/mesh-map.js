@@ -526,14 +526,20 @@
 			input.style.setProperty('--range-progress', String(progress));
 		};
 
+		const updateSpeedValue = () => {
+			const value = settings.speed.toLocaleString('pl-PL');
+			speedValue.value = `${value}×`;
+			speed.setAttribute('aria-valuetext', `Mnożnik tempa: ${value}`);
+			updateRangeFill(speed);
+		};
+
 		const syncControls = () => {
 			density.value = String(settings.spacing);
 			packetLimit.value = String(settings.packets);
 			packetValue.value = packetLimit.value;
 			speed.value = String(settings.speed);
-			speedValue.value = `${settings.speed.toLocaleString('pl-PL')}×`;
 			updateRangeFill(packetLimit);
-			updateRangeFill(speed);
+			updateSpeedValue();
 		};
 
 		const rebuild = () => {
@@ -561,8 +567,7 @@
 		});
 		speed.addEventListener('input', () => {
 			settings.speed = Number(speed.value);
-			speedValue.value = `${settings.speed.toLocaleString('pl-PL')}×`;
-			updateRangeFill(speed);
+			updateSpeedValue();
 		});
 
 		for (const input of [packetLimit, speed]) {
@@ -611,6 +616,7 @@
 				panel.removeAttribute('data-positioned');
 				panel.showPopover({ source: toggle });
 				positionPanel();
+				density.focus({ preventScroll: true });
 			}
 			toggle.setAttribute('aria-expanded', String(panel.matches(':popover-open')));
 		});

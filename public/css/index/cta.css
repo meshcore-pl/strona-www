@@ -98,11 +98,6 @@
 	margin-top: 24px;
 }
 
-#cta__actions .btn {
-	padding: 10px 16px;
-	font-size: 15px;
-}
-
 #outro #footer {
 	background: linear-gradient(180deg, rgba(14, 17, 24, .68), #0e1118cc);
 	-webkit-backdrop-filter: blur(6px) saturate(.9);
@@ -136,6 +131,4 @@
 	padding: 24px;
 	background: rgba(18, 21, 30, .55);
 	box-shadow: 0 0 14px #0006;
-	-webkit-backdrop-filter: blur(4px);
-	backdrop-filter: blur(4px);
 }

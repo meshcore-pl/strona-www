@@ -254,15 +254,16 @@ html {
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
-	gap: 9px;
-	padding: 9px 19px;
+	gap: 7px;
+	padding: 10px 16px;
 	border: 1px solid transparent;
-	border-radius: 10px;
-	font-size: 17px;
-	font-weight: 700;
+	border-radius: 9px;
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 1.5;
 	text-decoration: none;
 	white-space: nowrap;
-	transition: transform .18s cubic-bezier(.2, 0, .2, 1), box-shadow .18s ease, background .18s ease, border-color .18s ease, filter .18s ease;
+	transition: transform .15s ease, background .15s ease, border-color .15s ease, filter .15s ease;
 	cursor: pointer;
 }
 
@@ -307,33 +308,30 @@ select.form-control option {
 .btn--primary {
 	background: linear-gradient(160deg, var(--red-bright), var(--red-dark));
 	color: #fff;
-	box-shadow: 0 0 24px var(--red-glow), inset 0 1px 0 rgba(255, 255, 255, .18);
 }
 
 .btn--primary:hover {
 	color: #fff;
-	box-shadow: 0 0 34px var(--red-glow), inset 0 1px 0 rgba(255, 255, 255, .18);
-	transform: scale(1.045);
-	filter: brightness(1.12);
+	transform: scale(1.03);
 }
 
 .btn--secondary {
 	border: 1px solid var(--border-strong);
 	background: rgba(16, 19, 27, .25);
 	color: var(--text);
-	-webkit-backdrop-filter: blur(4px);
-	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(3px);
+	backdrop-filter: blur(3px);
 }
 
 .btn--secondary:hover {
 	border-color: var(--red-bright);
 	background: rgba(224, 18, 48, .08);
 	color: var(--text);
-	transform: scale(1.045);
+	transform: scale(1.03);
 }
 
 .btn--primary:active, .btn--secondary:active {
-	transform: scale(.97);
+	transform: scale(.99);
 	transition-duration: .09s;
 }
 
@@ -355,14 +353,12 @@ select.form-control option {
 
 @media (max-width: 620px) {
 	.btn {
-		padding: 9px 18px;
-		font-size: 16px;
+		min-height: 44px;
 	}
 }
 
 .btn--sm {
-	gap: 7px;
-	padding: 8px 17px;
+	padding: 7px 12px;
 	font-size: 14px;
 }
 

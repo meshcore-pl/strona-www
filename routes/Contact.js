@@ -9,7 +9,13 @@ const DEV_VALUES = { username: 'Jan Kowalski', email: 'contact@sefinek.net', mes
 const SENT_MESSAGE = 'Dziękujemy! Twoja wiadomość została wysłana. Odpowiemy najszybciej, jak to możliwe.';
 
 router.get('/kontakt', (req, res) => {
-	res.render('contact.ejs', { values: process.env.NODE_ENV === 'production' ? EMPTY_VALUES : DEV_VALUES, tip: getRandomTip() });
+	const values = {
+		...(process.env.NODE_ENV === 'production' ? EMPTY_VALUES : DEV_VALUES),
+		subject: typeof req.query.temat === 'string' ? req.query.temat.trim().slice(0, 120) : '',
+	};
+	if (values.subject) values.message = '';
+	if (typeof req.query.message === 'string') values.message = req.query.message.slice(0, 4000);
+	res.render('contact.ejs', { values, tip: getRandomTip() });
 });
 
 router.post('/api/v1/kontakt', limiter.contactForm, async (req, res) => {
@@ -17,6 +23,7 @@ router.post('/api/v1/kontakt', limiter.contactForm, async (req, res) => {
 	const fields = {
 		username: (body.username || '').trim(),
 		email: (body.email || '').trim(),
+		subject: typeof body.subject === 'string' ? body.subject.trim() : '',
 		message: (body.message || '').trim(),
 	};
 

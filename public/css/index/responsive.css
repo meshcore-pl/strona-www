@@ -130,7 +130,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.card {
+	.card, .network-stat, .network-health__seg, #profile__main, #profile__thumbs a {
 		transition: none;
 	}
 
