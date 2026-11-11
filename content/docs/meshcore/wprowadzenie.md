@@ -58,11 +58,9 @@ Niektóre polskie określenia zostały przyjęte przez naszą społeczność. Na
 O roli urządzenia decyduje oprogramowanie (firmware), nie sama płytka. Ten sam sprzęt (np. Heltec V4) może pracować jako `companion`, `repeater`, `room serwer` albo `room-peater`.
 
 ### Companion (kompan)
-- Urządzenie osobiste. Łączysz je z aplikacją na telefonie lub komputerze, a następnie za jego pośrednictwem wysyłasz i odbierasz wiadomości. Dostępne połączenia zależą od sprzętu i firmware: Bluetooth LE (BLE), USB, Wi-Fi, a w niektórych modelach także Ethernet.
-- Od MeshCore 1.18.0 m.in. Heltec V3, V4, V4 R8, Wireless Paper, RAK3112, XIAO S3 i XIAO S3 WIO obsługują BLE i Wi-Fi w jednym firmware. Elecrow ThinkNode M7 obsługuje także Ethernet. Wio Tracker L1 Pro i SenseCAP T1000-E nie mają łączności Wi-Fi.
-- Dane sieci Wi-Fi można ustawić po połączeniu przez BLE w aplikacji MeshCore od wersji 1.50.0. Sam port USB nie oznacza możliwości połączenia z aplikacją: w wariantach BLE + Wi-Fi opisanych dla wydania 1.18.0 służy on do logów diagnostycznych. Szczegóły znajdziesz w [opisie zmian MeshCore 1.18.0](/aktualnosci/lista-zmian/aktualizacja-firmware-meshcore-1-18-0#firmware-companiona-z-wieloma-interfejsami-ble-wi-fi) i [oficjalnym wpisie twórców](https://blog.meshcore.io/2026/10/15/release-1-18-0).
-- Jeżeli przez pewien czas aplikacja będzie wyłączona lub połączenie z companionem zostanie zerwane, wiadomości będą zapisywane w buforze. Ma on ograniczoną pojemność. Po jej przekroczeniu najstarsze wiadomości będą nadpisywane. Po ponownym połączeniu się ze swoim companionem zobaczysz zachowane wiadomości z czasu Twojej nieobecności.
-- Companion samodzielnie nie przekazuje dalej wiadomości innych użytkowników. Aby komunikacja mogła wykroczyć poza bezpośredni zasięg radiowy, w pobliżu musi znajdować się repeater lub room-peater.
+- Osobiste urządzenie do komunikacji w sieci MeshCore. Umożliwia wysyłanie i odbieranie wiadomości za pomocą aplikacji na telefonie lub komputerze. W zależności od modelu i wersji oprogramowania obsługuje Bluetooth LE (BLE), USB, [Wi-Fi](/aktualnosci/lista-zmian/aktualizacja-firmware-meshcore-1-18-0#firmware-companiona-z-wieloma-interfejsami-ble-wi-fi) lub Ethernet.
+- Odbiera i przechowuje wiadomości również bez połączenia z aplikacją. Gdy pamięć się zapełni, nowe wiadomości zastępują najstarsze. Po ponownym połączeniu zapisane wiadomości pojawią się w aplikacji.
+- Nie przekazuje wiadomości innych użytkowników. Komunikacja z osobami poza bezpośrednim zasięgiem radiowym wymaga pośrednictwa repeatera lub room-peatera.
 
 ### Repeater (RPT)
 - Jego jedyne zadanie to rozszerzanie zasięgu sieci. Przyjmuje pakiety i przekazuje je dalej. Nie buforuje wiadomości, nie prowadzi żadnej historii i nie zarządza kanałami.
