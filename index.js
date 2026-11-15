@@ -18,7 +18,7 @@ const SitemapRouter = require('./routes/Sitemap.js');
 
 // Middleware imports
 const timeout = require('./middlewares/timeout.js');
-const blockAiBots = require('./middlewares/blockAiBots.js');
+// const blockAiBots = require('./middlewares/blockAiBots.js');
 const logger = require('./global/middlewares/morgan.js');
 const limiter = require('./middlewares/ratelimit.js');
 
@@ -74,7 +74,7 @@ app.use(express.static('public'));
 app.use(logger);
 if (isProd) app.use(limiter.global);
 app.use(timeout());
-app.use(blockAiBots);
+// app.use(blockAiBots);
 app.use(express.urlencoded({ extended: false, limit: '8kb' }));
 
 
