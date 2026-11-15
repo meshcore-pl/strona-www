@@ -15,7 +15,10 @@
 	<section class="news-hero">
 		<div class="section__inner">
 			<p class="eyebrow">Blog</p>
-			<h1>Aktualności ze świata MeshCore</h1>
+			<div class="news-hero__heading">
+				<h1>Aktualności ze świata MeshCore</h1>
+				<%- include('./_search-box.ejs') %>
+			</div>
 			<p class="news-hero__lead">Ogłoszenia, changelogi aplikacji i firmware oraz inne aktualności ze społeczności. Tłumaczymy tu też na polski posty z <a href="https://blog.meshcore.io" target="_blank" rel="noopener">oficjalnego bloga</a> MeshCore. <%= posts.length %> <%= pluralizePolish(posts.length, { one: 'wpis', few: 'wpisy', many: 'wpisów' }) %>.</p>
 
 			<div id="news-toolbar">
@@ -26,8 +29,6 @@
 					<% }) %>
 				</div>
 				<% } %>
-
-				<%- include('./_search-box.ejs') %>
 			</div>
 		</div>
 	</section>
@@ -56,6 +57,10 @@
 			<% } else { %>
 			<p>Nie ma jeszcze żadnych wpisów. Zajrzyj tu wkrótce.</p>
 			<% } %>
+
+			<div class="news-search-footer">
+				<%- include('./_search-box.ejs') %>
+			</div>
 
 			<% if (tip) { %>
 			<div class="docs-tip">

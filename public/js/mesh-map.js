@@ -6,7 +6,7 @@
 	const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 	const RED = '255, 51, 82';
-	const WHITE = '238, 241, 248';
+	const BRIGHT = '255, 92, 112';
 
 	const BORDER = [
 		[18.491, 54.805], [18.304, 54.868], [18.198, 54.868], [17.856, 54.860], [17.621, 54.808], [17.319, 54.784], [17.061, 54.714], [16.925, 54.627],
@@ -229,19 +229,20 @@
 			if (!best) break;
 			connect(best.i, best.j);
 		}
-		return { edges, edgeIndex, adjacency, edgeHeat: new Float32Array(edges.length) };
+		return { edges, edgeIndex, adjacency, edgeHeat: new Float32Array(edges.length), nodeHeat: new Float32Array(nodes.length) };
 	};
 
-	const defaults = { seed: 869525, spacing: 0.075, packets: 10, speed: 1 };
+	const randomSeed = () => Math.floor(Math.random() * 0x100000000);
+	const defaults = { spacing: 0.075, packets: 2, speed: 1 };
 	const settingsKey = 'meshcore.meshMap.settings';
 	const loadSettings = () => {
-		const restored = { ...defaults };
+		const restored = { ...defaults, seed: randomSeed() };
 		try {
 			const saved = JSON.parse(localStorage.getItem(settingsKey));
 			if (!saved || typeof saved !== 'object' || Array.isArray(saved)) return restored;
 			if (Number.isInteger(saved.seed) && saved.seed >= 0 && saved.seed <= 0xFFFFFFFF) restored.seed = saved.seed;
 			if ([0.1, 0.075, 0.055].includes(saved.spacing)) restored.spacing = saved.spacing;
-			if (Number.isInteger(saved.packets) && saved.packets >= 1 && saved.packets <= 16) restored.packets = saved.packets;
+			if (Number.isInteger(saved.packets) && saved.packets >= 1 && saved.packets <= 4) restored.packets = saved.packets;
 			if (Number.isFinite(saved.speed) && saved.speed >= 0.5 && saved.speed <= 2 && Number.isInteger(saved.speed * 4)) restored.speed = saved.speed;
 		} catch {
 			return restored;
@@ -249,17 +250,17 @@
 		return restored;
 	};
 	const settings = loadSettings();
-	const saveSettings = (reset = false) => {
+	const saveSettings = () => {
 		try {
-			if (reset) localStorage.removeItem(settingsKey);
-			else localStorage.setItem(settingsKey, JSON.stringify(settings));
+			localStorage.setItem(settingsKey, JSON.stringify(settings));
 			return true;
 		} catch {
 			return false;
 		}
 	};
+	saveSettings();
 	let nodes = createNodes(settings.seed, settings.spacing);
-	let { edges, edgeIndex, adjacency, edgeHeat } = createGraph(nodes);
+	let { edges, edgeIndex, adjacency, edgeHeat, nodeHeat } = createGraph(nodes);
 	const packets = [];
 	const rings = [];
 	let width = 0, height = 0, scale = 1, offsetX = 0, offsetY = 0, dpr = 1;
@@ -384,25 +385,76 @@
 		return true;
 	};
 
-	const spawnPacket = () => {
-		const start = Math.floor(Math.random() * CITIES.length);
-		const destination = (start + 1 + Math.floor(Math.random() * (CITIES.length - 1))) % CITIES.length;
-		const previous = new Int32Array(nodes.length).fill(-1);
+	const AIRTIME = 450;
+	const DUPLICATE_CHANCE = 0.1;
+	const MIN_HOPS = 2;
+	const MAX_HOPS = 5;
+
+	const hopDistances = start => {
+		const dist = new Int32Array(nodes.length).fill(-1);
 		const queue = [start];
-		previous[start] = start;
-		for (let head = 0; head < queue.length && previous[destination] === -1; head++) {
-			const current = queue[head];
-			for (const next of adjacency[current]) {
-				if (previous[next] !== -1) continue;
-				previous[next] = current;
+		dist[start] = 0;
+		for (let head = 0; head < queue.length; head++) {
+			for (const next of adjacency[queue[head]]) {
+				if (dist[next] !== -1) continue;
+				dist[next] = dist[queue[head]] + 1;
 				queue.push(next);
 			}
 		}
-		if (previous[destination] === -1) return;
-		const path = [destination];
-		while (path[path.length - 1] !== start) path.push(previous[path[path.length - 1]]);
-		path.reverse();
-		packets.push({ path, seg: 0, t: 0 });
+		return dist;
+	};
+
+	const pushRing = (x, y, from, to, life, p = 0) => rings.push({ x, y, from, to, life, p });
+
+	const scheduleRelay = (flood, node, from, ttl) => {
+		flood.wait.push({ node, from, ttl, delay: 10 + Math.random() * 40 });
+	};
+
+	const transmit = (flood, relay) => {
+		nodeHeat[relay.node] = 1;
+		for (const to of adjacency[relay.node]) {
+			if (to === relay.from || flood.seen[to]) continue;
+			if (flood.tx.some(hop => hop.to === to) && Math.random() > DUPLICATE_CHANCE) continue;
+			flood.tx.push({ from: relay.node, to, ttl: relay.ttl, t: 0 });
+		}
+	};
+
+	const spawnPacket = () => {
+		const start = Math.floor(Math.random() * CITIES.length);
+		const dist = hopDistances(start);
+		const reachable = [];
+		for (let i = 0; i < CITIES.length; i++) {
+			if (dist[i] >= MIN_HOPS && dist[i] <= MAX_HOPS) reachable.push(i);
+		}
+		if (!reachable.length) return;
+		const destination = reachable[Math.floor(Math.random() * reachable.length)];
+		const flood = {
+			seen: new Uint8Array(nodes.length),
+			tx: [],
+			wait: [],
+			destination,
+		};
+		flood.seen[start] = 1;
+		const [x, y] = toPx(nodes[start]);
+		pushRing(x, y, 3, 20, 800);
+		transmit(flood, { node: start, from: -1, ttl: dist[destination] });
+		packets.push(flood);
+	};
+
+	const receive = (flood, hop) => {
+		if (flood.seen[hop.to]) return;
+		flood.seen[hop.to] = 1;
+		const isDestination = hop.to === flood.destination;
+		nodeHeat[hop.to] = 1;
+		const [x, y] = toPx(nodes[hop.to]);
+		if (isDestination) {
+			pushRing(x, y, 3, 30, 1100);
+			pushRing(x, y, 3, 20, 900, -0.3);
+		} else {
+			pushRing(x, y, 2, 10, 550);
+		}
+		if (isDestination || hop.ttl <= 1) return;
+		scheduleRelay(flood, hop.to, hop.from, hop.ttl - 1);
 	};
 
 	const heatUp = (a, b) => {
@@ -426,12 +478,13 @@
 			ctx.lineTo(bx, by);
 			ctx.lineWidth = 1;
 			if (heat > 0.02) {
-				ctx.save();
-				ctx.shadowColor = `rgba(${RED}, 0.7)`;
-				ctx.shadowBlur = 6 * heat;
-				ctx.strokeStyle = `rgba(${RED}, ${0.10 + heat * 0.45})`;
+				const hot = heat;
+				ctx.lineWidth = 3.5;
+				ctx.strokeStyle = `rgba(${RED}, ${0.12 * heat})`;
 				ctx.stroke();
-				ctx.restore();
+				ctx.lineWidth = 1;
+				ctx.strokeStyle = `rgba(${hot > 0.5 ? BRIGHT : RED}, ${0.14 + heat * 0.6})`;
+				ctx.stroke();
 			} else {
 				ctx.strokeStyle = 'rgba(154, 171, 209, 0.12)';
 				ctx.stroke();
@@ -439,15 +492,13 @@
 		});
 
 		rings.forEach(ring => {
-			ctx.save();
-			ctx.shadowColor = `rgba(${WHITE}, 0.8)`;
-			ctx.shadowBlur = 8 * (1 - ring.p);
+			if (ring.p <= 0) return;
+			const ease = 1 - (1 - ring.p) ** 3;
 			ctx.beginPath();
-			ctx.arc(ring.x, ring.y, ring.r, 0, Math.PI * 2);
-			ctx.strokeStyle = `rgba(${WHITE}, ${0.5 * (1 - ring.p)})`;
-			ctx.lineWidth = 1.5;
+			ctx.arc(ring.x, ring.y, ring.from + (ring.to - ring.from) * ease, 0, Math.PI * 2);
+			ctx.strokeStyle = `rgba(${BRIGHT}, ${0.8 * (1 - ring.p) ** 1.5})`;
+			ctx.lineWidth = 1.5 * (1 - ring.p) + 0.5;
 			ctx.stroke();
-			ctx.restore();
 		});
 
 		nodes.forEach((node, i) => {
@@ -459,33 +510,47 @@
 				? `rgba(238, 241, 248, ${0.9 * pulse})`
 				: 'rgba(200, 210, 232, 0.42)';
 			ctx.fill();
+
+			const heat = nodeHeat[i];
+			if (heat > 0.02) {
+				ctx.beginPath();
+				const core = node.city ? 2.8 : 1.7;
+				ctx.arc(x, y, core + 7 * heat, 0, Math.PI * 2);
+				ctx.fillStyle = `rgba(${RED}, ${0.22 * heat})`;
+				ctx.fill();
+				ctx.beginPath();
+				ctx.arc(x, y, core + 0.8, 0, Math.PI * 2);
+				ctx.fillStyle = `rgba(${BRIGHT}, ${Math.min(1, heat + 0.3)})`;
+				ctx.fill();
+			}
 		});
 
-		packets.forEach(packet => {
-			const [ax, ay] = px[packet.path[packet.seg]];
-			const [bx, by] = px[packet.path[packet.seg + 1]];
-			const x = ax + (bx - ax) * packet.t;
-			const y = ay + (by - ay) * packet.t;
+		packets.forEach(flood => flood.tx.forEach(hop => {
+			if (hop.t < 0.02) return;
+			const [ax, ay] = px[hop.from];
+			const [bx, by] = px[hop.to];
+			const x = ax + (bx - ax) * hop.t;
+			const y = ay + (by - ay) * hop.t;
 
 			const trail = ctx.createLinearGradient(ax, ay, x, y);
-			trail.addColorStop(0, `rgba(${RED}, 0)`);
-			trail.addColorStop(1, `rgba(${RED}, 0.55)`);
+			trail.addColorStop(0, `rgba(${RED}, 0.1)`);
+			trail.addColorStop(1, `rgba(${BRIGHT}, 1)`);
 			ctx.beginPath();
 			ctx.moveTo(ax, ay);
 			ctx.lineTo(x, y);
 			ctx.strokeStyle = trail;
-			ctx.lineWidth = 1.5;
+			ctx.lineWidth = 1.8;
 			ctx.stroke();
 
-			ctx.save();
-			ctx.shadowColor = `rgba(${RED}, 0.9)`;
-			ctx.shadowBlur = 10;
 			ctx.beginPath();
-			ctx.arc(x, y, 2.4, 0, Math.PI * 2);
-			ctx.fillStyle = `rgba(${RED}, 1)`;
+			ctx.arc(x, y, 5, 0, Math.PI * 2);
+			ctx.fillStyle = `rgba(${RED}, 0.3)`;
 			ctx.fill();
-			ctx.restore();
-		});
+			ctx.beginPath();
+			ctx.arc(x, y, 1.9, 0, Math.PI * 2);
+			ctx.fillStyle = `rgba(${BRIGHT}, 1)`;
+			ctx.fill();
+		}));
 	};
 
 	let resizeScheduled = false;
@@ -544,7 +609,7 @@
 
 		const rebuild = () => {
 			nodes = createNodes(settings.seed, settings.spacing);
-			({ edges, edgeIndex, adjacency, edgeHeat } = createGraph(nodes));
+			({ edges, edgeIndex, adjacency, edgeHeat, nodeHeat } = createGraph(nodes));
 			packets.length = 0;
 			rings.length = 0;
 			nodeCount.textContent = `Węzły: ${nodes.length} · połączenia: ${edges.length}`;
@@ -575,14 +640,8 @@
 		}
 
 		document.getElementById('map-shuffle').addEventListener('click', () => {
-			settings.seed = Math.floor(Math.random() * 0x100000000);
+			settings.seed = randomSeed();
 			saveSettings();
-			rebuild();
-		});
-		document.getElementById('map-reset').addEventListener('click', () => {
-			Object.assign(settings, defaults);
-			saveSettings(true);
-			syncControls();
 			rebuild();
 		});
 
@@ -660,36 +719,44 @@
 			spawnTimer -= dt;
 			if (spawnTimer <= 0) {
 				spawnPacket();
-				spawnTimer = 350 + Math.random() * 450;
+				spawnTimer = 900 + Math.random() * 1200;
 			}
 		}
 
 		for (let i = packets.length - 1; i >= 0; i--) {
-			const packet = packets[i];
-			const from = nodes[packet.path[packet.seg]];
-			const to = nodes[packet.path[packet.seg + 1]];
-			const segLen = Math.max(Math.hypot(to.x - from.x, to.y - from.y) * scale, 1);
-			packet.t += (dt * 0.2 * settings.speed) / segLen;
-			if (packet.t >= 1) {
-				heatUp(packet.path[packet.seg], packet.path[packet.seg + 1]);
-				packet.seg++;
-				packet.t = 0;
-				if (packet.seg >= packet.path.length - 1) {
-					const [x, y] = toPx(nodes[packet.path[packet.path.length - 1]]);
-					rings.push({ x, y, r: 3, p: 0 });
-					packets.splice(i, 1);
-				}
+			const flood = packets[i];
+
+			for (let w = flood.wait.length - 1; w >= 0; w--) {
+				const pending = flood.wait[w];
+				pending.delay -= dt * settings.speed;
+				if (pending.delay > 0) continue;
+				flood.wait.splice(w, 1);
+				transmit(flood, pending);
 			}
+
+			for (let h = flood.tx.length - 1; h >= 0; h--) {
+				const hop = flood.tx[h];
+				hop.t += (dt * settings.speed) / AIRTIME;
+				if (hop.t < 1) continue;
+				heatUp(hop.from, hop.to);
+				flood.tx.splice(h, 1);
+				receive(flood, hop);
+			}
+
+			if (!flood.tx.length && !flood.wait.length) packets.splice(i, 1);
 		}
 
 		for (let i = rings.length - 1; i >= 0; i--) {
-			rings[i].p += dt / 900;
-			rings[i].r += dt * 0.022;
+			rings[i].p += dt / rings[i].life;
 			if (rings[i].p >= 1) rings.splice(i, 1);
 		}
 
+		for (let i = 0; i < nodeHeat.length; i++) {
+			if (nodeHeat[i] > 0) nodeHeat[i] = Math.max(0, nodeHeat[i] - dt / 1000);
+		}
+
 		for (let i = 0; i < edgeHeat.length; i++) {
-			if (edgeHeat[i] > 0) edgeHeat[i] = Math.max(0, edgeHeat[i] - dt / 1200);
+			if (edgeHeat[i] > 0) edgeHeat[i] = Math.max(0, edgeHeat[i] - dt / 900);
 		}
 
 		draw(time);

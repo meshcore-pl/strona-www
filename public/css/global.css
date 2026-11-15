@@ -55,6 +55,42 @@ html {
 	color: #fff;
 }
 
+input[type="checkbox"]:disabled {
+	cursor: not-allowed;
+}
+
+input[type="checkbox"] {
+	appearance: none;
+	flex-shrink: 0;
+	width: 17px;
+	height: 17px;
+	margin: 0;
+	border: 1px solid #646b77;
+	border-radius: 2px;
+	background: #252830;
+	cursor: pointer;
+	accent-color: var(--red-bright);
+}
+
+input[type="checkbox"]:checked {
+	border: 0;
+	background: var(--red-bright) url('/images/checkbox-check.svg') center / contain no-repeat;
+}
+
+input[type="checkbox"]:focus-visible {
+	outline: 2px solid var(--red-bright);
+	outline-offset: 3px;
+}
+
+@media (forced-colors: active) {
+	input[type="checkbox"], input[type="checkbox"]:checked {
+		appearance: auto;
+		border: revert;
+		border-radius: revert;
+		background: revert;
+	}
+}
+
 input[type="search"]::-webkit-search-cancel-button {
 	cursor: pointer;
 }

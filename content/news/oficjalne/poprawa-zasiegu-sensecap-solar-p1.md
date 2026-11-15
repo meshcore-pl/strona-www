@@ -1,5 +1,5 @@
 ---
-title: SenseCAP Solar Node P1-Pro - jak poprawić zasięg MeshCore?
+title: SenseCAP Solar Node P1-Pro - jak poprawić zasięg?
 description: Jak poprawić zasięg SenseCAP Solar Node P1-Pro? Poradnik Seeed Studio o lokalizacji, wymianie anteny, aktualizacji firmware i testach repeatera.
 createdAt: 20.10.2026
 themeColor: '#95ab62'

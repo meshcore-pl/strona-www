@@ -3,17 +3,27 @@ title: Lista zmian meshcorepolska.org
 description: Historia aktualizacji strony meshcorepolska.org, wersja po wersji - nowe funkcje, poprawki i zmiany w kodzie oraz treści.
 canonical: /dokumentacja/spolecznosc/lista-zmian
 createdAt: 2.08.2026
-updatedAt: 11.11.2026
+updatedAt: 12.11.2026
 ---
 
 # Lista zmian na stronie meshcorepolska.org {toc: Lista zmian}
-Poniżej znajdziesz listę zmian wprowadzanych na stronie meshcorepolska.org.  
+Poniżej znajdziesz listę zmian wprowadzanych na tej witrynie.
 Zmiany dotyczące `mapa.meshcorepolska.org` znajdziesz osobno: kliknij ikonę `i` w prawym dolnym rogu tamtej strony, a następnie przycisk `Lista zmian`.
 
-> [!NOTE]
+> [!TIP]
 > Jeśli po aktualizacji strona nie wyświetla się poprawnie, wykonaj twarde odświeżenie kombinacją `CTRL + F5`.
 
-## v1.10.3
+## v1.10.4 (15.11.2026)
+1. Dodano opisy tagów w Aktualnościach.
+2. Przeniesiono wyszukiwarkę wpisów do nagłówka i dodano drugie, zsynchronizowane pole pod listą wpisów, nad ciekawostką.
+3. Ujednolicono wygląd pól wyboru na całej stronie: rozjaśniono ptaszek, przyciemniono niezaznaczone pola i dodano obrys przy obsłudze klawiaturą.
+   ![Porównanie zaznaczonych i odznaczonych pól wyboru przed i po zmianie wyglądu](/images/screens/checkbox-przed-po-1-10-4.png)
+4. Układ węzłów w wizualizacji sieci na stronie głównej jest teraz losowany przy pierwszej wizycie i zapamiętywany w przeglądarce. Usunięto przycisk „Ustawienia fabryczne”.
+5. Przebudowano wizualizacje mapy pakietów w sieci, logiczniej na wzór sieci mesh.
+6. Dokumentacja zapamiętuje pozycję przewinięcia i przywraca ją po odświeżeniu strony.
+7. Zmieniono adres strony „Materiały graficzne” na `/dokumentacja/spolecznosc/materialy-graficzne` (stary adres przekierowuje).
+
+## v1.10.3 (11.11.2026)
 1. Rozbudowano porównanie sprzętu na stronie głównej i dodano Wio Tracker L1 Pro.
 2. Uzupełniono „Od zera do pierwszej wiadomości” na stronie głównej o dodatkowe informacje.
 3. Dodano przycisk „Zapytaj o wydruk”, otwierający formularz kontaktowy z gotowym tytułem wiadomości.
@@ -21,7 +31,7 @@ Zmiany dotyczące `mapa.meshcorepolska.org` znajdziesz osobno: kliknij ikonę `i
 5. Nagłówki w Aktualnościach nie chowają się już pod nawigacją (navbar) po otwarciu linku do sekcji.
 6. Dodano na stronie głównej sekcję informującą o działaniu witryny offline.
 
-## v1.10.2
+## v1.10.2 (09.11.2026)
 1. Rozbudowano i poprawiono wizualizację sieci na stronie głównej. Dodano ustawienia gęstości węzłów, liczby i tempa pakietów oraz losowanie układu.
 2. Poprawiono wygląd i treść sekcji hero na stronie głównej, w tym układ na urządzeniach mobilnych.
 3. Poprawiono Generator regionów, w tym konfigurację zakresu `rze` dla kanału `#rzeszow`. Dodano też zrzut ekranu pokazujący, gdzie można znaleźć CLI repeatera.
@@ -32,7 +42,7 @@ Zmiany dotyczące `mapa.meshcorepolska.org` znajdziesz osobno: kliknij ikonę `i
 8. Zaktualizowano zależności backendu do najnowszych wersji.
 9. Inne drobne poprawki.
 
-## v1.10.1
+## v1.10.1 (30.10.2026)
 1. Poprawiono [Generator regionów](https://meshcorepolska.org/generator-regionow) - przypisania kanałów i zakresów oraz wygląd. Dodano wybór regionów lokalnych i zapamiętywanie ustawień.
 2. Zaktualizowano dokumentację regionalizacji.
 3. Usprawniono działanie strony offline (service worker). Przy pierwszej wizycie nie jest już pobierana cała witryna wraz z dokumentacją - w tle zapisują się tylko niezbędne zasoby, a kolejne podstrony trafiają do pamięci podręcznej dopiero po ich odwiedzeniu.
@@ -46,7 +56,7 @@ Zmiany dotyczące `mapa.meshcorepolska.org` znajdziesz osobno: kliknij ikonę `i
 11. Zmiany jakościowe w treści dokumentacji.
 12. Inne ulepszenia oraz poprawki.
 
-## v1.10.0
+## v1.10.0 (24.10.2026)
 1. Strona jest teraz dostępna również offline! Po jej wcześniejszym załadowaniu możesz korzystać z niej bez połączenia z internetem.
 2. Dodano wpis [Jak poprawić zasięg SenseCAP Solar P1](https://meshcorepolska.org/aktualnosci/poradnik/poprawa-zasiegu-sensecap-solar-p1) w Aktualnościach.
 3. Dodano wpis [Tryb repeat companiona na Wio Tracker L1 Pro](https://meshcorepolska.org/aktualnosci/poradnik/tryb-repeat-companiona-wio-tracker-l1-pro) w Aktualnościach.
@@ -57,19 +67,19 @@ Zmiany dotyczące `mapa.meshcorepolska.org` znajdziesz osobno: kliknij ikonę `i
 8. Zaktualizowano zależności backendu do najnowszych wersji.
 9. Wprowadzono także inne zmiany oraz ulepszenia.
 
-## v1.9.0
+## v1.9.0 (19.10.2026)
 1. Przebudowano strukturę stylów CSS - pliki zostały podzielone na mniejsze moduły (współdzielone komponenty oraz osobne pliki dla poszczególnych sekcji strony głównej i dokumentacji), co ułatwia dalszy rozwój strony. Wygląd pozostał bez zmian.
 2. Dodano endpointy API dla Aktualności: `/api/v1/news/sources` oraz `/api/v1/news/post`.
 3. Drobne poprawki w dokumentacji.
 4. Zaktualizowano zależności backendu do najnowszej wersji.
 
-## v1.8.1
+## v1.8.1 (15.10.2026)
 1. Uporządkowano style CSS, ujednolicono rozmiary i odstępy w `px` oraz uproszczono zapis kolorów.
 2. Poprawiono treści na stronie głównej i w dokumentacji, w tym artykuł o Discordzie i grupach na Facebooku.
 3. Dodano blokowanie wybranych agentów AI na podstawie nagłówka `User-Agent` oraz zaktualizowano informacje w `llms.txt`.
 4. Dodano wpis [Aktualizacja firmware MeshCore 1.18.0](https://meshcorepolska.org/aktualnosci/lista-zmian/aktualizacja-firmware-meshcore-1-18-0) w Aktualnościach.
 
-## v1.8.0
+## v1.8.0 (02.10.2026)
 1. Dodano nową podstronę [Generator regionów](https://meshcorepolska.org/generator-regionow) - generuje komendy CLI regionów dla repeatera zgodnie z polskim schematem `pl` / `pl-<województwo>` (z opcjonalnym regionem miejskim i sąsiednimi województwami), podgląd oczekiwanego drzewa regionów oraz listę kanałów i zakresów do ustawienia na companionie. Zawiera też narzędzie zamieniające wynik komendy `region` na komendy usuwające obecne regiony.
 2. Przepisano dokument [Regionalizacja wiadomości](https://meshcorepolska.org/dokumentacja/meshcore/regionalizacja-wiadomosci) pod firmware 1.16+ (komenda `region def`), z nowymi sekcjami o konfiguracji repeatera, companiona i domyślnym zakresie.
 3. Zmieniono menu nawigacyjne - dodano Generator regionów, a Statystyki, oficjalną witrynę MeshCore i prognozę propagacji przeniesiono do stopki.
@@ -77,13 +87,13 @@ Zmiany dotyczące `mapa.meshcorepolska.org` znajdziesz osobno: kliknij ikonę `i
 5. Dodano link do Statystyk w sekcji „Sieć w liczbach” na stronie głównej.
 6. Różne drobne poprawki.
 
-## v1.7.2
+## v1.7.2 (15.09.2026)
 1. Rozwiązano znane problemy z CSP (Content-Security-Policy).
 2. Dodano wpis [Wprowadzenie do węzłów czujnikowych](https://meshcorepolska.org/aktualnosci/poradnik/wprowadzenie-do-wezlow-czujnikowych) w Aktualnościach.
 3. Zaktualizowano zależności backendu do najnowszej wersji.
 4. Różne drobne poprawki.
 
-## v1.7.1
+## v1.7.1 (06.09.2026)
 1. Dodano plik [llms.txt](https://meshcorepolska.org/llms.txt) z zasadami dla agentów AI oraz link „Instrukcje AI” w stopce strony. Większość agentów go i tak ignoruje ze względu na prompt injection, ale niech sobie będzie.
 2. Zmieniono drugi przycisk w sekcji hero z „Serwer Discord” na „Oficjalna dokumentacja”, prowadzący do [docs.meshcorepolska.org](https://docs.meshcorepolska.org).
 3. Dodano podpowiedzi (atrybut `title`) do linków w menu nawigacyjnym oraz przycisków w sekcji hero.
@@ -91,16 +101,16 @@ Zmiany dotyczące `mapa.meshcorepolska.org` znajdziesz osobno: kliknij ikonę `i
 5. Zwiększono szerokość treści artykułów w Aktualnościach.
 6. Dodano wpis [docs.meshcorepolska.org - spolszczona dokumentacja](https://meshcorepolska.org/aktualnosci/spolecznosc/docs-meshcorepolska-org) w Aktualnościach.
 
-## v1.7.0
+## v1.7.0 (28.08.2026)
 1. Dodano nową podstronę [Statystyki](https://meshcorepolska.org/statystyki) - codzienna historia sieci MeshCore w Polsce (łączna liczba urządzeń, repeaterów, room serwerów i companionów) w formie wykresu, z wyborem zakresu (30 dni, 90 dni, 180 dni, rok, wszystkie).
 2. Dodano link do Statystyk w menu nawigacyjnym.
 3. Dodano wpis [Modem KISS](https://meshcorepolska.org/aktualnosci/oprogramowanie/modem-kiss) w Aktualnościach.
-4. Rozszerzono stronę [Nasze logo](https://meshcorepolska.org/dokumentacja/spolecznosc/nasze-logo) o komplet faviconek do pobrania.
+4. Rozszerzono stronę [Materiały graficzne](https://meshcorepolska.org/dokumentacja/spolecznosc/materialy-graficzne) o komplet faviconek do pobrania.
 5. Ujednolicono zapis „room serwer” i „room-peater” w dokumentacji i ciekawostkach.
 6. Zaktualizowano zależności backendu do najnowszej wersji.
 7. Różne drobne poprawki.
 
-## v1.6.0
+## v1.6.0 (22.08.2026)
 1. Dodano nową sekcję na stronie głównej.
 2. Różne poprawki na stronie głównej.
 3. Dodano losowe ciekawostki („Czy wiesz, że...?”) na dole `/dokumentacja` i `/aktualnosci`.
@@ -116,14 +126,14 @@ Zmiany dotyczące `mapa.meshcorepolska.org` znajdziesz osobno: kliknij ikonę `i
 13. Poprawiono spójność tła na stronie głównej.
 14. Różne poprawki.
 
-## v1.5.0
+## v1.5.0 (21.08.2026)
 1. Dodano nową grupę [Schematy](https://meshcorepolska.org/dokumentacja/schematy) w dokumentacji.
 2. Drobne poprawki w wyglądzie stron z dokumentacją.
 3. Drobne poprawki w treści witryny.
 4. Zaktualizowano zależności backendu do najnowszej wersji.
 5. Inne poprawki i ulepszenia.
 
-## v1.4.1
+## v1.4.1 (09.08.2026)
 1. Dodano wpis „[MeshCore Firmware v1.17.0](https://meshcorepolska.org/aktualnosci/lista-zmian/aktualizacja-firmware-meshcore-1-17-0)” w Aktualnościach.
 2. Dodano `sourceUrl` dla `content/news/oficjalne/**` - plakietka źródła przy wpisie prowadzi teraz do oryginału na blog.meshcore.io.
 3. Poprawiono styl (hover) plakietki źródła na stronie wpisu aktualności.
@@ -131,13 +141,13 @@ Zmiany dotyczące `mapa.meshcorepolska.org` znajdziesz osobno: kliknij ikonę `i
 5. Dodano brakujący atrybut `alt` dla obrazka w lightboxie.
 6. Poprawiono długość ponad 20 meta opisów oraz 4 zbyt długich tytułów stron (Aktualności, Dokumentacja).
 
-## v1.4.0
+## v1.4.0 (02.08.2026)
 1. Dodano podstronę Aktualności (`/aktualnosci`) z newsami i changelogami MeshCore.
 2. Dodano zabezpieczenie captcha (Cloudflare Turnstile) w formularzu kontaktowym (`/kontakt`).
 3. Dodano nowe treści w dokumentacji.
 4. Odświeżono wygląd strony - m.in. efekty tła i kart.
 
-## v1.3.0
+## v1.3.0 (31.07.2026)
 1. Dodano podstronę Kontakt (`/kontakt`).
 2. Rozbudowano dokumentację o nowe treści oraz dodano i poprawiono część obrazków.
 3. Dodano sekcję `Sieć w liczbach` na stronie głównej.

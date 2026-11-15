@@ -349,7 +349,7 @@ const renderLocalRegions = (home, scope = '') => {
 	const regionValue = region => getRegionScopes(region).find(value => value !== getVoivodeshipScope(home)) ?? getRegionScopes(region)[0];
 
 	select.replaceChildren(
-		new Option('Brak dodatkowego regionu', ''),
+		new Option('Brak danych', ''),
 		...regions.map(region => new Option(`${region.name} (${getRegionScopes(region).join(', ')})`, regionValue(region))),
 		new Option('Własny region...', RG_CUSTOM_SCOPE)
 	);

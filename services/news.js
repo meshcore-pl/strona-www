@@ -1,6 +1,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const parseFrontmatter = require('frontmatter-md');
+const tagDescriptions = require('../content/newsTags.js');
 const { marked, renderer, extractFirstImage, assignHeadingIds, slugify, getExternalRel, parseDMYDate } = require('./markdown.js');
 
 const NEWS_DIR = path.join(__dirname, '../content/news');
@@ -61,7 +62,7 @@ const build = () => {
 			postMap.set(slug, post);
 
 			for (const tag of postTags) {
-				if (!tagMap.has(tag.slug)) tagMap.set(tag.slug, { slug: tag.slug, label: tag.label, posts: [] });
+				if (!tagMap.has(tag.slug)) tagMap.set(tag.slug, { slug: tag.slug, label: tag.label, description: tagDescriptions[tag.slug] || '', posts: [] });
 				tagMap.get(tag.slug).posts.push(post);
 			}
 		}

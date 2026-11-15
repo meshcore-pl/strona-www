@@ -1,7 +1,12 @@
 import { definePage } from './lib/page.js';
 
+const SCROLL_KEY_PREFIX = 'meshcore.docs.scroll:';
+
+let firstInit = true;
 let scrollEl = null;
 let onScroll = null;
+let onPageHide = null;
+let saveTimer = 0;
 let onAnchorClick = null;
 let onToggleClick = null;
 let onBackdropClick = null;
@@ -9,6 +14,10 @@ let onSidebarClick = null;
 let onKeydown = null;
 
 const destroy = () => {
+	clearTimeout(saveTimer);
+	if (onPageHide) window.removeEventListener('pagehide', onPageHide);
+	onPageHide = null;
+
 	if (scrollEl && onScroll) scrollEl.removeEventListener('scroll', onScroll);
 	scrollEl = null;
 	onScroll = null;
@@ -70,8 +79,20 @@ const init = () => {
 		setActive(activeId);
 	};
 
+	const scrollKey = `${SCROLL_KEY_PREFIX}${location.pathname}`;
+	const saveScroll = () => {
+		try {
+			sessionStorage.setItem(scrollKey, String(Math.round(content.scrollTop)));
+			return true;
+		} catch {
+			return false;
+		}
+	};
+
 	let ticking = false;
 	onScroll = () => {
+		clearTimeout(saveTimer);
+		saveTimer = setTimeout(saveScroll, 150);
 		if (ticking) return;
 		ticking = true;
 		requestAnimationFrame(() => {
@@ -79,8 +100,31 @@ const init = () => {
 			ticking = false;
 		});
 	};
+	onPageHide = saveScroll;
+	window.addEventListener('pagehide', onPageHide);
 	scrollEl = content;
 	content.addEventListener('scroll', onScroll, { passive: true });
+
+	if (firstInit) {
+		firstInit = false;
+		const navType = performance.getEntriesByType('navigation')[0]?.type;
+		if (!location.hash && (navType === 'reload' || navType === 'back_forward')) {
+			let saved = 0;
+			try {
+				saved = Number(sessionStorage.getItem(scrollKey)) || 0;
+			} catch {
+				saved = 0;
+			}
+			if (saved > 0) {
+				const restore = () => {
+					content.scrollTop = saved;
+					update();
+				};
+				requestAnimationFrame(restore);
+				if (document.readyState !== 'complete') window.addEventListener('load', restore, { once: true });
+			}
+		}
+	}
 
 	onAnchorClick = e => {
 		if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;

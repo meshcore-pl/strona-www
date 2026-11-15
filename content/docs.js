@@ -47,7 +47,7 @@ module.exports = [
 		description: 'Materiały społeczności MeshCore Polska: loga, banery i inne zasoby graficzne do pobrania i swobodnego użycia.',
 		pages: [
 			{ slug: 'lista-zmian', title: 'Aktualizacje strony' },
-			{ slug: 'nasze-logo', title: 'Materiały graficzne' },
+			{ slug: 'materialy-graficzne', title: 'Materiały graficzne' },
 		],
 	},
 ];

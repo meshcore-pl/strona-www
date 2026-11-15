@@ -6,7 +6,7 @@ const sitePages = require('../../content/pages.js');
 const PUBLIC_DIR = path.join(__dirname, '../../public');
 const TEMPLATE_PATH = path.join(__dirname, 'worker.js');
 const PRECACHE_DIRS = ['css', 'js', 'images/logo', 'images/meshcore'];
-const EXTRA_FILES = ['favicon.ico', 'icons.svg'];
+const EXTRA_FILES = ['favicon.ico', 'icons.svg', 'images/checkbox-check.svg'];
 const EXCLUDED_RE = /\.(map|md|txt)$|(^|\/)LICENSE[^/]*$|\.LICENSE$/;
 
 const ENDPOINTS = { serviceWorker: '/service-worker.js', manifest: '/manifest.webmanifest', offline: '/offline' };

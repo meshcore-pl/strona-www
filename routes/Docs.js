@@ -20,6 +20,8 @@ router.get('/dokumentacja/:group', (req, res) => {
 	res.render('docs/group.ejs', { groups: docs.groups, group, tip: getRandomTip() });
 });
 
+router.get('/dokumentacja/spolecznosc/nasze-logo', (req, res) => res.redirect(301, '/dokumentacja/spolecznosc/materialy-graficzne'));
+
 router.get('/dokumentacja/:group/:slug', (req, res) => {
 	const group = docs.getGroup(req.params.group);
 	if (!group) return RenderError(res, 404);
