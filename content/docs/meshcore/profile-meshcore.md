@@ -15,7 +15,7 @@ O tym, które informacje są publiczne, decyduje wyłącznie właściciel profil
 > [!NOTE]
 > Witryna jest w trakcie opracowywania. Wersja poglądowa jest dostępna wyłącznie dla członków naszej społeczności na Discordzie.
 > Docelowo profile zostaną połączone z [mapą](https://mapa.meshcorepolska.org) węzłów MeshCore z całego świata.
-> Przykładowy profil znajdziesz [pod tym linkiem](https://beta.sefinek.net/pl/meshcore-pl/kontakty/6a43efd454feb8be5679e0a6).
+> Przykładowy profil znajdziesz [pod tym linkiem](https://sefinek.net/pl/meshcore-pl/kontakty/6a43efd454feb8be5679e0a6).
 
 ## Wyszukiwarka profili
 Profil można znaleźć na kilka sposobów:
@@ -37,7 +37,7 @@ Użyta bez wskazania osoby zwraca profil autora polecenia, a `/kontakt <@użytko
 
 ### Scenariusz 2: Utrzymanie kontaktu mimo zerwanej łączności
 1. Masz chwilową łączność z przypadkowym użytkownikiem i chcesz ją utrzymać. Z powodu złych warunków pogodowych, słabego sygnału lub zmiany położenia łączność się urywa.
-2. Otwierasz wyszukiwarkę profili ([przykład](https://beta.sefinek.net/pl/meshcore-pl/kontakty)) i wpisujesz jego nazwę użytkownika albo klucz publiczny.
+2. Otwierasz wyszukiwarkę profili ([przykład](https://sefinek.net/pl/meshcore-pl/kontakty)) i wpisujesz jego nazwę użytkownika albo klucz publiczny.
 3. Otrzymujesz jego profil wraz z danymi kontaktowymi, które zdecydował się udostępnić publicznie, np. nazwą użytkownika na Discordzie lub adresem e-mail.
 
 ### Scenariusz 3: Inspiracja do montażu własnego repeatera
