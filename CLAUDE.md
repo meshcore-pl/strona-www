@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Strona [meshcorepolska.org](https://meshcorepolska.org), czyli polska społeczność sieci mesh MeshCore. Express 5 + EJS (SSR), ESM (`"type": "module"`), Node >= 20.19 (`engines`). Cała treść strony i komunikaty są po polsku. Licencja PolyForm Noncommercial 1.0.0.
+Strona [meshcorepolska.org](https://meshcorepolska.org), czyli polska społeczność sieci mesh MeshCore. Express 5 + EJS (SSR), ESM (`"type": "module"`), Node >= 26 (`engines`). Cała treść strony i komunikaty są po polsku. Licencja PolyForm Noncommercial 1.0.0.
 
 ## Uruchamianie
 
