@@ -1,10 +1,10 @@
-const fs = require('node:fs');
-const path = require('node:path');
-const parseFrontmatter = require('frontmatter-md');
-const groups = require('../content/docs.js');
-const { marked, renderer, extractFirstImage, assignHeadingIds, getHeadingId, getTocLabel, getPlainText, parseDMYDate } = require('./markdown.js');
+import fs from 'node:fs';
+import path from 'node:path';
+import parseFrontmatter from '../utils/parseFrontmatter.js';
+import groups from '../content/docs.js';
+import { marked, renderer, extractFirstImage, assignHeadingIds, getHeadingId, getTocLabel, getPlainText, parseDMYDate } from './markdown.js';
 
-const DOCS_DIR = path.join(__dirname, '../content/docs');
+const DOCS_DIR = path.join(import.meta.dirname, '../content/docs');
 
 const extractFaq = tokens => {
 	const faq = [];
@@ -93,7 +93,7 @@ build();
 
 const groupMap = new Map(groups.map(g => [g.slug, g]));
 
-module.exports = {
+export default {
 	get groups() { ensureFresh(); return groups; },
 	get lastModified() { ensureFresh(); return lastModified; },
 	get searchIndex() { ensureFresh(); return searchIndex; },

@@ -1,8 +1,8 @@
-const fs = require('node:fs');
-const path = require('node:path');
-const { marked } = require('marked');
+import fs from 'node:fs';
+import path from 'node:path';
+import { marked } from 'marked';
 
-const PUBLIC_DIR = path.join(__dirname, '..', 'public');
+const PUBLIC_DIR = path.join(import.meta.dirname, '..', 'public');
 
 const getPngSize = buf => ({ width: buf.readUInt32BE(16), height: buf.readUInt32BE(20) });
 
@@ -163,4 +163,4 @@ const extractFirstImage = tokens => {
 	return found;
 };
 
-module.exports = { marked, renderer, slugify, extractFirstImage, assignHeadingIds, getHeadingId, getTocLabel, getPlainText, getExternalRel, parseDMYDate };
+export { marked, renderer, slugify, extractFirstImage, assignHeadingIds, getHeadingId, getTocLabel, getPlainText, getExternalRel, parseDMYDate };

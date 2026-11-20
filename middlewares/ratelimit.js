@@ -1,11 +1,11 @@
-const rateLimit = require('express-rate-limit');
-const { RedisStore } = require('rate-limit-redis');
-const RedisClient = require('../global/services/redis.js');
-const RenderError = require('../utils/renderError.js');
+import rateLimit from 'express-rate-limit';
+import { RedisStore } from 'rate-limit-redis';
+import RedisClient from '../global/services/redis.js';
+import RenderError from '../utils/renderError.js';
 
 const redisStore = prefix => new RedisStore({ sendCommand: (...args) => RedisClient.sendCommand(args), prefix });
 
-exports.global = rateLimit({
+export const global = rateLimit({
 	windowMs: 60 * 1000,
 	limit: 100,
 	standardHeaders: 'draft-7',
@@ -14,7 +14,7 @@ exports.global = rateLimit({
 	handler: (req, res) => RenderError(res, 429),
 });
 
-exports.contactForm = rateLimit({
+export const contactForm = rateLimit({
 	windowMs: 60 * 60 * 1000,
 	limit: 3,
 	standardHeaders: 'draft-7',

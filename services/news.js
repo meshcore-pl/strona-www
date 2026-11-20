@@ -1,10 +1,10 @@
-const fs = require('node:fs');
-const path = require('node:path');
-const parseFrontmatter = require('frontmatter-md');
-const tagDescriptions = require('../content/newsTags.js');
-const { marked, renderer, extractFirstImage, assignHeadingIds, slugify, getExternalRel, parseDMYDate } = require('./markdown.js');
+import fs from 'node:fs';
+import path from 'node:path';
+import parseFrontmatter from '../utils/parseFrontmatter.js';
+import tagDescriptions from '../content/newsTags.js';
+import { marked, renderer, extractFirstImage, assignHeadingIds, slugify, getExternalRel, parseDMYDate } from './markdown.js';
 
-const NEWS_DIR = path.join(__dirname, '../content/news');
+const NEWS_DIR = path.join(import.meta.dirname, '../content/news');
 
 const SOURCES = {
 	oficjalne: { slug: 'oficjalne', label: 'blog.meshcore.io', description: 'Oficjalny blog projektu MeshCore.' },
@@ -80,7 +80,7 @@ const ensureFresh = () => { if (isDev) build(); };
 
 build();
 
-module.exports = {
+export default {
 	get posts() { ensureFresh(); return posts; },
 	get tags() { ensureFresh(); return tags; },
 	get lastModified() { ensureFresh(); return lastModified; },

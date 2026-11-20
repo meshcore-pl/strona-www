@@ -1,4 +1,4 @@
-module.exports = ({ domain, breadcrumbs, article, faq }) => {
+export default ({ domain, breadcrumbs, article, faq }) => {
 	const organizationId = `${domain}/#organization`;
 	const websiteId = `${domain}/#website`;
 

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 	oprogramowanie: 'Nowości i aktualizacje firmware MeshCore oraz innych programów używanych w sieci.',
 	'lista-zmian': 'Listy zmian w kolejnych wersjach aplikacji, firmware i narzędzi MeshCore.',
 	aplikacja: 'Nowe funkcje, aktualizacje i informacje o oficjalnej aplikacji MeshCore.',

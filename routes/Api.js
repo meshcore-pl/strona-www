@@ -1,7 +1,9 @@
-const router = require('express').Router();
-const news = require('../services/news.js');
-const { getStats, formatWarsawDate } = require('../global/services/nodeCache.js');
-const StatsDaily = require('../global/database/models/statsDaily.model.js');
+import { Router } from 'express';
+import news from '../services/news.js';
+import { getStats, formatWarsawDate } from '../global/services/nodeCache.js';
+import StatsDaily from '../global/database/models/statsDaily.model.js';
+
+const router = Router();
 
 const MAX_HISTORY_DAYS = 365;
 const DEFAULT_HISTORY_DAYS = 90;
@@ -62,4 +64,4 @@ router.get('/api/v1/news/sources', (req, res) => {
 	res.json({ success: true, status: 200, message: 'OK', data });
 });
 
-module.exports = router;
+export default router;

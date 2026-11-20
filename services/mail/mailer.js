@@ -1,4 +1,4 @@
-const { createTransport } = require('nodemailer');
+import { createTransport } from 'nodemailer';
 
 const transporter = createTransport({
 	host: process.env.MAILER_HOST,
@@ -7,4 +7,4 @@ const transporter = createTransport({
 	auth: { user: process.env.MAILER_AUTH_USER, pass: process.env.MAILER_AUTH_PASSWD },
 });
 
-module.exports = options => transporter.sendMail(options);
+export default options => transporter.sendMail(options);

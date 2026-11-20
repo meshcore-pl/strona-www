@@ -1,7 +1,9 @@
-const router = require('express').Router();
-const { getScript, ENDPOINTS, OFFLINE_HEADER } = require('../services/serviceWorker/index.js');
-const RenderError = require('../utils/renderError.js');
-const pages = require('../content/pages.js');
+import { Router } from 'express';
+import { getScript, ENDPOINTS, OFFLINE_HEADER } from '../services/serviceWorker/index.js';
+import RenderError from '../utils/renderError.js';
+import pages from '../content/pages.js';
+
+const router = Router();
 const regionGeneratorBlocked = false;
 
 router.get(ENDPOINTS.serviceWorker, async (req, res, next) => {
@@ -30,4 +32,4 @@ router.get(ENDPOINTS.offline, (req, res) => {
 
 router.get('/discord', (req, res) => res.redirect(301, `https://discord.com/invite/${process.env.DISCORD_INVITE_CODE}`));
 
-module.exports = router;
+export default router;

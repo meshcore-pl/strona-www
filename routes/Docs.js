@@ -1,8 +1,10 @@
-const router = require('express').Router();
-const docs = require('../services/docs.js');
-const RenderError = require('../utils/renderError.js');
-const buildSchema = require('../utils/schema.js');
-const { getRandomTip } = require('../content/tips.js');
+import { Router } from 'express';
+import docs from '../services/docs.js';
+import RenderError from '../utils/renderError.js';
+import buildSchema from '../utils/schema.js';
+import { getRandomTip } from '../content/tips.js';
+
+const router = Router();
 
 router.get('/dokumentacja', (req, res) => res.render('docs/index.ejs', { groups: docs.groups, tip: getRandomTip() }));
 
@@ -82,4 +84,4 @@ router.get('/dokumentacja/:group/:slug', (req, res) => {
 	});
 });
 
-module.exports = router;
+export default router;

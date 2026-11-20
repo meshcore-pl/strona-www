@@ -1,13 +1,12 @@
-process.loadEnvFile();
+import '../loadEnv.js';
+import fs from 'node:fs';
+import path from 'node:path';
+import parseFrontmatter from '../utils/parseFrontmatter.js';
+import { marked, extractFirstImage } from '../services/markdown.js';
+import * as tcpClient from '../global/services/tcpClient.js';
+import pkg from '../package.json' with { type: 'json' };
 
-const fs = require('node:fs');
-const path = require('node:path');
-const parseFrontmatter = require('frontmatter-md');
-const { marked, extractFirstImage } = require('../services/markdown.js');
-const tcpClient = require('../global/services/tcpClient.js');
-const { homepage } = require('../package.json');
-
-const ROOT = path.join(__dirname, '..');
+const ROOT = path.join(import.meta.dirname, '..');
 const PUBLIC_DIR = path.join(ROOT, 'public');
 const CONTENT_DIRS = ['content/docs', 'content/news'].map(dir => path.join(ROOT, dir));
 const HEX_RE = /^#[0-9a-f]{6}$/i;
@@ -32,7 +31,7 @@ const waitForConnection = async () => {
 
 const candidatesFor = src => {
 	if ((/^https?:\/\//i).test(src)) return [src];
-	return [`${homepage.replace(/\/$/, '')}${src}`, path.join(PUBLIC_DIR, decodeURIComponent(src.split(/[?#]/)[0]))];
+	return [`${pkg.homepage.replace(/\/$/, '')}${src}`, path.join(PUBLIC_DIR, decodeURIComponent(src.split(/[?#]/)[0]))];
 };
 
 const resolveColor = async src => {

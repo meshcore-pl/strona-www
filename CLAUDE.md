@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Strona [meshcorepolska.org](https://meshcorepolska.org), czyli polska społeczność sieci mesh MeshCore. Express 5 + EJS (SSR), CommonJS, Node >= 20.19 (`engines`). Cała treść strony i komunikaty są po polsku. Licencja PolyForm Noncommercial 1.0.0.
+Strona [meshcorepolska.org](https://meshcorepolska.org), czyli polska społeczność sieci mesh MeshCore. Express 5 + EJS (SSR), ESM (`"type": "module"`), Node >= 20.19 (`engines`). Cała treść strony i komunikaty są po polsku. Licencja PolyForm Noncommercial 1.0.0.
 
 ## Uruchamianie
 
@@ -59,4 +59,4 @@ Changelogi aplikacji i firmware, tłumaczenia wpisów z `blog.meshcore.io` i tre
 - Tabulatory, pojedyncze cudzysłowy, średniki, `prefer-const`, przecinki końcowe w wieloliniowych tablicach i obiektach (`eslint.config.mjs`).
 - Nie dodawaj komentarzy w kodzie, właściciel utrzymuje kod bez komentarzy.
 - Nie używaj znaku pauzy (U+2014) w plikach zapisywanych do repo.
-- Backend (`routes/`, `services/`, `middlewares/`, `utils/`) to CommonJS. `public/js` to skrypty przeglądarkowe: globalne bez modułów, poza plikami dokumentacji (`docs.js`, `docs-router.js`, `docs-search.js`, `lib/page.js`).
+- Backend (`routes/`, `services/`, `middlewares/`, `utils/`) to ESM (`import`/`export`, `import.meta.dirname`; `.env` ładuje `loadEnv.js`, importowany jako pierwszy; `frontmatter-md` tylko przez `utils/parseFrontmatter.js`, bo ma wyłącznie warunek `require`). `public/js` to skrypty przeglądarkowe: globalne bez modułów, poza plikami dokumentacji (`docs.js`, `docs-router.js`, `docs-search.js`, `lib/page.js`).

@@ -16,7 +16,6 @@ const tips = [
 	'Czy wiesz, że Polska jest jedynym krajem, w którym część sieci MeshCore korzysta z SF6?',
 ];
 
-module.exports = {
-	tips,
-	getRandomTip: () => tips[Math.floor(Math.random() * tips.length)],
-};
+const getRandomTip = () => tips[Math.floor(Math.random() * tips.length)];
+
+export { tips, getRandomTip };

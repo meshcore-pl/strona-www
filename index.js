@@ -1,31 +1,32 @@
-process.loadEnvFile();
-const express = require('express');
-const helmet = require('helmet');
-const { version } = require('./package.json');
+import './loadEnv.js';
+import express from 'express';
+import helmet from 'helmet';
+import pkg from './package.json' with { type: 'json' };
+import './global/database/mongoose.js';
+
+// Routes
+import PagesRouter from './routes/Pages.js';
+import ApiRouter from './routes/Api.js';
+import DocsRouter from './routes/Docs.js';
+import NewsRouter from './routes/News.js';
+import ContactRouter from './routes/Contact.js';
+import SitemapRouter from './routes/Sitemap.js';
+
+// Middleware imports
+import timeout from './middlewares/timeout.js';
+// import blockAiBots from './middlewares/blockAiBots.js';
+import logger from './global/middlewares/morgan.js';
+import * as limiter from './middlewares/ratelimit.js';
+
+// Utils
+import RenderError from './utils/renderError.js';
+import buildSchema from './utils/schema.js';
+import pluralizePolish from './utils/pluralizePolish.js';
+
+const { version } = pkg;
 const { DOMAIN, NODE_ENV, PORT, CDN_SEFINEK_URL } = process.env;
 const isProd = NODE_ENV === 'production';
 if (!CDN_SEFINEK_URL) throw new Error('Missing required environment variable: CDN_SEFINEK_URL');
-
-require('./global/database/mongoose.js');
-
-// Routes
-const PagesRouter = require('./routes/Pages.js');
-const ApiRouter = require('./routes/Api.js');
-const DocsRouter = require('./routes/Docs.js');
-const NewsRouter = require('./routes/News.js');
-const ContactRouter = require('./routes/Contact.js');
-const SitemapRouter = require('./routes/Sitemap.js');
-
-// Middleware imports
-const timeout = require('./middlewares/timeout.js');
-// const blockAiBots = require('./middlewares/blockAiBots.js');
-const logger = require('./global/middlewares/morgan.js');
-const limiter = require('./middlewares/ratelimit.js');
-
-// Utils
-const RenderError = require('./utils/renderError.js');
-const buildSchema = require('./utils/schema.js');
-const pluralizePolish = require('./utils/pluralizePolish.js');
 
 // Create an Express app
 const app = express();

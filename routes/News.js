@@ -1,7 +1,9 @@
-const router = require('express').Router();
-const news = require('../services/news.js');
-const RenderError = require('../utils/renderError.js');
-const { getRandomTip } = require('../content/tips.js');
+import { Router } from 'express';
+import news from '../services/news.js';
+import RenderError from '../utils/renderError.js';
+import { getRandomTip } from '../content/tips.js';
+
+const router = Router();
 
 router.get('/aktualnosci', (req, res) => res.render('news/index.ejs', { posts: news.posts, tags: news.tags, tip: getRandomTip() }));
 
@@ -34,4 +36,4 @@ router.get('/aktualnosci/:tag/:title', (req, res) => {
 	});
 });
 
-module.exports = router;
+export default router;

@@ -1,8 +1,17 @@
-const timeout = require('express-timeout-handler');
-const RenderError = require('../utils/renderError.js');
+import RenderError from '../utils/renderError.js';
 
-module.exports = () => timeout.handler({
-	timeout: 15000,
-	onTimeout: (req, res) => RenderError(res, 503),
-	disable: ['write', 'setHeaders', 'send', 'json', 'end'],
-});
+const TIMEOUT = 15000;
+const LATE_METHODS = ['write', 'setHeaders', 'send', 'json', 'end'];
+
+export default () => (req, res, next) => {
+	req.socket.setTimeout(TIMEOUT);
+
+	res.once('timeout', socket => {
+		if (res.headersSent) return;
+		RenderError(res, 503);
+		for (const method of LATE_METHODS) res[method] = () => res;
+		res.once('finish', () => socket.destroy());
+	});
+
+	next();
+};

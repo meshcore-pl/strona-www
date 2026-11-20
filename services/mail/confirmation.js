@@ -11,7 +11,7 @@ const getLinks = domain => [
 	{ label: 'Serwer Discord', url: `${domain}/discord` },
 ];
 
-module.exports = (username, domain) => {
+export default (username, domain) => {
 	const links = getLinks(domain);
 
 	return {

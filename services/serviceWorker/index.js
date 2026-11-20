@@ -1,10 +1,10 @@
-const fs = require('node:fs/promises');
-const path = require('node:path');
-const crypto = require('node:crypto');
-const sitePages = require('../../content/pages.js');
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import sitePages from '../../content/pages.js';
 
-const PUBLIC_DIR = path.join(__dirname, '../../public');
-const TEMPLATE_PATH = path.join(__dirname, 'worker.js');
+const PUBLIC_DIR = path.join(import.meta.dirname, '../../public');
+const TEMPLATE_PATH = path.join(import.meta.dirname, 'worker.js');
 const PRECACHE_DIRS = ['css', 'js', 'images/logo', 'images/meshcore'];
 const EXTRA_FILES = ['favicon.ico', 'icons.svg', 'images/checkbox-check.svg'];
 const EXCLUDED_RE = /\.(map|md|txt)$|(^|\/)LICENSE[^/]*$|\.LICENSE$/;
@@ -63,4 +63,4 @@ const getScript = () => {
 	});
 };
 
-module.exports = { getScript, ENDPOINTS, OFFLINE_HEADER };
+export { getScript, ENDPOINTS, OFFLINE_HEADER };

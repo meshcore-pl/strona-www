@@ -1,11 +1,11 @@
-const axios = require('../global/services/axios.js');
+import axios from '../global/services/axios.js';
 
 const VERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 const MAX_TOKEN_LENGTH = 2048;
 const REQUEST_TIMEOUT = 5000;
 const ACTION = 'contact';
 
-module.exports = async (token, ip) => {
+export default async (token, ip) => {
 	const secret = process.env.TURNSTILE_SECRET;
 	if (!secret || typeof token !== 'string' || !token || token.length > MAX_TOKEN_LENGTH) return false;
 

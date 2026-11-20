@@ -1,4 +1,4 @@
-module.exports = (count, forms) => {
+export default (count, forms) => {
 	const mod10 = count % 10;
 	const mod100 = count % 100;
 	if (count === 1) return forms.one;

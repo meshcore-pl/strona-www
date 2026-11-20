@@ -1,13 +1,13 @@
-const emailValidator = require('@sefinek/email-validator');
-const verifyMx = require('@sefinek/email-validator/mx');
-const tcpClient = require('../global/services/tcpClient.js');
-const sendMail = require('./mail/mailer.js');
-const confirmationMail = require('./mail/confirmation.js');
-const verifyTurnstile = require('./turnstile.js');
+import emailValidator from '@sefinek/email-validator';
+import verifyMx from '@sefinek/email-validator/mx';
+import * as tcpClient from '../global/services/tcpClient.js';
+import sendMail from './mail/mailer.js';
+import confirmationMail from './mail/confirmation.js';
+import verifyTurnstile from './turnstile.js';
 
 const SUBJECT = 'Kontakt przez formularz MeshCore Polska';
 
-exports.validateFields = ({ username, email, subject = '', message }) => {
+export const validateFields = ({ username, email, subject = '', message }) => {
 	const errors = [];
 	if (username.length < 2 || username.length > 45) errors.push('Nazwa użytkownika musi mieć od 2 do 45 znaków.');
 	if (!emailValidator(email)) errors.push('Podaj poprawny adres e-mail.');
@@ -16,14 +16,14 @@ exports.validateFields = ({ username, email, subject = '', message }) => {
 	return errors;
 };
 
-exports.verifySender = async ({ email, token, ip }) => {
+export const verifySender = async ({ email, token, ip }) => {
 	if (!await verifyTurnstile(token, ip)) return 'Weryfikacja captcha Cloudflare Turnstile nie powiodła się. Odśwież stronę i spróbuj ponownie.';
 	if (!await verifyMx(email)) return 'Domena podanego adresu e-mail nie przyjmuje poczty.';
 	if ((await tcpClient.checkTempEmail(email))?.blacklisted) return 'Tymczasowe adresy e-mail są niedozwolone.';
 	return null;
 };
 
-exports.deliver = async ({ username, email, subject, message }, domain) => {
+export const deliver = async ({ username, email, subject, message }, domain) => {
 	const mailSubject = subject || SUBJECT;
 	const adminMail = await sendMail({
 		from: `MeshCore Polska <${process.env.MAILER_AUTH_USER}>`,

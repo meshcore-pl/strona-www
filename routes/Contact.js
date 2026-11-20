@@ -1,7 +1,9 @@
-const router = require('express').Router();
-const limiter = require('../middlewares/ratelimit.js');
-const { validateFields, verifySender, deliver } = require('../services/contact.js');
-const { getRandomTip } = require('../content/tips.js');
+import { Router } from 'express';
+import * as limiter from '../middlewares/ratelimit.js';
+import { validateFields, verifySender, deliver } from '../services/contact.js';
+import { getRandomTip } from '../content/tips.js';
+
+const router = Router();
 
 const EMPTY_VALUES = { username: '', email: '', message: '' };
 const DEV_VALUES = { username: 'Jan Kowalski', email: 'contact@sefinek.net', message: 'Testowa wiadomość z formularza kontaktowego.\n\nSzybki brązowy lis przeskoczył nad leniwym psem.\nPchnąć w tę łódź jeża lub ośm skrzyń fig.\nZażółć gęślą jaźń.\n\nZnaki specjalne: <b>test</b> & "cudzysłów" \'apostrof\' 🚀😺' };
@@ -53,4 +55,4 @@ router.post('/api/v1/kontakt', limiter.contactForm, async (req, res) => {
 	}
 });
 
-module.exports = router;
+export default router;

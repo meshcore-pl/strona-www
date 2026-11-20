@@ -1,4 +1,4 @@
-module.exports = [
+export default [
 	{
 		slug: 'meshcore',
 		icon: '/images/meshcore/main-512.png',
