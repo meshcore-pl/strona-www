@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import parseFrontmatter from '../utils/parseFrontmatter.js';
+import parseFrontmatter from 'frontmatter-md';
 import groups from '../content/docs.js';
 import { marked, renderer, extractFirstImage, assignHeadingIds, getHeadingId, getTocLabel, getPlainText, parseDMYDate } from './markdown.js';
 

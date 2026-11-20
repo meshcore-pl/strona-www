@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import parseFrontmatter from '../utils/parseFrontmatter.js';
+import parseFrontmatter from 'frontmatter-md';
 import tagDescriptions from '../content/newsTags.js';
 import { marked, renderer, extractFirstImage, assignHeadingIds, slugify, getExternalRel, parseDMYDate } from './markdown.js';
 

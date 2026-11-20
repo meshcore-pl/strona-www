@@ -1,6 +1,6 @@
 {
   "name": "meshcore-polska",
-  "version": "1.10.4+20261115",
+  "version": "1.10.5+20261120",
   "private": true,
   "homepage": "https://meshcorepolska.org",
   "bugs": {
@@ -30,7 +30,7 @@
     "ejs": "^7.0.2",
     "express": "^5.3.0",
     "express-rate-limit": "^8.7.5",
-    "frontmatter-md": "^1.0.3",
+    "frontmatter-md": "^2.0.0",
     "helmet": "^8.3.0",
     "marked": "^18.2.1",
     "mongoose": "^9.12.2",

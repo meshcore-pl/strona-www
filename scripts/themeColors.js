@@ -1,7 +1,7 @@
 import '../loadEnv.js';
 import fs from 'node:fs';
 import path from 'node:path';
-import parseFrontmatter from '../utils/parseFrontmatter.js';
+import parseFrontmatter from 'frontmatter-md';
 import { marked, extractFirstImage } from '../services/markdown.js';
 import * as tcpClient from '../global/services/tcpClient.js';
 import pkg from '../package.json' with { type: 'json' };
