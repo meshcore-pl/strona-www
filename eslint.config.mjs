@@ -67,11 +67,15 @@ export default [
 	{
 		files: ['public/**/*.js'],
 		languageOptions: {
-			sourceType: 'module',
+			sourceType: 'script',
 			globals: { ...globals.browser },
 		},
 		rules: {
 			'no-redeclare': ['error', { builtinGlobals: false }],
 		},
+	},
+	{
+		files: ['public/js/docs.js', 'public/js/docs-router.js', 'public/js/docs-search.js', 'public/js/lib/page.js'],
+		languageOptions: { sourceType: 'module' },
 	},
 ];

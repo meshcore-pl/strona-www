@@ -1,7 +1,7 @@
 import './loadEnv.js';
 import express from 'express';
 import helmet from 'helmet';
-import pkg from './package.json' with { type: 'json' };
+import fs from 'node:fs';
 import './global/database/mongoose.js';
 
 // Routes
@@ -23,7 +23,7 @@ import RenderError from './utils/renderError.js';
 import buildSchema from './utils/schema.js';
 import pluralizePolish from './utils/pluralizePolish.js';
 
-const { version } = pkg;
+const { version } = JSON.parse(fs.readFileSync(new URL('./package.json', import.meta.url), 'utf8'));
 const { DOMAIN, NODE_ENV, PORT, CDN_SEFINEK_URL } = process.env;
 const isProd = NODE_ENV === 'production';
 if (!CDN_SEFINEK_URL) throw new Error('Missing required environment variable: CDN_SEFINEK_URL');

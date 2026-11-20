@@ -11,7 +11,7 @@ export const validateFields = ({ username, email, subject = '', message }) => {
 	const errors = [];
 	if (username.length < 2 || username.length > 45) errors.push('Nazwa użytkownika musi mieć od 2 do 45 znaków.');
 	if (!emailValidator(email)) errors.push('Podaj poprawny adres e-mail.');
-	if (subject.length > 120 || /[\r\n]/.test(subject)) errors.push('Tytuł może mieć maksymalnie 120 znaków i musi mieścić się w jednym wierszu.');
+	if (subject.length > 120 || (/[\r\n]/).test(subject)) errors.push('Tytuł może mieć maksymalnie 120 znaków i musi mieścić się w jednym wierszu.');
 	if (message.length < 10 || message.length > 4000) errors.push('Wiadomość musi mieć od 10 do 4000 znaków.');
 	return errors;
 };

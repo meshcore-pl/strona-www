@@ -4,7 +4,7 @@ import path from 'node:path';
 import parseFrontmatter from 'frontmatter-md';
 import { marked, extractFirstImage } from '../services/markdown.js';
 import * as tcpClient from '../global/services/tcpClient.js';
-import pkg from '../package.json' with { type: 'json' };
+const pkg = JSON.parse(fs.readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
 
 const ROOT = path.join(import.meta.dirname, '..');
 const PUBLIC_DIR = path.join(ROOT, 'public');
