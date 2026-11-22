@@ -14,9 +14,10 @@ Zmiany dotyczące `mapa.meshcorepolska.org` znajdziesz osobno: kliknij ikonę `i
 > Jeśli po aktualizacji strona nie wyświetla się poprawnie, wykonaj twarde odświeżenie kombinacją `CTRL + F5`.
 
 ## v1.10.6 (22.11.2026)
-1. Usunięto białą ramkę wokół zdjęć powiększanych na pełnym ekranie i zmniejszono rozmycie tła.
-2. Poprawiono zgodność kodu HTML ze standardami (ustawienia mapy, wyszukiwarka dokumentacji, struktura nagłówków i sekcji).
-3. Inne drobne poprawki.
+1. Dodano opisy kanałów oraz kanał `#emergency` w Generatorze regionów.
+2. Usunięto białą ramkę wokół zdjęć powiększanych na pełnym ekranie i zmniejszono rozmycie tła.
+3. Poprawiono zgodność kodu HTML ze standardami (ustawienia mapy, wyszukiwarka dokumentacji, struktura nagłówków i sekcji).
+4. Inne drobne poprawki.
 
 ## v1.10.5 (20.11.2026)
 1. Zmigrowano backend i frontend do ESM.
