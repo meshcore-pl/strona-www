@@ -91,10 +91,6 @@ input[type="checkbox"]:focus-visible {
 	}
 }
 
-input[type="search"]::-webkit-search-cancel-button {
-	cursor: pointer;
-}
-
 .sr-only {
 	position: absolute;
 	clip: rect(0, 0, 0, 0);

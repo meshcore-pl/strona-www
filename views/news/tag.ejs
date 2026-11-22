@@ -35,7 +35,7 @@
 		</div>
 	</section>
 
-	<section class="section">
+	<div class="section">
 		<div class="section__inner">
 			<div id="news-list">
 				<% tag.posts.forEach(post => { %>
@@ -59,7 +59,7 @@
 				<%- include('./_search-box.ejs') %>
 			</div>
 		</div>
-	</section>
+	</div>
 </main>
 
 <%- include('../includes/footer.ejs', { footer: false, scripts: ['/js/news.js'] }) %>

@@ -15,7 +15,7 @@
 }) %>
 
 <main>
-	<section class="news-hero news-hero--post">
+	<div class="news-hero news-hero--post">
 		<div class="section__inner">
 			<nav class="docs-breadcrumb" aria-label="Okruszki">
 				<a href="/aktualnosci">Aktualności</a>
@@ -26,14 +26,14 @@
 				<span aria-current="page"><%= post.title %></span>
 			</nav>
 		</div>
-	</section>
+	</div>
 
-	<section class="section">
+	<div class="section">
 		<div class="section__inner">
-			<article class="news-content prose">
+			<div class="news-content prose">
 				<%- post.html %>
 				<% if (post.sourceUrl) { %><p>~ Tłumaczenie na język polski: MeshCore Polska</p><% } %>
-			</article>
+			</div>
 
 			<div id="news-post__footer">
 				<a href="/aktualnosci" class="btn btn--secondary"><svg class="docs-pagination__icon" aria-hidden="true"><use href="/icons.svg#arrow-left"></use></svg> Wróć do aktualności</a>
@@ -54,7 +54,7 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</div>
 </main>
 
 <%- include('../includes/footer.ejs', { footer: false, scripts: ['/js/lightbox.js'] }) %>
