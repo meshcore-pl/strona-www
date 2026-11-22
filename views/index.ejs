@@ -35,7 +35,7 @@
 				</div>
 				<div id="hero__map-tools">
 					<div id="mesh-map-settings" hidden>
-						<button type="button" class="btn btn--secondary" id="map-settings-toggle" popovertarget="map-settings-panel" aria-expanded="false">Ustawienia mapy</button>
+						<button type="button" class="btn btn--secondary" id="map-settings-toggle" popovertarget="map-settings-panel">Ustawienia mapy</button>
 						<div class="map-settings__panel" id="map-settings-panel" popover role="dialog" aria-labelledby="map-settings-title">
 							<div class="map-settings__header">
 								<h2 id="map-settings-title">Ustawienia wizualizacji</h2>
@@ -52,11 +52,17 @@
 								<p class="map-settings__count" aria-live="polite" id="map-node-count"></p>
 							</div>
 							<div class="map-settings__field">
-								<label for="map-packets">Pakiety jednocześnie <output id="map-packets-value" for="map-packets">2</output></label>
+								<div class="map-settings__row">
+									<label for="map-packets">Pakiety jednocześnie</label>
+									<output id="map-packets-value" for="map-packets">2</output>
+								</div>
 								<input id="map-packets" type="range" min="1" max="4" value="2">
 							</div>
 							<div class="map-settings__field">
-								<label for="map-speed">Tempo pakietów <output id="map-speed-value" for="map-speed">1×</output></label>
+								<div class="map-settings__row">
+									<label for="map-speed">Tempo pakietów</label>
+									<output id="map-speed-value" for="map-speed">1×</output>
+								</div>
 								<input id="map-speed" type="range" min="0.5" max="2" step="0.25" value="1">
 							</div>
 							<p id="map-motion-note" hidden>Animacja jest wyłączona zgodnie z ustawieniami ograniczonego ruchu.</p>
@@ -145,7 +151,7 @@
 					</ul>
 				</div>
 
-				<p id="network-stats-updated" hidden>Ostatnia aktualizacja: <time id="ns-updated"></time></p>
+				<p id="network-stats-updated" hidden>Ostatnia aktualizacja: <span id="ns-updated"></span></p>
 
 				<p id="network-stats__note">Dane pochodzą z <a href="https://mapa.meshcorepolska.org" target="_blank" rel="noopener">mapy węzłów</a>, a ich historię w czasie znajdziesz w <a href="/statystyki">statystykach sieci</a>.</p>
 			</div>

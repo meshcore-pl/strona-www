@@ -235,11 +235,15 @@
 	margin-top: 18px;
 }
 
-.map-settings__panel label {
+.map-settings__row {
 	display: flex;
 	justify-content: space-between;
 	gap: 8px;
 	align-items: baseline;
+}
+
+.map-settings__panel label {
+	display: block;
 	font-size: inherit;
 }
 

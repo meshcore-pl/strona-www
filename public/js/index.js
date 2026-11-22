@@ -52,8 +52,10 @@ const setLastUpdated = isoString => {
 		return;
 	}
 
-	timeEl.dateTime = isoString;
-	timeEl.textContent = formatRelativeTime(isoString);
+	const time = document.createElement('time');
+	time.dateTime = isoString;
+	time.textContent = formatRelativeTime(isoString);
+	timeEl.replaceChildren(time);
 	wrapper.hidden = false;
 };
 
