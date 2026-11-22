@@ -699,6 +699,7 @@ a[data-lightbox] {
 	padding: 24px;
 	overflow: hidden;
 	border: 0;
+	outline: 0;
 	background: none;
 	cursor: zoom-out;
 	inset: 0;
@@ -712,8 +713,8 @@ a[data-lightbox] {
 
 .lightbox::backdrop {
 	background: rgba(9, 10, 12, .75);
-	-webkit-backdrop-filter: blur(8px);
-	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(4px);
+	backdrop-filter: blur(4px);
 	cursor: zoom-out;
 }
 
