@@ -3,7 +3,7 @@ title: Regionalizacja wiadomości w MeshCore
 description: Jak działa regionalizacja wiadomości kanałowych w MeshCore - konfiguracja CLI, ustawianie zakresu w aplikacji i schemat regionów w Polsce.
 canonical: /dokumentacja/meshcore/regionalizacja-wiadomosci
 createdAt: 3.08.2026
-updatedAt: 1.11.2026
+updatedAt: 22.11.2026
 ---
 
 # Regionalizacja wiadomości - filtrowanie kanałów w MeshCore {toc: Regionalizacja wiadomości}
@@ -64,8 +64,10 @@ Wyjątkiem w opisanych konfiguracjach jest województwo wielkopolskie, w którym
 | Wielkopolskie       | `wlkp`         | `#wlkp`, `#poznan`, `#weather` |
 | Zachodniopomorskie  | `pl-zp`        | `#zachodniopomorskie`          |
 
+Kanał `#emergency` służy do łączności w sytuacjach kryzysowych oraz testów łączności awaryjnej organizowanych 13. dnia każdego miesiąca o 20:00. Jest używany zawsze bez regionu.
+
 Kanały `#test`, `#bot` i `#info` mogą być używane bez regionu lub z zakresem uzgodnionym lokalnie:
-- Wielkopolska: `#test` i `#info` mogą korzystać z regionu `wlkp`.
+- Wielkopolska: w zależności od miejscowości kanały `#test` i `#info` są używane z regionem `wlkp` lub bez regionu.
 - Warszawa: `#bot` i `#test` mogą korzystać z regionu `waw`, a `#bot` także z `pl-mz`.
 - Trójmiasto: `#bot` może korzystać z lokalnego regionu `gdn`.
 

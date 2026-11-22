@@ -182,6 +182,14 @@
 	width: 40%;
 }
 
+.rg-page .docs-table .rg-channels-table th:first-child {
+	width: 20%;
+}
+
+.rg-channels-table th:nth-child(2) {
+	width: 28%;
+}
+
 .rg-actions {
 	text-align: center;
 }

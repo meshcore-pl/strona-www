@@ -1,5 +1,19 @@
+const CHANNEL_DESCRIPTIONS = {
+	Public: 'Domyślny publiczny kanał rozmów.',
+	'#emergency': 'Łączność w sytuacjach kryzysowych oraz testy łączności awaryjnej organizowane 13. dnia każdego miesiąca o 20:00. Zwykłe testy wykonuj na #test lub #bot.',
+	'#test': 'Testy łączności, np. po zmianie sprzętu lub aktualizacji oprogramowania.',
+	'#bot': 'Testy łączności z botami, które potwierdzają odbiór wiadomości i podają informacje o trasie pakietów oraz parametrach sygnału.',
+	'#polska': 'Rozmowy społeczności MeshCore z całej Polski.',
+	'#wlkp': 'Codzienne rozmowy społeczności MeshCore z Wielkopolski.',
+	'#poznan': 'Lokalny kanał społeczności z Poznania i okolic.',
+	'#szczecin': 'Lokalny kanał społeczności ze Szczecina i okolic.',
+	'#weather': 'Pogoda: komendy botów (np. !wx, !gwx, !astro) oraz automatyczne prognozy i ostrzeżenia o opadach.',
+	'#zachod': 'Wspólny kanał zachodniej Polski (Dolnośląskie, Lubuskie, Wielkopolskie, Zachodniopomorskie).',
+	'#info': 'Informacje i ostrzeżenia, m.in. automatyczne komunikaty RSO o utrudnieniach drogowych oraz zagrożeniach pogodowych i hydrologicznych.',
+};
+
 const MESHCORE_REGIONS = {
-	commonChannels: ['#test', '#bot', '#info'],
+	commonChannels: ['#test', '#bot', '#info', '#emergency'],
 	country: {
 		scope: 'pl',
 		channels: ['#polska'],
@@ -482,9 +496,11 @@ const renderOutput = () => {
 	document.getElementById('rg-channels').replaceChildren(...buildChannels(home, city, neighbors).map(({ channel, scope }) => {
 		const tr = document.createElement('tr');
 		const optionalScope = channel === 'Public' || MESHCORE_REGIONS.commonChannels.includes(channel);
-		[channel, scope].forEach((value, index) => {
+		[channel, scope, CHANNEL_DESCRIPTIONS[channel] || ''].forEach((value, index) => {
 			const td = document.createElement('td');
-			if (value === 'Brak danych') {
+			if (index === 2) {
+				td.textContent = value;
+			} else if (value === 'Brak danych') {
 				td.textContent = value;
 			} else if (value === null) {
 				td.textContent = 'Bez regionu';
@@ -499,7 +515,6 @@ const renderOutput = () => {
 				});
 			}
 
-			if (index === 1 && channel === 'Public') td.append(' (kanał domyślny, dostępny od razu)');
 
 			tr.append(td);
 		});
