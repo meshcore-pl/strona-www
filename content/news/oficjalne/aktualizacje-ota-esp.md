@@ -2,7 +2,7 @@
 title: Aktualizacja MeshCore na ESP32 przez OTA - poradnik
 description: Poradnik krok po kroku - jak zaktualizować firmware repeatera lub room serwera na ESP32 przez OTA, bez kabla i przeflashowania od zera.
 createdAt: 1.04.2026
-updatedAt: 22.08.2026
+updatedAt: 23.11.2026
 themeColor: '#d4cadb'
 sourceUrl: https://blog.meshcore.io/2026/04/01/esp-ota-update
 tags: [Poradnik, Oprogramowanie]
@@ -27,7 +27,7 @@ Za pomocą aplikacji mobilnej zaloguj się do swojego urządzenia.
 
 ![Logowanie do repeatera w aplikacji MeshCore](https://blog.meshcore.io/assets/images/2026/04/01/app-repeater-login.png)
 
-Następnie przełącz się na Wiersz poleceń (Command Line) i wpisz komendę `start ota`.
+Następnie przełącz się na **Wiersz poleceń** i wpisz komendę `start ota`.
 
 ![Komenda start ota w wierszu poleceń](https://blog.meshcore.io/assets/images/2026/04/01/repeater-cli2.png)
 

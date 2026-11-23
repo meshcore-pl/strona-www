@@ -2,6 +2,7 @@
 title: Zmiany w firmware MeshCore 1.18.0 - BLE, Wi-Fi i CLI
 description: BLE i Wi-Fi w jednym firmware MeshCore 1.18.0 ułatwiają zmianę sposobu połączenia. Wydanie wprowadza też CLI companiona, zdalne zarządzanie i telemetrię push.
 createdAt: 15.10.2026
+updatedAt: 23.11.2026
 themeColor: '#21263d'
 sourceUrl: https://blog.meshcore.io/2026/10/15/release-1-18-0
 tags: [Lista zmian, Oprogramowanie]
@@ -105,7 +106,7 @@ Aby zbudować własny firmware z BLE i Wi-Fi dla urządzenia ESP32, na którym t
 Warianty BLE + Wi-Fi nie obsługują obecnie połączenia USB z aplikacją, ponieważ port szeregowy jest używany do przesyłania logów diagnostycznych. Twórcy zamierzają wrócić do tej kwestii w jednej z przyszłych aktualizacji firmware.
 
 ## Ustawienia Wi-Fi w aplikacji MeshCore
-Wraz z obsługą BLE i Wi-Fi jednocześnie pojawiła się możliwość konfiguracji sieci przez aplikację. Od wersji **MeshCore App v1.50.0** dostępna jest nowa sekcja **WiFi Settings** (Ustawienia Wi-Fi).
+Wraz z obsługą BLE i Wi-Fi jednocześnie pojawiła się możliwość konfiguracji sieci przez aplikację. Od wersji **MeshCore App v1.50.0** dostępna jest nowa sekcja **Ustawienia Wi-Fi**.
 
 Pozwala połączyć się z companionem przez BLE i ustawić dane sieci Wi-Fi. Po ponownym uruchomieniu węzeł automatycznie połączy się z tą siecią.
 
@@ -122,7 +123,7 @@ Przed wersją v1.18.0 każdej własnej komendzie dodawanej do firmware companion
 
 Nowe CLI udostępnia companionom prosty, tekstowy wiersz poleceń, który można rozbudowywać o własne komendy. Dodanie kolejnej komendy do firmware nie wymaga już aktualizacji aplikacji.
 
-Od wersji **MeshCore App v1.50.0** na ekranie ustawień dostępna jest nowa opcja **Wiersz poleceń** (Command Line).
+Od wersji **MeshCore App v1.50.0** na ekranie ustawień dostępna jest nowa opcja **Wiersz poleceń**.
 
 ![Przycisk wiersza poleceń na ekranie ustawień](/images/screens/aktualizacja-firmware-meshcore-1-18-0/ustawienia-cli.jpg)
 
@@ -130,7 +131,7 @@ Można stąd wysyłać komendy CLI do lokalnego companiona. Dostępne są równi
 
 ![Wiersz poleceń lokalnego companiona](/images/screens/aktualizacja-firmware-meshcore-1-18-0/cli-companiona.jpg)
 
-Wraz z nowym CLI wprowadzono również **zdalne zarządzanie companionami**. W uprawnieniach kontaktu dodano opcję **Zezwól na zdalne CLI** (Allow Remote CLI). Po jej włączeniu dany kontakt może wysyłać komendy CLI do Twojego companiona.
+Wraz z nowym CLI wprowadzono również **zdalne zarządzanie companionami**. W uprawnieniach kontaktu dodano opcję **Zezwól na zdalne CLI**. Po jej włączeniu dany kontakt może wysyłać komendy CLI do Twojego companiona.
 
 To bardzo wrażliwe uprawnienie - pozwala zarządzać ustawieniami radia, zmieniać nazwę węzła i zdalnie restartować urządzenie przez sieć mesh. Przyznawaj je rozważnie.
 

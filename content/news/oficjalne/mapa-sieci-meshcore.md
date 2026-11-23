@@ -2,7 +2,7 @@
 title: Mapa sieci MeshCore
 description: Recrof, twórca mapy MeshCore, opisuje jej historię oraz funkcje - filtrowanie węzłów, wskaźnik świeżości, kod QR kontaktu i osadzanie mapy przez iframe.
 createdAt: 4.04.2026
-updatedAt: 22.08.2026
+updatedAt: 23.11.2026
 themeColor: '#abd1db'
 sourceUrl: https://blog.meshcore.io/2026/04/04/meshcore-map
 tags: [Mapa, Poradnik]
@@ -71,8 +71,8 @@ Możesz też użyć tego adresu URL na własnej, regionalnej stronie za pomocą 
 ### Dodawanie siebie (radio companion)
 1. Otwórz aplikację MeshCore
 2. Dotknij ikony menu **⋮** w prawym górnym rogu
-3. Dotknij **Internet Map**
-4. Dotknij ponownie **⋮** i wybierz **Add me to the Map**
+3. Dotknij **Mapa internetowa**
+4. Dotknij ponownie **⋮** i wybierz **Dodaj mnie do mapy**
 
 ![Dodawanie siebie do mapy](https://blog.meshcore.io/assets/images/2026/04/04/map-add-self.png)
 _Dodawanie siebie do mapy_
@@ -80,7 +80,7 @@ _Dodawanie siebie do mapy_
 ### Dodawanie repeatera lub room serwera
 1. Otwórz zakładkę **Kontakty** w aplikacji MeshCore
 2. Dotknij **⋮** obok repeatera lub room serwera, który chcesz dodać
-3. Dotknij **Share**, a następnie **Upload to Internet Map**
+3. Dotknij **Udostępnij**, a następnie **Prześlij na Mapę Internetową**
 
 ![Dodawanie repeatera do mapy](https://blog.meshcore.io/assets/images/2026/04/04/map-add-repeater.png)
 _Dodawanie repeatera do mapy_
@@ -90,8 +90,8 @@ Usunięcie węzła jest możliwe wyłącznie tym samym radiem companion (tym sam
 
 1. Otwórz aplikację MeshCore
 2. Dotknij ikony menu **⋮** w prawym górnym rogu
-3. Dotknij **Internet Map**
-4. Znajdź węzeł, który chcesz usunąć, dotknij go i wybierz **Delete Marker**
+3. Dotknij **Mapa internetowa**
+4. Znajdź węzeł, który chcesz usunąć, dotknij go i wybierz opcję usunięcia znacznika.
 
 ## Poza interfejsem
 [MeshCore Map Auto Uploader](https://github.com/recrof/map.meshcore.io-uploader) pozwala automatycznie dodawać i aktualizować wszystkie repeatery, room serwery i czujniki w momencie, gdy rozgłaszają advert. To główny powód, dla którego świeżość węzła widać po kolorze jego ikony.

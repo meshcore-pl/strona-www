@@ -2,6 +2,7 @@
 title: SenseCAP Solar Node P1-Pro - jak poprawić zasięg?
 description: Jak poprawić zasięg SenseCAP Solar Node P1-Pro? Poradnik Seeed Studio o lokalizacji, wymianie anteny, aktualizacji firmware i testach repeatera.
 createdAt: 20.10.2026
+updatedAt: 23.11.2026
 themeColor: '#95ab62'
 sourceUrl: https://blog.meshcore.io/2026/10/20/boost-sensecap-solar
 tags: [Poradnik, Sprzęt]
@@ -361,7 +362,7 @@ Jeśli pozostałe węzły również używają anten zamontowanych pionowo, trzym
 Unikaj przykładania anteny bezpośrednio do metalowych powierzchni lub montowania jej bardzo blisko dużych metalowych konstrukcji.
 
 ### Jak szybko sprawdzić, czy repeater nadaje?
-W MeshCore możesz ręcznie użyć opcji **Send Advert**.
+W MeshCore możesz ręcznie wysłać advert.
 
 Wymusza to nadanie pakietu LoRa przez Solar Node. Następnie powinieneś zobaczyć krótkie mignięcie diody TX, a pobliskie urządzenia MeshCore powinny odebrać advert.
 
