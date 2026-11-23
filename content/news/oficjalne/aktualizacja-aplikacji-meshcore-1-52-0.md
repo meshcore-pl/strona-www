@@ -2,6 +2,7 @@
 title: MeshCore 1.52.0 - nowa zakładka czatów i wygodniejsze rozmowy
 description: MeshCore 1.52.0 wprowadza zakładkę czatów, podgląd wiadomości, filtry nieprzeczytanych rozmów i zapisywanie telemetrii w aplikacji. Sprawdź pełną listę zmian.
 createdAt: 23.11.2026
+themeColor: '#2a2c31'
 tags: [Lista zmian, Aplikacja, Tłumaczenia]
 ---
 
@@ -12,6 +13,8 @@ Wersja **1.52.0** oficjalnej aplikacji MeshCore wprowadza kolejne usprawnienia c
 ## Wszystkie rozmowy w jednym miejscu
 
 Nowa zakładka czatów pokazuje rozmowy uporządkowane według najnowszych wiadomości. Zakładki kontaktów i kanałów nadal są dostępne, ale przy korzystaniu z czatów adverty i nowo odkryte węzły nie spychają już ostatnich rozmów w dół listy.
+
+![Zakładki Czaty, Kontakty i Kanały w aplikacji MeshCore 1.52.0](/images/screens/meshcore-1-52-0-czaty-kontakty-kanaly.jpg)
 
 Każda rozmowa ma podgląd ostatniej otrzymanej wiadomości. Jeśli zależy Ci na większej prywatności, możesz wyłączyć opcję **Pokaż podgląd wiadomości** w sekcji **Ustawienia wiadomości**.
 

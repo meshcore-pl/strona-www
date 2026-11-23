@@ -4,6 +4,7 @@ description: Historia aktualizacji strony meshcorepolska.org, wersja po wersji -
 canonical: /dokumentacja/spolecznosc/lista-zmian
 createdAt: 2.08.2026
 updatedAt: 22.11.2026
+themeColor: '#10131b'
 ---
 
 # Lista zmian na stronie meshcorepolska.org {toc: Lista zmian}
