@@ -120,3 +120,7 @@
 .docs-toc__list .docs-toc__link--h3 {
 	padding-left: 22px;
 }
+
+.docs-image-actions {
+	text-align: center;
+}

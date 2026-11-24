@@ -188,7 +188,7 @@ const highlightCode = root => {
 	highlighterPromise ??= import(`${document.body.dataset.cdn}/js/codeBlocks.js`);
 	highlighterPromise
 		.then(({ highlightCodeBlocks }) => highlightCodeBlocks(root))
-		.catch(err => console.error('Failed to load codeBlocks.js from the CDN', err));
+		.catch(err => console.error('Nie udało się załadować codeBlocks.js z CDN:', err));
 };
 
 const setCode = (id, text) => {
@@ -412,7 +412,7 @@ const loadSettings = () => {
 			setDefault: settings.setDefault === true,
 		};
 	} catch (err) {
-		console.warn('Failed to read the settings', err);
+		console.warn('Nie udało się odczytać ustawień:', err);
 		return null;
 	}
 };
@@ -427,7 +427,7 @@ const saveSettings = () => {
 			setDefault: document.getElementById('rg-default').checked,
 		}));
 	} catch (err) {
-		console.warn('Failed to save the settings', err);
+		console.warn('Nie udało się zapisać ustawień:', err);
 	}
 };
 

@@ -49,7 +49,7 @@ const init = () => {
 
 	import(`${document.body.dataset.cdn}/js/codeBlocks.js`)
 		.then(({ highlightCodeBlocks }) => highlightCodeBlocks(content))
-		.catch(err => console.error('Failed to load code highlighting', err));
+		.catch(err => console.error('Nie udało się załadować podświetlania składni:', err));
 
 	const targetFor = href => href && href[0] === '#' && href.length > 1
 		? content.querySelector(`#${CSS.escape(decodeURIComponent(href.slice(1)))}`)

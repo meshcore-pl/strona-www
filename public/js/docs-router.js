@@ -53,7 +53,7 @@ const swapView = async html => {
 		try {
 			api.destroy?.();
 		} catch (err) {
-			console.error('destroy() failed', err);
+			console.error('Błąd w destroy() podczas zamykania widoku:', err);
 		}
 	});
 	activeModules = [];
@@ -117,7 +117,7 @@ const navigate = async (href, { push = true } = {}) => {
 		view.focus({ preventScroll: true });
 	} catch (err) {
 		if (err.name === 'AbortError') return;
-		console.error('Navigation failed, falling back to a full reload', err);
+		console.error('Nie udało się przejść do dokumentu. Nastąpi pełne przeładowanie strony.', err);
 		fallback();
 	} finally {
 		if (controller === ac) controller = null;
