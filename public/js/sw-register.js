@@ -3,5 +3,5 @@ if ('serviceWorker' in navigator) {
 		.then(registration => document.addEventListener('visibilitychange', () => {
 			if (document.visibilityState === 'visible') registration.update().catch(() => undefined);
 		}))
-		.catch(err => console.error('Service worker registration failed:', err));
+		.catch(err => console.error('Nie udało się zarejestrować service workera:', err));
 }

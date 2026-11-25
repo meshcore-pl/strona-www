@@ -1,12 +1,19 @@
 const toastModule = import(`${document.body.dataset.cdn}/js/meshcore/toast.js`).catch(err => {
-	console.error('Toast module failed to load:', err);
+	console.error('Nie udało się załadować modułu powiadomień:', err);
 	return null;
 });
 
 const notify = async (message, type) => {
 	const toast = await toastModule;
-	if (toast) toast.showToast(message, type, { duration: 8000 });
-	else window.alert(message);
+	if (toast) {
+		try {
+			toast.showToast(message, type, { duration: 8000 });
+			return;
+		} catch (err) {
+			console.error('Nie udało się wyświetlić powiadomienia:', err);
+		}
+	}
+	window.alert(message);
 };
 const showErrors = messages => messages.forEach(message => notify(message, 'error'));
 
@@ -29,7 +36,7 @@ const loadTurnstile = () => {
 			clearTimeout(timer);
 			script.remove();
 			turnstileLoader = null;
-			reject(new Error('Turnstile failed to load'));
+			reject(new Error('Nie udało się załadować Turnstile.'));
 		};
 		script.onload = () => {
 			if (!window.turnstile?.render) return script.onerror();
@@ -68,7 +75,7 @@ if (form) {
 				'refresh-timeout': 'manual',
 				callback: resolve,
 				'error-callback': code => {
-					console.error('Turnstile verification failed:', code);
+					console.error('Weryfikacja Turnstile nie powiodła się:', code);
 					fail('Weryfikacja captcha nie powiodła się. Spróbuj wysłać wiadomość ponownie.');
 					return true;
 				},
@@ -76,7 +83,7 @@ if (form) {
 				'timeout-callback': () => fail('Upłynął czas weryfikacji captcha. Spróbuj wysłać wiadomość ponownie.'),
 			});
 		} catch (err) {
-			console.error('Turnstile render failed', err);
+			console.error('Nie udało się wyświetlić widżetu Turnstile:', err);
 			fail('Nie udało się uruchomić captchy. Odśwież stronę i spróbuj ponownie.');
 		}
 	});
@@ -85,7 +92,7 @@ if (form) {
 		try {
 			await loadTurnstile();
 		} catch (err) {
-			console.error('Turnstile load failed:', err);
+			console.error('Nie udało się załadować Turnstile:', err);
 			throw new CaptchaError('Nie udało się załadować captchy. Odśwież stronę i spróbuj ponownie.');
 		}
 
@@ -112,22 +119,22 @@ if (form) {
 			});
 
 			if (!(res.headers.get('content-type') || '').includes('application/json')) {
-				console.error('Unexpected response:', res.status, res.headers.get('content-type'));
-				throw new Error('Expected a JSON response from the contact endpoint');
+				console.error('Nieoczekiwana odpowiedź serwera:', res.status, res.headers.get('content-type'));
+				throw new Error('Odpowiedź API formularza kontaktowego powinna być w formacie JSON.');
 			}
 
 			const data = await res.json();
 
 			if (data.success) {
 				form.reset();
-				notify(data.message, 'success');
+				void notify(data.message, 'success');
 				return;
 			}
 
-			console.error('Message rejected by server:', res.status);
+			console.error('Serwer odrzucił wiadomość:', res.status);
 			showErrors(data.data?.errors ?? [data.message]);
 		} catch (err) {
-			console.error('Submission failed:', err);
+			console.error('Nie udało się wysłać formularza:', err);
 			showErrors([err instanceof CaptchaError ? err.message : 'Nie udało się wysłać wiadomości. Spróbuj ponownie później.']);
 		} finally {
 			clearCaptcha();

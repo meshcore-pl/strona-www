@@ -7,7 +7,7 @@ const loadIndex = () => {
 	if (!indexPromise) {
 		indexPromise = fetch('/api/v1/dokumentacja/szukaj')
 			.then(res => {
-				if (!res.ok) throw new Error(`HTTP ${res.status}`);
+				if (!res.ok) throw new Error(`Nie udało się pobrać indeksu wyszukiwania (HTTP ${res.status}).`);
 				return res.json();
 			})
 			.catch(() => {

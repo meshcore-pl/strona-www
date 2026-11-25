@@ -800,3 +800,43 @@ a[data-lightbox] {
 		transition: none;
 	}
 }
+
+.print-image {
+	display: none;
+}
+
+@media print {
+	@page print-image {
+		margin: 0;
+	}
+
+	@page print-image-150x100 {
+		size: 150mm 100mm;
+		margin: 0;
+	}
+
+	html:has(> body > .print-image) {
+		scrollbar-gutter: auto;
+	}
+
+	body:has(> .print-image) {
+		background: #fff;
+		page: print-image;
+	}
+
+	body:has(> .print-image[data-print-format="150x100"]) {
+		page: print-image-150x100;
+	}
+
+	body:has(> .print-image) > :not(.print-image) {
+		display: none;
+	}
+
+	.print-image {
+		display: block;
+		width: 100%;
+		height: auto;
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
