@@ -25,7 +25,7 @@
 			<div id="news-toolbar">
 				<% if (tags.length) { %>
 				<div id="news-tags">
-					<a href="/aktualnosci" class="news-tag">Wszystkie tagi</a>
+					<a href="/aktualnosci" class="news-tag">Wszystkie</a>
 					<% tags.forEach(t => { %>
 					<a href="/aktualnosci/<%= t.slug %>" class="news-tag<%= t.slug === tag.slug ? ' news-tag--active' : '' %>"><%= t.label %> <span class="news-tag__count"><%= t.posts.length %></span></a>
 					<% }) %>
