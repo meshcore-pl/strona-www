@@ -1,4 +1,5 @@
 const RG_ENDPOINT = '/api/v1/regions';
+const RG_NODES_ENDPOINT = '/api/v1/nodes';
 const RG_MAX_NAME_BYTES = 29;
 const RG_MAX_LINE = 160;
 // Firmware tnie wynik `region` po 159 bajtach, próg ma zapas na wcięcia zgubione przy kopiowaniu
@@ -8,28 +9,32 @@ const RG_CLI_REPLIES = new Set(['OK', 'Err']);
 const RG_SETTINGS_KEY = 'meshcore.regionGenerator.settings';
 const RG_CUSTOM_SCOPE = '__custom__';
 const RG_PUBLIC_SECRET = '8b3387e9c5cdea6ac9e5edbaa115cd72';
-const RG_EXPORT_FILENAME = 'meshcore-polska-kanaly.json';
+const RG_EXPORT_FILENAME = 'meshcore-polska.json';
+// Bez tx_power: zależy od sprzętu
+const RG_RADIO_SETTINGS = { frequency: 869618, bandwidth: 62500, spreading_factor: 8, coding_rate: 8 };
 
 let highlighterPromise = null;
 let regionData, rootScope;
 let exportChannels = [];
 const channelSelections = new Map();
 
-const fetchRegions = async () => {
-	const response = await fetch(RG_ENDPOINT).catch(err => {
+const fetchData = async url => {
+	const response = await fetch(url).catch(err => {
 		throw new Error(`Brak odpowiedzi serwera (${err.message})`, { cause: err });
 	});
 	const status = `HTTP ${response.status} ${response.statusText}`.trim();
 	const body = await response.json().catch(() => null);
 
 	if (!response.ok) throw new Error(body?.message ? `${status}: ${body.message}` : status);
-	if (!Array.isArray(body?.data?.voivodeships) || !Array.isArray(body.data.localRegions)) throw new Error(`${status}: nieprawidłowy format danych`);
+	if (!body?.data) throw new Error(`${status}: nieprawidłowy format danych`);
 
 	return body.data;
 };
 
 const loadRegions = async () => {
-	const data = await fetchRegions();
+	const data = await fetchData(RG_ENDPOINT);
+	if (!Array.isArray(data.voivodeships) || !Array.isArray(data.localRegions)) throw new Error('Nieprawidłowy format danych');
+
 	const byCode = list => Object.fromEntries(list.map(region => [region.code, region]));
 	regionData = { ...data, voivodeships: byCode(data.voivodeships), localRegions: byCode(data.localRegions) };
 	rootScope = regionData.country.scope;
@@ -191,8 +196,25 @@ const getChannelSelection = ({ name, scopes }) => {
 	return { checked: saved?.checked ?? true, scope: scopes.includes(saved?.scope) ? saved.scope : scopes[0] };
 };
 
+const getSelectedNeighbors = () => [...document.querySelectorAll('#rg-neighbors input:checked')].map(input => input.value);
+
 const updateExportButton = () => {
-	document.getElementById('rg-export').disabled = !exportChannels.some(channel => getChannelSelection(channel).checked);
+	const withContacts = document.getElementById('rg-export-contacts').checked;
+	const nothingSelected = !withContacts && !document.getElementById('rg-export-radio').checked
+		&& !exportChannels.some(channel => getChannelSelection(channel).checked);
+
+	document.getElementById('rg-contacts-options').hidden = !withContacts;
+	document.getElementById('rg-export').disabled = nothingSelected;
+};
+
+const bindNumberLimits = input => {
+	input.addEventListener('beforeinput', event => {
+		if (event.data && !(/^\d+$/).test(event.data)) event.preventDefault();
+	});
+	input.addEventListener('input', () => {
+		if (input.value) input.value = Math.min(Math.max(Math.trunc(input.valueAsNumber), Number(input.min)), Number(input.max));
+	});
+	input.addEventListener('blur', () => input.value ||= input.defaultValue);
 };
 
 const createScopeControl = channel => {
@@ -281,7 +303,18 @@ const buildCompanionConfig = async selected => {
 	return { channels, region_transport_keys: [...regionKeys].map(([name, key]) => ({ name, key })) };
 };
 
+const fetchContacts = async params => {
+	const url = `${RG_NODES_ENDPOINT}?${new URLSearchParams(params)}`;
+	const contacts = await fetchData(url).catch(err => {
+		throw new Error(`GET ${url} - ${err.message}`, { cause: err });
+	});
+	if (!Array.isArray(contacts)) throw new Error(`GET ${url} - nieprawidłowy format danych`);
+
+	return contacts;
+};
+
 const downloadCompanionConfig = async () => {
+	const button = document.getElementById('rg-export');
 	const errorElement = document.getElementById('rg-export-error');
 	errorElement.hidden = true;
 
@@ -289,7 +322,22 @@ const downloadCompanionConfig = async () => {
 		const selected = exportChannels
 			.map(channel => ({ name: channel.name, ...getChannelSelection(channel) }))
 			.filter(channel => channel.checked);
-		const config = await buildCompanionConfig(selected);
+		const withRadio = document.getElementById('rg-export-radio').checked;
+		const withContacts = document.getElementById('rg-export-contacts').checked;
+		const codes = [document.getElementById('rg-home').value, ...getSelectedNeighbors()];
+		const nodeParams = {
+			voivodeship: codes.join(','),
+			type: 'repeater',
+			days: document.getElementById('rg-contacts-days').value || document.getElementById('rg-contacts-days').defaultValue,
+			limit: document.getElementById('rg-contacts-limit').value,
+		};
+
+		button.disabled = true;
+		const config = {
+			...(withRadio && { radio_settings: RG_RADIO_SETTINGS }),
+			...(selected.length && await buildCompanionConfig(selected)),
+			...(withContacts && { contacts: await fetchContacts(nodeParams) }),
+		};
 
 		const link = document.createElement('a');
 		link.href = URL.createObjectURL(new Blob([JSON.stringify(config, null, 2)], { type: 'application/json' }));
@@ -297,9 +345,11 @@ const downloadCompanionConfig = async () => {
 		link.click();
 		setTimeout(() => URL.revokeObjectURL(link.href), 1000);
 	} catch (err) {
-		console.error('Nie udało się wygenerować pliku z kanałami:', err);
+		console.error('Nie udało się wygenerować pliku:', err);
 		document.getElementById('rg-export-error-details').textContent = err.message;
 		errorElement.hidden = false;
+	} finally {
+		updateExportButton();
 	}
 };
 
@@ -307,7 +357,7 @@ const validateLocalScope = (city, home) => {
 	if (!city) return [];
 
 	const errors = [];
-	if (!(/^[a-z0-9]+(-[a-z0-9]+)*$/).test(city)) errors.push('Nazwa regionu może zawierać tylko małe litery, cyfry i myślniki (nie na początku ani na końcu).');
+	if (!(/^[a-z0-9]+(-[a-z0-9]+)*$/).test(city)) errors.push('Użyj tylko małych liter od a do z i cyfr. Poszczególne części nazwy możesz oddzielić pojedynczymi myślnikami.');
 	if (new TextEncoder().encode(city).length > RG_MAX_NAME_BYTES) errors.push(`Nazwa regionu może mieć maksymalnie ${RG_MAX_NAME_BYTES} bajtów.`);
 
 	const voivodeship = Object.values(regionData.voivodeships).find(config => config.scope === city);
@@ -317,7 +367,7 @@ const validateLocalScope = (city, home) => {
 	if (city === rootScope) {
 		errors.push(`Nazwa „${city}” jest zarezerwowana dla regionu krajowego.`);
 	} else if (voivodeship && !belongsToHome) {
-		errors.push(`Nazwa „${city}” jest już zajęta przez województwo ${voivodeship.name}.`);
+		errors.push(`Nazwa „${city}” jest już przypisana do regionu wojewódzkiego (${voivodeship.name}).`);
 	}
 
 	if (regions.length && !belongsToHome) errors.push(`Region „${regions[0].name}” nie należy do wybranego województwa.`);
@@ -358,7 +408,7 @@ const renderLocalRegions = (home, scope = '') => {
 
 	select.replaceChildren(
 		new Option('Bez regionu lokalnego', ''),
-		new Option('Własny region...', RG_CUSTOM_SCOPE),
+		new Option('Własny region', RG_CUSTOM_SCOPE),
 		...createGroup('Miasta i obszary', regions.filter(region => !isCounty(region))),
 		...createGroup('Powiaty', regions.filter(isCounty))
 	);
@@ -379,7 +429,7 @@ const renderLocalRegions = (home, scope = '') => {
 	customInput.value = select.value === RG_CUSTOM_SCOPE ? validScope : '';
 
 	hintElement.textContent = regions.length
-		? 'Wybierz swój powiat lub miasto. Wiele nazw to propozycje - jeśli lokalna społeczność używa innej, wybierz „Własny region”.'
+		? 'Wybierz region z listy. Wiele nazw to propozycje. Jeśli lokalna społeczność używa innej nazwy, wybierz „Własny region”.'
 		: 'Brak znanych regionów lokalnych dla tego województwa. W razie potrzeby wybierz „Własny region”.';
 
 	updateCustomRegionField();
@@ -415,7 +465,7 @@ const saveSettings = () => {
 			home: document.getElementById('rg-home').value,
 			firmware: document.getElementById('rg-fw').value,
 			city: getSelectedLocalScope(),
-			neighbors: [...document.querySelectorAll('#rg-neighbors input:checked')].map(input => input.value),
+			neighbors: getSelectedNeighbors(),
 			setDefault: document.getElementById('rg-default').checked,
 		}));
 	} catch (err) {
@@ -457,7 +507,7 @@ const renderOutput = () => {
 	defaultInput.disabled = firmware === 'old';
 	const setDefault = defaultInput.checked && !defaultInput.disabled;
 
-	const neighbors = [...document.querySelectorAll('#rg-neighbors input:checked')].map(input => input.value);
+	const neighbors = getSelectedNeighbors();
 
 	const city = getSelectedLocalScope();
 	const home = document.getElementById('rg-home').value;
@@ -562,6 +612,8 @@ const initGenerator = async () => {
 	});
 	rgForm.addEventListener('submit', event => event.preventDefault());
 	document.getElementById('rg-export').addEventListener('click', downloadCompanionConfig);
+	['rg-export-contacts', 'rg-export-radio'].forEach(id => document.getElementById(id).addEventListener('input', updateExportButton));
+	bindNumberLimits(document.getElementById('rg-contacts-days'));
 	bindToggle('rg-import', renderChannelTable);
 	bindToggle('rg-manual');
 

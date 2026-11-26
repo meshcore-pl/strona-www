@@ -150,15 +150,29 @@ Na firmware starszym niż 1.15 po dodaniu regionu komendą `region put` trzeba t
 
 
 ## Konfiguracja companiona (w aplikacji) {toc: Konfiguracja companiona}
-1. Dołącz do kanałów swojego regionu: **Dodaj kanał → Dołącz do kanału hashtagowego**, np. `#polska` i `#zachodniopomorskie`.
-2. Dla każdego kanału wybierz **3 kropki → Ustaw zakres regionu**, a następnie wskaż region z listy (nowy dodasz przyciskiem „+”), np. `pl` dla `#polska` i `pl-zp` dla `#zachodniopomorskie`.
-3. Zakres usuniesz w tym samym miejscu: **3 kropki → Wyczyść zakres**.
 
-Opcja **Wykryj regiony** wysyła zapytanie do najbliższych repeaterów (0 hop) o regiony, których przekazywanie jest dozwolone, i pozwala dodać je z listy. Działa również w przypadku repeaterów spoza listy kontaktów.
-Funkcja bywa jednak zawodna - czasami nie wykrywa regionów dostępnych na pobliskich repeaterach.
+### Import kanałów z pliku
+1. W [generatorze regionów](/generator-regionow#kanaly-w-aplikacji) kliknij **Eksportuj kanały do pliku** pod tabelą i zaznacz potrzebne kanały.
+2. Pobierz plik przyciskiem **Pobierz plik do importu**.
+3. W aplikacji MeshCore przejdź do menu **Ustawienia → Importuj konfigurację** i wskaż pobrany plik. Przed importem możesz zapisać kopię zapasową przez **Eksportuj konfigurację**.
 
-Pamiętaj, że nazwa kanału i jego region to dwa osobne ustawienia. Kanał `#test` bez zakresu nie jest tym samym co `#test` z zakresem `wlkp`. Użytkownicy muszą mieć zgodne ustawienia, aby komunikować się w wybranym regionie.
+### Ręczne dodawanie kanałów
+1. W aplikacji otwórz **Czaty → Dodaj kanał → Dołącz do kanału hashtagowego**.
+2. W polu **Nazwa kanału** wpisz nazwę kanału hashtagowego z tabeli, np. `#zachodniopomorskie`. Jeśli w tabeli widnieje „Bez regionu”, przejdź do kroku 6.
+3. Kliknij **Pokaż ustawienia zaawansowane**, a następnie pole **Zakres regionu**.
+4. Jeśli regionu z tabeli nie ma na liście, kliknij **+** (**Dodaj region**), wpisz jego nazwę i zatwierdź ją przyciskiem **✓** w prawym górnym rogu.
+5. Wybierz region z listy, np. `pl-zp` dla `#zachodniopomorskie`. Jeśli tabela podaje kilka opcji, wybierz tę, z której korzystają Twoi rozmówcy.
+6. Kliknij **Dołącz do kanału**. Powtórz te kroki dla pozostałych kanałów.
 
+Zakres istniejącego kanału zmienisz w jego menu pod trzema kropkami. Wybierz **Ustaw zakres regionu** lub **Wyczyść zakres**.
+
+Rozmówcy muszą mieć tę samą nazwę kanału i ten sam zakres. Na przykład `#test` bez zakresu i `#test` z zakresem `wlkp` to osobne kanały.
+
+### Wykrywanie regionów
+W aplikacji MeshCore wybierz **Trzy kropki → Narzędzia → Wykryj regiony**.
+
+Companion odpyta pobliskie repeatery w bezpośrednim zasięgu (0 hop) o regiony, które obsługą. Odpowiedzieć mogą też repeatery spoza listy kontaktów. Wykryte regiony możesz dodać z listy.
+Funkcja bywa jednak zawodna - czasami nic nie wykrywa.
 
 ## Domyślny zakres {toc: Domyślny zakres}
 Region można nadać także pakietom spoza kanałów - wiadomościom prywatnym (DM), advertom i żądaniom.

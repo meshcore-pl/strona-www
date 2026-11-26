@@ -1,4 +1,5 @@
 import { getStats, formatWarsawDate } from '../../global/services/nodeCache.js';
+import { getVoivodeshipStats } from '../../services/voivodeshipStats.js';
 import StatsDaily from '../../global/database/models/statsDaily.model.js';
 import { sendSuccess, sendError } from '../../utils/apiResponse.js';
 
@@ -12,11 +13,19 @@ const INVALID_DAYS = `Nieprawidłowy parametr days. Dozwolone wartości: liczba 
 
 const isValidDays = days => days === 'all' || (typeof days === 'string' && DAYS_RE.test(days) && Number(days) <= MAX_HISTORY_DAYS);
 
-export const getRepeaterStats = async (req, res) => {
+export const getCurrent = async (req, res) => {
 	const { region = 'pl' } = req.query;
 	if (!REGIONS.includes(region)) return sendError(res, 400, INVALID_REGION);
 
 	const stats = await getStats(region);
+	if (!stats) return sendError(res, 503, 'Dane węzłów nie są obecnie dostępne.');
+
+	res.set('Cache-Control', 'public, max-age=60');
+	sendSuccess(res, stats);
+};
+
+export const getVoivodeships = async (req, res) => {
+	const stats = await getVoivodeshipStats();
 	if (!stats) return sendError(res, 503, 'Dane węzłów nie są obecnie dostępne.');
 
 	res.set('Cache-Control', 'public, max-age=60');

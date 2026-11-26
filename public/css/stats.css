@@ -106,8 +106,72 @@
 	margin: 0;
 }
 
-#stats-error[hidden] {
+#stats-error[hidden], #stats-voivodeships-error[hidden] {
 	display: none;
+}
+
+.stats-voivodeships {
+	margin-top: 28px;
+}
+
+.stats-metric {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	gap: 8px 12px;
+	margin-bottom: 20px;
+	color: var(--text-muted);
+	font-size: 14px;
+}
+
+.stats-metric .form-control {
+	width: auto;
+	padding-block: 6px;
+	font-size: 14px;
+}
+
+.stats-map {
+	display: block;
+	width: 100%;
+	max-width: 680px;
+	height: auto;
+	margin: 0 auto;
+}
+
+.stats-map__area {
+	fill: var(--red-bright);
+	stroke: var(--border-strong);
+	stroke-width: 1px;
+	vector-effect: non-scaling-stroke;
+	outline: 0;
+	cursor: pointer;
+}
+
+.stats-map__area:hover, .stats-map__area:focus-visible {
+	stroke: var(--text);
+	stroke-width: 2px;
+}
+
+.stats-map__label {
+	fill: var(--text);
+	font-family: var(--font-mono);
+	font-size: 18px;
+	font-weight: 600;
+	text-anchor: middle;
+	dominant-baseline: central;
+	pointer-events: none;
+}
+
+.stats-chart-card .stats-map__readout {
+	min-height: 48px;
+	margin: 12px 0;
+	text-align: center;
+}
+
+.stats-table td.is-active {
+	color: var(--text);
+	font-weight: 700;
 }
 
 .stats-page__note {

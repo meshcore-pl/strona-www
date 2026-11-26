@@ -1,0 +1,119 @@
+<%- include('./includes/header.ejs', {
+	title: 'Strona testowa | MeshCore Polska',
+	noindex: true,
+	css: ['content', 'test'],
+	page: 'test'
+}) %>
+
+<main>
+	<div class="section section--legal">
+		<div class="section__inner test-page">
+			<div class="prose">
+				<p class="eyebrow">Tylko poza produkcją</p>
+				<h1>Strona testowa</h1>
+
+				<h2>Granice województw</h2>
+				<p>
+					Obrys z pliku <code>voivodeship-borders.json</code>. Kolor węzła oznacza województwo, do którego przypisuje go API. Węzły bez przypisania nie są rysowane.
+					Najedź na mapę, aby zobaczyć szczegóły. Kliknij województwo, aby je przybliżyć, a ponownie, aby wrócić do całej Polski. Kółko myszy przybliża i oddala, a przeciąganie przesuwa mapę.
+				</p>
+				<% if (!map.nodesAvailable) { %><p><strong>Dane węzłów nie są dostępne.</strong></p><% } %>
+			</div>
+
+			<div class="test-actions">
+				<button type="button" class="btn btn--secondary btn--sm" id="test-map-reset">Cała Polska</button>
+				<button type="button" class="btn btn--secondary btn--sm" data-zoom="in" aria-label="Przybliż">+</button>
+				<button type="button" class="btn btn--secondary btn--sm" data-zoom="out" aria-label="Oddal">-</button>
+				<label class="test-check"><input type="checkbox" id="test-map-nodes" autocomplete="off" checked> Pokaż węzły</label>
+			</div>
+			<p class="test-readout" id="test-map-readout">-</p>
+
+			<div class="test-map">
+				<svg id="test-map" viewBox="<%= map.viewBox %>" data-viewbox="<%= map.viewBox %>" data-x-scale="<%= map.xScale %>" data-y-scale="<%= map.yScale %>" role="img" aria-label="Mapa granic województw">
+					<% map.areas.forEach(area => { %>
+						<path class="test-map__area" d="<%= area.path %>" fill="<%= area.color %>" stroke="<%= area.color %>" data-code="<%= area.code %>" data-name="<%= area.name %>" data-viewbox="<%= area.viewBox %>"></path>
+					<% }) %>
+					<g id="test-map-points">
+						<% map.areas.forEach(area => { area.nodes.forEach(node => { %><path class="test-map__node" d="<%= node.path %>" stroke="<%= area.color %>" data-name="<%= node.name %> (<%= node.latitude %>, <%= node.longitude %>) - <%= area.name %>"></path><% }) }) %>
+					</g>
+				</svg>
+			</div>
+
+			<div class="docs-table">
+				<table>
+					<thead>
+						<tr>
+							<th>Województwo</th>
+							<th>Kod</th>
+							<th>Punkty obrysu</th>
+							<th>Węzły</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% map.areas.forEach(area => { %>
+							<tr>
+								<td><button type="button" class="test-zoom" data-viewbox="<%= area.viewBox %>"><svg width="12" height="12" aria-hidden="true"><circle cx="6" cy="6" r="6" fill="<%= area.color %>"></circle></svg> <%= area.name %></button></td>
+								<td><code><%= area.code %></code></td>
+								<td><%= area.vertices %></td>
+								<td><%= area.nodes.length %></td>
+							</tr>
+						<% }) %>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="prose">
+				<h2>Przyciski</h2>
+			</div>
+			<div class="test-actions">
+				<button type="button" class="btn btn--primary">Primary</button>
+				<button type="button" class="btn btn--secondary">Secondary</button>
+				<button type="button" class="btn btn--primary btn--sm">Primary small</button>
+				<button type="button" class="btn btn--secondary btn--sm">Secondary small</button>
+				<button type="button" class="btn btn--primary" disabled>Disabled</button>
+			</div>
+
+			<div class="prose">
+				<h2>Formularze</h2>
+			</div>
+			<div class="test-fields">
+				<input class="form-control" type="text" placeholder="Pole tekstowe" aria-label="Pole tekstowe">
+				<select class="form-control" aria-label="Lista wyboru"><option>Pierwsza opcja</option><option>Druga opcja</option></select>
+				<textarea class="form-control" rows="3" placeholder="Pole wielowierszowe" aria-label="Pole wielowierszowe"></textarea>
+				<label class="test-check"><input type="checkbox"> Niezaznaczone</label>
+				<label class="test-check"><input type="checkbox" checked> Zaznaczone</label>
+				<label class="test-check"><input type="checkbox" disabled> Wyłączone</label>
+			</div>
+
+			<div class="prose">
+				<h2>Toasty</h2>
+			</div>
+			<div class="test-actions">
+				<button type="button" class="btn btn--secondary btn--sm" data-toast="success">success</button>
+				<button type="button" class="btn btn--secondary btn--sm" data-toast="warning">warning</button>
+			</div>
+
+			<div class="prose">
+				<h2>Alerty</h2>
+				<% ['note', 'tip', 'important', 'warning', 'caution'].forEach(type => { %>
+					<div class="docs-alert docs-alert--<%= type %>">
+						<svg class="docs-alert__icon" aria-hidden="true"><use href="/icons.svg#alert-<%= type %>"></use></svg>
+						<div class="docs-alert__body">
+							<p class="docs-alert__title"><%= type %></p>
+							<p>Przykładowa treść alertu z fragmentem <code>region save</code>.</p>
+						</div>
+					</div>
+				<% }) %>
+
+				<h2>Ikony</h2>
+			</div>
+			<div class="test-actions">
+				<% icons.forEach(id => { %>
+					<span class="test-icon"><svg aria-hidden="true"><use href="/icons.svg#<%= id %>"></use></svg><code><%= id %></code></span>
+				<% }) %>
+			</div>
+		</div>
+	</div>
+</main>
+
+<%- include('./includes/footer.ejs', { scripts: ['/js/test.js'] }) %>

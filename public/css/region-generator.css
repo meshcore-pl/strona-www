@@ -223,6 +223,26 @@
 	margin: 2px 0 0 27px;
 }
 
+.rg-suboption {
+	display: grid;
+	grid-template-columns: auto auto;
+	justify-content: start;
+	align-items: center;
+	gap: 8px 12px;
+	margin: 10px 0 0 27px;
+	font-size: 15px;
+}
+
+.rg-suboption .rg-scope-select {
+	justify-self: start;
+	width: auto;
+}
+
+.rg-option .rg-suboption .rg-hint {
+	grid-column: 1 / -1;
+	margin: 0;
+}
+
 .rg-field > .rg-hint, .rg-option .rg-hint {
 	font-size: 15px;
 	line-height: 1.5;
@@ -318,7 +338,10 @@
 }
 
 .rg-actions {
-	text-align: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 12px;
 }
 
 .rg-page [hidden] {

@@ -5,7 +5,7 @@ const MAX_RESULTS = 8;
 let indexPromise = null;
 const loadIndex = () => {
 	if (!indexPromise) {
-		indexPromise = fetch('/api/v1/dokumentacja/szukaj')
+		indexPromise = fetch('/api/v1/docs/search-index')
 			.then(async res => {
 				if (!res.ok) throw new Error(`Nie udało się pobrać indeksu wyszukiwania (HTTP ${res.status}).`);
 

@@ -1,13 +1,13 @@
 ---
 title: Publiczne API MeshCore Polska
-description: Dokumentacja publicznego API MeshCore Polska. Adresy, parametry i przykładowe odpowiedzi JSON dla regionów i kanałów, statystyk sieci oraz aktualności.
+description: Dokumentacja publicznego API MeshCore Polska. Adresy, parametry i przykładowe odpowiedzi JSON dla regionów i kanałów, węzłów, statystyk sieci oraz aktualności.
 canonical: /dokumentacja/spolecznosc/api
 createdAt: 26.11.2026
 themeColor: '#10131b'
 ---
 
 # Publiczne API MeshCore Polska {toc: Wstęp}
-API udostępnia dane o regionach i kanałach, statystyki sieci oraz aktualności. Wszystkie opisane tu żądania używają metody `GET` i działają bez klucza API.
+API udostępnia dane o regionach i kanałach, węzłach, statystyki sieci oraz aktualności. Wszystkie opisane tu żądania używają metody `GET` i działają bez klucza API.
 
 
 ## Adres bazowy
@@ -118,10 +118,47 @@ W przykładzie odpowiedzi na `GET /regions/voivodeships/zp` lista `localRegions`
 Wiele nazw regionów powiatowych ma charakter roboczy i czeka na uzgodnienie z lokalnymi grupami.
 
 
+## Węzły
+`GET /nodes` zwraca węzły z wybranych województw w formacie kontaktów, który można zaimportować w aplikacji MeshCore. Z tego adresu korzysta [Generator regionów](/generator-regionow).
+
+| Parametr | Wartości | Domyślnie |
+|---|---|---|
+| `voivodeship` | kod województwa, kilka kodów oddziel przecinkami | wymagany |
+| `type` | `client`, `repeater`, `roomServer`, `sensor`, kilka wartości oddziel przecinkami | `repeater` |
+| `days` | liczba dni od ostatniej aktualizacji, od `1` do `60` | `5` |
+| `limit` | maksymalna liczba wyników, od `1` do `350` | `350` |
+
+Wyniki są ułożone według kolejności podanych województw, a w obrębie województwa od ostatnio zaktualizowanych. Przykład: `GET /nodes?voivodeship=zp,wp&type=repeater&days=7&limit=100`.
+
+```json
+{
+  "success": true,
+  "status": 200,
+  "message": "OK",
+  "data": [
+    {
+      "type": 2,
+      "name": "Przykładowy repeater",
+      "custom_name": null,
+      "public_key": "0000000000000000000000000000000000000000000000000000000000000000",
+      "flags": 0,
+      "latitude": "53.4285",
+      "longitude": "14.5528",
+      "last_advert": 1795724288,
+      "last_modified": 1795723587,
+      "out_path_list": null
+    }
+  ]
+}
+```
+
+Pole `type` przyjmuje wartości `1` (client), `2` (repeater), `3` (room server) i `4` (sensor). Czas w polach `last_advert` i `last_modified` to sekundy od początku epoki Unix. Jeśli dane nie są dostępne, serwer odpowiada kodem `503`.
+
+
 ## Statystyki sieci
 
 ### Stan bieżący
-`GET /repeater-stats`
+`GET /stats`
 
 | Parametr | Wartości | Domyślnie |
 |---|---|---|
@@ -163,6 +200,12 @@ Jeśli dane nie są dostępne, serwer odpowiada kodem `503`.
 | `days` | liczba całkowita od `1` do `365` lub `all` (cała dostępna historia) | `90` |
 
 Pole `data` zawiera dzienne statystyki w kolejności od najstarszych do najnowszych. Każdy wpis ma pole `date` (`RRRR-MM-DD`) oraz pola `total`, `active`, `nodes`, `types` i `status` opisane w sekcji „Stan bieżący”.
+
+
+### Województwa
+`GET /stats/voivodeships`
+
+Pole `data` zawiera listę `voivodeships` oraz czas `lastRefreshedAt`. Każde województwo ma pola `code` i `name` oraz pola `total`, `active`, `nodes`, `types` i `status` opisane w sekcji „Stan bieżący”. Przynależność do województwa wynika z położenia węzła. Granice: © autorzy [OpenStreetMap](https://www.openstreetmap.org/copyright), licencja ODbL.
 
 
 ## Aktualności

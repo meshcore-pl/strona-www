@@ -64,6 +64,50 @@
 					<a href="https://mapa.meshcorepolska.org" target="_blank" rel="noopener">Zobacz mapę →</a>
 				</p>
 
+				<section class="stats-chart-card stats-voivodeships" id="stats-voivodeships" aria-labelledby="stats-voivodeships-title">
+					<h2 id="stats-voivodeships-title">Urządzenia według województw</h2>
+					<p>Bieżący stan sieci. Aktywny repeater to taki, który zaktualizował się w ciągu ostatnich 5 dni.</p>
+					<div class="docs-alert docs-alert--caution" id="stats-voivodeships-error" role="alert" hidden>
+						<svg class="docs-alert__icon" aria-hidden="true"><use href="/icons.svg#alert-caution"></use></svg>
+						<div class="docs-alert__body">
+							<p class="docs-alert__title">Coś poszło nie tak</p>
+							<p>Nie udało się pobrać statystyk województw. Spróbuj odświeżyć stronę.</p>
+						</div>
+					</div>
+					<div id="stats-voivodeships-content" hidden>
+						<div class="stats-metric">
+							<label for="stats-metric">Pokaż na mapie</label>
+							<select class="form-control" id="stats-metric" autocomplete="off">
+								<option value="nodes">Wszystkie urządzenia</option>
+								<option value="repeaters" selected>Repeatery</option>
+								<option value="active">Aktywne repeatery</option>
+								<option value="roomServers">Room serwery</option>
+								<option value="companions">Companiony</option>
+							</select>
+						</div>
+						<svg class="stats-map" viewBox="<%= voivodeshipMap.viewBox %>" role="group" aria-label="Mapa województw">
+							<% voivodeshipMap.areas.forEach(area => { %><path class="stats-map__area" d="<%= area.path %>" data-code="<%= area.code %>" tabindex="0" aria-label="<%= area.name %>"></path><% }) %>
+							<% voivodeshipMap.areas.forEach(area => { %><text class="stats-map__label" x="<%= area.labelX %>" y="<%= area.labelY %>" data-code="<%= area.code %>"></text><% }) %>
+						</svg>
+						<p class="stats-map__readout" id="stats-map-readout" aria-live="polite">Wskaż województwo, aby zobaczyć szczegóły.</p>
+						<div class="docs-table">
+							<table class="stats-table">
+								<thead>
+									<tr>
+										<th>Województwo</th>
+										<th>Wszystkie</th>
+										<th>Repeatery</th>
+										<th>Aktywne</th>
+										<th>Room serwery</th>
+										<th>Companiony</th>
+									</tr>
+								</thead>
+								<tbody id="stats-voivodeships-rows"></tbody>
+							</table>
+						</div>
+					</div>
+				</section>
+
 				<section class="stats-notes" aria-labelledby="stats-notes-title">
 					<h2 id="stats-notes-title">Jak interpretować statystyki</h2>
 
@@ -88,7 +132,7 @@
 
 					<h3>Statystyki a lokalna dostępność sieci</h3>
 					<p>
-						Statystyki dotyczą całej Polski, jednak sytuacja w poszczególnych miejscowościach może się znacznie różnić.
+						Statystyki dotyczą całej Polski i województw, jednak sytuacja w poszczególnych miejscowościach może się znacznie różnić.
 						Aby sprawdzić, jakie węzły znajdują się w Twojej okolicy, zajrzyj na mapę.
 					</p>
 				</section>
@@ -99,4 +143,4 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js" crossorigin="anonymous" defer></script>
 
-<%- include('./includes/footer.ejs', { scripts: ['/js/stats.js'] }) %>
+<%- include('./includes/footer.ejs', { scripts: ['/js/stats.js', '/js/stats-map.js'] }) %>

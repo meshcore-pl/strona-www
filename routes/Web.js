@@ -4,6 +4,7 @@ import * as docs from '../controllers/Docs.js';
 import * as news from '../controllers/News.js';
 import * as contact from '../controllers/Contact.js';
 import { sitemap } from '../controllers/Sitemap.js';
+import { test } from '../controllers/Test.js';
 import { ENDPOINTS } from '../services/serviceWorker/index.js';
 import sitePages from '../content/pages.js';
 
@@ -29,5 +30,7 @@ router.get('/aktualnosci/:tag/:title', news.post);
 router.get('/kontakt', contact.form);
 
 router.get('/sitemap.xml', sitemap);
+
+if (process.env.NODE_ENV !== 'production') router.get('/test', test);
 
 export default router;

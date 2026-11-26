@@ -1,8 +1,12 @@
 import { getScript, OFFLINE_HEADER } from '../services/serviceWorker/index.js';
 import RenderError from '../utils/renderError.js';
+import voivodeshipMap from '../services/voivodeshipMap.js';
 
 const regionGeneratorBlocked = false;
-const VIEW_LOCALS = { '/generator-regionow': { regionGeneratorBlocked } };
+const VIEW_LOCALS = {
+	'/generator-regionow': { regionGeneratorBlocked },
+	'/statystyki': { voivodeshipMap },
+};
 
 export const renderPage = ({ path, view }) => (req, res) => res.render(view, VIEW_LOCALS[path] ?? {});
 
