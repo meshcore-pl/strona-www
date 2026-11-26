@@ -115,4 +115,4 @@ Jeśli napiszesz do sprzedawcy na AliExpress, powinien zrobić Ci taki kabel na 
 > Pigtail RG316 nie będzie zbyt elastyczny. W niektórych przypadkach złącze `RF-1` może samo odpiąć się od płytki. W każdym razie i tak zalecamy `RG178` - w większości przypadków nie ma sensu kombinować. Mimo wszystko, jeśli wybierzesz ten lepszy, musisz być świadomy tego, co robisz.
 
 ## Filtry BPF
-Używaj ich wyłącznie wtedy, gdy masz bardzo wysoki NF. Więcej informacji na ich temat znajdziesz [tutaj](https://meshcorepolska.org/dokumentacja/meshcore/noise-floor#noise-floor---czym-jest).
+Używaj ich wyłącznie wtedy, gdy masz bardzo wysoki NF. Więcej informacji na ich temat znajdziesz [w dokumencie o Noise Floor](/dokumentacja/meshcore/noise-floor).

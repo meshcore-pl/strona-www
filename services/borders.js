@@ -13,6 +13,15 @@ const isInRing = (lat, lon, ring) => {
 	return inside;
 };
 
-const findVoivodeship = ({ lat, lon }) => borders.find(([, rings]) => rings.some(ring => isInRing(lat, lon, ring)))?.[0];
+const getBounds = ring => {
+	const lons = ring.map(([lon]) => lon);
+	const lats = ring.map(([, lat]) => lat);
+	return { minLon: Math.min(...lons), maxLon: Math.max(...lons), minLat: Math.min(...lats), maxLat: Math.max(...lats) };
+};
+
+const areas = borders.map(([code, rings]) => ({ code, rings: rings.map(ring => ({ ring, ...getBounds(ring) })) }));
+
+const findVoivodeship = ({ lat, lon }) => areas.find(({ rings }) => rings.some(({ ring, minLon, maxLon, minLat, maxLat }) =>
+	lon >= minLon && lon <= maxLon && lat >= minLat && lat <= maxLat && isInRing(lat, lon, ring)))?.code;
 
 export { borders, findVoivodeship };
