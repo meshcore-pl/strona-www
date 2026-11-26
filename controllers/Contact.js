@@ -1,7 +1,7 @@
 import { getRandomTip } from '../content/tips.js';
 
 const EMPTY_VALUES = { username: '', email: '', message: '' };
-const DEV_VALUES = { username: 'Jan Kowalski', email: 'contact@sefinek.net', message: 'Testowa wiadomość z formularza kontaktowego.\n\nSzybki brązowy lis przeskoczył nad leniwym psem.\nPchnąć w tę łódź jeża lub ośm skrzyń fig.\nZażółć gęślą jaźń.\n\nZnaki specjalne: <b>test</b> & "cudzysłów" \'apostrof\' 🚀😺' };
+const DEV_VALUES = { username: 'Jan Kowalski', email: 'contact@sefinek.net', message: 'Jakaś tam testowa wiadomość z formularza kontaktowego.\n\nSzybki brązowy lis przeskoczył nad leniwym psem.\nPchnąć w tę łódź jeża lub ośm skrzyń fig.\nZażółć gęślą jaźń.\n\nZnaki specjalne: <b>test</b> & "cudzysłów" \'apostrof\' 🚀😺' };
 
 export const form = (req, res) => {
 	const values = {

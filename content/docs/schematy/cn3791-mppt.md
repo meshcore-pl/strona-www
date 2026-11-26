@@ -40,4 +40,4 @@ Sam CN3791 nie chroni ogniwa przed nadmiernym rozładowaniem ani zwarciem. Spraw
 > Nie ładuj standardowych ogniw Li-ion/LiPo poniżej **0°C**, chyba że producent ogniwa na to pozwala. W instalacji zewnętrznej zadbaj o blokadę ładowania przy zbyt niskiej temperaturze - nie zakładaj, że moduł ją ma.
 
 ## Materiał wideo
-[Zobacz moduł ładowarki CN3791 MPPT na YouTube](https://www.youtube.com/shorts/2e9aoDYbNOk).
+[Zobacz filmik o tym module na YouTube](https://www.youtube.com/shorts/2e9aoDYbNOk)

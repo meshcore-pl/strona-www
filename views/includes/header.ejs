@@ -46,6 +46,10 @@ const _themeColor = locals.themeColor || defaultThemeColor;
 	<link rel="apple-touch-icon" href="/images/logo/apple-touch-icon.png" sizes="180x180">
 	<link rel="manifest" href="/manifest.webmanifest">
 
+	<!-- RSS -->
+	<% if (locals.feed) { %><link rel="alternate" type="application/rss+xml" title="<%= feed.title %>" href="<%= domain %><%= feed.href %>">
+	<% } %><link rel="alternate" type="application/rss+xml" title="Aktualności MeshCore Polska" href="<%= domain %>/aktualnosci/rss.xml">
+
 	<!-- Stylesheets -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

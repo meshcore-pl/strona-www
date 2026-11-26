@@ -29,6 +29,7 @@ Więcej o zmianach w generatorze i o tym, jak skorzystać z importu, przeczytasz
    - Dodano `/api/v1/regions` z danymi o regionach i kanałach, `/api/v1/nodes` z listą węzłów oraz `/api/v1/stats/voivodeships` ze statystykami województw.
    - Bieżące statystyki są teraz dostępne pod `/api/v1/stats`. Adres `/api/v1/repeater-stats` działa jako alias.
 4. **Dokumentacja i Aktualności**
+   - Dodano [kanał RSS z aktualnościami](https://meshcorepolska.org/aktualnosci/rss.xml) oraz osobne kanały dla poszczególnych tagów.
    - Rozbudowano artykuł [Regionalizacja wiadomości](https://meshcorepolska.org/dokumentacja/meshcore/regionalizacja-wiadomosci).
    - Dodano wpis [Aktualizacja aplikacji MeshCore 1.52.0](https://meshcorepolska.org/aktualnosci/lista-zmian/aktualizacja-aplikacji-meshcore-1-52-0).
    - Opublikowano polskie tłumaczenie poradnika [Czujnik obecności LD2410S w MeshCore](https://meshcorepolska.org/aktualnosci/poradnik/czujnik-obecnosci-ld2410s).

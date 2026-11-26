@@ -56,6 +56,7 @@ Strony to pliki Markdown renderowane server-side, z nawigacją kliencką w stylu
 Changelogi aplikacji i firmware, tłumaczenia wpisów z `blog.meshcore.io` i treści społecznościowe. Współdzieli `services/markdown.js` z dokumentacją, ale ma osobną strukturę (nie jest w `content/docs.js`).
 - `content/news/<oficjalne|spolecznosc>/<slug>.md` (frontmatter: `title`, `description`, `tags`, `createdAt`, opcjonalnie `updatedAt`, `image` z `imageAlt`); katalog nadrzędny wyznacza źródło (`SOURCES` w `services/news.js`), inna nazwa rzuci błąd przy starcie.
 - `services/news.js`: parsuje wszystko przy starcie, sortuje malejąco po dacie, buduje `tagMap`; tylko pierwszy tag (`postTags[0]`) wyznacza `tagSlug` i `canonical` (`/aktualnosci/<tagSlug>/<slug>`, bez tagów `/aktualnosci/<slug>`). Zmiana `.md` wymaga restartu w produkcji.
+- RSS 2.0: `GET /aktualnosci/rss.xml` i `/aktualnosci/<tagSlug>/rss.xml` (`services/newsFeed.js`, 25 najnowszych wpisów z pełną treścią i bezwzględnymi adresami). `guid` opiera się na slugu pliku, więc zmiana nazwy `.md` pokaże wpis czytelnikom ponownie. Autodiscovery w `header.ejs` (lokalna `feed` dodaje kanał tagu); worker pomija ścieżki `*/rss.xml`.
 - `controllers/News.js`: indeks, lista wg tagu, wpis; gdy tag w URL-u nie zgadza się z `tagSlug`, robi 301 na kanoniczny adres. Zawsze pełny render EJS (bez wariantu JSON). `post.html` jest renderowany jako `<%- %>`, bo treść jest zaufana (z repo). `post.ejs` ładuje `lightbox.js`.
 
 ## Styl kodu

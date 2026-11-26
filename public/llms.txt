@@ -11,6 +11,7 @@ Przydatne adresy:
 - Strona główna: https://meshcorepolska.org
 - Dokumentacja: https://meshcorepolska.org/dokumentacja
 - Aktualności: https://meshcorepolska.org/aktualnosci
+- Kanał RSS z aktualnościami: https://meshcorepolska.org/aktualnosci/rss.xml
 - Mapa sieci: https://mapa.meshcorepolska.org
 
 ## Informacja dla agentów AI

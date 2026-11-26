@@ -24,7 +24,9 @@ router.get('/dokumentacja/:group', docs.group);
 router.get('/dokumentacja/:group/:slug', docs.page);
 
 router.get('/aktualnosci', news.index);
+router.get('/aktualnosci/rss.xml', news.feed);
 router.get('/aktualnosci/:tag', news.tag);
+router.get('/aktualnosci/:tag/rss.xml', news.feed);
 router.get('/aktualnosci/:tag/:title', news.post);
 
 router.get('/kontakt', contact.form);

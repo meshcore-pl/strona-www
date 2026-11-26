@@ -155,6 +155,15 @@ a.news-tag--active {
 	color: var(--red-bright);
 }
 
+.news-rss {
+	margin-left: auto;
+}
+
+.news-rss__icon {
+	width: 13px;
+	height: 13px;
+}
+
 .news-tag__count {
 	color: rgba(153, 161, 181, 0.7);
 }

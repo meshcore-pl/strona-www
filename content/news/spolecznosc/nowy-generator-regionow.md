@@ -39,6 +39,15 @@ Na [mapie i w tabeli województw](/statystyki#stats-voivodeships) zobaczysz łą
 
 Za aktywny uznajemy repeater zgłoszony przez [Map Auto Uploader](https://github.com/recrof/map.meshcore.io-uploader), jeśli jego wpis na mapie zaktualizowano mniej niż 5 dni temu. W zestawieniu aktywnych mogą więc nie pojawić się wszystkie działające repeatery.
 
+## Kanał RSS
+Nowe wpisy możesz teraz śledzić w czytniku RSS. Dodaj w nim adres [kanału z wszystkimi aktualnościami](/aktualnosci/rss.xml):
+
+```text
+https://meshcorepolska.org/aktualnosci/rss.xml
+```
+
+Jeśli interesuje Cię tylko wybrany temat, otwórz stronę tagu, na przykład [Poradnik](/aktualnosci/poradnik), i kliknij przycisk **RSS**. Kanały zawierają 25 najnowszych wpisów wraz z pełną treścią.
+
 ## Publiczne API
 Od teraz udostępniamy dane o regionach i kanałach, listy węzłów z wybranych województw oraz statystyki w podziale na województwa. Opisy parametrów i przykładowe odpowiedzi znajdziesz w [dokumentacji API](/dokumentacja/spolecznosc/api).
 

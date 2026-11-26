@@ -143,7 +143,7 @@ self.addEventListener('fetch', event => {
 		return;
 	}
 
-	if (PASSTHROUGH_PATHS.has(url.pathname)) return;
+	if (PASSTHROUGH_PATHS.has(url.pathname) || url.pathname.endsWith('/rss.xml')) return;
 
 	if (url.pathname === ENDPOINTS.manifest) respond(() => networkFirst(event, request, PAGES_CACHE));
 	else if (FILE_PATH_RE.test(url.pathname)) respond(() => networkFirst(event, request, FILES_CACHE, MAX_FILES));
