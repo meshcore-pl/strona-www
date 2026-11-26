@@ -295,7 +295,8 @@
 	width: 100%;
 	margin: 0;
 	font-size: 14px;
-	border-collapse: collapse;
+	border-collapse: separate;
+	border-spacing: 0;
 }
 
 .docs-table th, .docs-table td {

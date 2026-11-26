@@ -4,7 +4,6 @@ import { getVoivodeship } from './regions.js';
 const MAP_PADDING = 4;
 const X_SCALE = 100 * Math.cos(52 * Math.PI / 180);
 const Y_SCALE = 100;
-// Zaokrąglenie do wspólnej siatki zmniejsza SVG bez szczelin na stykach województw
 const GRID = 2;
 
 const snap = value => Math.round(value * GRID) / GRID;

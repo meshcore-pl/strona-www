@@ -7,7 +7,7 @@ const PUBLIC_DIR = path.join(import.meta.dirname, '../../public');
 const TEMPLATE_PATH = path.join(import.meta.dirname, 'worker.js');
 const PRECACHE_DIRS = ['css', 'js', 'images/logo', 'images/meshcore'];
 const EXTRA_FILES = ['favicon.ico', 'icons.svg', 'images/checkbox-check.svg'];
-const EXCLUDED_RE = /\.(map|md|txt)$|(^|\/)LICENSE[^/]*$|\.LICENSE$/;
+const EXCLUDED_RE = /\.(map|md|txt)$|(^|\/)LICENSE[^/]*$|\.LICENSE$|\/public\/(css|js)\/test\.(css|js)$/;
 
 const ENDPOINTS = { serviceWorker: '/service-worker.js', manifest: '/manifest.webmanifest', offline: '/offline', regions: '/api/v1/regions' };
 // Strona offline jest serwowana wyłącznie żądaniu workera z tym nagłówkiem, bezpośrednie wejście daje 404

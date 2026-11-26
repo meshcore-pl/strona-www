@@ -306,6 +306,15 @@ a.news-source--spolecznosc:hover {
 	margin: 0 auto;
 }
 
+.news-video {
+	display: block;
+	width: min(100%, 360px);
+	height: auto;
+	margin: 24px auto 0;
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+}
+
 #news-post__footer {
 	display: flex;
 	flex-wrap: wrap;

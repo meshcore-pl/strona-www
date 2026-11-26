@@ -38,7 +38,6 @@ const buildMap = async () => {
 	});
 
 	let nodesAvailable = true;
-	// Sekwencyjnie, żeby pierwsze wywołanie zbudowało cache dla pozostałych
 	for (const area of areas) {
 		const contacts = await getContacts({ voivodeships: [area.code], types: [...CONTACT_TYPES.keys()], days: 36500, limit: Infinity });
 		if (!contacts) {

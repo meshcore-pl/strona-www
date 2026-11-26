@@ -125,10 +125,10 @@ Wiele nazw regionów powiatowych ma charakter roboczy i czeka na uzgodnienie z l
 |---|---|---|
 | `voivodeship` | kod województwa, kilka kodów oddziel przecinkami | wymagany |
 | `type` | `client`, `repeater`, `roomServer`, `sensor`, kilka wartości oddziel przecinkami | `repeater` |
-| `days` | liczba dni od ostatniej aktualizacji, od `1` do `60` | `5` |
+| `days` | liczba dni od ostatniego odebrania pakietu węzła, od `1` do `60` | `5` |
 | `limit` | maksymalna liczba wyników, od `1` do `350` | `350` |
 
-Wyniki są ułożone według kolejności podanych województw, a w obrębie województwa od ostatnio zaktualizowanych. Przykład: `GET /nodes?voivodeship=zp,wp&type=repeater&days=7&limit=100`.
+Wyniki są ułożone według kolejności podanych województw, a w obrębie województwa od ostatnio usłyszanych. Przykład: `GET /nodes?voivodeship=zp,wp&type=repeater&days=7&limit=100`.
 
 ```json
 {
@@ -186,7 +186,7 @@ Pole `type` przyjmuje wartości `1` (client), `2` (repeater), `3` (room server) 
 | `active` | liczba repeaterów ze statusem `recent` |
 | `nodes` | liczba wszystkich węzłów |
 | `types` | liczba węzłów według typu |
-| `status` | liczba repeaterów według czasu od ostatniej aktualizacji: `recent` (mniej niż 5 dni), `stale` (od 5 do mniej niż 10 dni), `old` (od 10 do mniej niż 20 dni), `extinct` (co najmniej 20 dni), `none` (repeatery dodane ręcznie) |
+| `status` | liczba repeaterów według czasu od ostatniego odebrania ich pakietu: `recent` (mniej niż 5 dni), `stale` (od 5 do mniej niż 10 dni), `old` (od 10 do mniej niż 20 dni), `extinct` (co najmniej 20 dni), `none` (repeatery dodane ręcznie) |
 | `lastRefreshedAt` | czas ostatniego odświeżenia danych w formacie ISO 8601 lub `null`, jeśli czas odświeżenia jest nieznany |
 
 Jeśli dane nie są dostępne, serwer odpowiada kodem `503`.

@@ -1,7 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-// Zewnętrzne pierścienie województw [lon, lat], uproszczone: Nominatim (polygon_threshold=0.002), © OpenStreetMap, ODbL
 const borders = Object.entries(JSON.parse(fs.readFileSync(path.join(import.meta.dirname, '../content/voivodeship-borders.json'), 'utf8')));
 
 const isInRing = (lat, lon, ring) => {

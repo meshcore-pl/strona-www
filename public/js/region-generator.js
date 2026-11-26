@@ -10,7 +10,6 @@ const RG_SETTINGS_KEY = 'meshcore.regionGenerator.settings';
 const RG_CUSTOM_SCOPE = '__custom__';
 const RG_PUBLIC_SECRET = '8b3387e9c5cdea6ac9e5edbaa115cd72';
 const RG_EXPORT_FILENAME = 'meshcore-polska.json';
-// Bez tx_power: zależy od sprzętu
 const RG_RADIO_SETTINGS = { frequency: 869618, bandwidth: 62500, spreading_factor: 8, coding_rate: 8 };
 
 let highlighterPromise = null;
@@ -333,10 +332,13 @@ const downloadCompanionConfig = async () => {
 		};
 
 		button.disabled = true;
+		const contacts = withContacts ? await fetchContacts(nodeParams) : null;
+		if (contacts && !contacts.length) throw new Error(`Brak repeaterów aktywnych w wybranych województwach (liczba dni: ${nodeParams.days}). Zwiększ liczbę dni, wybierz sąsiednie województwo lub odznacz dodawanie repeaterów.`);
+
 		const config = {
 			...(withRadio && { radio_settings: RG_RADIO_SETTINGS }),
 			...(selected.length && await buildCompanionConfig(selected)),
-			...(withContacts && { contacts: await fetchContacts(nodeParams) }),
+			...(contacts && { contacts }),
 		};
 
 		const link = document.createElement('a');

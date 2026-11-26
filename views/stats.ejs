@@ -66,7 +66,7 @@
 
 				<section class="stats-chart-card stats-voivodeships" id="stats-voivodeships" aria-labelledby="stats-voivodeships-title">
 					<h2 id="stats-voivodeships-title">Urządzenia według województw</h2>
-					<p>Bieżący stan sieci. Aktywny repeater to taki, który zaktualizował się w ciągu ostatnich 5 dni.</p>
+					<p>Za aktywny uznajemy repeater, którego advert trafił na mapę w ciągu ostatnich 5 dni za pośrednictwem <a href="https://github.com/recrof/map.meshcore.io-uploader" target="_blank" rel="noopener">Map Auto Uploader</a>.</p>
 					<div class="docs-alert docs-alert--caution" id="stats-voivodeships-error" role="alert" hidden>
 						<svg class="docs-alert__icon" aria-hidden="true"><use href="/icons.svg#alert-caution"></use></svg>
 						<div class="docs-alert__body">
@@ -89,6 +89,7 @@
 							<% voivodeshipMap.areas.forEach(area => { %><path class="stats-map__area" d="<%= area.path %>" data-code="<%= area.code %>" tabindex="0" aria-label="<%= area.name %>"></path><% }) %>
 							<% voivodeshipMap.areas.forEach(area => { %><text class="stats-map__label" x="<%= area.labelX %>" y="<%= area.labelY %>" data-code="<%= area.code %>"></text><% }) %>
 						</svg>
+						<p class="stats-map__attribution">Granice województw: © autorzy <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a></p>
 						<p class="stats-map__readout" id="stats-map-readout" aria-live="polite">Wskaż województwo, aby zobaczyć szczegóły.</p>
 						<div class="docs-table">
 							<table class="stats-table">
