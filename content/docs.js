@@ -6,6 +6,7 @@ export default [
 		description: 'Sprzęt, anteny, konfiguracja. Buduj sieć mesh i wysyłaj wiadomości drogą radiową - bez internetu i zasięgu GSM. Dokumentacja w trakcie prac.',
 		pages: [
 			{ slug: 'wprowadzenie', title: 'Podstawy i słownik pojęć' },
+			{ slug: 'faq', title: 'Najczęściej zadawane pytania' },
 			{ slug: 'aktualne-presety', title: 'Presety i ustawienia radia' },
 			{ slug: 'regionalizacja-wiadomosci', title: 'Regionalizacja wiadomości' },
 			{ slug: 'noise-floor', title: 'Noise Floor (NF)' },
