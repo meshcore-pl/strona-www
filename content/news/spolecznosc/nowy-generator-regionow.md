@@ -37,10 +37,10 @@ Kliknij **Pobierz plik do importu**. Następnie w aplikacji MeshCore wybierz **U
 ## Statystyki według województw
 Na [mapie i w tabeli województw](/statystyki#stats-voivodeships) zobaczysz łączną liczbę urządzeń oraz osobne zestawienia repeaterów, aktywnych repeaterów, room serwerów i companionów.
 
-Za aktywny uznajemy repeater zgłoszony przez Map Auto Uploader, jeśli jego wpis na mapie zaktualizowano mniej niż 5 dni temu. W zestawieniu aktywnych mogą więc nie pojawić się wszystkie działające repeatery. [Map Auto Uploader na GitHubie](https://github.com/recrof/map.meshcore.io-uploader)
+Za aktywny uznajemy repeater zgłoszony przez [Map Auto Uploader](https://github.com/recrof/map.meshcore.io-uploader), jeśli jego wpis na mapie zaktualizowano mniej niż 5 dni temu. W zestawieniu aktywnych mogą więc nie pojawić się wszystkie działające repeatery.
 
 ## Publiczne API
-Publiczne API udostępnia teraz dane o regionach i kanałach, listy węzłów z wybranych województw oraz statystyki w podziale na województwa. Opisy parametrów i przykładowe odpowiedzi znajdziesz w [dokumentacji API](/dokumentacja/spolecznosc/api).
+Od teraz udostępniamy dane o regionach i kanałach, listy węzłów z wybranych województw oraz statystyki w podziale na województwa. Opisy parametrów i przykładowe odpowiedzi znajdziesz w [dokumentacji API](/dokumentacja/spolecznosc/api).
 
 Poniższe polecenia pobierają kolejno dane o regionach i kanałach województwa zachodniopomorskiego, do 80 kontaktów repeaterów oraz statystyki wszystkich województw. Zapytanie o kontakty obejmuje województwa zachodniopomorskie i wielkopolskie oraz wpisy zaktualizowane w ciągu ostatnich 5 dni.
 

@@ -6,7 +6,7 @@ sourceUrl: https://blog.meshcore.io/2026/11/26/motions-sensors
 tags: [Poradnik, Sprzęt, Oprogramowanie]
 ---
 
-# Czujnik obecności LD2410S w MeshCore
+# Węzeł MeshCore z czujnikiem obecności LD2410S
 ![Projekt węzła czujnikowego MeshCore z LD2410S](https://blog.meshcore.io/assets/images/2026/11/26/hero.jpg)
 
 _Scott Powell, główny programista firmware MeshCore_

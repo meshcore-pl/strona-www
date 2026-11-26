@@ -1,5 +1,5 @@
 ---
-title: Publiczne API MeshCore Polska
+title: Publiczne API MeshCore
 description: Adresy, parametry i przykładowe odpowiedzi publicznego API MeshCore Polska. Regiony i kanały, węzły, statystyki sieci i aktualności.
 canonical: /dokumentacja/spolecznosc/api
 createdAt: 26.11.2026
@@ -115,7 +115,7 @@ W przykładzie odpowiedzi na `GET /regions/voivodeships/zp` lista `localRegions`
 | `neighbors` | kody sąsiednich województw (tylko województwa) |
 | `voivodeships` | kody województw, w których występuje region (tylko regiony lokalne) |
 | `automatic` | `true`, jeśli generator automatycznie dodaje region dla przypisanych mu województw, np. `zachod` (tylko regiony lokalne) |
-| `socials` | linki do miejsc, w których spotyka się lokalna społeczność, np. `discord`. Jeśli brak linków, wartością jest pusty obiekt |
+| `socials` | linki społeczności, np. `discord`. Jeśli ich brak, wartością jest pusty obiekt |
 
 Wiele nazw regionów powiatowych ma charakter roboczy i czeka na uzgodnienie z lokalnymi grupami.
 
@@ -220,7 +220,7 @@ Pole `data` zawiera dzienne statystyki w kolejności od najstarszych do najnowsz
 
 Pole `data` zawiera listę `voivodeships` i czas ostatniego odświeżenia danych w polu `lastRefreshedAt`. Każdy wpis zawiera kod (`code`), nazwę (`name`) i te same pola statystyk co w sekcji „Stan bieżący”. API przypisuje węzły do województw na podstawie współrzędnych. Jeśli dane nie są dostępne, serwer zwraca `503`.
 
-Dane o granicach województw pochodzą z OpenStreetMap (© autorzy OpenStreetMap, licencja ODbL). [Prawa autorskie i licencja OpenStreetMap](https://www.openstreetmap.org/copyright)
+Granice województw: © autorzy [OpenStreetMap](https://www.openstreetmap.org/copyright), licencja ODbL.
 
 
 ## Aktualności
