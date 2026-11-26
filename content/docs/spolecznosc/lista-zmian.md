@@ -35,7 +35,7 @@ Więcej o zmianach w generatorze i o tym, jak skorzystać z importu, przeczytasz
    - Dodano wpis [Aktualizacja aplikacji MeshCore 1.52.0](https://meshcorepolska.org/aktualnosci/lista-zmian/aktualizacja-aplikacji-meshcore-1-52-0).
    - Opublikowano polskie tłumaczenie poradnika [Czujnik obecności LD2410S w MeshCore](https://meshcorepolska.org/aktualnosci/poradnik/czujnik-obecnosci-ld2410s).
    - Uzupełniono opisy plików do pobrania i dodano przycisk do drukowania etykiety do paczek. [Materiały graficzne](https://meshcorepolska.org/dokumentacja/spolecznosc/materialy-graficzne)
-6. **Pozostałe zmiany.** Poprawiono obramowania tabel i uporządkowano kod backendu, w tym generowanie mapy witryny. Wprowadzono także inne zmiany.
+6. **Pozostałe zmiany.** Poprawiono wygląd tabel i uporządkowano kod backendu, w tym generowanie mapy witryny. Wprowadzono także inne zmiany jakościowe.
 
 ## v1.10.6 (22.11.2026)
 1. Dodano opisy kanałów oraz kanał `#emergency` w Generatorze regionów.
