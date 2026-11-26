@@ -29,27 +29,27 @@
 
 				<h2>Urządzenia na mapie</h2>
 				<% if (stats) { %>
-				<div class="stats-summary">
-					<% [
-						[stats.nodes, { one: 'urządzenie łącznie', few: 'urządzenia łącznie', many: 'urządzeń łącznie' }],
-						[stats.types.repeater, { one: 'repeater', few: 'repeatery', many: 'repeaterów' }],
-						[stats.active, { one: 'aktywny repeater', few: 'aktywne repeatery', many: 'aktywnych repeaterów' }],
-						[stats.types.roomServer, { one: 'room serwer', few: 'room serwery', many: 'room serwerów' }],
-						[stats.types.client, { one: 'companion', few: 'companiony', many: 'companionów' }],
-					].forEach(([value, forms]) => { %>
-					<div class="stats-tile">
-						<strong><%= value.toLocaleString('pl-PL') %></strong>
-						<span><%= pluralizePolish(value, forms) %></span>
+					<div class="stats-summary">
+						<% [
+							[stats.nodes, { one: 'urządzenie łącznie', few: 'urządzenia łącznie', many: 'urządzeń łącznie' }],
+							[stats.types.repeater, { one: 'repeater', few: 'repeatery', many: 'repeaterów' }],
+							[stats.active, { one: 'aktywny repeater', few: 'aktywne repeatery', many: 'aktywnych repeaterów' }],
+							[stats.types.roomServer, { one: 'room serwer', few: 'room serwery', many: 'room serwerów' }],
+							[stats.types.client, { one: 'companion', few: 'companiony', many: 'companionów' }],
+						].forEach(([value, forms]) => { %>
+							<div class="stats-tile">
+								<strong><%= value.toLocaleString('pl-PL') %></strong>
+								<span><%= pluralizePolish(value, forms) %></span>
+							</div>
+						<% }) %>
 					</div>
-					<% }) %>
-				</div>
-				<p><% if (refreshedAt) { %>Stan na <%= refreshedAt %>. <% } %>Aktywny repeater to taki, którego advert trafił na mapę w ciągu ostatnich 5 dni przez <a href="https://github.com/recrof/map.meshcore.io-uploader" target="_blank" rel="noopener">Map Auto Uploader</a>. Porównaj województwa w <a href="/statystyki#stats-voivodeships">statystykach</a>.</p>
+					<p><% if (refreshedAt) { %>Stan na <%= refreshedAt %>. <% } %>Aktywny repeater to taki, którego advert trafił na mapę w ciągu ostatnich 5 dni przez <a href="https://github.com/recrof/map.meshcore.io-uploader" target="_blank" rel="noopener">Map Auto Uploader</a>. Porównaj województwa w <a href="/statystyki#stats-voivodeships">statystykach</a>.</p>
 				<% } else { %><%- include('./_stats-unavailable.ejs') %><% } %>
 
 				<%- include('./_map.ejs', {
-					label: 'Położenie województwa na mapie Polski',
-					currentCode: voivodeship.code,
-					getOpacity: code => (code === voivodeship.code ? 0.85 : 0.08),
+				label: 'Położenie województwa na mapie Polski',
+				currentCode: voivodeship.code,
+				getOpacity: code => (code === voivodeship.code ? 0.85 : 0.08),
 				}) %>
 
 				<h2>Kanały</h2>
@@ -57,22 +57,22 @@
 					<table>
 						<thead><tr><th>Kanał</th><th>Przeznaczenie</th></tr></thead>
 						<tbody>
-							<% channels.forEach(({ channel, description }) => { %><tr><td><code><%= channel %></code></td><td><%= description %></td></tr><% }) %>
+						<% channels.forEach(({ channel, description }) => { %><tr><td><code><%= channel %></code></td><td><%= description %></td></tr><% }) %>
 						</tbody>
 					</table>
 				</div>
 
 				<h2>Regiony lokalne</h2>
 				<% if (localRegions.length) { %>
-				<p>Znane nazwy regionów w województwie. Jeśli lokalna społeczność używa innej, trzymaj się jej ustaleń i <a href="/kontakt">daj nam o tym znać</a> - zaktualizujemy dane.</p>
-				<div class="docs-table">
-					<table>
-						<thead><tr><th>Obszar</th><th>Region</th><th>Kanały</th></tr></thead>
-						<tbody>
+					<p>Znane nazwy regionów w województwie. Jeśli lokalna społeczność używa innej, trzymaj się jej ustaleń i <a href="/kontakt">daj nam o tym znać</a> - zaktualizujemy dane.</p>
+					<div class="docs-table">
+						<table>
+							<thead><tr><th>Obszar</th><th>Region</th><th>Kanały</th></tr></thead>
+							<tbody>
 							<% localRegions.forEach(region => { %><tr><td><%= region.name %></td><td><% [region.scope].flat().forEach((scope, i) => { %><%= i ? ', ' : '' %><code><%= scope %></code><% }) %></td><td><%= region.channels.join(', ') || '-' %></td></tr><% }) %>
-						</tbody>
-					</table>
-				</div>
+							</tbody>
+						</table>
+					</div>
 				<% } else { %><p>Nie znamy jeszcze regionów lokalnych w tym województwie.</p><% } %>
 
 				<h2>Społeczność</h2>
@@ -80,7 +80,7 @@
 					<table>
 						<thead><tr><th>Obszar</th><th>Discord</th></tr></thead>
 						<tbody>
-							<% communities.forEach(community => { %><tr><td><%= community.name %></td><td><% if (community.url) { %><a href="<%= community.url %>" target="_blank" rel="noopener">Dołącz teraz</a><% } else { %>Brak znanego serwera<% } %></td></tr><% }) %>
+						<% communities.forEach(community => { %><tr><td><%= community.name %></td><td><% if (community.url) { %><a href="<%= community.url %>" target="_blank" rel="noopener">Dołącz teraz</a><% } else { %>Brak znanego serwera<% } %></td></tr><% }) %>
 						</tbody>
 					</table>
 				</div>

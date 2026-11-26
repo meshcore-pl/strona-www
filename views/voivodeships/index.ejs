@@ -29,12 +29,12 @@
 
 				<ul class="voivodeship-list">
 					<% voivodeships.forEach(({ code, name, stats }) => { %>
-					<li>
-						<a href="/wojewodztwa/<%= code %>">
-							<strong><%= name %></strong>
-							<% if (stats) { %><span><%= stats.nodes.toLocaleString('pl-PL') %> <%= pluralizePolish(stats.nodes, { one: 'urządzenie', few: 'urządzenia', many: 'urządzeń' }) %>, <%= stats.types.repeater.toLocaleString('pl-PL') %> <%= pluralizePolish(stats.types.repeater, { one: 'repeater', few: 'repeatery', many: 'repeaterów' }) %></span><% } %>
-						</a>
-					</li>
+						<li>
+							<a href="/wojewodztwa/<%= code %>">
+								<strong><%= name %></strong>
+								<% if (stats) { %><span><%= stats.nodes.toLocaleString('pl-PL') %> <%= pluralizePolish(stats.nodes, { one: 'urządzenie', few: 'urządzenia', many: 'urządzeń' }) %>, <%= stats.types.repeater.toLocaleString('pl-PL') %> <%= pluralizePolish(stats.types.repeater, { one: 'repeater', few: 'repeatery', many: 'repeaterów' }) %></span><% } %>
+							</a>
+						</li>
 					<% }) %>
 				</ul>
 

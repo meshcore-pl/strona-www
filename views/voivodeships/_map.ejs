@@ -1,5 +1,5 @@
 <svg class="stats-map voivodeship-map" viewBox="<%= voivodeshipMap.viewBox %>" role="group" aria-label="<%= label %>">
-	<% voivodeshipMap.areas.forEach(area => { %><a href="/wojewodztwa/<%= area.code %>" aria-label="Województwo <%= area.name %>"<% if (area.code === locals.currentCode) { %> aria-current="page"<% } %>><path class="stats-map__area" d="<%= area.path %>" fill-opacity="<%= getOpacity(area.code) %>"></path></a><% }) %>
-	<% if (locals.getLabel) { voivodeshipMap.areas.forEach(area => { %><text class="stats-map__label" x="<%= area.labelX %>" y="<%= area.labelY %>" aria-hidden="true"><%= getLabel(area.code) %></text><% }) } %>
+    <% voivodeshipMap.areas.forEach(area => { %><a href="/wojewodztwa/<%= area.code %>" aria-label="Województwo <%= area.name %>"<% if (area.code === locals.currentCode) { %> aria-current="page"<% } %>><path class="stats-map__area" d="<%= area.path %>" fill-opacity="<%= getOpacity(area.code) %>"></path></a><% }) %>
+    <% if (locals.getLabel) { voivodeshipMap.areas.forEach(area => { %><text class="stats-map__label" x="<%= area.labelX %>" y="<%= area.labelY %>" aria-hidden="true"><%= getLabel(area.code) %></text><% }) } %>
 </svg>
 <p class="stats-map__attribution"><% if (locals.note) { %><%= note %> <% } %>Granice województw: © autorzy <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a></p>
