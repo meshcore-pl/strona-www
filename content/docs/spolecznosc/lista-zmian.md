@@ -14,8 +14,8 @@ Zmiany dotyczące `mapa.meshcorepolska.org` znajdziesz osobno: kliknij ikonę `i
 > [!TIP]
 > Jeśli po aktualizacji strona nie wyświetla się poprawnie, wykonaj twarde odświeżenie kombinacją `CTRL + F5`.
 
-## v1.11.0 (26.11.2026)
-Więcej o zmianach w generatorze i o tym, jak skorzystać z importu, przeczytasz we wpisie [Odświeżony generator regionów MeshCore](https://meshcorepolska.org/aktualnosci/spolecznosc/nowy-generator-regionow).
+## v1.11.0 (27.11.2026)
+Więcej o zmianach w generatorze i o tym, jak skorzystać z eksportu, przeczytasz we wpisie [Odświeżony generator regionów MeshCore](https://meshcorepolska.org/aktualnosci/spolecznosc/nowy-generator-regionow).
 
 1. **[Generator regionów](https://meshcorepolska.org/generator-regionow)**
    - Podzielono konfigurację na kroki. Ich zakres zależy od tego, czy konfigurujesz repeater i companiona, czy tylko companiona.
