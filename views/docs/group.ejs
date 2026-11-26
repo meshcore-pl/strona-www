@@ -51,8 +51,8 @@
 					<span class="docs-page-card__title"><%= p.title %></span>
 					<% if (p.description) { %><p class="docs-page-card__desc"><%= p.description %></p><% } %>
 					<span class="docs-page-card__footer">
-						<% if (p.updatedAt) { %><span class="docs-page-card__date">Aktualizacja: <%= p.updatedAt %></span>
-						<% } else if (p.createdAt) { %><span class="docs-page-card__date">Utworzono: <%= p.createdAt %></span>
+						<% if (p.updatedAt) { %><span class="docs-page-card__date">Ostatnia aktualizcja: <%= p.updatedAt %></span>
+						<% } else if (p.createdAt) { %><span class="docs-page-card__date">Data utworzenia: <%= p.createdAt %></span>
 						<% } %>
 						<svg class="docs-page-card__arrow" aria-hidden="true"><use href="/icons.svg#arrow-right"></use></svg>
 					</span>
