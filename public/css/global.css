@@ -27,6 +27,7 @@
 	--container: 1450px;
 	--container-subpages: 1550px;
 	--nav-h: 68px;
+	--page-top: calc(28px + var(--nav-h));
 	--glow-size: 130% 55%;
 	--glow-pos: 50% -12%;
 	--glow-color: rgba(224, 18, 48, .11);

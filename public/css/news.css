@@ -1,5 +1,5 @@
 .news-hero {
-	padding: calc(40px + var(--nav-h)) 24px 40px;
+	padding: var(--page-top) 24px 40px;
 }
 
 .news-hero + .section {
@@ -7,7 +7,7 @@
 }
 
 .news-hero--post {
-	padding-top: calc(24px + var(--nav-h));
+	padding-top: var(--page-top);
 	padding-bottom: 0;
 }
 

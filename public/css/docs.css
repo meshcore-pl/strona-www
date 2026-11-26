@@ -1,5 +1,5 @@
 .docs-hero {
-	padding: calc(40px + var(--nav-h)) 24px 40px;
+	padding: var(--page-top) 24px 40px;
 }
 
 .docs-hero + .section {

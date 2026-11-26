@@ -1,5 +1,5 @@
 .section--kontakt {
-	padding-top: calc(32px + var(--nav-h));
+	padding-top: var(--page-top);
 }
 
 #contact-inner {

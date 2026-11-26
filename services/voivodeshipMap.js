@@ -9,7 +9,6 @@ const snap = value => Math.round(value * GRID) / GRID;
 
 const simplify = ring => ring.map(point => project(point).map(snap)).filter(([x, y], i, points) => !i || x !== points[i - 1][0] || y !== points[i - 1][1]);
 
-// Współrzędne względne są ponad dwa razy krótsze, a na siatce 1/GRID odejmowanie nie gubi precyzji
 const toPath = ([start, ...points]) => {
 	const deltas = points.map(([x, y], i) => {
 		const [previousX, previousY] = i ? points[i - 1] : start;
