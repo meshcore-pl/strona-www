@@ -13,6 +13,26 @@ Nie. MeshCore i Meshtastic to dwa osobne projekty, które wykorzystują LoRa do 
 
 Ten sam sprzęt często może jednak działać z jednym albo drugim oprogramowaniem. Nie oznacza to obsługi obu sieci jednocześnie. Jeśli Twój model jest obsługiwany przez [flasher MeshCore](https://flasher.meshcore.io), możesz zastąpić Meshtastic oprogramowaniem MeshCore i dołączyć do sieci MeshCore.
 
+## Czym różnią się płytki z nRF52 i ESP32?
+
+To dwie najpopularniejsze rodziny mikrokontrolerów w urządzeniach dla MeshCore: nRF52 od Nordic Semiconductor i ESP32 od Espressif. Żaden z nich nie ma wbudowanego radia LoRa, odpowiada za nie osobny układ, np. `SX1262`. Sam wybór mikrokontrolera nie decyduje więc o zasięgu.
+
+| Cecha | nRF52 | ESP32 |
+| --- | --- | --- |
+| Przykładowe urządzenia | RAK4631, Heltec T114, XIAO nRF52840, SenseCAP T1000-E | Heltec V4, XIAO ESP32-S3, LilyGO T-Beam, T-Deck |
+| Wbudowana łączność | Bluetooth LE, bez Wi-Fi | Wi-Fi i Bluetooth LE (w modelach używanych zwykle w MeshCore) |
+| Połączenie companiona z aplikacją | Bluetooth, USB | Bluetooth, USB, Wi-Fi (zależnie od wariantu firmware) |
+| Pobór energii | Niski | Wyraźnie wyższy, zwłaszcza przy włączonym Wi-Fi |
+| Zasilanie bateryjne i solarne | Zalecany wybór, wystarczy mniejszy akumulator i panel | Możliwe, ale wymaga większego akumulatora i panelu |
+| Wydajność i pamięć | Mniejsze, ale w pełni wystarczające dla MeshCore | Zwykle większe, przydatne np. przy rozbudowanych ekranach |
+| Cena płytek | Zwykle wyższa | Zwykle niższa |
+| Aktualizacja bez kabla (OTA) | Przez Bluetooth | Przez Wi-Fi |
+| Typowe zastosowanie w MeshCore | Przenośne companiony, trackery, repeatery solarne | Tanie companiony, repeatery i room serwery ze stałym zasilaniem |
+
+Jeśli najważniejszy jest długi czas pracy na baterii, wybierz nRF52. Jeśli chcesz mieć połączenie z companionem w całym domu przez Wi-Fi (BLE ma mniejszy zasięg), wybierz ESP32. Rzeczywisty pobór prądu zależy też od konkretnej płytki, ekranu, GPS, wersji oprogramowania i natężenia ruchu w sieci.
+
+Poradniki aktualizacji OTA: [nRF52](/aktualnosci/poradnik/aktualizacje-ota-nrf) · [ESP32](/aktualnosci/poradnik/aktualizacje-ota-esp)
+
 ## Dlaczego komputer nie widzi płytki do sflashowania?
 
 Najczęstszą przyczyną problemu jest kabel USB. Oba rodzaje kabli mogą wyglądać identycznie, ale różnić się przeznaczeniem:

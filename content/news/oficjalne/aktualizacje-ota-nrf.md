@@ -11,8 +11,6 @@ tags: [Poradnik, Oprogramowanie]
 # Jak zaktualizować firmware MeshCore na nRF52 przez Bluetooth
 Aktualizacja firmware Twoich repeaterów lub room serwerów jest bardzo prosta dla węzłów opartych o nRF.
 
-![Aktualizacja OTA na urządzeniu nRF](https://blog.meshcore.io/assets/images/2026/04/02/nRF-DFU.webp)
-
 ## 1. Pobierz nowy plik .zip
 Wejdź na [webflasher](https://flasher.meshcore.io), znajdź swoje urządzenie, wybierz rolę Repeater lub Room Server, a następnie najnowszą wersję.
 W prawym dolnym rogu kliknij przycisk **Download**, a następnie wybierz plik .zip.

@@ -32,6 +32,7 @@ Więcej o zmianach w generatorze i o tym, jak skorzystać z eksportu, przeczytas
 5. **Dokumentacja i Aktualności**
    - Dodano [kanał RSS z aktualnościami](https://meshcorepolska.org/aktualnosci/rss.xml) oraz osobne kanały dla poszczególnych tagów.
    - Rozbudowano artykuł [Regionalizacja wiadomości](https://meshcorepolska.org/dokumentacja/meshcore/regionalizacja-wiadomosci).
+   - Dodano [Najczęściej zadawane pytania (FAQ)](https://meshcorepolska.org/dokumentacja/meshcore/faq).
    - Dodano wpis [Aktualizacja aplikacji MeshCore 1.52.0](https://meshcorepolska.org/aktualnosci/lista-zmian/aktualizacja-aplikacji-meshcore-1-52-0).
    - Opublikowano polskie tłumaczenie poradnika [Czujnik obecności LD2410S w MeshCore](https://meshcorepolska.org/aktualnosci/poradnik/czujnik-obecnosci-ld2410s).
    - Uzupełniono opisy plików do pobrania i dodano przycisk do drukowania etykiety do paczek. [Materiały graficzne](https://meshcorepolska.org/dokumentacja/spolecznosc/materialy-graficzne)
