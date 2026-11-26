@@ -1,5 +1,5 @@
 ---
-title: MeshCore 1.52.0 - nowa zakładka czatów i wygodniejsze rozmowy
+title: MeshCore 1.52.0 - zakładka czatów, wygodniejsze rozmowy
 description: MeshCore 1.52.0 wprowadza zakładkę czatów, podgląd wiadomości, filtry nieprzeczytanych rozmów i zapisywanie telemetrii w aplikacji. Sprawdź pełną listę zmian.
 createdAt: 23.11.2026
 themeColor: '#2a2c31'

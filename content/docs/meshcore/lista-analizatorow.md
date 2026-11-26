@@ -1,5 +1,5 @@
 ---
-title: Analizatory sieci MeshCore w Polsce i Europie
+title: Analizatory sieci w Polsce i Europie
 description: Lista publicznych analizatorów sieci MeshCore w Polsce i Europie oraz nasze zastrzeżenia dotyczące prywatności, archiwizowania danych i profilowania aktywności.
 canonical: /dokumentacja/meshcore/lista-analizatorow
 createdAt: 17.07.2026

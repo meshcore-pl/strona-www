@@ -1,5 +1,5 @@
 ---
-title: Publiczne API MeshCore
+title: Publiczne API
 description: Adresy, parametry i przykładowe odpowiedzi publicznego API MeshCore Polska. Regiony i kanały, węzły, statystyki sieci i aktualności.
 canonical: /dokumentacja/spolecznosc/api
 createdAt: 26.11.2026

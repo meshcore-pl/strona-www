@@ -1,5 +1,5 @@
 ---
-title: MeshCore Profiles - publiczne profile operatorów
+title: MeshCore Profiles - publiczne profile
 description: Serwis łączący publiczne profile operatorów MeshCore z mapą sieci - wyszukiwanie po nazwie, kluczu publicznym lub koncie Discord.
 canonical: /dokumentacja/meshcore/profile-meshcore
 createdAt: 25.07.2026

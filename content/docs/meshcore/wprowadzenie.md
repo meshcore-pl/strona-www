@@ -1,5 +1,5 @@
 ---
-title: Wprowadzenie do MeshCore - pojęcia i przepisy
+title: Wprowadzenie - pojęcia i przepisy
 description: Słownik pojęć MeshCore (preset, SF, CR, advert), role urządzeń oraz zasady legalnego nadawania w paśmie 868-869 MHz - limity ERP i duty cycle 10%.
 canonical: /dokumentacja/meshcore/wprowadzenie
 createdAt: 13.07.2026

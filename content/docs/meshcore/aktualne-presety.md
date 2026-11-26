@@ -1,5 +1,5 @@
 ---
-title: Presety EU/UK Narrow - zalecana konfiguracja radia
+title: Presety EU/UK Narrow - konfiguracja radia
 description: Zalecany preset EU/UK Narrow dla sieci MeshCore w Polsce - ustawienia radia, interwały advertów, podwójne potwierdzenia i oznaczenia repeaterów off-grid.
 canonical: /dokumentacja/meshcore/aktualne-presety
 createdAt: 25.07.2026

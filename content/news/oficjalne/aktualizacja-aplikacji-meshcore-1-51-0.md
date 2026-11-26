@@ -1,5 +1,5 @@
 ---
-title: Zmiany w aplikacji MeshCore 1.51.0 - szybkie wiadomości i mapy
+title: Zmiany w MeshCore 1.51.0 - szybkie wiadomości i mapy
 description: MeshCore 1.51.0 dodaje szybkie wiadomości, nowe funkcje map, ustawienia ponawiania wysyłki i sterowanie brzęczykiem companiona. Sprawdź pełną listę zmian.
 createdAt: 04.11.2026
 tags: [Lista zmian, Aplikacja, Tłumaczenia]

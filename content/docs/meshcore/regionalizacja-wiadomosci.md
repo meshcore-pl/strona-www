@@ -1,5 +1,5 @@
 ---
-title: Regionalizacja wiadomości w MeshCore
+title: Regionalizacja wiadomości
 description: Jak działa regionalizacja wiadomości kanałowych w MeshCore - konfiguracja CLI, ustawianie regionu w aplikacji i schemat regionów w Polsce.
 canonical: /dokumentacja/meshcore/regionalizacja-wiadomosci
 createdAt: 3.08.2026

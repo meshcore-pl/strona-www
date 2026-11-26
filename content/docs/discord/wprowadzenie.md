@@ -1,5 +1,5 @@
 ---
-title: Wprowadzenie do społeczności MeshCore Polska
+title: Wprowadzenie do społeczności
 description: Zasady działania społeczności MeshCore Polska na Discordzie - rola administracji, wyłączenie odpowiedzialności oraz kwestie prawne.
 canonical: /dokumentacja/discord/wprowadzenie
 createdAt: 12.07.2026

@@ -1,5 +1,5 @@
 ---
-title: Lista zmian meshcorepolska.org
+title: Lista zmian na stronie
 description: Historia aktualizacji strony meshcorepolska.org, wersja po wersji - nowe funkcje, poprawki i zmiany w kodzie oraz treści.
 canonical: /dokumentacja/spolecznosc/lista-zmian
 createdAt: 2.08.2026

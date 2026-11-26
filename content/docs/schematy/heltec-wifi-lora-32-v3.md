@@ -1,5 +1,5 @@
 ---
-title: Heltec WiFi LoRa 32 V3 - pinout i dokumentacja
+title: Heltec WiFi LoRa 32 V3 - pinout
 description: Karta techniczna Heltec WiFi LoRa 32 V3 (HTIT-WB32LA) - ESP32-S3, SX1262, pinout, zasilanie i link do pełnej dokumentacji producenta.
 canonical: /dokumentacja/schematy/heltec-wifi-lora-32-v3
 createdAt: 21.08.2026

@@ -1,5 +1,5 @@
 ---
-title: Materiały graficzne MeshCore Polska do pobrania
+title: Materiały graficzne do pobrania
 description: Pobierz loga, banery, faviconki i etykietę do paczek MeshCore Polska. Materiały graficzne do Twoich publikacji oraz etykieta 150 × 100 mm do druku.
 canonical: /dokumentacja/spolecznosc/materialy-graficzne
 createdAt: 12.07.2026
