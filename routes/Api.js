@@ -1,67 +1,31 @@
 import { Router } from 'express';
-import news from '../services/news.js';
-import { getStats, formatWarsawDate } from '../global/services/nodeCache.js';
-import StatsDaily from '../global/database/models/statsDaily.model.js';
+import * as limiter from '../middlewares/ratelimit.js';
+import * as stats from '../controllers/api/Stats.js';
+import * as news from '../controllers/api/News.js';
+import * as regions from '../controllers/api/Regions.js';
+import * as docs from '../controllers/api/Docs.js';
+import * as contact from '../controllers/api/Contact.js';
+import { notFound, handleError } from '../controllers/api/Errors.js';
 
 const router = Router();
 
-const MAX_HISTORY_DAYS = 365;
-const DEFAULT_HISTORY_DAYS = 90;
+router.get('/repeater-stats', stats.getRepeaterStats);
+router.get('/stats/history', stats.getHistory);
 
-router.get('/api/v1/repeater-stats', async (req, res) => {
-	try {
-		const region = req.query.region === 'all' ? 'all' : 'pl';
-		const stats = await getStats(region);
-		if (!stats) return res.status(503).json({ success: false, status: 503, message: 'Dane węzłów nie są obecnie dostępne.' });
+router.get('/regions', regions.getAll);
+router.get('/regions/voivodeships', regions.getVoivodeships);
+router.get('/regions/voivodeships/:code', regions.getOneVoivodeship);
+router.get('/regions/local', regions.getLocal);
+router.get('/regions/local/:code', regions.getOneLocal);
 
-		res.set('Cache-Control', 'public, max-age=60');
-		res.json({ success: true, status: 200, message: 'OK', data: stats });
-	} catch (err) {
-		console.error(err);
-		res.status(500).json({ success: false, status: 500, message: 'Wewnętrzny błąd serwera.' });
-	}
-});
+router.get('/news/post', news.getPost);
+router.get('/news/sources', news.getSources);
 
-router.get('/api/v1/stats/history', async (req, res) => {
-	try {
-		const region = req.query.region === 'all' ? 'all' : 'pl';
-		const query = { region };
+router.get('/dokumentacja/szukaj', docs.getSearchIndex);
 
-		if (req.query.days !== 'all') {
-			const days = Math.min(Math.max(parseInt(req.query.days, 10) || DEFAULT_HISTORY_DAYS, 1), MAX_HISTORY_DAYS);
+router.post('/kontakt', limiter.contactForm, contact.sendMessage);
 
-			const cutoff = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
-			query.date = { $gte: formatWarsawDate(cutoff) };
-		}
-
-		const history = await StatsDaily.find(query, '-_id -region')
-			.sort({ date: 1 })
-			.lean();
-
-		res.set('Cache-Control', 'public, max-age=300');
-		res.json({ success: true, status: 200, message: 'OK', data: history });
-	} catch (err) {
-		console.error(err);
-		res.status(500).json({ success: false, status: 500, message: 'Wewnętrzny błąd serwera.' });
-	}
-});
-
-router.get('/api/v1/news/post', (req, res) => {
-	const post = news.posts.find(p => p.sourceUrl && p.sourceUrl === req.query.sourceUrl);
-	if (!post) return res.status(404).json({ success: false, status: 404, message: 'Nie znaleziono wpisu.' });
-
-	res.set('Cache-Control', 'public, max-age=300');
-	res.json({ success: true, status: 200, message: 'OK', data: { url: post.canonical, title: post.title, markdown: post.markdown } });
-});
-
-router.get('/api/v1/news/sources', (req, res) => {
-	const data = {};
-	for (const post of news.posts) {
-		if (post.sourceUrl) data[post.sourceUrl] = post.canonical;
-	}
-
-	res.set('Cache-Control', 'public, max-age=300');
-	res.json({ success: true, status: 200, message: 'OK', data });
-});
+router.use(notFound);
+router.use(handleError);
 
 export default router;

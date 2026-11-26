@@ -112,6 +112,9 @@ self.addEventListener('install', event => {
 		const offline = await fetch(ENDPOINTS.offline, { cache: 'reload', headers: { [OFFLINE_HEADER]: '1' } });
 		if (offline.ok) await store(PAGES_CACHE, new Request(self.location.origin + ENDPOINTS.offline), await unredirect(offline));
 
+		const regions = await fetch(ENDPOINTS.regions, { cache: 'reload' });
+		if (regions.ok) await store(API_CACHE, new Request(self.location.origin + ENDPOINTS.regions), regions);
+
 		await self.skipWaiting();
 	})());
 });

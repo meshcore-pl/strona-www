@@ -9,7 +9,7 @@ const PRECACHE_DIRS = ['css', 'js', 'images/logo', 'images/meshcore'];
 const EXTRA_FILES = ['favicon.ico', 'icons.svg', 'images/checkbox-check.svg'];
 const EXCLUDED_RE = /\.(map|md|txt)$|(^|\/)LICENSE[^/]*$|\.LICENSE$/;
 
-const ENDPOINTS = { serviceWorker: '/service-worker.js', manifest: '/manifest.webmanifest', offline: '/offline' };
+const ENDPOINTS = { serviceWorker: '/service-worker.js', manifest: '/manifest.webmanifest', offline: '/offline', regions: '/api/v1/regions' };
 // Strona offline jest serwowana wyłącznie żądaniu workera z tym nagłówkiem, bezpośrednie wejście daje 404
 const OFFLINE_HEADER = 'X-Offline-Precache';
 const PAGE_PATHS = sitePages.map(page => page.path);

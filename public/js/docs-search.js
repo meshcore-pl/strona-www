@@ -6,11 +6,15 @@ let indexPromise = null;
 const loadIndex = () => {
 	if (!indexPromise) {
 		indexPromise = fetch('/api/v1/dokumentacja/szukaj')
-			.then(res => {
+			.then(async res => {
 				if (!res.ok) throw new Error(`Nie udało się pobrać indeksu wyszukiwania (HTTP ${res.status}).`);
-				return res.json();
+
+				const { data } = await res.json();
+				if (!Array.isArray(data)) throw new Error('Indeks wyszukiwania ma nieprawidłowy format.');
+				return data;
 			})
-			.catch(() => {
+			.catch(err => {
+				console.error(err);
 				indexPromise = null;
 				return null;
 			});
@@ -115,11 +119,11 @@ const init = () => {
 		if (!items.length) {
 			const empty = document.createElement('p');
 			empty.id = 'docs-search__empty';
-			empty.textContent = 'Brak wyników.';
+			empty.textContent = index ? 'Brak wyników.' : 'Nie udało się pobrać indeksu wyszukiwania. Spróbuj ponownie.';
 			results.append(empty);
 			results.hidden = false;
 			input.setAttribute('aria-expanded', 'true');
-			if (status) status.textContent = 'Brak wyników.';
+			if (status) status.textContent = empty.textContent;
 			return;
 		}
 

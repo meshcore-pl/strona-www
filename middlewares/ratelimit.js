@@ -20,6 +20,5 @@ export const contactForm = rateLimit({
 	standardHeaders: 'draft-7',
 	legacyHeaders: false,
 	store: redisStore('mcpl:ratelimit:contactForm:'),
-	skip: req => req.method !== 'POST',
-	handler: (req, res) => res.status(429).json({ success: false, status: 429, message: 'Zbyt wiele żądań. Spróbuj ponownie za chwilę.' }),
+	handler: (req, res) => RenderError(res, 429),
 });

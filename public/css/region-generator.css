@@ -24,7 +24,120 @@
 	backdrop-filter: blur(4px);
 }
 
-.rg-card > :last-child {
+.rg-card > :nth-last-child(1 of :not([hidden])) {
+	margin-bottom: 0;
+}
+
+.rg-scenario {
+	display: grid;
+	gap: 16px;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	min-width: 0;
+	margin: 32px 0 0;
+	padding: 0;
+	border: 0;
+}
+
+.rg-scenario legend {
+	margin-bottom: 12px;
+	padding: 0;
+	color: var(--text);
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.rg-scenario__option {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr);
+	align-content: start;
+	gap: 0 12px;
+	padding: 18px 20px;
+	border: 1px solid var(--border-strong);
+	border-radius: var(--radius);
+	background: var(--glass-bg);
+	cursor: pointer;
+	transition: border-color .2s, background-color .2s;
+}
+
+.rg-scenario__option:hover {
+	border-color: var(--red);
+}
+
+.rg-scenario__option:has(input:checked) {
+	border-color: var(--red-bright);
+	background: var(--red-glow-bg);
+}
+
+.rg-scenario__option input {
+	grid-row: span 2;
+	margin: 5px 0 0;
+	accent-color: var(--red-bright);
+}
+
+.rg-scenario__title {
+	color: var(--text);
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 1.3;
+}
+
+.rg-scenario__desc {
+	color: var(--text-muted);
+	font-size: 14px;
+	line-height: 1.4;
+}
+
+.rg-steps {
+	counter-reset: rg-step;
+}
+
+.rg-step {
+	margin-top: 44px;
+	counter-increment: rg-step;
+}
+
+.rg-page .rg-step > h2 {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-top: 0;
+}
+
+.rg-step > h2::before {
+	content: counter(rg-step);
+	display: grid;
+	flex: none;
+	place-items: center;
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	background: var(--red);
+	color: #fff;
+	font-size: 16px;
+}
+
+.rg-cleanup {
+	padding: 14px 20px;
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+	background: var(--glass-bg);
+}
+
+.rg-cleanup summary {
+	color: var(--text);
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.rg-cleanup[open] summary {
+	margin-bottom: 14px;
+}
+
+.rg-cleanup .rg-field {
+	margin-bottom: 12px;
+}
+
+.rg-cleanup > :nth-last-child(1 of :not([hidden])), .rg-cleanup > :nth-last-child(1 of :not([hidden])) > :last-child {
 	margin-bottom: 0;
 }
 
@@ -167,7 +280,7 @@
 }
 
 @media (max-width: 800px) {
-	.rg-previews {
+	.rg-previews, .rg-scenario {
 		grid-template-columns: minmax(0, 1fr);
 	}
 }
@@ -190,10 +303,28 @@
 	width: 28%;
 }
 
+.rg-channels-table .rg-check {
+	font-size: 14px;
+}
+
+.rg-channels-table span.rg-check {
+	cursor: auto;
+}
+
+.rg-scope-select {
+	min-width: 140px;
+	padding-block: 5px;
+	font-size: 14px;
+}
+
 .rg-actions {
 	text-align: center;
 }
 
 .rg-page [hidden] {
 	display: none;
+}
+
+#rg-load-error .docs-alert__body p:nth-last-child(2) {
+	margin-bottom: 4px;
 }

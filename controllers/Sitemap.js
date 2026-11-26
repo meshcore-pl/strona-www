@@ -1,10 +1,7 @@
-import { Router } from 'express';
 import { createSitemap } from '../utils/sitemap.js';
 import docs from '../services/docs.js';
 import news from '../services/news.js';
 import pages from '../content/pages.js';
-
-const router = Router();
 
 const LASTMOD = {
 	'/dokumentacja': () => docs.lastModified,
@@ -19,6 +16,4 @@ const getEntries = () => [
 	...docs.groups.flatMap(group => group.visiblePages.map(page => ({ loc: `/dokumentacja/${group.slug}/${page.slug}`, lastmod: page.date }))),
 ];
 
-router.get('/sitemap.xml', createSitemap(getEntries));
-
-export default router;
+export const sitemap = createSitemap(getEntries);

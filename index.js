@@ -5,15 +5,12 @@ import pkg from './package.json' with { type: 'json' };
 import './global/database/mongoose.js';
 
 // Routes
-import PagesRouter from './routes/Pages.js';
 import ApiRouter from './routes/Api.js';
-import DocsRouter from './routes/Docs.js';
-import NewsRouter from './routes/News.js';
-import ContactRouter from './routes/Contact.js';
-import SitemapRouter from './routes/Sitemap.js';
+import WebRouter from './routes/Web.js';
 
 // Middleware imports
 import timeout from './middlewares/timeout.js';
+import cors from './middlewares/cors.js';
 // import blockAiBots from './middlewares/blockAiBots.js';
 import logger from './global/middlewares/morgan.js';
 import * as limiter from './middlewares/ratelimit.js';
@@ -73,18 +70,15 @@ app.use(helmet({
 }));
 app.use(express.static('public'));
 app.use(logger);
+app.use('/api/v1', cors);
 if (isProd) app.use(limiter.global);
 app.use(timeout());
 // app.use(blockAiBots);
 app.use(express.urlencoded({ extended: false, limit: '8kb' }));
 
 
-app.use(PagesRouter);
-app.use(ApiRouter);
-app.use(DocsRouter);
-app.use(NewsRouter);
-app.use(ContactRouter);
-app.use(SitemapRouter);
+app.use('/api/v1', ApiRouter);
+app.use(WebRouter);
 
 
 // Error handling
