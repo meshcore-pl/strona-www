@@ -1,6 +1,6 @@
 <%- include('./includes/header.ejs', {
 	title: 'Generator regionów MeshCore | MeshCore Polska',
-	description: 'Wygeneruj komendy do konfiguracji regionów na repeaterze MeshCore i sprawdź, jakie zakresy ustawić dla poszczególnych kanałów.',
+	description: 'Wygeneruj komendy do konfiguracji regionów na repeaterze MeshCore i sprawdź, jakie regiony ustawić dla poszczególnych kanałów.',
 	canonical: '/generator-regionow',
 	css: [`${cdn}/css/code-viewer.css`, 'content', 'region-generator'],
 	page: 'region-generator'
@@ -48,7 +48,7 @@
 						<label class="rg-scenario__option">
 							<input type="radio" name="rg-scenario" value="companion" autocomplete="off">
 							<span class="rg-scenario__title">Mam tylko companiona</span>
-							<span class="rg-scenario__desc">Lista kanałów i zakresów do ustawienia w aplikacji.</span>
+							<span class="rg-scenario__desc">Lista kanałów i regionów do ustawienia w aplikacji.</span>
 						</label>
 					</fieldset>
 				<% } %>
@@ -74,10 +74,10 @@
 									<p class="docs-alert__title">Zanim usuniesz regiony zdalnie</p>
 									<p>
 										Sprawdź, czy przy <code>*</code> w wyniku komendy <code>region</code> widnieje <code>F</code> - tylko wtedy repeater przepuszcza ruch bez regionu.
-										Upewnij się też, że Twój companion łączy się z repeaterem bez zakresu regionu - jeśli korzysta z usuwanego regionu (np. jako domyślnego zakresu), możesz utracić zdalny dostęp do repeatera.
+										Upewnij się też, że Twój companion łączy się z repeaterem bez ustawionego regionu - jeśli korzysta z usuwanego regionu (np. jako domyślnego), możesz utracić zdalny dostęp do repeatera.
 									</p>
 									<p>
-										Jeśli usuwasz region ustawiony jako domyślny zakres repeatera, po zmianach ustaw nowy domyślny zakres.<br>
+										Jeśli usuwasz region ustawiony jako domyślny w repeaterze, po zmianach ustaw nowy domyślny region.<br>
 										Bieżące ustawienie sprawdzisz komendą <code>region default</code>.
 									</p>
 								</div>
@@ -164,7 +164,7 @@
 									<div class="rg-option" data-rg-scenario="repeater">
 										<label class="rg-check">
 											<input type="checkbox" id="rg-default">
-											<span>Ustaw domyślny zakres repeatera na <code>pl</code> (firmware 1.15+)</span>
+											<span>Ustaw domyślny region repeatera na <code>pl</code> (firmware 1.15+)</span>
 										</label>
 										<p class="rg-hint">
 											Repeater będzie wysyłał adverty z regionem <code>pl</code>.
@@ -203,7 +203,7 @@
 
 									<section class="rg-step">
 										<h2 id="kanaly-w-aplikacji">Ustaw kanały na companionie</h2>
-										<p>Zaimportuj kanały z pliku, aby dodać je razem z ich zakresami.</p>
+										<p>Zaimportuj kanały z pliku, aby dodać je razem z ich regionami.</p>
 										<ol>
 											<li>Kliknij <b>Eksportuj kanały do pliku</b> pod tabelą i zaznacz potrzebne kanały.</li>
 											<li>W razie potrzeby zaznacz dodatkowe opcje, a następnie kliknij <b>Pobierz plik do importu</b>.</li>
@@ -213,7 +213,7 @@
 											<svg class="docs-alert__icon" aria-hidden="true"><use href="/icons.svg#alert-warning"></use></svg>
 											<div class="docs-alert__body">
 												<p class="docs-alert__title">Kanał Public bez regionu</p>
-												<p>Zostaw kanał <code>Public</code> bez regionu. Do rozmów regionalnych używaj kanałów i zakresów z tabeli.</p>
+												<p>Zostaw kanał <code>Public</code> bez regionu. Do rozmów regionalnych używaj kanałów i regionów z tabeli.</p>
 											</div>
 										</div>
 										<div class="docs-table">
@@ -221,7 +221,7 @@
 												<thead>
 													<tr>
 														<th>Kanał</th>
-														<th>Zakres regionu</th>
+														<th>Region</th>
 														<th>Przeznaczenie</th>
 													</tr>
 												</thead>
@@ -290,10 +290,24 @@
 											<tbody id="rg-community-groups"></tbody>
 										</table>
 									</div>
-									<p class="rg-actions"><a href="/dokumentacja/meshcore/lista-analizatorow" class="btn btn--secondary btn--sm">Lista analizatorów</a></p>
+									<div class="docs-alert docs-alert--note">
+										<svg class="docs-alert__icon" aria-hidden="true"><use href="/icons.svg#alert-note"></use></svg>
+										<div class="docs-alert__body">
+											<p class="docs-alert__title">Chcesz sprawdzić ruch w sieci?</p>
+											<p>Zajrzyj na <a href="/dokumentacja/meshcore/lista-analizatorow">listę publicznych analizatorów</a> sieci MeshCore.</p>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
+					</div>
+				</div>
+
+				<div class="docs-alert docs-alert--tip">
+					<svg class="docs-alert__icon" aria-hidden="true"><use href="/icons.svg#alert-tip"></use></svg>
+					<div class="docs-alert__body">
+						<p class="docs-alert__title">Jesteś programistą?</p>
+						<p>Budujesz coś z wykorzystaniem regionów? Jeśli potrzebujesz listy regionów i kanałów, skorzystaj z naszego <a href="/dokumentacja/spolecznosc/api#regiony-i-kanaly">publicznego API</a>.</p>
 					</div>
 				</div>
 			</div>

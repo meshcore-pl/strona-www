@@ -228,7 +228,7 @@ const createScopeControl = channel => {
 
 	const select = document.createElement('select');
 	select.className = 'form-control rg-scope-select';
-	select.setAttribute('aria-label', `Zakres regionu kanału ${name}`);
+	select.setAttribute('aria-label', `Region kanału ${name}`);
 	select.append(...scopes.map(scope => new Option(scope || 'Bez regionu', scope)));
 	select.value = getChannelSelection(channel).scope;
 	select.addEventListener('change', () => channelSelections.set(name, { ...getChannelSelection(channel), scope: select.value }));
@@ -604,6 +604,7 @@ const initGenerator = async () => {
 
 	rgForm.addEventListener('input', event => {
 		if (event.target === homeSelect) {
+			if (location.search) history.replaceState(history.state, '', location.pathname + location.hash);
 			renderNeighbors(homeSelect.value);
 			renderLocalRegions(homeSelect.value);
 		}
@@ -626,9 +627,14 @@ const initGenerator = async () => {
 		document.getElementById('rg-fw').value = settings.firmware;
 		document.getElementById('rg-default').checked = settings.setDefault;
 	}
+	const requestedHome = new URLSearchParams(location.search).get('wojewodztwo');
+	const homeRequested = requestedHome !== null && Object.hasOwn(regionData.voivodeships, requestedHome);
+	if (homeRequested) homeSelect.value = requestedHome;
+	const restored = !homeRequested || settings?.home === requestedHome ? settings : null;
+
 	applyScenario();
-	renderNeighbors(homeSelect.value, settings?.neighbors);
-	renderLocalRegions(homeSelect.value, settings?.city);
+	renderNeighbors(homeSelect.value, restored?.neighbors);
+	renderLocalRegions(homeSelect.value, restored?.city);
 	limitNeighbors();
 	renderOutput();
 	if (scenarioPicked) saveSettings();

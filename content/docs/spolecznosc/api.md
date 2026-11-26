@@ -71,7 +71,7 @@ Odpowiedź na `GET /regions` zawiera w obiekcie `data` poniższe pola.
 | `commonChannels` | lista kanałów wspólnych |
 | `channelDescriptions` | opisy wybranych kanałów, z nazwami kanałów jako kluczami |
 
-Kanałów wspólnych można używać bez regionu lub z zakresem uzgodnionym lokalnie. Kanału `#emergency` zalecamy używać bez regionu.
+Kanałów wspólnych można używać bez regionu lub z regionem uzgodnionym lokalnie. Kanału `#emergency` zalecamy używać bez regionu.
 
 ### Województwo
 W przykładzie odpowiedzi na `GET /regions/voivodeships/zp` lista `localRegions` została skrócona do jednego wpisu.

@@ -8,10 +8,10 @@ tags: [Społeczność, Narzędzia]
 ---
 
 # Spore zmiany w generatorze regionów
-W wersji **1.11.0** serwisu przebudowaliśmy [Generator regionów](/generator-regionow). Teraz możesz dodać kanały wraz z ich zakresami w aplikacji MeshCore za pomocą jednego pliku. Dodaliśmy też statystyki według województw i rozszerzyliśmy publiczne API.
+W wersji **1.11.0** serwisu przebudowaliśmy [Generator regionów](/generator-regionow). Teraz możesz dodać kanały wraz z ich regionami w aplikacji MeshCore za pomocą jednego pliku. Dodaliśmy też statystyki według województw i rozszerzyliśmy publiczne API.
 
 ## Wybór sprzętu
-Wybierz **Mam repeater i companiona** albo **Mam tylko companiona**. W obu wariantach zobaczysz kanały i ich zakresy. Jeśli konfigurujesz też repeater, generator pokaże strukturę regionów oraz przygotuje komendy CLI do ich dodawania i usuwania.
+Wybierz **Mam repeater i companiona** albo **Mam tylko companiona**. W obu wariantach zobaczysz kanały i ich regiony. Jeśli konfigurujesz też repeater, generator pokaże strukturę regionów oraz przygotuje komendy CLI do ich dodawania i usuwania.
 
 Generator nadal jest w wersji beta. Błędy i propozycje nazw regionów możesz zgłaszać na [Discordzie](/discord) lub przez [formularz kontaktowy](/kontakt).
 
@@ -19,7 +19,7 @@ Generator nadal jest w wersji beta. Błędy i propozycje nazw regionów możesz 
 Lista regionów lokalnych obejmuje teraz wszystkie powiaty i miasta na prawach powiatu. W generatorze znajdziesz je w grupach **Miasta i obszary** oraz **Powiaty**. Podziękowania dla [sstanczuk](https://github.com/sstanczuk) za przygotowanie nazw regionów powiatowych.
 
 ## Import z pliku
-Pod tabelą kanałów kliknij **Eksportuj kanały do pliku** i zaznacz kanały, które chcesz dodać w aplikacji. Generator zapisze wybrane kanały wraz z ich zakresami. Do pliku możesz też dodać kontakty repeaterów i preset radiowy.
+Pod tabelą kanałów kliknij **Eksportuj kanały do pliku** i zaznacz kanały, które chcesz dodać w aplikacji. Generator zapisze wybrane kanały wraz z ich regionami. Do pliku możesz też dodać kontakty repeaterów i preset radiowy.
 
 - **Kontakty repeaterów** z Twojego województwa i wybranych województw sąsiednich. Wybierz limit kontaktów (30, 80 lub 150) i określ, z ilu ostatnich dni uwzględnić aktualizacje wpisów na mapie (od 1 do 60, domyślnie 5). Generator zaczyna od Twojego województwa. W każdym województwie najpierw uwzględnia repeatery z najnowszymi aktualizacjami.
 - **Preset radiowy EU/UK Narrow** (`869,618 MHz`, `62,5 kHz`, `SF8`, `CR8`). Moc nadawania ustawiasz osobno.
@@ -38,6 +38,9 @@ Kliknij **Pobierz plik do importu**. Następnie w aplikacji MeshCore wybierz **U
 Na [mapie i w tabeli województw](/statystyki#stats-voivodeships) zobaczysz łączną liczbę urządzeń oraz osobne zestawienia repeaterów, aktywnych repeaterów, room serwerów i companionów.
 
 Za aktywny uznajemy repeater zgłoszony przez [Map Auto Uploader](https://github.com/recrof/map.meshcore.io-uploader), jeśli jego wpis na mapie zaktualizowano mniej niż 5 dni temu. W zestawieniu aktywnych mogą więc nie pojawić się wszystkie działające repeatery.
+
+## Strony województw
+Każde województwo ma teraz [własną stronę](/wojewodztwa). Znajdziesz na niej liczbę urządzeń, kanały, regiony lokalne i znane serwery Discord, a przyciskiem **Skonfiguruj regiony** otworzysz generator z wybranym województwem.
 
 ## Kanał RSS
 Nowe wpisy możesz teraz śledzić w czytniku RSS. Dodaj w nim adres [kanału z wszystkimi aktualnościami](/aktualnosci/rss.xml):

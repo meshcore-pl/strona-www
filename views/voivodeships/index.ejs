@@ -1,0 +1,47 @@
+<%- include('../includes/header.ejs', {
+	title: 'MeshCore w województwach | MeshCore Polska',
+	description: 'Sieć MeshCore w każdym z 16 województw: liczba urządzeń, nazwy regionów, kanały i lokalne społeczności. Wybierz swoje województwo.',
+	canonical: '/wojewodztwa',
+	css: ['content', 'stats', 'voivodeships'],
+	page: 'voivodeships',
+	breadcrumbs: [
+		{ name: 'Strona główna', url: '/' },
+		{ name: 'Województwa', url: '/wojewodztwa' },
+	]
+}) %>
+
+<main>
+	<div class="section section--legal">
+		<div class="section__inner">
+			<div class="prose prose--narrow">
+				<p class="eyebrow">Sieć w regionach</p>
+				<h1>MeshCore w województwach</h1>
+				<p>Wybierz województwo, aby sprawdzić liczbę urządzeń, nazwy regionów, kanały i lokalne społeczności.</p>
+
+				<% if (!hasStats) { %><%- include('./_stats-unavailable.ejs') %><% } %>
+
+				<%- include('./_map.ejs', {
+					label: 'Mapa województw',
+					getOpacity,
+					getLabel: hasStats ? getLabel : null,
+					note: hasStats ? 'Liczby na mapie oznaczają repeatery.' : null,
+				}) %>
+
+				<ul class="voivodeship-list">
+					<% voivodeships.forEach(({ code, name, stats }) => { %>
+					<li>
+						<a href="/wojewodztwa/<%= code %>">
+							<strong><%= name %></strong>
+							<% if (stats) { %><span><%= stats.nodes.toLocaleString('pl-PL') %> <%= pluralizePolish(stats.nodes, { one: 'urządzenie', few: 'urządzenia', many: 'urządzeń' }) %>, <%= stats.types.repeater.toLocaleString('pl-PL') %> <%= pluralizePolish(stats.types.repeater, { one: 'repeater', few: 'repeatery', many: 'repeaterów' }) %></span><% } %>
+						</a>
+					</li>
+					<% }) %>
+				</ul>
+
+				<% if (refreshedAt) { %><p>Dane z <a href="https://mapa.meshcorepolska.org" target="_blank" rel="noopener">mapy węzłów</a>, stan na <%= refreshedAt %>. Porównanie typów urządzeń znajdziesz w <a href="/statystyki#stats-voivodeships">statystykach</a>.</p><% } %>
+			</div>
+		</div>
+	</div>
+</main>
+
+<%- include('../includes/footer.ejs') %>

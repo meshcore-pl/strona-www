@@ -2,6 +2,7 @@ import { Router } from 'express';
 import * as pages from '../controllers/Pages.js';
 import * as docs from '../controllers/Docs.js';
 import * as news from '../controllers/News.js';
+import * as voivodeships from '../controllers/Voivodeships.js';
 import * as contact from '../controllers/Contact.js';
 import { sitemap } from '../controllers/Sitemap.js';
 import { test } from '../controllers/Test.js';
@@ -28,6 +29,9 @@ router.get('/aktualnosci/rss.xml', news.feed);
 router.get('/aktualnosci/:tag', news.tag);
 router.get('/aktualnosci/:tag/rss.xml', news.feed);
 router.get('/aktualnosci/:tag/:title', news.post);
+
+router.get('/wojewodztwa', voivodeships.index);
+router.get('/wojewodztwa/:code', voivodeships.page);
 
 router.get('/kontakt', contact.form);
 

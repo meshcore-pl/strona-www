@@ -9,6 +9,15 @@ const snap = value => Math.round(value * GRID) / GRID;
 
 const simplify = ring => ring.map(point => project(point).map(snap)).filter(([x, y], i, points) => !i || x !== points[i - 1][0] || y !== points[i - 1][1]);
 
+// Współrzędne względne są ponad dwa razy krótsze, a na siatce 1/GRID odejmowanie nie gubi precyzji
+const toPath = ([start, ...points]) => {
+	const deltas = points.map(([x, y], i) => {
+		const [previousX, previousY] = i ? points[i - 1] : start;
+		return `${x - previousX} ${y - previousY}`;
+	});
+	return `M${start.join(' ')}l${deltas.join(' ').replaceAll(' -', '-')}Z`;
+};
+
 const getCentroid = points => {
 	let area = 0, cx = 0, cy = 0;
 	for (let i = 0, j = points.length - 1; i < points.length; j = i++) {
@@ -27,7 +36,7 @@ const shapes = borders.map(([code, rings]) => {
 	return {
 		code,
 		name: getVoivodeship(code).name,
-		path: simplified.map(ring => `M${ring.map(point => point.join(' ')).join('L')}Z`).join(''),
+		path: simplified.map(toPath).join(''),
 		labelX: labelX.toFixed(1),
 		labelY: labelY.toFixed(1),
 		points: simplified.flat(),

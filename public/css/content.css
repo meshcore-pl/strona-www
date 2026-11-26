@@ -294,9 +294,13 @@
 .docs-table table {
 	width: 100%;
 	margin: 0;
-	font-size: 14px;
+	font-size: 15px;
 	border-collapse: separate;
 	border-spacing: 0;
+}
+
+.docs-table code {
+	font-size: 15px;
 }
 
 .docs-table th, .docs-table td {
@@ -309,11 +313,9 @@
 	padding: 8px 12px;
 	border-bottom: 1px solid var(--border-strong);
 	background: var(--glass-bg-strong);
-	color: var(--text-muted);
-	font-family: var(--font-mono);
-	font-size: 12px;
-	letter-spacing: .08em;
-	text-transform: uppercase;
+	color: var(--text);
+	font-size: 15px;
+	font-weight: 600;
 	white-space: nowrap;
 }
 
@@ -346,10 +348,6 @@
 
 .docs-table:has(.is-legal) th, .docs-table:has(.is-legal) td {
 	text-align: center;
-}
-
-.docs-table:has(.is-legal) th {
-	text-transform: none;
 }
 
 .prose blockquote {

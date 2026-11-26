@@ -19,11 +19,21 @@ let rows = [];
 const formatNumber = value => value.toLocaleString('pl-PL');
 const getMetric = () => METRICS.find(metric => metric.key === metricSelect.value);
 
+const createVoivodeshipLink = (code, text) => {
+	const link = document.createElement('a');
+	link.href = `/wojewodztwa/${code}`;
+	link.textContent = text;
+	return link;
+};
+
 const describe = code => {
 	const row = rows.find(item => item.code === code);
 	if (!row) return;
 
-	readout.textContent = `${row.name}: urządzenia ${formatNumber(row.nodes)}, repeatery ${formatNumber(row.types.repeater)} (aktywne ${formatNumber(row.active)}), room serwery ${formatNumber(row.types.roomServer)}, companiony ${formatNumber(row.types.client)}`;
+	readout.replaceChildren(
+		`${row.name}: urządzenia ${formatNumber(row.nodes)}, repeatery ${formatNumber(row.types.repeater)} (aktywne ${formatNumber(row.active)}), room serwery ${formatNumber(row.types.roomServer)}, companiony ${formatNumber(row.types.client)}. `,
+		createVoivodeshipLink(row.code, 'Zobacz województwo')
+	);
 };
 
 const render = () => {
@@ -41,7 +51,7 @@ const render = () => {
 		const tr = document.createElement('tr');
 		tr.append(...[row.name, ...METRICS.map(item => formatNumber(item.get(row)))].map((text, i) => {
 			const td = document.createElement('td');
-			td.textContent = text;
+			td.append(i ? text : createVoivodeshipLink(row.code, text));
 			if (METRICS[i - 1] === metric) td.className = 'is-active';
 			return td;
 		}));

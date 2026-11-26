@@ -82,6 +82,33 @@ input[type="checkbox"]:focus-visible {
 	outline-offset: 3px;
 }
 
+.docs-breadcrumb {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 18px;
+	color: var(--text-muted);
+	font-family: var(--font-mono);
+	font-size: 12px;
+}
+
+.docs-breadcrumb a {
+	color: #58a6ff;
+	transition: color .15s ease;
+}
+
+.docs-breadcrumb a:hover {
+	color: #7fbbff;
+}
+
+.docs-breadcrumb a:active {
+	color: #3d8fe0;
+}
+
+.docs-breadcrumb [aria-current] {
+	color: var(--text);
+}
+
 @media (forced-colors: active) {
 	input[type="checkbox"], input[type="checkbox"]:checked {
 		appearance: auto;

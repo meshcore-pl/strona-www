@@ -1,6 +1,6 @@
 ---
 title: Regionalizacja wiadomości w MeshCore
-description: Jak działa regionalizacja wiadomości kanałowych w MeshCore - konfiguracja CLI, ustawianie zakresu w aplikacji i schemat regionów w Polsce.
+description: Jak działa regionalizacja wiadomości kanałowych w MeshCore - konfiguracja CLI, ustawianie regionu w aplikacji i schemat regionów w Polsce.
 canonical: /dokumentacja/meshcore/regionalizacja-wiadomosci
 createdAt: 3.08.2026
 updatedAt: 26.11.2026
@@ -15,7 +15,7 @@ Na kanałach pojawia się zbyt wiele wiadomości z drugiego końca Polski, a prz
 Regionalizacja pozwala ograniczyć liczbę takich wiadomości na kanałach z ustawionym regionem. Określa, które repeatery mogą je przekazywać, dzięki czemu zmniejsza obciążenie sieci i ułatwia śledzenie lokalnych rozmów. Nie każdy przecież chce, aby jego wiadomości były wysyłane poza jego miasto.
 
 > [!TIP]
-> Nie chcesz układać komend ręcznie? [Generator regionów](https://meshcorepolska.org/generator-regionow) przygotuje komendy CLI dla repeatera oraz listę kanałów i ich zakresów do ustawienia w aplikacji.
+> Nie chcesz układać komend ręcznie? [Generator regionów](https://meshcorepolska.org/generator-regionow) przygotuje komendy CLI dla repeatera oraz listę kanałów i ich regionów do ustawienia w aplikacji.
 
 
 ## Jak to działa
@@ -31,7 +31,7 @@ Repeater decyduje o przekazaniu wiadomości na podstawie swojej listy regionów:
 Wiadomość z regionem dociera więc tylko tak daleko, jak sięga łańcuch repeaterów obsługujących ten region - jeden nieskonfigurowany repeater po drodze może przerwać ten łańcuch. Dlatego konfigurację zaczyna się od repeaterów, a dopiero potem ustawia regiony na companionie.
 
 > [!NOTE]
-> - Do kanału można przypisać maksymalnie jeden region. Zakres wiadomości prywatnych i advertów określa [domyślny zakres](#domyslny-zakres).
+> - Do kanału można przypisać maksymalnie jeden region. Region wiadomości prywatnych i advertów określa [domyślny region](#domyslny-region).
 > - Kanał `Public` powinien być zawsze bez regionu. Do rozmów regionalnych służą inne, dedykowane kanały. W niektórych częściach Polski bywa mimo to przypisany do regionu (np. `pl`, `wlkp`, `pl-mz`, `zachod`), co nie jest dobrą praktyką.
 > - Ruch bez regionu (`*`) można zablokować komendą `region denyf *`, ale obecnie nie jest to zalecane. Łagodniejszą alternatywą (firmware 1.16+) jest ograniczenie jego zasięgu, np. `set flood.max.unscoped 3`.
 > - Region to tylko etykieta, **nie** szyfrowanie.
@@ -102,7 +102,7 @@ Większość nazw regionów powiatowych to propozycje, które czekają na uzgodn
 
 Kanał `#emergency` służy do łączności w sytuacjach kryzysowych oraz testów łączności awaryjnej organizowanych 13. dnia każdego miesiąca o 20:00. Jest używany zawsze bez regionu.
 
-Kanały `#test`, `#bot` i `#info` mogą być używane bez regionu lub z zakresem uzgodnionym lokalnie:
+Kanały `#test`, `#bot` i `#info` mogą być używane bez regionu lub z regionem uzgodnionym lokalnie:
 - Wielkopolska: w zależności od miejscowości kanały `#test` i `#info` są używane z regionem `wlkp` lub bez regionu.
 - Warszawa: `#bot` i `#test` mogą korzystać z regionu `waw`, a `#bot` także z `pl-mz`.
 - Trójmiasto: `#bot` może korzystać z lokalnego regionu `gdn`.
@@ -164,9 +164,9 @@ Na firmware starszym niż 1.15 po dodaniu regionu komendą `region put` trzeba t
 5. Wybierz region z listy, np. `pl-zp` dla `#zachodniopomorskie`. Jeśli tabela podaje kilka opcji, wybierz tę, z której korzystają Twoi rozmówcy.
 6. Kliknij **Dołącz do kanału**. Powtórz te kroki dla pozostałych kanałów.
 
-Zakres istniejącego kanału zmienisz w jego menu pod trzema kropkami. Wybierz **Ustaw zakres regionu** lub **Wyczyść zakres**.
+Region istniejącego kanału zmienisz w jego menu pod trzema kropkami. Wybierz **Ustaw zakres regionu** lub **Wyczyść zakres**.
 
-Rozmówcy muszą mieć tę samą nazwę kanału i ten sam zakres. Na przykład `#test` bez zakresu i `#test` z zakresem `wlkp` to osobne kanały.
+Rozmówcy muszą mieć tę samą nazwę kanału i ten sam region. Na przykład `#test` bez regionu i `#test` z regionem `wlkp` to osobne kanały.
 
 ### Wykrywanie regionów
 W aplikacji MeshCore wybierz **Trzy kropki → Narzędzia → Wykryj regiony**.
@@ -174,43 +174,43 @@ W aplikacji MeshCore wybierz **Trzy kropki → Narzędzia → Wykryj regiony**.
 Companion odpyta pobliskie repeatery w bezpośrednim zasięgu (0 hop) o regiony, które obsługą. Odpowiedzieć mogą też repeatery spoza listy kontaktów. Wykryte regiony możesz dodać z listy.
 Funkcja bywa jednak zawodna - czasami nic nie wykrywa.
 
-## Domyślny zakres {toc: Domyślny zakres}
+## Domyślny region {toc: Domyślny region}
 Region można nadać także pakietom spoza kanałów - wiadomościom prywatnym (DM), advertom i żądaniom.
 
 > [!WARNING]
-> Pakiety z określonym zakresem przekazują repeatery, których konfiguracja zezwala na przekazywanie tego regionu. Repeatery bez odpowiedniej konfiguracji mogą przerwać dalsze rozgłaszanie wiadomości.
-> Ustaw domyślny zakres dopiero wtedy, gdy repeatery w Twojej okolicy mają już region `pl`. W przeciwnym razie Twoje wiadomości prywatne i adverty mogą nigdzie nie dotrzeć.
+> Pakiety z określonym regionem przekazują repeatery, których konfiguracja zezwala na przekazywanie tego regionu. Repeatery bez odpowiedniej konfiguracji mogą przerwać dalsze rozgłaszanie wiadomości.
+> Ustaw domyślny region dopiero wtedy, gdy repeatery w Twojej okolicy mają już region `pl`. W przeciwnym razie Twoje wiadomości prywatne i adverty mogą nigdzie nie dotrzeć.
 
 ### Companion
-Domyślny zakres ustawisz na głównym ekranie **Ustawień**. Obejmuje on wszystkie pakiety flood wysyłane przez companiona, a zakres ustawiony na kanale ma pierwszeństwo.
-Jeśli go ustawiasz, wybierz region obejmujący zarówno Twój obszar, jak i obszary osób, z którymi piszesz - w Polsce `pl`. Zbyt wąski zakres sprawi, że wiadomości prywatne i potwierdzenia (ACK) nie wyjdą poza jego granice.
+Domyślny region ustawisz na głównym ekranie **Ustawień**. Obejmuje on wszystkie pakiety flood wysyłane przez companiona, a region ustawiony na kanale ma pierwszeństwo.
+Jeśli go ustawiasz, wybierz region obejmujący zarówno Twój obszar, jak i obszary osób, z którymi piszesz - w Polsce `pl`. Zbyt mały region sprawi, że wiadomości prywatne i potwierdzenia (ACK) nie wyjdą poza jego granice.
 
 > [!IMPORTANT]
-> Domyślny zakres otrzymają także wiadomości na kanałach bez własnego zakresu, w tym `Public` i `#emergency`. Jeśli mają pozostać bez regionu, nie ustawiaj domyślnego zakresu na companionie.
+> Domyślny region otrzymają także wiadomości na kanałach bez własnego regionu, w tym `Public` i `#emergency`. Jeśli mają pozostać bez regionu, nie ustawiaj domyślnego regionu na companionie.
 
 ### Repeater / room serwer
-Sprawdzenie obecnego domyślnego zakresu:
+Sprawdzenie obecnego domyślnego regionu:
 
 ```mccli
 region default
 ```
 
-Ustawienie domyślnego zakresu (zmiana zostaje automatycznie zapisana):
+Ustawienie domyślnego regionu (zmiana zostaje automatycznie zapisana):
 
 ```mccli
 region default pl
 ```
 
-Wyczyszczenie domyślnego zakresu:
+Wyczyszczenie domyślnego regionu:
 
 ```mccli
 region default <null>
 ```
 
-Domyślny zakres nie wpływa na przekazywane wiadomości innych użytkowników. Obejmuje adverty repeatera oraz adverty i posty room serwera.
+Domyślny region nie wpływa na przekazywane wiadomości innych użytkowników. Obejmuje adverty repeatera oraz adverty i posty room serwera.
 
-Zakres odpowiedzi na żądania zależy od wersji firmware:
-- **1.17.1 i nowsze:** żądanie z rozpoznanym regionem dostaje odpowiedź z tym samym regionem, a żądanie flood bez regionu - odpowiedź bez regionu. Jeśli zakresu nie da się ustalić (np. region jest nieznany urządzeniu), używany jest domyślny zakres, o ile został ustawiony.
-- **1.15.0-1.17.0:** odpowiedź otrzymuje region żądania, a jeśli nie da się go ustalić, jest wysyłana bez zakresu.
+Region odpowiedzi na żądania zależy od wersji firmware:
+- **1.17.1 i nowsze:** żądanie z rozpoznanym regionem dostaje odpowiedź z tym samym regionem, a żądanie flood bez regionu - odpowiedź bez regionu. Jeśli regionu nie da się ustalić (np. jest nieznany urządzeniu), używany jest domyślny region, o ile został ustawiony.
+- **1.15.0-1.17.0:** odpowiedź otrzymuje region żądania, a jeśli nie da się go ustalić, jest wysyłana bez regionu.
 
-Ustawienie domyślnego zakresu na `pl` nie jest obowiązkowe. Przed jego włączeniem upewnij się, że okoliczne repeatery obsługują ten region, a lokalna społeczność stosuje taki schemat.
+Ustawienie domyślnego regionu na `pl` nie jest obowiązkowe. Przed jego włączeniem upewnij się, że okoliczne repeatery obsługują ten region, a lokalna społeczność stosuje taki schemat.
