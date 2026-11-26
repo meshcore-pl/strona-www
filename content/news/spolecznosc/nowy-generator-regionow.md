@@ -1,6 +1,6 @@
 ---
 title: Odświeżony generator regionów MeshCore
-description: Wygeneruj plik z kanałami, kontaktami repeaterów i presetem radiowym do importu w aplikacji MeshCore. Sprawdź też statystyki województw i zmiany w publicznym API.
+description: Wygeneruj plik z kanałami, repeaterami i presetem radiowym do aplikacji MeshCore. Sprawdź też strony województw, kanał RSS i zmiany w publicznym API.
 createdAt: 26.11.2026
 image: /images/screens/nowy-generator-regionow.png
 imageAlt: Generator regionów MeshCore z wyborem sprzętu i ustawieniami repeatera

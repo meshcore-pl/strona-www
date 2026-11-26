@@ -1,6 +1,6 @@
 ---
 title: Czujnik obecności LD2410S w MeshCore
-description: Jak zbudować węzeł MeshCore z czujnikiem LD2410S. Podłączenie do Heltec StickLite, kompilacja firmware w PlatformIO, odczyt telemetrii i alarmy po wykryciu ruchu.
+description: Jak zbudować węzeł MeshCore z czujnikiem LD2410S: podłączenie do Heltec StickLite, kompilacja firmware w PlatformIO, telemetria i alarmy po wykryciu ruchu.
 createdAt: 26.11.2026
 sourceUrl: https://blog.meshcore.io/2026/11/26/motions-sensors
 tags: [Poradnik, Sprzęt, Oprogramowanie]
