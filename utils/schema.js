@@ -1,3 +1,5 @@
+import getSeoImage from './seoImage.js';
+
 export default ({ domain, breadcrumbs, article, faq }) => {
 	const organizationId = `${domain}/#organization`;
 	const websiteId = `${domain}/#website`;
@@ -51,7 +53,7 @@ export default ({ domain, breadcrumbs, article, faq }) => {
 			'@type': article.type || ['Article', 'TechArticle'],
 			headline: article.title,
 			description: article.description,
-			image: article.image || `${domain}/images/brand/banner-og.jpg`,
+			image: article.image || getSeoImage(domain).url,
 			datePublished: article.datePublished,
 			dateModified: article.dateModified,
 			inLanguage: 'pl-PL',

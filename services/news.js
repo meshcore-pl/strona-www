@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import parseFrontmatter from 'frontmatter-md';
 import tagDescriptions from '../content/newsTags.js';
-import { marked, renderer, extractFirstImage, assignHeadingIds, slugify, getExternalRel, parseDMYDate } from './markdown.js';
+import { marked, renderer, resolvePageImage, assignHeadingIds, slugify, getExternalRel, parseDMYDate } from './markdown.js';
 
 const NEWS_DIR = path.join(import.meta.dirname, '../content/news');
 
@@ -53,7 +53,7 @@ const build = () => {
 				date,
 				tags: postTags,
 				html: marked.parser(tokens, { renderer }),
-				image: extractFirstImage(tokens),
+				image: resolvePageImage(data, tokens, `content/news/${dir.name}/${file}`),
 				themeColor: data.themeColor || null,
 				markdown: content,
 			};

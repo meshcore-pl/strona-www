@@ -1,15 +1,13 @@
 import { borders } from './borders.js';
 import { getVoivodeship } from './regions.js';
+import { project, getViewBox } from './projection.js';
 
 const MAP_PADDING = 4;
-const X_SCALE = 100 * Math.cos(52 * Math.PI / 180);
-const Y_SCALE = 100;
 const GRID = 2;
 
 const snap = value => Math.round(value * GRID) / GRID;
-const project = ([lon, lat]) => [snap(lon * X_SCALE), snap(-lat * Y_SCALE)];
 
-const simplify = ring => ring.map(project).filter(([x, y], i, points) => !i || x !== points[i - 1][0] || y !== points[i - 1][1]);
+const simplify = ring => ring.map(point => project(point).map(snap)).filter(([x, y], i, points) => !i || x !== points[i - 1][0] || y !== points[i - 1][1]);
 
 const getCentroid = points => {
 	let area = 0, cx = 0, cy = 0;
@@ -36,14 +34,8 @@ const shapes = borders.map(([code, rings]) => {
 	};
 });
 
-const allPoints = shapes.flatMap(shape => shape.points);
-const xs = allPoints.map(([x]) => x);
-const ys = allPoints.map(([, y]) => y);
-const minX = Math.min(...xs) - MAP_PADDING;
-const minY = Math.min(...ys) - MAP_PADDING;
-
 const voivodeshipMap = {
-	viewBox: [minX, minY, Math.max(...xs) - minX + MAP_PADDING, Math.max(...ys) - minY + MAP_PADDING].join(' '),
+	viewBox: getViewBox(shapes.flatMap(shape => shape.points), MAP_PADDING),
 	areas: shapes.map(({ code, name, path, labelX, labelY }) => ({ code, name, path, labelX, labelY })),
 };
 

@@ -18,6 +18,7 @@ import * as limiter from './middlewares/ratelimit.js';
 // Utils
 import RenderError from './utils/renderError.js';
 import buildSchema from './utils/schema.js';
+import getSeoImage, { DEFAULT_THEME_COLOR } from './utils/seoImage.js';
 import pluralizePolish from './utils/pluralizePolish.js';
 
 const { version } = pkg;
@@ -44,6 +45,8 @@ if (buildDate) {
 	if (!Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === isoDate) app.locals.versionDate = `${day}.${month}.${year}`;
 }
 app.locals.buildSchema = buildSchema;
+app.locals.getSeoImage = getSeoImage;
+app.locals.defaultThemeColor = DEFAULT_THEME_COLOR;
 app.locals.pluralizePolish = pluralizePolish;
 
 // Use middlewares

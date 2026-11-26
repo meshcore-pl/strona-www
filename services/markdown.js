@@ -163,4 +163,19 @@ const extractFirstImage = tokens => {
 	return found;
 };
 
-export { marked, renderer, slugify, extractFirstImage, assignHeadingIds, getHeadingId, getTocLabel, getPlainText, getExternalRel, parseDMYDate };
+const resolvePageImage = ({ image, imageAlt }, tokens, file) => {
+	if (!image) {
+		if (imageAlt) throw new Error(`${file}: pole imageAlt wymaga pola image`);
+		return extractFirstImage(tokens);
+	}
+
+	if (!isOgImage(image)) throw new Error(`${file}: pole image musi być adresem http(s) lub ścieżką od / do pliku JPG, PNG, WebP albo GIF`);
+	if (!imageAlt) throw new Error(`${file}: pole image wymaga pola imageAlt`);
+	if (image.startsWith('/') && !fs.existsSync(path.join(PUBLIC_DIR, decodeURIComponent(image.split(/[?#]/)[0])))) {
+		throw new Error(`${file}: brak pliku public${image}`);
+	}
+
+	return { src: image, alt: imageAlt };
+};
+
+export { marked, renderer, slugify, resolvePageImage, assignHeadingIds, getHeadingId, getTocLabel, getPlainText, getExternalRel, parseDMYDate };

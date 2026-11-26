@@ -2,6 +2,7 @@ import docs from '../services/docs.js';
 import RenderError from '../utils/renderError.js';
 import buildSchema from '../utils/schema.js';
 import { getRandomTip } from '../content/tips.js';
+import getSeoImage, { DEFAULT_THEME_COLOR } from '../utils/seoImage.js';
 
 export const index = (req, res) => res.render('docs/index.ejs', { groups: docs.groups, tip: getRandomTip() });
 
@@ -48,7 +49,7 @@ export const page = (req, res) => {
 		if (err) return RenderError(res, 500, err);
 
 		const domain = req.app.locals.domain;
-		const ogImage = docsPage.image ? ((/^https?:\/\//i).test(docsPage.image.src) ? docsPage.image.src : domain + docsPage.image.src) : `${domain}/images/brand/banner-og.jpg`;
+		const ogImage = getSeoImage(domain, docsPage.image, docsPage.title);
 		const schema = buildSchema({
 			domain,
 			breadcrumbs: locals.breadcrumbs,
@@ -58,7 +59,7 @@ export const page = (req, res) => {
 				datePublished: docsPage.publishedAt.toISOString().slice(0, 10),
 				dateModified: docsPage.date.toISOString().slice(0, 10),
 				url: docsPage.canonical,
-				image: ogImage,
+				image: ogImage.url,
 			},
 			faq: docsPage.faq,
 		});
@@ -67,9 +68,9 @@ export const page = (req, res) => {
 			title: locals.title,
 			description: locals.description,
 			canonicalUrl: `${domain}${docsPage.canonical}`,
-			image: ogImage,
-			themeColor: docsPage.themeColor || '#95010b',
-			imageAlt: docsPage.image ? docsPage.image.alt || docsPage.title : 'MeshCore Polska: ogólnopolska społeczność sieci mesh',
+			image: ogImage.url,
+			themeColor: docsPage.themeColor || DEFAULT_THEME_COLOR,
+			imageAlt: ogImage.alt,
 			schema: JSON.stringify(schema),
 			html,
 		});
