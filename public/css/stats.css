@@ -175,6 +175,10 @@
 	text-align: center;
 }
 
+.stats-voivodeships .docs-table {
+	margin-bottom: 0;
+}
+
 .stats-table td.is-active {
 	color: var(--text);
 	font-weight: 700;

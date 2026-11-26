@@ -31,8 +31,9 @@ const describe = code => {
 	if (!row) return;
 
 	readout.replaceChildren(
-		`${row.name}: urządzenia ${formatNumber(row.nodes)}, repeatery ${formatNumber(row.types.repeater)} (aktywne ${formatNumber(row.active)}), room serwery ${formatNumber(row.types.roomServer)}, companiony ${formatNumber(row.types.client)}. `,
-		createVoivodeshipLink(row.code, 'Zobacz województwo')
+		`${row.name.toUpperCase()}: urządzenia ${formatNumber(row.nodes)}, repeatery ${formatNumber(row.types.repeater)} (aktywne ${formatNumber(row.active)}), room serwery ${formatNumber(row.types.roomServer)}, companiony ${formatNumber(row.types.client)}.`,
+		document.createElement('br'),
+		createVoivodeshipLink(row.code, 'Zobacz więcej informacji')
 	);
 };
 
