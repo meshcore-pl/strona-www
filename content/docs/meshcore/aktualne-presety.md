@@ -43,8 +43,10 @@ Oba warianty są ze sobą kompatybilne - urządzenie na `CR8` bez problemu nawi�
 
 ## Oznaczenia repeaterów
 Masz solidny repeater zamontowany na stałe, który działa niezależnie od sieci energetycznej dzięki panelowi słonecznemu i akumulatorowi?
-Dodaj na końcu jego nazwy gwiazdkę (*) lub symbol słońca, np. `Mój Solarny Repeater ☀️`.
+Dodaj na końcu jego nazwy gwiazdkę `*`, np. `Solarny Repeater*`. Emoji mogą wyświetlać się niepoprawnie na niektórych urządzeniach ze wbudowanym ekranem.
 Dzięki temu każdy będzie mógł łatwo sprawdzić na mapie, które repeatery mogą działać również podczas lokalnej awarii zasilania.
+
+Więcej przykładów znajdziesz w FAQ w sekcji [Jak nazwać swój repeater?](/dokumentacja/meshcore/faq#jak-nazwac-swoj-repeater).
 
 
 ## Higiena sieci

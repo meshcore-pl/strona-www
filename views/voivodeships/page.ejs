@@ -27,7 +27,15 @@
 					<a href="https://mapa.meshcorepolska.org" class="btn btn--secondary" target="_blank" rel="noopener">Mapa węzłów</a>
 				</p>
 
-				<h2>Urządzenia na mapie</h2>
+				<h2>Mapa Polski</h2>
+				<%- include('./_map.ejs', {
+					label: 'Położenie województwa na mapie Polski',
+					currentCode: voivodeship.code,
+					getOpacity: code => (code === voivodeship.code ? 0.85 : 0.08),
+					getLabel: getMapLabel,
+					note: stats ? 'Liczba na mapie oznacza wszystkie urządzenia.' : null,
+				}) %>
+
 				<% if (stats) { %>
 					<div class="stats-summary">
 						<% [
@@ -45,12 +53,6 @@
 					</div>
 					<p><% if (refreshedAt) { %>Stan na <%= refreshedAt %>. <% } %>Aktywny repeater to taki, którego advert trafił na mapę w ciągu ostatnich 5 dni przez <a href="https://github.com/recrof/map.meshcore.io-uploader" target="_blank" rel="noopener">Map Auto Uploader</a>. Porównaj województwa w <a href="/statystyki#stats-voivodeships">statystykach</a>.</p>
 				<% } else { %><%- include('./_stats-unavailable.ejs') %><% } %>
-
-				<%- include('./_map.ejs', {
-				label: 'Położenie województwa na mapie Polski',
-				currentCode: voivodeship.code,
-				getOpacity: code => (code === voivodeship.code ? 0.85 : 0.08),
-				}) %>
 
 				<h2>Kanały</h2>
 				<div class="docs-table">

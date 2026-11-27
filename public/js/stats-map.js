@@ -15,6 +15,7 @@ const readout = document.getElementById('stats-map-readout');
 const areas = [...section.querySelectorAll('.stats-map__area')];
 
 let rows = [];
+let selectedCode = null;
 
 const formatNumber = value => value.toLocaleString('pl-PL');
 const getMetric = () => METRICS.find(metric => metric.key === metricSelect.value);
@@ -35,6 +36,16 @@ const describe = code => {
 		document.createElement('br'),
 		createVoivodeshipLink(row.code, 'Zobacz więcej informacji')
 	);
+};
+
+const select = code => {
+	selectedCode = code;
+	for (const area of areas) area.setAttribute('aria-pressed', area.dataset.code === code);
+	describe(code);
+};
+
+const preview = code => {
+	if (!selectedCode) describe(code);
 };
 
 const render = () => {
@@ -74,7 +85,16 @@ metricSelect.addEventListener('change', () => {
 	if (rows.length) render();
 });
 
-areas.forEach(area => ['pointerenter', 'focus', 'click'].forEach(type => area.addEventListener(type, () => describe(area.dataset.code))));
+areas.forEach(area => {
+	const { code } = area.dataset;
+	for (const type of ['pointerenter', 'focus']) area.addEventListener(type, () => preview(code));
+	area.addEventListener('click', () => select(code));
+	area.addEventListener('keydown', event => {
+		if (event.key !== 'Enter' && event.key !== ' ') return;
+		event.preventDefault();
+		select(code);
+	});
+});
 
 load().catch(err => {
 	console.error('Nie udało się pobrać statystyk województw:', err);

@@ -12,7 +12,7 @@
 }
 
 .news-hero--post .docs-breadcrumb {
-	max-width: 1350px;
+	max-width: var(--container-wide);
 	margin: 0 auto;
 }
 
@@ -311,7 +311,7 @@ a.news-source--spolecznosc:hover {
 }
 
 .news-content {
-	max-width: 1350px;
+	max-width: var(--container-wide);
 	margin: 0 auto;
 }
 
@@ -330,7 +330,7 @@ a.news-source--spolecznosc:hover {
 	justify-content: space-between;
 	align-items: center;
 	gap: 16px;
-	max-width: 1350px;
+	max-width: var(--container-wide);
 	margin: 32px auto 0;
 }
 

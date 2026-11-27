@@ -89,16 +89,24 @@ Większa liczba repeaterów nie zawsze oznacza lepsze działanie sieci. Zbyt du�
 
 Jeśli mimo wszystko chcesz uruchomić własny repeater, postaraj się wybrać lokalizację, w której uzupełni on istniejącą infrastrukturę.
 
+## Jak nazwać swój repeater?
+
+Zacznij od **skrótu miejscowości**, np. `GDN` dla Gdańska albo `KRK` dla Krakowa. Po spacji dodaj wyróżnik, np. nazwę dzielnicy, pobliskiej miejscowości, punktu orientacyjnego albo swój znak wywoławczy. Dopiski `Repeater` i `RPT` możesz pominąć.
+
+| Przykładowa nazwa | Co oznacza |
+| --- | --- |
+| `GDN Oliwa` | Repeater w gdańskiej Oliwie. |
+| `KRK SQ9XYZ` | Repeater w Krakowie oznaczony znakiem wywoławczym operatora. |
+| `GDN Wrzeszcz Północ` | Repeater we Wrzeszczu z anteną skierowaną na północ. |
+| `KOL Podczele*` | Repeater w kołobrzeskim Podczelu zamontowany na stałe i zasilany niezależnie od sieci energetycznej. |
+
+Jeśli repeater obsługuje głównie jeden kierunek, możesz dopisać go po wyróżniku, np. `Północ`, `Południe`, `Wschód` lub `Zachód`. Przydaje się to zwłaszcza przy antenach kierunkowych.
+
+Gwiazdka `*` na końcu nazwy oznacza stałą instalację z panelem słonecznym i akumulatorem, która działa niezależnie od sieci energetycznej. Użyj zwykłej gwiazdki, bo emoji mogą się źle wyświetlać na ekranach niektórych urządzeń. [Oznaczenia repeaterów](/dokumentacja/meshcore/aktualne-presety#oznaczenia-repeaterow)
+
 ## Jakie ustawienia radiowe wybrać w Polsce?
 
-Przyjętym standardem ogólnopolskiej sieci jest preset **EU/UK Narrow**:
-
-| Parametr | Wartość |
-| --- | --- |
-| Częstotliwość | `869,618 MHz` |
-| Szerokość pasma (BW) | `62,5 kHz` |
-| Współczynnik rozpraszania (SF) | `8` |
-| Współczynnik kodowania (CR) | `8` (można też użyć np. `5`, różne wartości CR są ze sobą kompatybilne) |
+Przyjętym standardem ogólnopolskiej sieci jest preset **EU/UK Narrow**. Parametry znajdziesz w sekcji [Dokładne ustawienia](/dokumentacja/meshcore/aktualne-presety#dokladne-ustawienia).
 
 Część sieci na południu Polski korzysta z `SF6`. Urządzenia na `SF6` i `SF8` nie mogą się bezpośrednio komunikować. Na repeaterze ustaw duty cycle na `10%`. Domyślne `50%` przekracza [limit czasu nadawania](/dokumentacja/meshcore/wprowadzenie#legalnosc-i-duty-cycle) dla tego zakresu. Szczegóły i zalecane komendy znajdziesz na stronie [Presety i konfiguracja radia](/dokumentacja/meshcore/aktualne-presety).
 
@@ -142,7 +150,7 @@ Najlepiej weź sprawdzony kabel, przez który udało Ci się już przesłać pli
 1. **Sprawdź port USB.** Podłącz płytkę bezpośrednio do komputera. Jeśli nadal jej nie wykrywa, spróbuj innego portu.
 2. **Sprawdź sterownik.** Jeśli płytka korzysta z konwertera USB-UART, zainstaluj sterownik odpowiedni dla jej układu. [CP210x](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers) · [CH343/CH9102](https://www.wch-ic.com/downloads/CH343SER_EXE.html) · [CH340/CH341](https://www.wch-ic.com/downloads/CH341SER_EXE.html)
 3. **Uruchom tryb wgrywania.** Sposób wejścia w ten tryb zależy od modelu płytki i bootloadera.
-   - **ESP32:** W większości przypadków wystarczy wykonać następującą sekwencję. Przytrzymaj `BOOT` (lub `PRG`), naciśnij i puść `RST`, a następnie puść `BOOT`.
+   - **ESP32:** na płytkach z przyciskami `BOOT` (lub `PRG`) i `RST` przytrzymaj `BOOT` lub `PRG`, naciśnij i puść `RST`, a następnie puść przytrzymany przycisk.
    - **nRF52 z bootloaderem UF2:** na wielu płytkach wystarczy szybko nacisnąć `RST` dwa razy, aby w systemie pojawił się dysk USB.
    - **SenseCAP T1000-E:** przytrzymaj przycisk urządzenia. Cały czas trzymając przycisk, podłącz kabel USB, odłącz go i od razu podłącz ponownie. [Instrukcja Seeed Studio](https://wiki.seeedstudio.com/sensecap_t1000_e_meshcore/)
 

@@ -16,9 +16,12 @@
 	outline: 0;
 }
 
-.voivodeship-map a:focus-visible .stats-map__area {
-	stroke: var(--text);
-	stroke-width: 2px;
+.voivodeship-map a:hover {
+	text-decoration: none;
+}
+
+.voivodeship-map--focused a:not([aria-current], :hover, :focus-visible) .stats-map__label {
+	display: none;
 }
 
 .prose .voivodeship-list {

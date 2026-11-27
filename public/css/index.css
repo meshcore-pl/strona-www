@@ -9,7 +9,7 @@
 	align-items: center;
 	gap: clamp(64px, 10vw, 180px);
 	grid-template-columns: minmax(0, 1fr) min(42%, 580px);
-	max-width: 1450px;
+	max-width: var(--container);
 	margin: 0 auto;
 }
 

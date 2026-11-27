@@ -13,7 +13,7 @@
 <main>
 	<div class="section section--legal">
 		<div class="section__inner">
-			<div class="prose prose--narrow stats-page">
+			<div class="prose prose--narrow">
 				<p class="eyebrow">Dane z mapy węzłów</p>
 				<h1>Statystyki sieci MeshCore w Polsce</h1>
 				<p>
@@ -90,7 +90,7 @@
 							</select>
 						</div>
 						<svg class="stats-map" viewBox="<%= voivodeshipMap.viewBox %>" role="group" aria-label="Mapa województw">
-							<% voivodeshipMap.areas.forEach(area => { %><path class="stats-map__area" d="<%= area.path %>" data-code="<%= area.code %>" tabindex="0" aria-label="<%= area.name %>"></path><% }) %>
+							<% voivodeshipMap.areas.forEach(area => { %><path class="stats-map__area" d="<%= area.path %>" data-code="<%= area.code %>" tabindex="0" role="button" aria-pressed="false" aria-label="<%= area.name %>"></path><% }) %>
 							<% voivodeshipMap.areas.forEach(area => { %><text class="stats-map__label" x="<%= area.labelX %>" y="<%= area.labelY %>" data-code="<%= area.code %>"></text><% }) %>
 						</svg>
 						<p class="stats-map__attribution">Granice województw: © autorzy <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a></p>

@@ -11,7 +11,12 @@
 }
 
 .prose--narrow {
-	max-width: 980px;
+	max-width: var(--container-narrow);
+	margin: 0 auto;
+}
+
+.prose--content {
+	max-width: var(--container-content);
 	margin: 0 auto;
 }
 

@@ -30,6 +30,7 @@ export const page = async (req, res) => {
 	if (!voivodeship) return RenderError(res, 404);
 
 	const stats = await getVoivodeshipStats();
+	const statsByCode = byCode(stats?.voivodeships ?? []);
 	const localRegions = getLocalRegions(voivodeship.code);
 	const { country, commonChannels, channelDescriptions } = regions;
 	const name = capitalize(voivodeship.name);
@@ -39,7 +40,8 @@ export const page = async (req, res) => {
 		voivodeship,
 		name,
 		locative: voivodeship.name.replace(/ie$/, 'im'),
-		stats: stats && byCode(stats.voivodeships).get(voivodeship.code),
+		stats: statsByCode.get(voivodeship.code),
+		getMapLabel: code => [getVoivodeship(code).scope, ...(stats ? [statsByCode.get(code).nodes.toLocaleString('pl-PL')] : [])],
 		refreshedAt: formatRefreshedAt(stats?.lastRefreshedAt),
 		localRegions,
 		channels: [...new Set(['Public', ...commonChannels, ...country.channels, ...voivodeship.channels])]

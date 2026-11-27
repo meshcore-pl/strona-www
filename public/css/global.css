@@ -13,6 +13,7 @@
 	--red-glow: rgba(224, 18, 48, .32);
 	--red-glow-bg: rgba(224, 18, 48, .14);
 	--signal: #3ddc84;
+	--link: #58a6ff;
 	--radius: 12px;
 	--toast-bg: var(--glass-bg-strong);
 	--toast-border: var(--border-strong);
@@ -24,8 +25,11 @@
 	--shadow-card: 0 1px 0 rgba(255, 255, 255, .03) inset, 0 14px 32px -20px #0009;
 	--shadow-card-hover: 0 1px 0 rgba(255, 255, 255, .05) inset, 0 22px 44px -18px rgba(0, 0, 0, .65), 0 0 40px -10px var(--red-glow-bg);
 	--shadow-panel: inset 0 26px 34px -30px rgba(0, 0, 0, .7), inset 0 -26px 34px -30px rgba(0, 0, 0, .7);
+	--gutter: 24px;
 	--container: 1450px;
-	--container-subpages: 1550px;
+	--container-wide: 1550px;
+	--container-content: calc(var(--container) - 2 * var(--gutter));
+	--container-narrow: 1250px;
 	--nav-h: 68px;
 	--page-top: calc(28px + var(--nav-h));
 	--glow-size: 130% 55%;
@@ -56,11 +60,7 @@ html {
 	color: #fff;
 }
 
-input[type="checkbox"]:disabled {
-	cursor: not-allowed;
-}
-
-input[type="checkbox"] {
+input[type="checkbox"], input[type="radio"] {
 	appearance: none;
 	flex-shrink: 0;
 	width: 17px;
@@ -73,12 +73,25 @@ input[type="checkbox"] {
 	accent-color: var(--red-bright);
 }
 
+input[type="radio"] {
+	border-radius: 50%;
+}
+
 input[type="checkbox"]:checked {
 	border: 0;
 	background: var(--red-bright) url('/images/checkbox-check.svg') center / contain no-repeat;
 }
 
-input[type="checkbox"]:focus-visible {
+input[type="radio"]:checked {
+	border: 5px solid var(--red-bright);
+	background: #fff;
+}
+
+input[type="checkbox"]:disabled, input[type="radio"]:disabled {
+	cursor: not-allowed;
+}
+
+input[type="checkbox"]:focus-visible, input[type="radio"]:focus-visible {
 	outline: 2px solid var(--red-bright);
 	outline-offset: 3px;
 }
@@ -94,7 +107,7 @@ input[type="checkbox"]:focus-visible {
 }
 
 .docs-breadcrumb a {
-	color: #58a6ff;
+	color: var(--link);
 	transition: color .15s ease;
 }
 
@@ -111,7 +124,7 @@ input[type="checkbox"]:focus-visible {
 }
 
 @media (forced-colors: active) {
-	input[type="checkbox"], input[type="checkbox"]:checked {
+	input[type="checkbox"], input[type="checkbox"]:checked, input[type="radio"], input[type="radio"]:checked {
 		appearance: auto;
 		border: revert;
 		border-radius: revert;
@@ -165,7 +178,7 @@ img {
 }
 
 a {
-	color: #58a6ff;
+	color: var(--link);
 	text-decoration: none;
 	transition: color .15s ease;
 }
@@ -448,7 +461,7 @@ select.form-control option {
 	gap: 16px;
 	max-width: var(--container);
 	margin: 0 auto;
-	padding: 14px 24px;
+	padding: 14px var(--gutter);
 }
 
 #nav__brand {
@@ -632,8 +645,12 @@ select.form-control option {
 	margin: 0 auto;
 }
 
-body[data-page="news"] .section__inner {
-	max-width: var(--container-subpages);
+:where([data-page="docs"], [data-page="news"]) .section__inner {
+	max-width: var(--container-wide);
+}
+
+.section__inner--content {
+	max-width: var(--container-content);
 }
 
 .section--quickstart .section__inner {
