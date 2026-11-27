@@ -15,6 +15,7 @@ const RG_RADIO_SETTINGS = { frequency: 869618, bandwidth: 62500, spreading_facto
 let highlighterPromise = null;
 let regionData, rootScope;
 let exportChannels = [];
+let unassignedScope = '';
 const channelSelections = new Map();
 
 const fetchData = async url => {
@@ -259,24 +260,33 @@ const createChannelName = (channel, selectable) => {
 	return wrapper;
 };
 
+const createChannelRow = cells => {
+	const tr = document.createElement('tr');
+	tr.append(...cells.map(content => {
+		const td = document.createElement('td');
+		td.append(content);
+		return td;
+	}));
+	return tr;
+};
+
 const renderChannelTable = () => {
 	const selectable = !document.getElementById('rg-import').hidden;
 
-	document.getElementById('rg-channels').replaceChildren(...exportChannels.map(channel => {
-		const tr = document.createElement('tr');
-		tr.append(...[createChannelName(channel, selectable), createScopeControl(channel), regionData.channelDescriptions[channel.name] || ''].map(content => {
-			const td = document.createElement('td');
-			td.append(content);
-			return td;
-		}));
-		return tr;
-	}));
+	const rows = exportChannels.map(channel => createChannelRow([createChannelName(channel, selectable), createScopeControl(channel), regionData.channelDescriptions[channel.name] || '']));
+	if (unassignedScope) {
+		const code = document.createElement('code');
+		code.textContent = unassignedScope;
+		rows.push(createChannelRow(['Brak danych', code, '']));
+	}
+	document.getElementById('rg-channels').replaceChildren(...rows);
 
 	updateExportButton();
 };
 
-const renderChannels = rows => {
+const renderChannels = (rows, scopeWithoutChannel) => {
 	exportChannels = getChannelOptions(rows);
+	unassignedScope = scopeWithoutChannel;
 	renderChannelTable();
 };
 
@@ -507,6 +517,8 @@ const renderNeighbors = (home, selected = null) => {
 	}));
 };
 
+const getVoivodeshipUrl = code => `/wojewodztwa/${code}`;
+
 const renderOutput = () => {
 	const firmware = document.getElementById('rg-fw').value;
 	document.getElementById('rg-fw-warning').hidden = firmware === '116';
@@ -519,6 +531,7 @@ const renderOutput = () => {
 
 	const city = getSelectedLocalScope();
 	const home = document.getElementById('rg-home').value;
+	document.getElementById('rg-home-link').href = getVoivodeshipUrl(home);
 	const errors = validateLocalScope(city, home);
 
 	const errorsBox = document.getElementById('rg-errors');
@@ -543,10 +556,7 @@ const renderOutput = () => {
 
 	setCode('rg-tree', buildTreePreview(tree));
 
-	renderChannels(buildChannels(home, city, neighbors));
-
-	document.getElementById('rg-no-channels').hidden = !city || channelsForScope(city).length > 0;
-	document.getElementById('rg-no-channels-scope').textContent = city;
+	renderChannels(buildChannels(home, city, neighbors), city && !channelsForScope(city).length ? city : '');
 
 	document.getElementById('rg-community-groups').replaceChildren(...[rootScope, home, ...neighbors].map(code => {
 		const tr = document.createElement('tr');
@@ -554,7 +564,15 @@ const renderOutput = () => {
 		const config = code === rootScope ? regionData.country : regionData.voivodeships[code];
 
 		const name = code === rootScope ? 'Krajowy' : config.name;
-		region.textContent = name.charAt(0).toUpperCase() + name.slice(1);
+		const label = name.charAt(0).toUpperCase() + name.slice(1);
+		if (code === rootScope) {
+			region.textContent = label;
+		} else {
+			const page = document.createElement('a');
+			page.href = getVoivodeshipUrl(code);
+			page.textContent = label;
+			region.append(page);
+		}
 
 		const server = document.createElement('td');
 		const url = config.socials.discord;
