@@ -68,4 +68,4 @@ Przez API pobierzesz też polskie wersje wpisów z bloga MeshCore w formacie Mar
 curl --get "https://meshcorepolska.org/api/v1/news/post" --data-urlencode "sourceUrl=https://blog.meshcore.io/2026/11/26/motions-sensors"
 ```
 
-Pozostałe zmiany opisaliśmy w [historii aktualizacji strony](/dokumentacja/spolecznosc/lista-zmian#v1110-26112026).
+Pozostałe zmiany opisaliśmy w [historii aktualizacji strony](/dokumentacja/spolecznosc/lista-zmian#v1110-27112026).
