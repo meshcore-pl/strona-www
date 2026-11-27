@@ -38,12 +38,7 @@
 	flex-direction: column;
 	gap: 5px;
 	padding: 16px 19px;
-	border: 1px solid var(--border);
-	border-radius: var(--radius);
-	background: var(--glass-bg);
 	color: var(--text);
-	-webkit-backdrop-filter: blur(4px);
-	backdrop-filter: blur(4px);
 	transition: border-color .2s ease;
 }
 

@@ -101,10 +101,10 @@ Jako skrótu użyj trzyznakowego kodu z międzynarodowego wykazu [UN/LOCODE](htt
 | --- | --- |
 | `GDN Oliwa` | Repeater w gdańskiej Oliwie. |
 | `KRK SQ9XYZ` | Repeater w Krakowie oznaczony znakiem wywoławczym operatora. |
-| `GDN Wrzeszcz Północ` | Repeater we Wrzeszczu z anteną skierowaną na północ. |
+| `GDN Wrzeszcz N` | Repeater we Wrzeszczu z anteną skierowaną na północ. |
 | `KOL Podczele SOL` | Repeater w kołobrzeskim Podczelu zamontowany na stałe i zasilany niezależnie od sieci energetycznej. |
 
-Jeśli repeater obsługuje głównie jeden kierunek, możesz dopisać go po wyróżniku, np. `Północ`, `Południe`, `Wschód` lub `Zachód`. Przydaje się to zwłaszcza przy antenach kierunkowych.
+Jeśli antena repeatera jest skierowana w konkretną stronę, możesz dopisać po wyróżniku skrót kierunku, np. `N` (północ).
 
 Zadbaj, by nazwa była krótka. Jeśli repeater rozgłasza swoją lokalizację, w advercie mieszczą się 23 bajty nazwy, a bez lokalizacji 31. Polskie litery zajmują po 2 bajty. Komenda `set name` nie przyjmuje znaków `[ ] \ : , ? *`.
 

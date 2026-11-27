@@ -51,7 +51,7 @@
 #docs-search-input:focus {
 	border-color: var(--red-bright);
 	outline: 0;
-	box-shadow: 0 0 0 3px var(--red-glow);
+	box-shadow: var(--focus-ring);
 }
 
 #docs-search-results {

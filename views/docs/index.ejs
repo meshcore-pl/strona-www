@@ -32,7 +32,7 @@
 		<div class="section__inner section__inner--content">
 			<div id="docs-groups">
 				<% groups.forEach(group => { %>
-					<a href="/dokumentacja/<%= group.slug %>" class="docs-group-card">
+					<a href="/dokumentacja/<%= group.slug %>" class="docs-group-card panel">
 						<div class="docs-group-card__icon">
 							<% if (group.icon.startsWith('/')) { %><img src="<%= group.icon %>" alt="<%= group.title %>" width="40" height="40" loading="lazy"><% } else if (group.icon.startsWith('#')) { %><svg width="40" height="40" aria-hidden="true"><use href="/icons.svg<%= group.icon %>"></use></svg><% } else { %><%- group.icon %><% } %>
 						</div>
@@ -48,7 +48,7 @@
 			</div>
 
 			<% if (tip) { %>
-				<div class="docs-tip">
+				<div class="docs-tip panel">
 					<svg class="docs-tip__icon" aria-hidden="true"><use href="/icons.svg#alert-tip"></use></svg>
 					<p><%= tip %></p>
 				</div>

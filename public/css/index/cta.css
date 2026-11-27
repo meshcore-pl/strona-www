@@ -2,12 +2,7 @@
 	max-width: 760px;
 	margin: 0 auto;
 	padding: 36px 36px 32px;
-	border: 1px solid var(--border);
 	border-left: 3px solid var(--red);
-	border-radius: var(--radius);
-	background: var(--glass-bg);
-	-webkit-backdrop-filter: blur(4px);
-	backdrop-filter: blur(4px);
 }
 
 #callout .eyebrow {

@@ -46,7 +46,7 @@
 		<div class="section__inner">
 			<div id="docs-page-grid">
 				<% group.visiblePages.forEach((p, i) => { %>
-					<a href="/dokumentacja/<%= group.slug %>/<%= p.slug %>" class="docs-page-card">
+					<a href="/dokumentacja/<%= group.slug %>/<%= p.slug %>" class="docs-page-card panel">
 						<span class="docs-page-card__num"><%= String(i + 1).padStart(2, '0') %></span>
 						<span class="docs-page-card__title"><%= p.title %></span>
 						<% if (p.description) { %><p class="docs-page-card__desc"><%= p.description %></p><% } %>
@@ -61,7 +61,7 @@
 			</div>
 
 			<% if (tip) { %>
-				<div class="docs-tip">
+				<div class="docs-tip panel">
 					<svg class="docs-tip__icon" aria-hidden="true"><use href="/icons.svg#alert-tip"></use></svg>
 					<p><%= tip %></p>
 				</div>

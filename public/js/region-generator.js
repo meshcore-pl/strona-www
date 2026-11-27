@@ -237,7 +237,7 @@ const createScopeControl = channel => {
 
 const createChannelName = (channel, selectable) => {
 	const wrapper = document.createElement(selectable ? 'label' : 'span');
-	wrapper.className = 'rg-check';
+	wrapper.className = 'form-check';
 
 	const text = document.createElement('code');
 	text.textContent = channel.name;
@@ -486,7 +486,7 @@ const renderNeighbors = (home, selected = null) => {
 	const checked = new Set(selected ?? [...container.querySelectorAll('input:checked')].map(input => input.value));
 	container.replaceChildren(...regionData.voivodeships[home].neighbors.map(code => {
 		const label = document.createElement('label');
-		label.className = 'rg-check';
+		label.className = 'form-check';
 
 		const input = document.createElement('input');
 		input.type = 'checkbox';

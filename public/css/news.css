@@ -98,7 +98,7 @@
 .news-search__input:focus {
 	border-color: var(--red-bright);
 	outline: 0;
-	box-shadow: 0 0 0 3px var(--red-glow);
+	box-shadow: var(--focus-ring);
 }
 
 #news-search__empty {
@@ -223,12 +223,7 @@ a.news-source--spolecznosc:hover {
 	flex-direction: column;
 	gap: 10px;
 	padding: 22px 26px;
-	border: 1px solid var(--border);
-	border-radius: var(--radius);
-	background: var(--glass-bg);
 	color: var(--text);
-	-webkit-backdrop-filter: blur(4px);
-	backdrop-filter: blur(4px);
 	transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
 }
 

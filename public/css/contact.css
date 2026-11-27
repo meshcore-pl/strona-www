@@ -19,12 +19,7 @@
 
 #contact-card {
 	padding: 25px;
-	border: 1px solid var(--border);
-	border-radius: var(--radius);
-	background: var(--glass-bg);
 	text-align: left;
-	-webkit-backdrop-filter: blur(4px);
-	backdrop-filter: blur(4px);
 }
 
 .contact-form__field {

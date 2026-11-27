@@ -133,12 +133,7 @@
 	max-width: 760px;
 	margin: 40px auto 0;
 	padding: 18px 22px;
-	border: 1px solid var(--border);
 	border-left: 3px solid var(--red);
-	border-radius: var(--radius);
-	background: var(--glass-bg);
-	-webkit-backdrop-filter: blur(4px);
-	backdrop-filter: blur(4px);
 }
 
 #timeline__tip p {

@@ -46,7 +46,13 @@ const setCommand = command => {
 		.catch(err => console.error('Nie udało się załadować codeBlocks.js z CDN:', err));
 };
 
-const describe = ({ name, voivodeship }) => `${name} (${voivodeship ? voivodeshipNames.get(voivodeship) : 'województwo nieustalone'})`;
+const getVoivodeshipName = ({ voivodeship }) => (voivodeship ? voivodeshipNames.get(voivodeship) : 'województwo nieustalone');
+
+const selectCode = code => {
+	const entry = entries.find(item => item.code === code);
+	codeInput.dataset.code = entry?.code ?? '';
+	codeInput.value = entry ? `${entry.name} - ${entry.code} (${getVoivodeshipName(entry)})` : '';
+};
 
 const findMatches = () => {
 	const voivodeship = voivodeshipSelect.value;
@@ -73,7 +79,7 @@ const createResult = entry => {
 	button.type = 'button';
 	button.className = 'ng-result';
 	button.dataset.code = entry.code;
-	button.setAttribute('aria-pressed', String(entry.code === codeInput.value));
+	button.setAttribute('aria-pressed', String(entry.code === codeInput.dataset.code));
 
 	const code = document.createElement('code');
 	code.textContent = entry.code;
@@ -95,23 +101,19 @@ const renderResults = () => {
 	byId('ng-no-results').hidden = matches.length > 0;
 };
 
-const describeCode = code => {
-	const entry = entries.find(item => item.code === code);
-	return entry ? describe(entry) : '';
-};
-
 const renderOutput = () => {
-	const code = codeInput.value;
-	const base = [code, suffixInput.value.trim().replace(/\s+/g, ' '), directionSelect.value].filter(Boolean).join(' ');
-	const name = base && solarInput.checked ? `${base} SOL` : base;
+	const code = codeInput.dataset.code ?? '';
+	const suffix = suffixInput.value.trim().replace(/\s+/g, ' ');
+	const name = code && suffix ? [code, suffix, directionSelect.value, solarInput.checked && 'SOL'].filter(Boolean).join(' ') : '';
 	const forbidden = [...new Set(name.match(FORBIDDEN_RE))];
 	const bytes = encoder.encode(name).length;
-	const valid = Boolean(code) && !forbidden.length && bytes <= MAX_BYTES;
+	const valid = Boolean(name) && !forbidden.length && bytes <= MAX_BYTES;
 
-	byId('ng-code-hint').textContent = describeCode(code);
 	results.querySelectorAll('.ng-result').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.code === code)));
 
-	byId('ng-empty').hidden = Boolean(name);
+	const empty = byId('ng-empty');
+	empty.textContent = code ? 'Wpisz wyróżnik lub znak wywoławczy.' : 'Wybierz miejscowość, aby zacząć.';
+	empty.hidden = Boolean(name);
 	byId('ng-result').hidden = !name;
 	byId('ng-name').textContent = name;
 	setCommand(valid ? `set name ${name}` : '');
@@ -120,7 +122,7 @@ const renderOutput = () => {
 	const problems = [];
 	if (forbidden.length) problems.push(`Usuń niedozwolone znaki: ${forbidden.join(' ')}`);
 	if (bytes > MAX_BYTES) problems.push('Nazwa jest za długa i zostanie ucięta. Skróć wyróżnik.');
-	else if (bytes > MAX_BYTES_WITH_LOCATION) problems.push('Jeśli repeater rozgłasza lokalizację, końcówka nazwy zostanie ucięta w advercie.');
+	else if (bytes > MAX_BYTES_WITH_LOCATION) problems.push('Jeśli repeater rozgłasza lokalizację, końcówka nazwy zostanie ucięta!');
 	const problem = byId('ng-problem');
 	problem.textContent = problems.join(' ');
 	problem.hidden = !problems.length;
@@ -156,7 +158,7 @@ const saveSettings = () => {
 		localStorage.setItem(SETTINGS_KEY, JSON.stringify({
 			voivodeship: voivodeshipSelect.value,
 			search: searchInput.value,
-			code: codeInput.value,
+			code: codeInput.dataset.code,
 			suffix: suffixInput.value,
 			direction: directionSelect.value,
 			solar: solarInput.checked,
@@ -176,7 +178,7 @@ const restoreForm = () => {
 
 	voivodeshipSelect.value = voivodeship ?? settings.voivodeship ?? '';
 	searchInput.value = requested?.code ?? (sameVoivodeship ? settings.search ?? '' : '');
-	codeInput.value = entries.some(entry => entry.code === code) ? code : '';
+	selectCode(code);
 	suffixInput.value = code === (settings.code ?? '') ? settings.suffix ?? '' : '';
 	directionSelect.value = settings.direction ?? '';
 	solarInput.checked = settings.solar ?? false;
@@ -228,7 +230,7 @@ const init = async () => {
 	results.addEventListener('click', event => {
 		const button = event.target.closest('.ng-result');
 		if (!button) return;
-		codeInput.value = button.dataset.code;
+		selectCode(button.dataset.code);
 		renderOutput();
 		handleChange();
 	});

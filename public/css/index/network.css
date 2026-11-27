@@ -12,13 +12,8 @@
 
 .network-stat {
 	padding: 24px 16px;
-	border: 1px solid var(--border);
-	border-radius: var(--radius);
-	background: var(--glass-bg);
 	text-align: center;
 	box-shadow: var(--shadow-card);
-	-webkit-backdrop-filter: blur(4px);
-	backdrop-filter: blur(4px);
 	transition: border-color .2s ease, transform .2s ease, box-shadow .25s ease;
 }
 

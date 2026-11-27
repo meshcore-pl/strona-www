@@ -40,7 +40,7 @@
 		<div class="section__inner">
 			<div id="news-list">
 				<% tag.posts.forEach(post => { %>
-					<a href="<%= post.canonical %>" class="news-post-card" data-search="<%= [post.title, post.description, ...post.tags.map(t => t.label)].join(' ').toLowerCase() %>">
+					<a href="<%= post.canonical %>" class="news-post-card panel" data-search="<%= [post.title, post.description, ...post.tags.map(t => t.label)].join(' ').toLowerCase() %>">
 						<div class="news-post-card__head">
 							<h2 class="news-post-card__title"><%= post.title %></h2>
 							<span class="news-post-card__date">Opublikowano: <%= post.createdAt %></span>

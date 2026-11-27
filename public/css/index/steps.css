@@ -18,14 +18,9 @@
 	align-items: center;
 	gap: 16px;
 	padding: 17px 21px;
-	border: 1px solid var(--border);
-	border-radius: var(--radius);
-	background: var(--glass-bg);
 	color: var(--text);
 	font-size: var(--fs-lg);
 	box-shadow: var(--shadow-card);
-	-webkit-backdrop-filter: blur(4px);
-	backdrop-filter: blur(4px);
 }
 
 @media (min-width: 900px) {

@@ -11,12 +11,7 @@
 }
 
 .card, .equipment-checklist, .equipment-help, #print-offer {
-	border: 1px solid var(--border);
-	border-radius: var(--radius);
-	background: var(--glass-bg);
 	box-shadow: var(--shadow-card);
-	-webkit-backdrop-filter: blur(4px);
-	backdrop-filter: blur(4px);
 }
 
 .card {
