@@ -19,6 +19,18 @@ Nie. MeshCore w Polsce działa w paśmie bezlicencyjnym, więc nie potrzebujesz 
 
 Wiadomości są przesyłane drogą radiową, bez internetu i sieci komórkowej. Internet przyda się natomiast do pobrania aplikacji, wgrania oprogramowania przez flasher czy przeglądania mapy węzłów.
 
+## Czy wiadomości są szyfrowane?
+
+Tak. Kto może odczytać treść, zależy od tego, gdzie wysyłasz wiadomość.
+
+- **Wiadomość prywatną** mogą odczytać tylko nadawca i odbiorca.
+- **Na kanale prywatnym** wiadomości może odczytać każdy, kto ma klucz kanału.
+- **Na room serwerze** historię wiadomości mogą przeczytać osoby z dostępem do serwera, np. te, które znają hasło.
+- **Kanał `Public` i kanały z hashtagiem** traktuj jak publiczne.
+
+> [!WARNING]
+> Wiadomości z `Public` i kanałów z hashtagiem mogą trafić do [publicznych analizatorów pakietów](/dokumentacja/meshcore/lista-analizatorow) w internecie. Jeśli się tam pojawią, każdy może je przeczytać, nawet bez własnego radia.
+
 ## Jaki zasięg ma MeshCore?
 
 Nie ma jednej wartości. Zasięg między dwoma urządzeniami zależy przede wszystkim od:
@@ -40,6 +52,17 @@ Zwróć uwagę na status widoczny pod wysłaną wiadomością:
 - **Odebrano: 3 repeatery** lub więcej - companion usłyszał kilka retransmisji. To dobry znak, bo wiadomość ma więcej niż jedną drogę w głąb sieci.
 
 Brak odebranych retransmisji nie musi oznaczać całkowitego braku zasięgu. Powtórz test w kilku miejscach, np. przy oknie, na zewnątrz lub na wyższej kondygnacji budynku. Nawet niewielka zmiana położenia [anteny](/dokumentacja/meshcore/anteny) może poprawić łączność.
+
+## Dlaczego nikt mi nie odpowiada?
+
+Najpierw sprawdź, czy Twoja wiadomość jest retransmitowana. Wykonaj [test zasięgu](#jak-sprawdzic-czy-w-mojej-okolicy-jest-zasieg).
+
+- **Jeśli nie widzisz retransmisji**, upewnij się, że [antena](/dokumentacja/meshcore/anteny) jest poprawnie podłączona, i porównaj konfigurację z [ustawieniami radiowymi używanymi w Polsce](#jakie-ustawienia-radiowe-wybrac-w-polsce). Warto też zajrzeć na [mapę węzłów](https://mapa.meshcorepolska.org), żeby sprawdzić, gdzie są najbliższe repeatery.
+- **Jeśli problem dotyczy konkretnego kanału**, sprawdź, czy jego [ustawienie regionu](#czym-sa-regiony-i-czy-musze-je-ustawiac) zgadza się z konfiguracją używaną przez lokalną społeczność.
+
+Sprawdź też w aplikacji **Ustawienia → Domyślny rozmiar hasha ścieżki**. Zwykle powinno być ustawione `2` lub `3` bajty, nigdy `1`. Jeśli wiadomości dalej nie są przekazywane, trzymaj się i tak `2` lub `3` - zależnie od ustaleń lokalnej społeczności.
+
+Jeśli widzisz retransmisję, daj rozmówcom trochę czasu. Możliwe, że akurat nikt nie zagląda na kanał.
 
 ## Czym różni się companion od repeatera i room serwera?
 
@@ -63,6 +86,14 @@ Przyjętym standardem ogólnopolskiej sieci jest preset **EU/UK Narrow**:
 | Współczynnik kodowania (CR) | `8` (można też użyć np. `5`, różne wartości CR są ze sobą kompatybilne) |
 
 Część sieci na południu Polski korzysta z `SF6`. Urządzenia na `SF6` i `SF8` nie mogą się bezpośrednio komunikować. Na repeaterze ustaw też duty cycle na `10%`, ponieważ domyślna wartość przekracza [limit prawny](/dokumentacja/meshcore/wprowadzenie#legalnosc-i-duty-cycle). Szczegóły i zalecane komendy znajdziesz na stronie [Presety i konfiguracja radia](/dokumentacja/meshcore/aktualne-presety).
+
+## Czym są regiony i czy muszę je ustawiać?
+
+Nie, ale jest to ogromnie zalecane. Lepiej wcześniej niż później. Na kanałach regionalnych też toczą się rozmowy i szkoda je przegapić.
+
+Region to etykieta, np. `pl` lub `pl-zp`. Wiadomość z taką etykietą przekazują tylko repeatery skonfigurowane do obsługi danego regionu. Dzięki temu lokalne rozmowy mogą pozostać w obrębie miasta lub województwa. Kanał `Public` zostaw bez regionu.
+
+Więcej przeczytasz w dokumencie [Regionalizacja wiadomości](/dokumentacja/meshcore/regionalizacja-wiadomosci), a konfigurację przygotujesz w [generatorze regionów](/generator-regionow).
 
 ## Czym różnią się płytki z nRF52 i ESP32?
 

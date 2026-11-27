@@ -57,7 +57,7 @@ Im gęściej obstawiona okolica, tym łatwiej zapchać sieć samymi advertami. D
 | Duże                | wyłączone                           | co najmniej 16 godzin |
 | Małe                | co najmniej 4 godziny lub wyłączone | co najmniej 7 godzin  |
 
-Czym są w ogóle adverty? Zobacz [Wprowadzenie > Podstawowe pojęcia](https://meshcorepolska.org/dokumentacja/meshcore/wprowadzenie#podstawowe-pojecia).
+Czym są w ogóle adverty? Zobacz [Wprowadzenie → Podstawowe pojęcia](https://meshcorepolska.org/dokumentacja/meshcore/wprowadzenie#podstawowe-pojecia).
 
 ### Komendy CLI
 Poniższe komendy (dla repeaterów, room serwerów i room-peaterów) pomagają utrzymać sieć w dobrej kondycji. Wymagane oprogramowanie: `1.14+`.
@@ -70,7 +70,7 @@ set agc.reset.interval 480    # reset AGC co 8 min (480 s) - ogranicza dryft czu
 set dutycycle 10              # duty cycle 10% (firmware 1.15+)
 ```
 
-Więcej o wielobajtowych skrótach trasy i wykrywaniu pętli przeczytasz we wpisie [Usprawnienia diagnostyki trasy](https://meshcorepolska.org/aktualnosci/oprogramowanie/usprawnienia-diagnostyki-trasy), o dutycycle w [Wprowadzenie > Legalność i duty cycle](https://meshcorepolska.org/dokumentacja/meshcore/wprowadzenie#legalnosc-i-duty-cycle), a o filtrowaniu ruchu między regionami w [Regionalizacja wiadomości](https://meshcorepolska.org/dokumentacja/meshcore/regionalizacja-wiadomosci).
+Więcej o wielobajtowych skrótach trasy i wykrywaniu pętli przeczytasz we wpisie [Usprawnienia diagnostyki trasy](https://meshcorepolska.org/aktualnosci/oprogramowanie/usprawnienia-diagnostyki-trasy), o dutycycle w [Wprowadzenie → Legalność i duty cycle](https://meshcorepolska.org/dokumentacja/meshcore/wprowadzenie#legalnosc-i-duty-cycle), a o filtrowaniu ruchu między regionami w [Regionalizacja wiadomości](https://meshcorepolska.org/dokumentacja/meshcore/regionalizacja-wiadomosci).
 
 #### Mniejsze miasta (np. Piła, Racibórz, Zamość)
 ```mccli
