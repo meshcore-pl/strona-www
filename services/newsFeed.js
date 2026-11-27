@@ -8,6 +8,7 @@ const DESCRIPTION = 'Newsy, changelogi aplikacji i firmware MeshCore, tłumaczen
 const INVALID_XML_RE = /[^\t\n\r\u0020-\uD7FF\uE000-\uFFFD\u{10000}-\u{10FFFF}]/gu;
 const LEADING_H1_RE = /^\s*<h1\b[^>]*>[\s\S]*?<\/h1>\s*/;
 const SVG_RE = /<svg\b[\s\S]*?<\/svg>\s*/g;
+const HEADING_ANCHOR_RE = /<a\b[^>]*\sclass="docs-anchor"[^>]*><\/a>/g;
 const TAG_RE = /<[a-z][^>]*>/gi;
 const URL_ATTR_RE = /(\s(?:href|src|poster)=")([^"]*)"/gi;
 
@@ -21,7 +22,7 @@ const absolutizeUrls = (html, baseUrl) => html.replace(TAG_RE, element => elemen
 const toCdata = str => `<![CDATA[${str.replaceAll(']]>', ']]]]><![CDATA[>')}]]>`;
 
 const renderContent = (post, url) => {
-	const body = absolutizeUrls(post.html.replace(LEADING_H1_RE, '').replace(SVG_RE, ''), url);
+	const body = absolutizeUrls(post.html.replace(LEADING_H1_RE, '').replace(SVG_RE, '').replace(HEADING_ANCHOR_RE, ''), url);
 	if (!post.sourceUrl) return body;
 
 	return `${body}<p>~ Tłumaczenie na język polski: MeshCore Polska<br><a href="${escapeXml(post.sourceUrl)}">Źródło i oryginał: ${escapeXml(post.source.label)}</a></p>\n`;

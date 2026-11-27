@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import parseFrontmatter from 'frontmatter-md';
 import tagDescriptions from '../content/newsTags.js';
-import { marked, renderer, resolvePageImage, assignHeadingIds, slugify, getExternalRel, parseDMYDate } from './markdown.js';
+import { marked, renderer, resolvePageImage, assignHeadingIds, addHeadingAnchors, slugify, getExternalRel, parseDMYDate } from './markdown.js';
 
 const NEWS_DIR = path.join(import.meta.dirname, '../content/news');
 
@@ -33,6 +33,7 @@ const build = () => {
 			const { data, content } = parseFrontmatter(raw);
 			const tokens = marked.lexer(content);
 			assignHeadingIds(tokens);
+			addHeadingAnchors(tokens);
 
 			const postTags = (data.tags || []).map(label => ({ label, slug: slugify(label) }));
 			const date = parseDMYDate(data.updatedAt || data.createdAt);
