@@ -53,6 +53,10 @@ Zwróć uwagę na status widoczny pod wysłaną wiadomością:
 
 Brak odebranych retransmisji nie musi oznaczać całkowitego braku zasięgu. Powtórz test w kilku miejscach, np. przy oknie, na zewnątrz lub na wyższej kondygnacji budynku. Nawet niewielka zmiana położenia [anteny](/dokumentacja/meshcore/anteny) może poprawić łączność.
 
+## Co oznacza odpowiedź np. "Kołobrzeg 4h"?
+
+Taka odpowiedź oznacza, że Twoja wiadomość dotarła do odbiorcy w Kołobrzegu po czterech retransmisjach. Skrót `4h` pochodzi od angielskiego "4 hops" (cztery przeskoki). Litera `h` oznacza tutaj przeskoki, a nie godziny.
+
 ## Dlaczego nikt mi nie odpowiada?
 
 Najpierw sprawdź, czy Twoja wiadomość jest retransmitowana. Wykonaj [test zasięgu](#jak-sprawdzic-czy-w-mojej-okolicy-jest-zasieg).
@@ -73,6 +77,14 @@ O roli urządzenia decyduje wgrane oprogramowanie, nie sama płytka.
 - **Room serwer** działa jak lokalna tablica ogłoszeń: przechowuje historię wiadomości grupowych i udostępnia ją po podaniu hasła.
 
 Na początek zwykle wystarczy sam companion. Więcej na ten temat dowiesz się z dokumentu [Role urządzeń](/dokumentacja/meshcore/wprowadzenie#role-urzadzen).
+
+## Czy potrzebuję własnego repeatera?
+
+To zależy od zasięgu sieci w Twojej okolicy. Jeśli masz stabilną łączność z pobliskimi repeaterami, do korzystania z sieci wystarczy companion. Sprawdź rozmieszczenie repeaterów na [mapie węzłów](https://mapa.meshcorepolska.org) i [przetestuj zasięg w swojej okolicy](#jak-sprawdzic-czy-w-mojej-okolicy-jest-zasieg).
+Własny repeater warto uruchomić, jeśli może rozszerzyć zasięg sieci, poprawić lokalną łączność lub połączyć odseparowane fragmenty sieci. Kluczowe znaczenie ma jego lokalizacja oraz wysokość montażu anteny.
+Większa liczba repeaterów nie zawsze oznacza lepsze działanie sieci. Zbyt duże ich zagęszczenie może powodować zbędne retransmisje, zwiększać zajętość kanału radiowego. Pojawia się również ryzyko kolizji pakietów.
+
+Jeśli mimo wszystko chcesz uruchomić własny repeater, postaraj się wybrać lokalizację, w której uzupełni on istniejącą infrastrukturę.
 
 ## Jakie ustawienia radiowe wybrać w Polsce?
 
@@ -101,21 +113,21 @@ To dwie najpopularniejsze rodziny mikrokontrolerów w urządzeniach dla MeshCore
 
 | Cecha | nRF52 | ESP32 |
 | --- | --- | --- |
-| Przykładowe urządzenia | RAK4631, Heltec T114, XIAO nRF52840, SenseCAP T1000-E | Heltec V4, XIAO ESP32-S3, LilyGO T-Beam, T-Deck |
-| Wbudowana łączność | Bluetooth LE, bez Wi-Fi | Wi-Fi i Bluetooth LE (w modelach używanych zwykle w MeshCore) |
+| Przykładowe urządzenia | RAK4631, XIAO nRF52840, SenseCAP T1000-E | Heltec V4, XIAO ESP32-S3, LilyGO T-Beam, T-Deck |
+| Wbudowana łączność | Bluetooth LE, bez Wi-Fi | Wi-Fi i Bluetooth LE |
 | Połączenie companiona z aplikacją | Bluetooth, USB | Bluetooth, USB, Wi-Fi (zależnie od wariantu firmware) |
 | Pobór energii | Niski | Wyraźnie wyższy, zwłaszcza przy włączonym Wi-Fi |
 | Zasilanie bateryjne i solarne | Zalecany wybór, wystarczy mniejszy akumulator i panel | Możliwe, ale wymaga większego akumulatora i panelu |
 | Wydajność i pamięć | Mniejsze, ale w pełni wystarczające dla MeshCore | Zwykle większe, przydatne np. przy rozbudowanych ekranach |
 | Cena płytek | Zwykle wyższa | Zwykle niższa |
 | Aktualizacja bez kabla (OTA) | Przez Bluetooth | Przez Wi-Fi |
-| Typowe zastosowanie w MeshCore | Przenośne companiony, trackery, repeatery solarne | Tanie companiony, repeatery i room serwery ze stałym zasilaniem |
+| Typowe zastosowanie w MeshCore | Przenośne companiony, repeatery solarne | Tanie węzły ze stałym zasilaniem |
 
 Jeśli najważniejszy jest długi czas pracy na baterii, wybierz nRF52. Jeśli zależy Ci na niskiej cenie albo chcesz mieć połączenie z companionem w całym domu przez Wi-Fi (BLE ma mniejszy zasięg), wybierz ESP32. Rzeczywisty pobór prądu zależy też od konkretnej płytki, ekranu, GPS, wersji oprogramowania i natężenia ruchu w sieci.
 
 Poradniki aktualizacji OTA: [nRF52](/aktualnosci/poradnik/aktualizacje-ota-nrf) · [ESP32](/aktualnosci/poradnik/aktualizacje-ota-esp)
 
-## Dlaczego mój komputer nie widzi płytki?
+## Dlaczego mój komputer nie widzi płytki przy flashowaniu?
 
 Najczęstszą przyczyną problemu jest kabel USB. Oba rodzaje kabli mogą wyglądać identycznie, ale różnić się przeznaczeniem:
 
