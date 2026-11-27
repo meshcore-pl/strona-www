@@ -311,11 +311,6 @@
 	box-shadow: 0 0 0 5px var(--red-glow);
 }
 
-.map-settings__panel input[type="range"]:disabled {
-	opacity: .4;
-	cursor: not-allowed;
-}
-
 .map-settings__panel .map-settings__count {
 	margin: 6px 0 0;
 	color: var(--text-muted);
@@ -330,10 +325,4 @@
 	margin-top: 18px;
 	padding-top: 14px;
 	border-top: 1px solid var(--border);
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.map-settings__close {
-		transition: none;
-	}
 }

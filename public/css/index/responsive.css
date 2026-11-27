@@ -142,4 +142,26 @@
 	.stat--online::before {
 		animation: none;
 	}
+
+	#hero {
+		text-align: center;
+	}
+
+	#hero__inner {
+		grid-template-columns: 1fr;
+		max-width: 820px;
+	}
+
+	#hero__lead {
+		margin-right: auto;
+		margin-left: auto;
+	}
+
+	.hero__actions, #hero__stats {
+		justify-content: center;
+	}
+
+	#hero__map {
+		display: none;
+	}
 }

@@ -1,9 +1,8 @@
 (() => {
 	const canvas = document.getElementById('mesh-map');
-	if (!canvas || !canvas.getContext) return;
+	if (!canvas || !canvas.getContext || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
 	const ctx = canvas.getContext('2d');
-	const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 	const RED = '255, 51, 82';
 	const BRIGHT = '255, 92, 112';
@@ -689,22 +688,9 @@
 			if (!panel.contains(event.target)) positionPanel();
 		}, { capture: true, passive: true });
 
-		if (reducedMotion) {
-			packetLimit.disabled = true;
-			speed.disabled = true;
-			document.getElementById('map-motion-note').hidden = false;
-		}
-
 		nodeCount.textContent = `Węzły: ${nodes.length} · połączenia: ${edges.length}`;
 		syncControls();
 		controls.hidden = false;
-	}
-
-	if (reducedMotion) {
-		const render = () => resize() && draw(0);
-		if (!render()) requestAnimationFrame(render);
-		new ResizeObserver(() => scheduleResize(render)).observe(canvas);
-		return;
 	}
 
 	let lastTime = 0;
