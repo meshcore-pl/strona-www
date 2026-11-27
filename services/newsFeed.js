@@ -1,4 +1,4 @@
-import { escapeXml } from '../utils/sitemap.js';
+import { escapeXml } from '../global/utils/sitemap.js';
 import getSeoImage from '../utils/seoImage.js';
 import { toStandaloneHtml } from '../utils/html.js';
 

@@ -17,8 +17,9 @@ import * as limiter from './middlewares/ratelimit.js';
 
 // Utils
 import RenderError from './utils/renderError.js';
-import buildSchema from './utils/schema.js';
-import getSeoImage, { DEFAULT_THEME_COLOR } from './utils/seoImage.js';
+import buildSeo from './utils/seo.js';
+import { DEFAULT_THEME_COLOR } from './utils/seoImage.js';
+import noindex from './global/middlewares/noindex.js';
 import pluralizePolish from './utils/pluralizePolish.js';
 
 const { version } = pkg;
@@ -44,14 +45,14 @@ if (buildDate) {
 	const date = new Date(`${isoDate}T00:00:00Z`);
 	if (!Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === isoDate) app.locals.versionDate = `${day}.${month}.${year}`;
 }
-app.locals.buildSchema = buildSchema;
-app.locals.getSeoImage = getSeoImage;
+app.locals.buildSeo = buildSeo;
 app.locals.defaultThemeColor = DEFAULT_THEME_COLOR;
 app.locals.pluralizePolish = pluralizePolish;
 
 // Use middlewares
 app.use(helmet({
 	crossOriginResourcePolicy: false,
+	referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
 	contentSecurityPolicy: {
 		useDefaults: false,
 		directives: {
@@ -74,6 +75,7 @@ app.use(helmet({
 app.use(express.static('public'));
 app.use(logger);
 app.use('/api/v1', cors);
+app.use('/api', noindex);
 if (isProd) app.use(limiter.global);
 app.use(timeout());
 // app.use(blockAiBots);

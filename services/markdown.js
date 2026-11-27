@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { marked } from 'marked';
-import { escapeXml } from '../utils/sitemap.js';
+import { escapeXml } from '../global/utils/sitemap.js';
 
 const PUBLIC_DIR = path.join(import.meta.dirname, '..', 'public');
 

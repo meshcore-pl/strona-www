@@ -8,6 +8,7 @@ import { sitemap } from '../controllers/Sitemap.js';
 import { test } from '../controllers/Test.js';
 import { ENDPOINTS } from '../services/serviceWorker/index.js';
 import sitePages from '../content/pages.js';
+import { createRobots } from '../global/utils/robots.js';
 
 const router = Router();
 
@@ -36,6 +37,7 @@ router.get('/wojewodztwa/:slug', voivodeships.page);
 router.get('/kontakt', contact.form);
 
 router.get('/sitemap.xml', sitemap);
+router.get('/robots.txt', createRobots());
 
 if (process.env.NODE_ENV !== 'production') router.get('/test', test);
 

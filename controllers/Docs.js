@@ -1,6 +1,6 @@
 import docs from '../services/docs.js';
 import RenderError from '../utils/renderError.js';
-import buildSchema from '../utils/schema.js';
+import buildSeo from '../utils/seo.js';
 import { getRandomTip } from '../content/tips.js';
 import getSeoImage, { DEFAULT_THEME_COLOR } from '../utils/seoImage.js';
 
@@ -67,7 +67,7 @@ export const page = (req, res) => {
 			articleSection: locals.articleSection,
 			themeColor: docsPage.themeColor || DEFAULT_THEME_COLOR,
 			imageAlt: ogImage.alt,
-			schema: JSON.stringify(buildSchema(domain, locals)),
+			schema: buildSeo(domain, locals).jsonLd,
 			html,
 		});
 	});

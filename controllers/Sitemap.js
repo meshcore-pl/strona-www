@@ -1,4 +1,4 @@
-import { createSitemap } from '../utils/sitemap.js';
+import { createSitemap } from '../global/utils/sitemap.js';
 import docs from '../services/docs.js';
 import news from '../services/news.js';
 import pages from '../content/pages.js';
