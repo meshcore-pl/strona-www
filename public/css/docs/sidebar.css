@@ -74,10 +74,6 @@
 	margin-top: 28px;
 }
 
-#docs-hero__search-row #docs-hero__actions {
-	margin-top: 0;
-}
-
 #docs-search.docs-search--hero {
 	flex: 1 1 320px;
 	max-width: 460px;

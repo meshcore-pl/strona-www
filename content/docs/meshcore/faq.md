@@ -19,6 +19,18 @@ Nie. W Polsce na presecie **EU/UK Narrow** możesz nadawać bez pozwolenia radio
 
 Wiadomości są przesyłane drogą radiową, bez internetu i sieci komórkowej. Internet przyda się do pobrania aplikacji, wgrania oprogramowania przez [flasher](https://flasher.meshcore.io) czy przeglądania [mapy węzłów](https://mapa.meshcorepolska.org).
 
+## Czy to faktycznie sieć kryzysowa?
+
+Tak i nie. MeshCore może się przydać jako dodatkowy kanał łączności w sytuacji kryzysowej. Gdy padnie internet albo sieć komórkowa, nadal możesz wysyłać krótkie wiadomości do osób w zasięgu radia. Na większą odległość wiadomość może przejść przez działające repeatery, bez konieczności korzystania z infrastruktury internetowej. Większość naszych repeaterów jest zasilana ogniwami ładowanymi za pomocą paneli słonecznych. Działają one w pełni off-grid, niezależnie od dostawców energii elektrycznej.
+
+Na generycznych stronach o MeshCore (często tworzonych z pomocą AI) można trafić na hasła typu "MeshCore: sieć, której nikt nie wyłączy!". To obietnica bez pokrycia. Brak centralnego punktu awarii nie oznacza odporności na zakłócenia czy celowe ataki. Pasmo, z którego korzysta MeshCore, jest współdzielone z innymi urządzeniami i może zostać zagłuszone. Nadmierny ruch w sieci zwiększa natomiast ryzyko nakładania się transmisji, przez co część wiadomości może nie dotrzeć do odbiorców.
+
+Przy naszym duty cycle wynoszącym 10% (wymóg prawny dla wykorzystywanego zakresu częstotliwości) każde urządzenie może nadawać łącznie przez maksymalnie 6 minut w ciągu godziny. Przy dużym natężeniu ruchu najbardziej obciążone repeatery szybko mogą stać się wąskimi gardłami sieci. Nie trzeba do tego nawet celowego ataku - wystarczy, że w sytuacji kryzysowej wiele osób zacznie jednocześnie korzystać z sieci. Jeśli chcesz przekazać wiadomość lokalnie, wybierz kanał z regionem, którego używają Twoi rozmówcy. Pozwoli to ograniczyć zbędne retransmisje i obciążenie pozostałej części sieci. Zobacz [jak ustawić region kanału w aplikacji](/dokumentacja/meshcore/regionalizacja-wiadomosci#reczne-dodawanie-kanalow).
+
+W sytuacji kryzysowej, np. podczas blackoutu, ogranicz wysyłanie zbędnych wiadomości, aby nie obciążać sieci kosztem osób, które faktycznie potrzebują łączności. Przekazuj krótkie, konkretne i sprawdzone informacje. Nie powielaj plotek, nie rozpowszechniaj niepotwierdzonych informacji i nie siej paniki. Jeśli wiadomość dotyczy wyłącznie Twojej okolicy, nie rozsyłaj jej na całą sieć.
+
+W planie kryzysowym warto traktować MeshCore jako uzupełnienie podstawowej łączności, a nie jej zamiennik. Nawet niezależne zasilanie repeaterów nie gwarantuje ciągłości ich pracy. Długotrwałe zachmurzenie, wyczerpanie ogniw czy awarie sprzętu mogą doprowadzić do utraty łączności między poszczególnymi obszarami sieci. Jeśli chcesz polegać na MeshCore jako na kanale zapasowym, zadbaj również o niezależne zasilanie własnych urządzeń. Rozważ zakup paneli słonecznych oraz zapasu kompatybilnych ogniw Li-ion 18650 lub 21700 albo akumulatorów Li-Po z fabrycznym układem zabezpieczającym i odpowiednim złączem. Pojedyncze standardowe ogniwo AA lub AAA ma zbyt niskie napięcie.
+
 ## Czy wiadomości są szyfrowane?
 
 Tak. Kto może odczytać treść, zależy od tego, gdzie wysyłasz wiadomość.
