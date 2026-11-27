@@ -110,8 +110,10 @@
 	display: inline-flex;
 	align-items: center;
 	gap: 6px;
-	background: var(--card);
+	background: var(--glass-bg);
 	letter-spacing: 0.04em;
+	-webkit-backdrop-filter: blur(var(--glass-blur));
+	backdrop-filter: blur(var(--glass-blur));
 	transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
 }
 

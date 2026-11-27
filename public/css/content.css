@@ -165,8 +165,8 @@
 	padding: 20px;
 	border-radius: var(--radius);
 	background: #10131b33;
-	-webkit-backdrop-filter: blur(4px);
-	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(var(--glass-blur));
+	backdrop-filter: blur(var(--glass-blur));
 }
 
 .prose .docs-schematic img {
@@ -213,8 +213,8 @@
 	border: 1px solid var(--border);
 	border-radius: var(--radius);
 	background: var(--glass-bg);
-	-webkit-backdrop-filter: blur(4px);
-	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(var(--glass-blur));
+	backdrop-filter: blur(var(--glass-blur));
 }
 
 .prose pre {
@@ -374,8 +374,8 @@
 	border-left: 3px solid var(--alert-accent, var(--red));
 	border-radius: 0 var(--radius) var(--radius) 0;
 	background: var(--glass-bg);
-	-webkit-backdrop-filter: blur(4px);
-	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(var(--glass-blur));
+	backdrop-filter: blur(var(--glass-blur));
 }
 
 .docs-alert__icon {

@@ -37,12 +37,13 @@
 	--glow-size: 130% 55%;
 	--glow-pos: 50% -12%;
 	--glow-color: rgba(224, 18, 48, .11);
-	--glow-color-hero: rgba(224, 18, 48, .26);
-	--glow-size-2: 100% 90%;
+	--glow-color-hero: rgba(224, 18, 48, .21);
+	--glow-size-2: 125% 112%;
 	--glow-pos-2: 2% -6%;
-	--glow-color-2: rgba(224, 18, 48, .08);
-	--glow-color-hero-2: rgba(224, 18, 48, .16);
+	--glow-color-2: rgba(224, 18, 48, .09);
+	--glow-color-hero-2: rgba(224, 18, 48, .13);
 	--glass-bg: #10131b99;
+	--glass-blur: 2px;
 	--glass-bg-strong: rgba(14, 17, 24, .78);
 	--font-body: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 	--font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
@@ -170,12 +171,15 @@ body {
 }
 
 body:not([data-page="home"]) {
-	--glow-size: 100% 55%;
+	--glow-size: 195% 82%;
 	--glow-pos: 50% -10%;
-	--glow-color: rgba(224, 18, 48, .22);
+	--glow-color: rgba(224, 18, 48, .235);
+	--glow-color-2: transparent;
 }
 
 body[data-page="home"] {
+	--glow-size: 150% 70%;
+	--glow-size-2: 122% 112%;
 	--glow-color: var(--glow-color-hero);
 	--glow-color-2: var(--glow-color-hero-2);
 }
@@ -280,8 +284,8 @@ p {
 	border: 1px solid var(--border);
 	border-radius: var(--radius);
 	background: var(--glass-bg);
-	-webkit-backdrop-filter: blur(4px);
-	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(var(--glass-blur));
+	backdrop-filter: blur(var(--glass-blur));
 }
 
 .actions {
@@ -550,7 +554,7 @@ select.form-control option {
 	align-items: center;
 	gap: 10px;
 	min-width: 0;
-	color: var(--text);
+	color: #fefefe;
 	font-size: var(--fs-lg);
 	font-weight: 800;
 	font-style: italic;
@@ -570,10 +574,6 @@ select.form-control option {
 #nav__brand strong {
 	color: var(--red-bright);
 	font-weight: 800;
-}
-
-#nav__logo {
-	border-radius: 15%;
 }
 
 #nav__right {
@@ -681,7 +681,7 @@ select.form-control option {
 
 	#nav__inner {
 		gap: 10px;
-		padding: 10px 16px;
+		padding-block: 10px;
 	}
 
 	#nav__brand {
@@ -690,8 +690,8 @@ select.form-control option {
 	}
 
 	#nav__logo {
-		width: 34px;
-		height: 34px;
+		width: 39px;
+		height: 28px;
 	}
 
 	#nav__right {
@@ -722,7 +722,7 @@ select.form-control option {
 }
 
 .section__inner {
-	max-width: var(--container);
+	max-width: var(--container-content);
 	margin: 0 auto;
 }
 
@@ -747,7 +747,7 @@ select.form-control option {
 }
 
 #footer__inner {
-	max-width: var(--container);
+	max-width: var(--container-content);
 	margin: 0 auto;
 }
 
@@ -887,6 +887,10 @@ a[data-lightbox] {
 }
 
 @media (max-width: 880px) {
+	#nav__inner {
+		padding-inline: 20px;
+	}
+
 	.section {
 		padding: 52px 20px;
 	}
