@@ -81,15 +81,31 @@ O roli urządzenia decyduje wgrane oprogramowanie, nie sama płytka.
 
 Na początek zwykle wystarczy sam companion. Więcej na ten temat dowiesz się z dokumentu [Role urządzeń](/dokumentacja/meshcore/wprowadzenie#role-urzadzen).
 
+## Czy companion zapisuje wiadomości, gdy telefon jest rozłączony?
+
+Tak. Włączony companion odbiera wiadomości bez telefonu i przechowuje je w pamięci. Gdy połączysz go z telefonem, aplikacja pobierze odebrane wiadomości i zsynchronizuje kontakty.
+
+Po wyłączeniu lub restarcie companiona przepadają wiadomości, których aplikacja jeszcze nie pobrała. Gdy pamięć się zapełni, nowe wiadomości zastępują najstarsze z kanałów. Jeśli pamięć jest pełna i są w niej tylko wiadomości prywatne, companion nie zapisze żadnej nowej.
+
 ## Czy potrzebuję własnego repeatera?
 
 Jeśli masz stabilną łączność z pobliskimi repeaterami, wystarczy companion. Sprawdź rozmieszczenie repeaterów na [mapie węzłów](https://mapa.meshcorepolska.org) i [przetestuj zasięg w swojej okolicy](#jak-sprawdzic-czy-w-mojej-okolicy-jest-zasieg).
 
 Własny repeater warto uruchomić tam, gdzie poprawi lokalną łączność, rozszerzy zasięg lub połączy odseparowane części sieci. Znaczenie mają lokalizacja i wysokość montażu anteny. Na obszarach o dobrym pokryciu sieci dodatkowy repeater może niepotrzebnie obciążać kanał i zwiększać ryzyko kolizji pakietów.
 
+## Czy repeater solarny przetrwa zimę?
+
+Repeater solarny może pracować przez cały rok, jednak jego niezawodność zimą zależy przede wszystkim od zastosowanych ogniw, układu ładowania oraz bilansu energetycznego. Osobną kwestią jest szczelność obudowy i jej odporność na warunki atmosferyczne. Sama elektronika zazwyczaj dobrze znosi ujemne temperatury. Większym ograniczeniem są ogniwa Li-Ion 18650, których w większości przypadków nie należy ładować poniżej `0°C`. W niskich temperaturach wzrasta rezystancja wewnętrzna ogniw i spowalniają procesy elektrochemiczne. Utrudnia to ładowanie, zwiększa spadki napięcia pod obciążeniem oraz ogranicza dostępną pojemność akumulatora. Ładowanie ogniw poniżej temperatury dopuszczalnej przez producenta może również prowadzić do ich trwałego uszkodzenia.
+
+Dodatkowym ograniczeniem zimą jest krótszy dzień i mniejsze nasłonecznienie, co zmniejsza ilość energii dostarczanej przez panel słoneczny. Gotowe repeatery, takie jak SenseCAP Solar Node P1, wykorzystują niewielkie panele słoneczne o mocy `5 W`. W polskich warunkach zimowych taka moc często nie wystarcza do zapewnienia ciągłej pracy urządzenia. W większości przypadków odradzam gotowców.
+
+Warto zastosować kontroler ładowania z czujnikiem temperatury ogniw i automatyczną blokadą ładowania poza dopuszczalnym zakresem temperatur. Istotny jest również odpowiedni zapas pojemności akumulatora oraz mocy panelu fotowoltaicznego.
+
+Zobacz też [Czym różnią się płytki z nRF52 i ESP32?](#czym-roznia-sie-plytki-z-nrf52-i-esp32)
+
 ## Jak nazwać swój repeater?
 
-Najprościej skorzystać z [generatora nazw](/generator-nazw). Wyszukasz w nim skrót swojej miejscowości, dodasz wyróżnik i skopiujesz gotową nazwę lub komendę `set name`.
+Skorzystaj z [generatora nazw](/generator-nazw). Wyszukasz w nim skrót swojej miejscowości, dodasz wyróżnik i skopiujesz gotową nazwę lub komendę `set name`.
 
 Nazwa zaczyna się od **skrótu miejscowości** (np. `GDN`). Po spacji dodaj wyróżnik, np. nazwę dzielnicy, pobliskiej miejscowości, punktu orientacyjnego albo swój znak wywoławczy (jeśli go posiadasz). Dopiski `Repeater` i `RPT` możesz pominąć, gdyż są zbędne.
 

@@ -6,6 +6,8 @@ const MAX_RESULTS = 30;
 // Advert mieści 32 bajty: 1 na flagi i opcjonalnie 8 na współrzędne
 const MAX_BYTES_WITH_LOCATION = 23;
 const MAX_BYTES = 31;
+// owner_info[120] w CommonCLI, ostatni bajt to terminator
+const MAX_INFO_BYTES = 119;
 // Znaki odrzucane przez `set name` w CommonCLI firmware repeatera
 const FORBIDDEN_RE = /[[\]\\:,?*]/g;
 const EMOJI_RE = /[\p{Extended_Pictographic}\p{Regional_Indicator}]/u;
@@ -22,6 +24,7 @@ const results = byId('ng-results');
 const copyButton = byId('ng-copy');
 const customInput = byId('ng-custom');
 const customField = byId('ng-custom-field');
+const infoInputs = ['owner', 'contact', 'details'].map(key => [key, byId(`ng-${key}`)]);
 const encoder = new TextEncoder();
 
 const voivodeshipNames = new Map([...voivodeshipSelect.options].filter(option => option.value).map(option => [option.value, option.text]));
@@ -30,9 +33,9 @@ let entries = [];
 let selectedCode = '';
 let highlighterPromise = null;
 
-const setCommand = command => {
-	const container = byId('ng-command');
-	byId('ng-cli').hidden = !command;
+const setCommand = (containerId, command) => {
+	const container = byId(containerId);
+	container.parentElement.hidden = !command;
 	if (container.dataset.command === command) return;
 
 	const code = document.createElement('code');
@@ -158,7 +161,7 @@ const renderOutput = () => {
 	empty.hidden = Boolean(name);
 	byId('ng-result').hidden = !name;
 	byId('ng-name').textContent = name;
-	setCommand(valid ? `set name ${name}` : '');
+	setCommand('ng-command', valid ? `set name ${name}` : '');
 	const counter = byId('ng-bytes');
 	counter.textContent = `Długość: ${bytes} B (limit: ${MAX_BYTES_WITH_LOCATION} B z lokalizacją w advercie, ${MAX_BYTES} B bez niej)`;
 	counter.classList.toggle('ng-over-limit', bytes > MAX_BYTES_WITH_LOCATION);
@@ -174,9 +177,22 @@ const renderOutput = () => {
 	copyButton.disabled = !valid;
 };
 
+const renderInfo = () => {
+	const info = infoInputs.map(([, input]) => normalizeSpaces(input.value)).filter(Boolean).join('|');
+	const bytes = encoder.encode(info).length;
+	const excess = bytes - MAX_INFO_BYTES;
+
+	byId('ng-info-result').hidden = !info;
+	byId('ng-info').textContent = info.replaceAll('|', '\n');
+	const counter = byId('ng-info-bytes');
+	setText(counter, `Długość: ${bytes}/${MAX_INFO_BYTES} B${excess > 0 ? `. Opis jest za długi, skróć go o ${excess} B.` : ''}`);
+	counter.classList.toggle('ng-over-limit', excess > 0);
+	setCommand('ng-info-command', info && excess <= 0 ? `set owner.info ${info}` : '');
+};
+
 const getString = value => (typeof value === 'string' ? value : '');
 
-const DEFAULT_SETTINGS = Object.freeze({ voivodeship: '', search: '', code: '', custom: '', suffix: '', direction: '', solar: false });
+const DEFAULT_SETTINGS = Object.freeze({ voivodeship: '', search: '', code: '', custom: '', suffix: '', direction: '', solar: false, contact: '', owner: '', details: '' });
 
 const loadSettings = () => {
 	try {
@@ -191,6 +207,7 @@ const loadSettings = () => {
 			suffix: getString(settings.suffix).slice(0, suffixInput.maxLength),
 			direction: [...directionSelect.options].some(option => option.value === settings.direction) ? settings.direction : '',
 			solar: settings.solar === true,
+			...Object.fromEntries(infoInputs.map(([key, input]) => [key, getString(settings[key]).slice(0, input.maxLength)])),
 		};
 	} catch (err) {
 		console.warn('Nie udało się odczytać ustawień:', err);
@@ -210,6 +227,7 @@ const saveSettings = () => {
 			suffix: suffixInput.value,
 			direction: directionSelect.value,
 			solar: solarInput.checked,
+			...Object.fromEntries(infoInputs.map(([key, input]) => [key, input.value])),
 		}));
 	} catch (err) {
 		console.warn('Nie udało się zapisać ustawień:', err);
@@ -232,6 +250,9 @@ const restoreForm = () => {
 	suffixInput.value = code === settings.code ? settings.suffix : '';
 	directionSelect.value = settings.direction;
 	solarInput.checked = settings.solar;
+	infoInputs.forEach(([key, input]) => {
+		input.value = settings[key];
+	});
 	if (requested) saveSettings();
 };
 
@@ -280,6 +301,10 @@ const init = async () => {
 		renderOutput();
 		handleChange();
 	}));
+	infoInputs.forEach(([, input]) => input.addEventListener('input', () => {
+		renderInfo();
+		handleChange();
+	}));
 	customInput.addEventListener('input', () => {
 		if (customInput.value.trim()) selectCode('');
 		renderOutput();
@@ -297,6 +322,7 @@ const init = async () => {
 
 	renderResults();
 	renderOutput();
+	renderInfo();
 };
 
 if (form) init();

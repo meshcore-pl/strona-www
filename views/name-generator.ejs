@@ -1,6 +1,6 @@
 <%- include('./includes/header.ejs', {
-	title: 'Generator nazw repeaterów | MeshCore Polska',
-	description: 'Wyszukaj kod miejscowości, ułóż nazwę repeatera MeshCore i skopiuj komendę, która ją ustawi.',
+	title: 'Generator nazw i opisów repeaterów | MeshCore Polska',
+	description: 'Ułóż nazwę i opis właściciela repeatera MeshCore, a potem skopiuj komendy set name i set owner.info.',
 	canonical: '/generator-nazw',
 	breadcrumbs: [
 		{ name: 'Strona główna', url: '/' },
@@ -15,8 +15,8 @@
 		<div class="section__inner">
 			<div class="prose prose--content form-page">
 				<p class="eyebrow">Narzędzie</p>
-				<h1>Generator nazw repeaterów</h1>
-				<p>Wybierz miejscowość i dodaj wyróżnik, np. nazwę dzielnicy, nazwę punktu orientacyjnego albo swój znak wywoławczy. Generator połączy kod miejscowości z wyróżnikiem i przygotuje komendę do ustawienia nazwy. Więcej przykładów znajdziesz w <a href="/dokumentacja/meshcore/faq#jak-nazwac-swoj-repeater">FAQ</a>.</p>
+				<h1>Generator nazw i opisów repeaterów</h1>
+				<p>Wybierz miejscowość i dodaj wyróżnik, np. nazwę dzielnicy, nazwę punktu orientacyjnego albo swój znak wywoławczy. Generator połączy kod miejscowości z wyróżnikiem i przygotuje komendę do ustawienia nazwy. Więcej przykładów nazw znajdziesz w <a href="/dokumentacja/meshcore/faq#jak-nazwac-swoj-repeater">FAQ</a>. Niżej ułożysz też <a href="#opis">opis repeatera</a> z kontaktem do siebie.</p>
 
 				<noscript>
 					<div class="docs-alert docs-alert--warning">
@@ -57,6 +57,7 @@
 							<label for="ng-custom">Skrót nazwy miejscowości</label>
 							<input class="form-control" type="text" id="ng-custom" maxlength="31" spellcheck="false" aria-describedby="ng-results-hint">
 						</div>
+						<p class="form-hint" id="ng-source">Kody pochodzą z wykazu <a href="https://unlocode.unece.org/directory/locodes/?country=PL" target="_blank" rel="noopener">UN/LOCODE</a>, a nazwy i województwa z Państwowego Rejestru Nazw Geograficznych (GUGiK, 25.11.2026). Widzisz błąd? <a href="/kontakt">Daj nam znać</a>.</p>
 					</section>
 
 					<section class="form-card panel">
@@ -108,9 +109,40 @@
 							<div class="command-list" id="ng-command"></div>
 						</div>
 					</div>
-				</form>
 
-				<p class="form-hint">Kody pochodzą z wykazu <a href="https://unlocode.unece.org/directory/locodes/?country=PL" target="_blank" rel="noopener">UN/LOCODE</a>. Nazwy miejscowości i ich przypisanie do województw ustaliliśmy na podstawie Państwowego Rejestru Nazw Geograficznych (GUGiK, stan na 25.11.2026). Widzisz błąd? <a href="/kontakt">Daj nam znać</a>.</p>
+					<h2 id="opis">Opis repeatera</h2>
+					<p>Zostaw na repeaterze kontakt do siebie i kilka informacji o instalacji. Wszystkie pola są opcjonalne, a każde z nich trafi do osobnej linii.</p>
+					<div class="docs-alert docs-alert--warning">
+						<svg class="docs-alert__icon" aria-hidden="true"><use href="/icons.svg#alert-warning"></use></svg>
+						<div class="docs-alert__body">
+							<p class="docs-alert__title">Te dane są publiczne</p>
+							<p>Każdy może je odczytać z repeatera bez logowania. Nie wpisuj numeru telefonu ani dokładnego adresu.</p>
+						</div>
+					</div>
+					<section class="form-card panel">
+						<div class="form-field">
+							<label for="ng-owner">Właściciel</label>
+							<input class="form-control" type="text" id="ng-owner" maxlength="119" spellcheck="false" placeholder="Twoja nazwa użytkownika lub pseudonim">
+						</div>
+						<div class="form-field">
+							<label for="ng-contact">Kontakt</label>
+							<input class="form-control" type="text" id="ng-contact" maxlength="119" spellcheck="false" placeholder="np. znak wywoławczy, nick na Discordzie, e-mail">
+						</div>
+						<div class="form-field">
+							<label for="ng-details">Dodatkowe informacje</label>
+							<input class="form-control" type="text" id="ng-details" maxlength="119" placeholder="np. antena dookólna, kierunkowa, zasilanie solarne">
+						</div>
+					</section>
+					<div id="ng-info-result" hidden>
+						<h3>Podgląd opisu</h3>
+						<p class="ng-info-preview panel" id="ng-info"></p>
+						<p class="form-hint" id="ng-info-bytes" role="status"></p>
+						<div id="ng-info-cli" hidden>
+							<h3>Komenda do ustawienia</h3>
+							<div class="command-list" id="ng-info-command"></div>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>

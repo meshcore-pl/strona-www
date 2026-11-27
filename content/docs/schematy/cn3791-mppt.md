@@ -39,5 +39,6 @@ Sam CN3791 nie chroni ogniwa przed nadmiernym rozładowaniem ani zwarciem. Spraw
 > [!WARNING]
 > Nie ładuj standardowych ogniw Li-ion/LiPo poniżej **0°C**, chyba że producent ogniwa na to pozwala. W instalacji zewnętrznej zadbaj o blokadę ładowania przy zbyt niskiej temperaturze - nie zakładaj, że moduł ją ma.
 
-## Materiał wideo
-[Zobacz filmik o tym module na YouTube](https://www.youtube.com/shorts/2e9aoDYbNOk)
+## Zobacz też
+- [Czy repeater solarny przetrwa zimę?](/dokumentacja/meshcore/faq#czy-repeater-solarny-przetrwa-zime)
+- [Filmik w serwisie YouTube](https://www.youtube.com/shorts/2e9aoDYbNOk)

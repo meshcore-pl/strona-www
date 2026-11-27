@@ -3,7 +3,7 @@ title: Materiały graficzne do pobrania
 description: Pobierz loga, banery, faviconki i etykietę do paczek MeshCore Polska. Materiały graficzne do Twoich publikacji oraz etykieta 150 × 100 mm do druku.
 canonical: /dokumentacja/spolecznosc/materialy-graficzne
 createdAt: 12.07.2026
-updatedAt: 12.11.2026
+updatedAt: 27.11.2026
 themeColor: '#90020e'
 ---
 
@@ -34,6 +34,10 @@ Bez odpowiedniej zgody nie używaj ich w sposób sugerujący, że reprezentujesz
 - [Ikona dla iPhone’a i iPada, 180 × 180 px (PNG)](/images/logo/apple-touch-icon.png)
 - [Ikona dla Androida i PWA, 192 × 192 px (PNG)](/images/logo/android-chrome-192x192.png)
 - [Ikona dla Androida i PWA, 512 × 512 px (PNG)](/images/logo/android-chrome-512x512.png)
+
+**Sam znak**
+
+- [Znak MCPL wykadrowany do zawartości, 143 × 102 px (PNG)](/images/logo/mark.png)
 
 ## Banery
 ![Baner MeshCore Polska](/images/brand/banner-2.jpg)
