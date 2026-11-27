@@ -61,6 +61,12 @@ Jeśli najważniejszy jest długi czas pracy na baterii, wybierz nRF52. Jeśli z
 
 Poradniki aktualizacji OTA: [nRF52](/aktualnosci/poradnik/aktualizacje-ota-nrf) · [ESP32](/aktualnosci/poradnik/aktualizacje-ota-esp)
 
+## Czy do korzystania z MeshCore potrzebuję GPS?
+
+Nie. GPS nie jest potrzebny do wysyłania i odbierania wiadomości ani do ich przekazywania przez repeatery. MeshCore nie wykorzystuje współrzędnych geograficznych do wyznaczania tras, którymi przesyłane są wiadomości.
+
+Moduł GPS przydaje się przede wszystkim do automatycznego określania i udostępniania lokalizacji urządzenia. W przypadku stacjonarnego repeatera wystarczy jednorazowo ustawić ręcznie [przybliżone współrzędne](/dokumentacja/meshcore/wprowadzenie). Jeśli nie potrzebujesz aktualnej pozycji swojego companiona, możesz wyłączyć GPS lub odłączyć moduł od płytki, jeśli konstrukcja urządzenia na to pozwala. Ograniczysz w ten sposób zużycie energii i wydłużysz czas pracy na akumulatorze.
+
 ## Dlaczego mój komputer nie widzi płytki przy flashowaniu?
 
 Najczęstszą przyczyną problemu jest kabel USB. Oba rodzaje kabli mogą wyglądać identycznie, ale różnić się przeznaczeniem:
@@ -92,6 +98,14 @@ Nie, ale jest to ogromnie zalecane. Lepiej wcześniej niż później. Na kanała
 Region to etykieta, np. `pl` lub `pl-zp`. Wiadomość z taką etykietą przekazują tylko repeatery skonfigurowane do obsługi danego regionu. Dzięki temu lokalne rozmowy mogą pozostać w obrębie miasta lub województwa. Kanał `Public` powinien być bez regionu.
 
 Więcej przeczytasz w dokumencie [Regionalizacja wiadomości](/dokumentacja/meshcore/regionalizacja-wiadomosci), a konfigurację przygotujesz w [generatorze regionów](/generator-regionow).
+
+## Dlaczego nie powinienem wysyłać wszystkiego na kanał Public?
+
+Kanał `Public` jest domyślnym kanałem ogólnodostępnym. W polskiej sieci MeshCore nie przypisujemy do niego regionu, przez co wysyłane na nim wiadomości mogą być retransmitowane na duże odległości, również przez repeatery w innych województwach.
+
+Nie każda rozmowa wymaga angażowania tak dużej części sieci. Jeśli rozmawiasz z użytkownikami ze swojej miejscowości lub województwa, korzystaj z kanałów z odpowiednio ustawionym regionem. Do testowania zasięgu używaj kanału `#test`, a jeśli wiadomość jest skierowana do konkretnej osoby, rozważ wysłanie wiadomości prywatnej.
+
+Wszystkie kanały korzystają z tych samych zasobów radiowych. Utworzenie osobnego kanału nie oznacza przydzielenia mu osobnej częstotliwości. Dopiero odpowiednio skonfigurowana [regionalizacja wiadomości](/dokumentacja/meshcore/regionalizacja-wiadomosci) pozwala ograniczyć obszar retransmisji i zmniejszyć obciążenie sieci.
 
 ## Jaki zasięg ma MeshCore?
 
@@ -150,6 +164,14 @@ Tak. Kto może odczytać treść, zależy od tego, gdzie wysyłasz wiadomość.
 Tak. Włączony companion odbiera wiadomości bez telefonu i przechowuje je w pamięci. Gdy połączysz go z telefonem, aplikacja pobierze odebrane wiadomości i zsynchronizuje kontakty.
 
 Po wyłączeniu lub restarcie companiona przepadają wiadomości, których aplikacja jeszcze nie pobrała. Gdy pamięć się zapełni, nowe wiadomości zastępują najstarsze z kanałów. Jeśli pamięć jest pełna i są w niej tylko wiadomości prywatne, companion nie zapisze żadnej nowej.
+
+## Czy MeshCore obsługuje przesyłanie zdjęć, plików i głosu?
+
+Standardowa aplikacja MeshCore (autorstwa Liama Cottle'a) służy przede wszystkim do przesyłania krótkich wiadomości tekstowych. LoRa pozwala uzyskać duży zasięg przy niewielkim poborze energii, ale kosztem bardzo niskiej przepustowości.
+
+Istnieją alternatywne aplikacje i eksperymentalne rozwiązania umożliwiające przesyłanie mocno skompresowanych obrazów (w bardzo słabej jakości) czy krótkich nagrań głosowych. Przesłanie takich danych wymaga jednak znacznie dłuższego łącznego czasu nadawania niż wysłanie zwykłej wiadomości tekstowej. Zwiększa to czas zajęcia pasma, ryzyko kolizji pakietów i obciążenie repeaterów. Zobacz [porównanie czasu nadawania pakietów wraz z nagraniem SDR](/dokumentacja/meshcore/wprowadzenie#czy-10-duty-cycle-nie-ogranicza-za-bardzo-sieci).
+
+Zdecydowanie odradzamy korzystanie z takich rozwiązań.
 
 ## Czy potrzebuję własnego repeatera?
 

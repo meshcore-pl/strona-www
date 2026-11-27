@@ -31,7 +31,7 @@ Bez odpowiedniej zgody nie używaj ich w sposób sugerujący, że reprezentujesz
 
 **Ikony ekranu głównego**
 
-- [Ikona dla iPhone’a i iPada, 180 × 180 px (PNG)](/images/logo/apple-touch-icon.png)
+- [Ikona dla iPhone'a i iPada, 180 × 180 px (PNG)](/images/logo/apple-touch-icon.png)
 - [Ikona dla Androida i PWA, 192 × 192 px (PNG)](/images/logo/android-chrome-192x192.png)
 - [Ikona dla Androida i PWA, 512 × 512 px (PNG)](/images/logo/android-chrome-512x512.png)
 

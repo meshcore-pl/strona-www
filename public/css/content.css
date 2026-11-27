@@ -366,7 +366,6 @@
 	margin: 0 0 20px;
 	padding: 16px 20px;
 	border-left: 3px solid var(--alert-accent, var(--red));
-	border-radius: 0 var(--radius) var(--radius) 0;
 }
 
 .docs-alert__icon {
@@ -425,6 +424,16 @@
 
 .docs-alert--caution {
 	--alert-accent: var(--alert-caution);
+}
+
+@media (max-width: 620px) {
+	.docs-alert__icon {
+		display: none;
+	}
+
+	.docs-table table:has(th:nth-child(3)) {
+		min-width: 600px;
+	}
 }
 
 .prose hr {

@@ -594,11 +594,13 @@ select.form-control option {
 	left: 0;
 	z-index: 20;
 	--nav-p: 0;
-	border-bottom: 1px solid color-mix(in srgb, var(--border) calc(var(--nav-p) * 100%), transparent);
-	background: rgba(10, 12, 17, calc(.78 * var(--nav-p)));
-	-webkit-backdrop-filter: blur(calc(8px * var(--nav-p)));
-	backdrop-filter: blur(calc(8px * var(--nav-p)));
-	box-shadow: 0 8px 24px -14px rgba(0, 0, 0, calc(.6 * var(--nav-p)));
+	--nav-min: 0;
+	--nav-level: max(var(--nav-p), var(--nav-min));
+	border-bottom: 1px solid color-mix(in srgb, var(--border) calc(var(--nav-level) * 100%), transparent);
+	background: rgba(10, 12, 17, calc(.78 * var(--nav-level)));
+	-webkit-backdrop-filter: blur(calc(8px * var(--nav-level)));
+	backdrop-filter: blur(calc(8px * var(--nav-level)));
+	box-shadow: 0 8px 24px -14px rgba(0, 0, 0, calc(.6 * var(--nav-level)));
 }
 
 #nav.nav--open {
@@ -757,6 +759,10 @@ select.form-control option {
 
 	#nav__right {
 		gap: 10px;
+	}
+
+	#nav__cta {
+		min-height: 0;
 	}
 }
 

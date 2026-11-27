@@ -1,3 +1,20 @@
+body[data-page='docs'] #nav {
+	--nav-min: .7;
+}
+
+@media (min-width: 769px) {
+	body:has(#docs-layout) #nav:not(.nav--open) {
+		border-bottom-color: var(--border);
+		background: rgba(10, 12, 17, .25);
+		box-shadow: none;
+	}
+
+	body:has(#docs-layout) #nav__inner {
+		max-width: none;
+		padding-inline: 40px;
+	}
+}
+
 #docs-view {
 	min-height: 100vh;
 	padding-top: var(--nav-h);
