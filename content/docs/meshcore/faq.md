@@ -29,7 +29,7 @@ Tak. Kto może odczytać treść, zależy od tego, gdzie wysyłasz wiadomość.
 - **Kanał `Public` i kanały z hashtagiem** traktuj jak publiczne.
 
 > [!WARNING]
-> Wiadomości z `Public` i kanałów z hashtagiem mogą trafić do [publicznych analizatorów pakietów](/dokumentacja/meshcore/lista-analizatorow) w internecie. Jeśli się tam pojawią, każdy może je przeczytać, nawet bez własnego radia.
+> Wiadomości z kanału `Public` i kanałów z hashtagiem mogą trafić do [publicznych analizatorów](/dokumentacja/meshcore/lista-analizatorow) w internecie. Jeśli się tam pojawią, każdy może je przeczytać, nawet bez własnego companiona.
 
 ## Jaki zasięg ma MeshCore?
 
@@ -60,7 +60,7 @@ Najpierw sprawdź, czy Twoja wiadomość jest retransmitowana. Wykonaj [test zas
 - **Jeśli nie widzisz retransmisji**, upewnij się, że [antena](/dokumentacja/meshcore/anteny) jest poprawnie podłączona, i porównaj konfigurację z [ustawieniami radiowymi używanymi w Polsce](#jakie-ustawienia-radiowe-wybrac-w-polsce). Warto też zajrzeć na [mapę węzłów](https://mapa.meshcorepolska.org), żeby sprawdzić, gdzie są najbliższe repeatery.
 - **Jeśli problem dotyczy konkretnego kanału**, sprawdź, czy jego [ustawienie regionu](#czym-sa-regiony-i-czy-musze-je-ustawiac) zgadza się z konfiguracją używaną przez lokalną społeczność.
 
-Sprawdź też w aplikacji **Ustawienia → Domyślny rozmiar hasha ścieżki**. Zwykle powinno być ustawione `2` lub `3` bajty, nigdy `1`. Jeśli wiadomości dalej nie są przekazywane, trzymaj się i tak `2` lub `3` - zależnie od ustaleń lokalnej społeczności.
+Sprawdź też w aplikacji **Ustawienia → Domyślny rozmiar hasha ścieżki**. Ustaw `2` lub `3` bajty, zgodnie z ustaleniami lokalnej społeczności. Nie używaj `1`.
 
 Jeśli widzisz retransmisję, daj rozmówcom trochę czasu. Możliwe, że akurat nikt nie zagląda na kanał.
 
@@ -89,9 +89,9 @@ Część sieci na południu Polski korzysta z `SF6`. Urządzenia na `SF6` i `SF8
 
 ## Czym są regiony i czy muszę je ustawiać?
 
-Nie, ale jest to ogromnie zalecane. Lepiej wcześniej niż później. Na kanałach regionalnych też toczą się rozmowy i szkoda je przegapić.
+Nie, ale jest to ogromnie zalecane. Lepiej wcześniej niż później. Na kanałach regionalnych też toczą się rozmowy, szkoda je przegapić.
 
-Region to etykieta, np. `pl` lub `pl-zp`. Wiadomość z taką etykietą przekazują tylko repeatery skonfigurowane do obsługi danego regionu. Dzięki temu lokalne rozmowy mogą pozostać w obrębie miasta lub województwa. Kanał `Public` zostaw bez regionu.
+Region to etykieta, np. `pl` lub `pl-zp`. Wiadomość z taką etykietą przekazują tylko repeatery skonfigurowane do obsługi danego regionu. Dzięki temu lokalne rozmowy mogą pozostać w obrębie miasta lub województwa. Kanał `Public` powinien być bez regionu.
 
 Więcej przeczytasz w dokumencie [Regionalizacja wiadomości](/dokumentacja/meshcore/regionalizacja-wiadomosci), a konfigurację przygotujesz w [generatorze regionów](/generator-regionow).
 
