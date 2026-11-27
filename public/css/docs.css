@@ -39,7 +39,7 @@
 
 .docs-hero__lead {
 	margin: 0;
-	font-size: 17px;
+	font-size: var(--fs-xl);
 }
 
 #docs-hero__actions {
@@ -53,7 +53,7 @@
 #docs-hero__count {
 	color: var(--text-muted);
 	font-family: var(--font-mono);
-	font-size: 13px;
+	font-size: var(--fs-sm);
 }
 
 #docs-content .docs-breadcrumb {

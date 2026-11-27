@@ -14,7 +14,7 @@
 #errorpage__msg {
 	max-width: 680px;
 	margin: 0 auto 32px;
-	font-size: 17px;
+	font-size: var(--fs-xl);
 }
 
 .section--notfound .hero__actions {

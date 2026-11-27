@@ -39,12 +39,11 @@
 
 .network-stat span {
 	color: var(--text-muted);
-	font-size: 14px;
+	font-size: var(--fs-md);
 }
 
 #network-health {
 	--amber: #d29922;
-	--blue: #58a6ff;
 	margin-bottom: 24px;
 }
 
@@ -52,7 +51,7 @@
 	margin-bottom: 12px;
 	color: var(--text-muted);
 	font-family: var(--font-mono);
-	font-size: 15px;
+	font-size: var(--fs-base);
 	letter-spacing: .04em;
 	text-align: center;
 	text-transform: uppercase;
@@ -100,7 +99,7 @@
 	gap: 10px 22px;
 	margin: 0;
 	padding: 0;
-	font-size: 13px;
+	font-size: var(--fs-sm);
 	list-style: none;
 }
 
@@ -145,14 +144,14 @@
 
 #network-health__legend span {
 	color: var(--text-muted);
-	font-size: 12px;
+	font-size: var(--fs-xs);
 }
 
 #network-stats-updated {
 	margin: 0 0 8px;
 	color: var(--text-muted);
 	font-family: var(--font-mono);
-	font-size: 14px;
+	font-size: var(--fs-md);
 	text-align: center;
 }
 
@@ -162,6 +161,6 @@
 
 #network-stats__note {
 	margin: 0;
-	font-size: 14px;
+	font-size: var(--fs-md);
 	text-align: center;
 }

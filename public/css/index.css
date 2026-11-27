@@ -25,7 +25,7 @@
 
 #hero__lead {
 	margin-bottom: 32px;
-	font-size: 18px;
+	font-size: var(--fs-2xl);
 }
 
 #hero__stats {
@@ -34,7 +34,7 @@
 	gap: 12px;
 	color: var(--text-muted);
 	font-family: var(--font-mono);
-	font-size: 13px;
+	font-size: var(--fs-sm);
 }
 
 .stat {
@@ -116,7 +116,7 @@
 	margin: 0;
 	color: rgba(153, 161, 181, .7);
 	font-family: var(--font-mono);
-	font-size: 11px;
+	font-size: var(--fs-2xs);
 	letter-spacing: .1em;
 	text-transform: uppercase;
 }
@@ -127,13 +127,13 @@
 
 .map-settings__actions .btn {
 	padding: 4px 9px;
-	font-size: 14px;
+	font-size: var(--fs-md);
 }
 
 #map-settings-toggle {
 	padding: 3px 8px;
 	border-radius: 6px;
-	font-size: 14px;
+	font-size: var(--fs-md);
 	transform: none;
 }
 
@@ -164,7 +164,7 @@
 	background: var(--bg-alt);
 	box-shadow: 0 12px 32px rgba(0, 0, 0, .4);
 	color: var(--text);
-	font-size: 14px;
+	font-size: var(--fs-md);
 	line-height: 1.4;
 }
 
@@ -189,7 +189,7 @@
 #map-settings-title {
 	margin: 0;
 	font-family: var(--font-body);
-	font-size: 16px;
+	font-size: var(--fs-lg);
 	font-style: normal;
 	font-weight: 600;
 	letter-spacing: normal;

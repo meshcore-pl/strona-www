@@ -21,13 +21,13 @@
 	margin-bottom: 4px;
 	color: var(--text);
 	font-family: var(--font-mono);
-	font-size: 34px;
+	font-size: var(--fs-heading-lg);
 	font-weight: 700;
 }
 
 .stats-tile span {
 	color: var(--text-muted);
-	font-size: 14px;
+	font-size: var(--fs-base);
 }
 
 .stats-chart-card {
@@ -42,13 +42,11 @@
 
 .stats-chart-card h2 {
 	margin: 0 0 8px;
-	font-size: 20px;
 }
 
 .stats-chart-card p {
 	margin: 0 0 20px;
 	color: var(--text-muted);
-	font-size: 15px;
 }
 
 .stats-range {
@@ -66,7 +64,7 @@
 	background: var(--glass-bg);
 	color: var(--text-muted);
 	font-family: var(--font-mono);
-	font-size: 12px;
+	font-size: var(--fs-xs);
 	transition: background .15s ease, color .15s ease, border-color .15s ease;
 	cursor: pointer;
 }
@@ -117,13 +115,13 @@
 	gap: 8px 12px;
 	margin-bottom: 20px;
 	color: var(--text-muted);
-	font-size: 14px;
+	font-size: var(--fs-base);
 }
 
 .stats-metric .form-control {
 	width: auto;
 	padding-block: 6px;
-	font-size: 14px;
+	font-size: var(--fs-base);
 }
 
 .stats-map {
@@ -144,7 +142,7 @@
 }
 
 .stats-map__area:hover, .stats-map__area:focus-visible, .stats-map a:focus-visible .stats-map__area {
-	stroke: var(--link);
+	stroke: var(--blue);
 	stroke-width: 2px;
 }
 
@@ -156,7 +154,7 @@
 .stats-map__label {
 	fill: var(--text);
 	font-family: var(--font-mono);
-	font-size: 18px;
+	font-size: var(--fs-2xl);
 	font-weight: 600;
 	text-anchor: middle;
 	dominant-baseline: central;
@@ -165,7 +163,7 @@
 
 .prose .stats-map__attribution {
 	margin: 6px 0 0;
-	font-size: 12px;
+	font-size: var(--fs-xs);
 	text-align: right;
 }
 
@@ -187,7 +185,6 @@
 .stats-page__note {
 	margin: 20px 0 0;
 	color: var(--text-muted);
-	font-size: 13px;
 	text-align: center;
 }
 
@@ -202,19 +199,16 @@
 .stats-notes p {
 	margin: 0;
 	color: var(--text-muted);
-	font-size: 15px;
 	line-height: 1.7;
 }
 
 .stats-notes h2 {
 	margin: 0 0 16px;
-	font-size: 20px;
 }
 
 .stats-notes h3 {
 	margin: 0 0 6px;
 	color: var(--text);
-	font-size: 17px;
 	font-weight: 600;
 }
 
@@ -224,7 +218,7 @@
 
 @media (max-width: 640px) {
 	.stats-tile strong {
-		font-size: 26px;
+		font-size: var(--fs-heading-sm);
 	}
 
 	#stats-chart-wrap {

@@ -38,7 +38,7 @@
 	margin-bottom: 12px;
 	padding: 0;
 	color: var(--text);
-	font-size: 18px;
+	font-size: var(--fs-2xl);
 	font-weight: 700;
 }
 
@@ -72,14 +72,14 @@
 
 .rg-scenario__title {
 	color: var(--text);
-	font-size: 18px;
+	font-size: var(--fs-2xl);
 	font-weight: 700;
 	line-height: 1.3;
 }
 
 .rg-scenario__desc {
 	color: var(--text-muted);
-	font-size: 15px;
+	font-size: var(--fs-base);
 	line-height: 1.4;
 }
 
@@ -109,7 +109,7 @@
 	border-radius: 50%;
 	background: var(--red);
 	color: #fff;
-	font-size: 16px;
+	font-size: var(--fs-lg);
 }
 
 .rg-cleanup {
@@ -153,7 +153,7 @@
 	padding: 0;
 	color: var(--text-muted);
 	font-family: var(--font-mono);
-	font-size: 14px;
+	font-size: var(--fs-md);
 	font-weight: 500;
 	letter-spacing: .04em;
 	text-transform: uppercase;
@@ -166,7 +166,6 @@
 .rg-hint {
 	margin: 0 0 10px;
 	color: var(--text-muted);
-	font-size: 14px;
 }
 
 .rg-field > select + .rg-hint, .rg-field > input + .rg-hint {
@@ -178,7 +177,7 @@
 	min-height: 120px;
 	padding: 10px 13px;
 	font-family: var(--font-mono);
-	font-size: 14px;
+	font-size: var(--fs-md);
 	resize: vertical;
 }
 
@@ -193,7 +192,7 @@
 	align-items: center;
 	gap: 10px;
 	color: var(--text);
-	font-size: 15px;
+	font-size: var(--fs-base);
 	cursor: pointer;
 }
 
@@ -203,7 +202,7 @@
 
 .rg-option .rg-check {
 	align-items: flex-start;
-	font-size: 16px;
+	font-size: var(--fs-lg);
 	line-height: 1.5;
 }
 
@@ -226,7 +225,7 @@
 	align-items: center;
 	gap: 8px 12px;
 	margin: 10px 0 0 27px;
-	font-size: 15px;
+	font-size: var(--fs-base);
 }
 
 .rg-suboption .rg-scope-select {
@@ -239,8 +238,8 @@
 	margin: 0;
 }
 
-.rg-field > .rg-hint, .rg-option .rg-hint {
-	font-size: 15px;
+.prose .rg-hint {
+	font-size: var(--fs-base);
 	line-height: 1.5;
 }
 
@@ -285,7 +284,7 @@
 	margin: 0;
 	padding: 8px 100px 8px 14px;
 	border-radius: 8px;
-	font-size: 14px;
+	font-size: var(--fs-md);
 	line-height: 1.5;
 }
 
@@ -320,7 +319,7 @@
 }
 
 .rg-channels-table .rg-check {
-	font-size: 15px;
+	font-size: var(--fs-base);
 }
 
 .rg-channels-table span.rg-check {
@@ -330,7 +329,7 @@
 .rg-scope-select {
 	min-width: 140px;
 	padding-block: 5px;
-	font-size: 14px;
+	font-size: var(--fs-md);
 }
 
 .rg-actions {

@@ -10,7 +10,7 @@
 	display: flex;
 	align-items: center;
 	gap: 8px;
-	font-size: 15px;
+	font-size: var(--fs-base);
 	cursor: pointer;
 }
 
@@ -18,7 +18,7 @@
 	min-height: 24px;
 	margin: 0 0 8px;
 	font-family: var(--font-mono);
-	font-size: 14px;
+	font-size: var(--fs-md);
 }
 
 .test-map {

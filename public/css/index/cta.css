@@ -20,14 +20,14 @@
 }
 
 #callout p:not(.eyebrow) {
-	font-size: 16px;
+	font-size: var(--fs-lg);
 }
 
 #callout p#callout__note {
 	margin: 20px 0 0;
 	color: #99a1b5cc;
 	font-family: var(--font-mono);
-	font-size: 12px;
+	font-size: var(--fs-xs);
 }
 
 #callout p#callout__note::before {
@@ -73,7 +73,7 @@
 #cta p:not(.eyebrow) {
 	margin-bottom: 0;
 	color: #c3cadb;
-	font-size: 17px;
+	font-size: var(--fs-xl);
 }
 
 #cta__photo {

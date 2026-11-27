@@ -10,7 +10,7 @@
 }
 
 #profile__copy p:not(.eyebrow) {
-	font-size: 16px;
+	font-size: var(--fs-lg);
 }
 
 #profile__copy code {
@@ -20,7 +20,7 @@
 	background: rgba(224, 18, 48, .08);
 	color: var(--red-bright);
 	font-family: var(--font-mono);
-	font-size: 14px;
+	font-size: var(--fs-md);
 	white-space: nowrap;
 }
 
@@ -82,7 +82,7 @@
 
 .profile__caption {
 	color: rgba(153, 161, 181, .7);
-	font-size: 11px;
+	font-size: var(--fs-2xs);
 	letter-spacing: .1em;
 	text-transform: uppercase;
 }

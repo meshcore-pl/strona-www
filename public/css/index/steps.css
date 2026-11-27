@@ -22,7 +22,7 @@
 	border-radius: var(--radius);
 	background: var(--glass-bg);
 	color: var(--text);
-	font-size: 16px;
+	font-size: var(--fs-lg);
 	box-shadow: var(--shadow-card);
 	-webkit-backdrop-filter: blur(4px);
 	backdrop-filter: blur(4px);

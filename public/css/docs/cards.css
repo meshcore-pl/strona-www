@@ -77,7 +77,7 @@
 
 .docs-group-card h2 {
 	margin: 0;
-	font-size: 18px;
+	font-size: var(--fs-2xl);
 	font-weight: 700;
 	font-style: normal;
 	letter-spacing: normal;
@@ -92,13 +92,13 @@
 	border-radius: 999px;
 	color: var(--text-muted);
 	font-family: var(--font-mono);
-	font-size: 11px;
+	font-size: var(--fs-2xs);
 	white-space: nowrap;
 }
 
 .docs-group-card p {
 	margin: 0;
-	font-size: 15px;
+	font-size: var(--fs-base);
 }
 
 #docs-page-grid {
@@ -180,7 +180,7 @@
 	overflow: hidden;
 	margin: 0;
 	color: var(--text-muted);
-	font-size: 15px;
+	font-size: var(--fs-base);
 	line-height: 1.4;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 2;
@@ -200,7 +200,7 @@
 .docs-page-card__date {
 	color: var(--text-muted);
 	font-family: var(--font-mono);
-	font-size: 11px;
+	font-size: var(--fs-2xs);
 }
 
 .docs-page-card__arrow {

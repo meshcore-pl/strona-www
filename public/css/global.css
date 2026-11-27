@@ -13,13 +13,14 @@
 	--red-glow: rgba(224, 18, 48, .32);
 	--red-glow-bg: rgba(224, 18, 48, .14);
 	--signal: #3ddc84;
-	--link: #58a6ff;
+	--blue: #58a6ff;
+	--blue-hover: #7fbbff;
 	--radius: 12px;
 	--toast-bg: var(--glass-bg-strong);
 	--toast-border: var(--border-strong);
 	--toast-text: var(--text);
 	--toast-success: var(--signal);
-	--toast-info: #58a6ff;
+	--toast-info: var(--blue);
 	--toast-warning: #fbbf24;
 	--toast-error: var(--red-bright);
 	--shadow-card: 0 1px 0 rgba(255, 255, 255, .03) inset, 0 14px 32px -20px #0009;
@@ -44,6 +45,19 @@
 	--glass-bg-strong: rgba(14, 17, 24, .78);
 	--font-body: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 	--font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+	--fs-2xs: 11px;
+	--fs-xs: 12px;
+	--fs-sm: 13px;
+	--fs-md: 14px;
+	--fs-base: 15px;
+	--fs-lg: 16px;
+	--fs-xl: 17px;
+	--fs-2xl: 18px;
+	--fs-3xl: 20px;
+	--fs-4xl: 22px;
+	--fs-heading-sm: 26px;
+	--fs-heading-md: 30px;
+	--fs-heading-lg: 34px;
 }
 
 * {
@@ -103,16 +117,16 @@ input[type="checkbox"]:focus-visible, input[type="radio"]:focus-visible {
 	margin-bottom: 18px;
 	color: var(--text-muted);
 	font-family: var(--font-mono);
-	font-size: 12px;
+	font-size: var(--fs-xs);
 }
 
 .docs-breadcrumb a {
-	color: var(--link);
+	color: var(--blue);
 	transition: color .15s ease;
 }
 
 .docs-breadcrumb a:hover {
-	color: #7fbbff;
+	color: var(--blue-hover);
 }
 
 .docs-breadcrumb a:active {
@@ -150,7 +164,7 @@ body {
 	background-attachment: fixed;
 	color: var(--text);
 	font-family: var(--font-body);
-	font-size: 16px;
+	font-size: var(--fs-lg);
 	line-height: 1.6;
 	-webkit-font-smoothing: antialiased;
 }
@@ -178,13 +192,13 @@ img {
 }
 
 a {
-	color: var(--link);
+	color: var(--blue);
 	text-decoration: none;
 	transition: color .15s ease;
 }
 
 a:hover {
-	color: #7fbbff;
+	color: var(--blue-hover);
 	text-decoration: underline;
 }
 
@@ -210,18 +224,18 @@ h1, h2 {
 
 h1 {
 	margin-bottom: 10px;
-	font-size: 34px;
+	font-size: var(--fs-heading-lg);
 }
 
 @media (max-width: 1100px) {
 	h1 {
-		font-size: 30px;
+		font-size: var(--fs-heading-md);
 	}
 }
 
 @media (max-width: 800px) {
 	h1 {
-		font-size: 26px;
+		font-size: var(--fs-heading-sm);
 	}
 }
 
@@ -266,7 +280,7 @@ p {
 	margin: 0 0 18px;
 	color: var(--text-muted);
 	font-family: var(--font-mono);
-	font-size: 13px;
+	font-size: var(--fs-sm);
 	font-weight: 500;
 	letter-spacing: .13em;
 	text-transform: uppercase;
@@ -331,7 +345,7 @@ html {
 	padding: 10px 16px;
 	border: 1px solid transparent;
 	border-radius: 9px;
-	font-size: 15px;
+	font-size: var(--fs-base);
 	font-weight: 600;
 	line-height: 1.5;
 	text-decoration: none;
@@ -352,7 +366,7 @@ html {
 	background: var(--bg);
 	color: var(--text);
 	font-family: var(--font-body);
-	font-size: 15px;
+	font-size: var(--fs-base);
 	transition: border-color .15s ease, box-shadow .15s ease;
 }
 
@@ -432,7 +446,7 @@ select.form-control option {
 
 .btn--sm {
 	padding: 7px 12px;
-	font-size: 14px;
+	font-size: var(--fs-md);
 }
 
 #nav {
@@ -470,7 +484,7 @@ select.form-control option {
 	gap: 10px;
 	min-width: 0;
 	color: var(--text);
-	font-size: 16px;
+	font-size: var(--fs-lg);
 	font-weight: 800;
 	font-style: italic;
 	letter-spacing: -.01em;
@@ -514,7 +528,7 @@ select.form-control option {
 }
 
 .nav__link {
-	font-size: 15px;
+	font-size: var(--fs-base);
 }
 
 .nav__link:hover, #footer__links a:hover {
@@ -589,7 +603,7 @@ select.form-control option {
 	}
 
 	.nav__link {
-		font-size: 16px;
+		font-size: var(--fs-lg);
 	}
 }
 
@@ -605,7 +619,7 @@ select.form-control option {
 
 	#nav__brand {
 		gap: 8px;
-		font-size: 14px;
+		font-size: var(--fs-md);
 	}
 
 	#nav__logo {
@@ -683,7 +697,7 @@ select.form-control option {
 	display: grid;
 	gap: 24px 64px;
 	grid-template-columns: repeat(4, auto);
-	font-size: 15px;
+	font-size: var(--fs-base);
 }
 
 .footer__group {
@@ -696,7 +710,7 @@ select.form-control option {
 	margin: 0;
 	color: var(--text);
 	font-family: var(--font-mono);
-	font-size: 13px;
+	font-size: var(--fs-sm);
 	font-weight: 600;
 	letter-spacing: .1em;
 	text-transform: uppercase;
@@ -712,7 +726,7 @@ select.form-control option {
 	border-top: 1px solid var(--border);
 	color: var(--text-muted);
 	font-family: var(--font-mono);
-	font-size: 12px;
+	font-size: var(--fs-xs);
 	letter-spacing: .02em;
 }
 
@@ -806,7 +820,7 @@ a[data-lightbox] {
 .docs-tip p {
 	margin: 0;
 	color: var(--text-muted);
-	font-size: 15px;
+	font-size: var(--fs-base);
 	line-height: 1.5;
 }
 

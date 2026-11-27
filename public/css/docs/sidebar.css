@@ -40,7 +40,7 @@
 	background: var(--bg);
 	color: var(--text);
 	font-family: var(--font-body);
-	font-size: 14px;
+	font-size: var(--fs-md);
 	transition: border-color .15s ease, box-shadow .15s ease, padding-left .18s ease;
 }
 
@@ -85,14 +85,14 @@
 }
 
 .docs-search__result-title {
-	font-size: 14px;
+	font-size: var(--fs-md);
 	font-weight: 500;
 }
 
 .docs-search__result-meta {
 	color: var(--text-muted);
 	font-family: var(--font-mono);
-	font-size: 11px;
+	font-size: var(--fs-2xs);
 }
 
 #docs-search-results[hidden] {
@@ -103,7 +103,7 @@
 	margin: 0;
 	padding: 5px 8px;
 	color: var(--text-muted);
-	font-size: 13px;
+	font-size: var(--fs-sm);
 }
 
 #docs-hero__search-row {
@@ -120,7 +120,7 @@
 
 #docs-hero__search-row .btn {
 	padding: 8px 18px;
-	font-size: 14px;
+	font-size: var(--fs-md);
 }
 
 #docs-search.docs-search--hero {
@@ -149,7 +149,7 @@
 	flex-shrink: 0;
 	width: 20px;
 	height: 20px;
-	font-size: 16px;
+	font-size: var(--fs-lg);
 }
 
 img.docs-nav-group__icon {
@@ -169,7 +169,7 @@ img.docs-nav-group__icon {
 	display: block;
 	border-radius: 8px;
 	color: var(--text-muted);
-	font-size: 14px;
+	font-size: var(--fs-md);
 	transition: color .15s ease, background-color .15s ease;
 }
 
@@ -210,7 +210,7 @@ img.docs-nav-group__icon {
 	border-top: 1px solid var(--border);
 	color: var(--text-muted);
 	font-family: var(--font-mono);
-	font-size: 13px;
+	font-size: var(--fs-sm);
 }
 
 #docs-sidebar__home-icon {

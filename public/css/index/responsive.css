@@ -23,7 +23,7 @@
 	}
 
 	.section h2 {
-		font-size: 30px;
+		font-size: var(--fs-heading-md);
 	}
 
 	#callout h2 {
@@ -43,7 +43,7 @@
 @media (max-width: 880px) {
 	#hero h1 {
 		margin-bottom: 17px;
-		font-size: 34px;
+		font-size: var(--fs-heading-lg);
 	}
 
 	.network-stat strong {
@@ -56,7 +56,7 @@
 
 	#callout h2 {
 		margin-bottom: 8px;
-		font-size: 22px;
+		font-size: var(--fs-4xl);
 	}
 
 	#cta h2 {
