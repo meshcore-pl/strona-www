@@ -49,6 +49,10 @@
 		padding: 32px 20px 48px;
 	}
 
+	#docs-content :is(h1, h2, h3, h4, h5, h6) {
+		scroll-margin-top: calc(var(--nav-h-live, var(--nav-h)) + 16px);
+	}
+
 	#docs-pagination {
 		grid-template-columns: 1fr;
 	}

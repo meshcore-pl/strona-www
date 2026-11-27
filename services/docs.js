@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import parseFrontmatter from 'frontmatter-md';
 import groups from '../content/docs.js';
-import { marked, renderer, resolvePageImage, assignHeadingIds, getHeadingId, getTocLabel, getPlainText, parseDMYDate } from './markdown.js';
+import { marked, renderer, resolvePageImage, assignHeadingIds, addHeadingAnchors, getHeadingId, getTocLabel, getPlainText, parseDMYDate } from './markdown.js';
 
 const DOCS_DIR = path.join(import.meta.dirname, '../content/docs');
 
@@ -52,6 +52,9 @@ const build = () => {
 			p.updatedAt = data.updatedAt || null;
 			p.date = date;
 
+			const faq = extractFaq(tokens);
+			addHeadingAnchors(tokens);
+
 			const title = data.title || p.title;
 			pages.set(`${group.slug}/${p.slug}`, {
 				slug: p.slug,
@@ -66,7 +69,7 @@ const build = () => {
 				image: resolvePageImage(data, tokens, `content/docs/${group.slug}/${p.slug}.md`),
 				themeColor: data.themeColor || null,
 				toc,
-				faq: extractFaq(tokens),
+				faq,
 				group,
 			});
 

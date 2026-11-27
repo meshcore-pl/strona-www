@@ -104,15 +104,12 @@ const navigate = async (href, { push = true } = {}) => {
 
 		syncMeta(data);
 		syncSchema(data.schema);
-		await swapView(data.html);
-		renderedPath = url.pathname;
-
-		if (push) history.pushState(null, '', url.href);
-
-		if (url.hash) {
-			const target = view.querySelector(`#${CSS.escape(decodeURIComponent(url.hash.slice(1)))}`);
-			if (target) target.scrollIntoView({ block: 'start' });
+		if (push) {
+			history.pushState(null, '', url.href);
+			push = false;
 		}
+		renderedPath = url.pathname;
+		await swapView(data.html);
 
 		view.focus({ preventScroll: true });
 	} catch (err) {

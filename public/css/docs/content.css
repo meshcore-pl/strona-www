@@ -10,6 +10,32 @@
 	border-right: 0;
 }
 
+#docs-content :is(h1, h2, h3, h4, h5, h6) {
+	scroll-margin-top: 24px;
+}
+
+.docs-anchor::after {
+	padding: 0 8px;
+	color: var(--red-bright);
+	opacity: 0;
+	transition: opacity .15s ease;
+	content: '#';
+}
+
+.docs-anchor:hover {
+	text-decoration: none;
+}
+
+:is(h1, h2, h3, h4, h5, h6):hover > .docs-anchor::after, .docs-anchor:focus-visible::after {
+	opacity: 1;
+}
+
+@media (hover: none) {
+	.docs-anchor::after {
+		opacity: .6;
+	}
+}
+
 #docs-footer {
 	margin-top: 56px;
 	padding-top: 28px;

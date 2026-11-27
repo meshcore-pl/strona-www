@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { marked } from 'marked';
+import { escapeXml } from '../utils/sitemap.js';
 
 const PUBLIC_DIR = path.join(import.meta.dirname, '..', 'public');
 
@@ -61,6 +62,7 @@ const TOC_LABEL_RE = /\s*\{toc:\s*([^}]+)}\s*$/;
 const tocLabels = new WeakMap();
 const plainTexts = new WeakMap();
 const headingIds = new WeakMap();
+const anchoredHeadings = new WeakSet();
 
 const assignHeadingIds = tokens => {
 	const seen = new Map();
@@ -87,9 +89,16 @@ const assignHeadingIds = tokens => {
 const getPlainText = token => plainTexts.get(token) ?? toPlainText(token.tokens).trim();
 const getHeadingId = token => headingIds.get(token) || slugify(getPlainText(token));
 const getTocLabel = token => tocLabels.get(token) || getPlainText(token);
+const addHeadingAnchors = tokens => marked.walkTokens(tokens, t => {
+	if (t.type === 'heading') anchoredHeadings.add(t);
+});
 
 const renderer = new marked.Renderer();
-renderer.heading = token => `<h${token.depth} id="${getHeadingId(token)}">${renderer.parser.parseInline(token.tokens)}</h${token.depth}>\n`;
+renderer.heading = token => {
+	const id = getHeadingId(token);
+	const anchor = anchoredHeadings.has(token) ? `<a href="#${id}" class="docs-anchor" aria-label="Link do sekcji: ${escapeXml(getPlainText(token))}"></a>` : '';
+	return `<h${token.depth} id="${id}">${renderer.parser.parseInline(token.tokens)}${anchor}</h${token.depth}>\n`;
+};
 
 const OWN_ORIGIN_RE = /^https?:\/\/(www\.)?meshcorepolska\.org(\/|$)/i;
 const FAMILY_RE = /^https?:\/\/([a-z0-9-]+\.)*(meshcorepolska\.org|meshcore\.io|sefinek\.net|meshcoreprofiles\.com)(\/|$)/i;
@@ -181,4 +190,4 @@ const resolvePageImage = ({ image, imageAlt }, tokens, file) => {
 	return { src: image, alt: imageAlt };
 };
 
-export { marked, renderer, slugify, resolvePageImage, assignHeadingIds, getHeadingId, getTocLabel, getPlainText, getExternalRel, parseDMYDate };
+export { marked, renderer, slugify, resolvePageImage, assignHeadingIds, addHeadingAnchors, getHeadingId, getTocLabel, getPlainText, getExternalRel, parseDMYDate };

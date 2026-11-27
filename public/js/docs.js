@@ -1,82 +1,88 @@
 import { definePage } from './lib/page.js';
 
 const SCROLL_KEY_PREFIX = 'meshcore.docs.scroll:';
+const ACTIVE_TOLERANCE = 8;
+const USER_SCROLL_EVENTS = ['wheel', 'touchstart', 'pointerdown', 'keydown'];
 
 let firstInit = true;
-let scrollEl = null;
-let onScroll = null;
-let onPageHide = null;
+let controller = null;
 let saveTimer = 0;
-let onAnchorClick = null;
-let onToggleClick = null;
-let onBackdropClick = null;
-let onSidebarClick = null;
-let onKeydown = null;
 
 const destroy = () => {
 	clearTimeout(saveTimer);
-	if (onPageHide) window.removeEventListener('pagehide', onPageHide);
-	onPageHide = null;
-
-	if (scrollEl && onScroll) scrollEl.removeEventListener('scroll', onScroll);
-	scrollEl = null;
-	onScroll = null;
-
-	if (onAnchorClick) document.removeEventListener('click', onAnchorClick);
-	onAnchorClick = null;
-
-	const toggleBtn = document.getElementById('docs-mobile-toc-btn');
-	if (toggleBtn && onToggleClick) toggleBtn.removeEventListener('click', onToggleClick);
-	onToggleClick = null;
-
-	const backdrop = document.getElementById('docs-mobile-toc-backdrop');
-	if (backdrop && onBackdropClick) backdrop.removeEventListener('click', onBackdropClick);
-	onBackdropClick = null;
-
-	const sidebar = document.getElementById('docs-sidebar');
-	if (sidebar && onSidebarClick) sidebar.removeEventListener('click', onSidebarClick);
-	onSidebarClick = null;
-
-	if (onKeydown) document.removeEventListener('keydown', onKeydown);
-	onKeydown = null;
+	controller?.abort();
+	controller = null;
 };
 
-const init = () => {
-	destroy();
-
-	const content = document.getElementById('docs-content');
-	if (!content) return;
-
-	import(`${document.body.dataset.cdn}/js/codeBlocks.js`)
-		.then(({ highlightCodeBlocks }) => highlightCodeBlocks(content))
-		.catch(err => console.error('Nie udało się załadować podświetlania składni:', err));
-
-	const targetFor = href => href && href[0] === '#' && href.length > 1
-		? content.querySelector(`#${CSS.escape(decodeURIComponent(href.slice(1)))}`)
-		: null;
-
+const initScroll = (content, signal) => {
 	const headings = [...content.querySelectorAll('h1[id], h2[id], h3[id]')];
 	const tocLinks = [...document.querySelectorAll('#docs-toc a, #docs-sidebar__toc a')];
+	const toc = document.getElementById('docs-toc');
+
+	const isWindowScroll = () => getComputedStyle(content).overflowY === 'visible';
+
+	const targetFor = hash => hash && hash[0] === '#' && hash.length > 1
+		? content.querySelector(`#${CSS.escape(decodeURIComponent(hash.slice(1)))}`)
+		: null;
+
+	let activeId = null;
+	let pinnedId = null;
+
+	const revealInToc = link => {
+		const box = toc.getBoundingClientRect();
+		const rect = link.getBoundingClientRect();
+		if (rect.top < box.top) toc.scrollTop -= box.top - rect.top + rect.height;
+		else if (rect.bottom > box.bottom) toc.scrollTop += rect.bottom - box.bottom + rect.height;
+	};
 
 	const setActive = id => {
-		const sel = `#${id}`;
-		tocLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === sel));
+		if (id === activeId) return;
+		activeId = id;
+		for (const link of tocLinks) {
+			const active = link.getAttribute('href') === `#${id}`;
+			link.classList.toggle('active', active);
+			if (active && toc?.contains(link)) revealInToc(link);
+		}
+	};
+
+	const findCurrent = () => {
+		const windowScroll = isWindowScroll();
+		const scroller = windowScroll ? document.documentElement : content;
+		const atEnd = scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight - 4;
+		if (atEnd && (pinnedId || scroller.scrollTop > 0)) return pinnedId ?? headings.at(-1).id;
+
+		const base = windowScroll ? 0 : content.getBoundingClientRect().top;
+		let current = headings[0];
+		for (const heading of headings) {
+			const offset = parseFloat(getComputedStyle(heading).scrollMarginTop) || 0;
+			if (heading.getBoundingClientRect().top - base > offset + ACTIVE_TOLERANCE) break;
+			current = heading;
+		}
+		return current.id;
 	};
 
 	const update = () => {
-		if (!headings.length) return;
+		if (headings.length) setActive(findCurrent());
+	};
 
-		let activeId = headings[0].id;
-		if (content.scrollTop + content.clientHeight >= content.scrollHeight - 4) {
-			activeId = headings[headings.length - 1].id;
+	const scrollToTarget = (target, behavior = 'auto') => {
+		pinnedId = headings.includes(target) ? target.id : null;
+		if (target === headings[0] && target.tagName === 'H1') {
+			(isWindowScroll() ? window : content).scrollTo({ top: 0, behavior });
 		} else {
-			const top = content.getBoundingClientRect().top;
-			for (const heading of headings) {
-				if (heading.getBoundingClientRect().top - top <= 120) activeId = heading.id;
-				else break;
-			}
+			target.scrollIntoView({ block: 'start', behavior });
 		}
-		setActive(activeId);
+		update();
+	};
+
+	let ticking = false;
+	const scheduleUpdate = () => {
+		if (ticking) return;
+		ticking = true;
+		requestAnimationFrame(() => {
+			ticking = false;
+			if (!signal.aborted) update();
+		});
 	};
 
 	const scrollKey = `${SCROLL_KEY_PREFIX}${location.pathname}`;
@@ -89,90 +95,117 @@ const init = () => {
 		}
 	};
 
-	let ticking = false;
-	onScroll = () => {
+	content.addEventListener('scroll', () => {
 		clearTimeout(saveTimer);
 		saveTimer = setTimeout(saveScroll, 150);
-		if (ticking) return;
-		ticking = true;
-		requestAnimationFrame(() => {
+		scheduleUpdate();
+	}, { passive: true, signal });
+	window.addEventListener('scroll', scheduleUpdate, { passive: true, signal });
+	window.addEventListener('pagehide', saveScroll, { signal });
+
+	for (const type of USER_SCROLL_EVENTS) {
+		window.addEventListener(type, () => {
+			pinnedId = null;
+		}, { passive: true, signal });
+	}
+
+	document.addEventListener('click', e => {
+		if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+		const a = e.target.closest('a[href]');
+		const target = targetFor(a?.getAttribute('href'));
+		if (!target) return;
+
+		e.preventDefault();
+		const { hash } = new URL(a.href);
+		if (hash !== location.hash) {
+			history.replaceState({ ...history.state, docsScroll: content.scrollTop }, '');
+			history.pushState(null, '', hash);
+		}
+		scrollToTarget(target, 'smooth');
+	}, { signal });
+
+	const pagePath = location.pathname;
+	window.addEventListener('popstate', e => {
+		if (location.pathname !== pagePath) return;
+
+		pinnedId = null;
+		const saved = e.state?.docsScroll;
+		const target = targetFor(location.hash);
+		if (saved !== undefined) content.scrollTop = saved;
+		else if (target) scrollToTarget(target);
+		else content.scrollTop = 0;
+		update();
+	}, { signal });
+
+	const restoreSavedScroll = () => {
+		const navType = performance.getEntriesByType('navigation')[0]?.type;
+		if (location.hash || (navType !== 'reload' && navType !== 'back_forward')) return;
+
+		let saved = 0;
+		try {
+			saved = Number(sessionStorage.getItem(scrollKey)) || 0;
+		} catch {
+			saved = 0;
+		}
+		if (saved <= 0) return;
+
+		const restore = () => {
+			content.scrollTop = saved;
 			update();
-			ticking = false;
-		});
+		};
+		requestAnimationFrame(restore);
+		if (document.readyState !== 'complete') window.addEventListener('load', restore, { once: true, signal });
 	};
-	onPageHide = saveScroll;
-	window.addEventListener('pagehide', onPageHide);
-	scrollEl = content;
-	content.addEventListener('scroll', onScroll, { passive: true });
 
 	if (firstInit) {
 		firstInit = false;
-		const navType = performance.getEntriesByType('navigation')[0]?.type;
-		if (!location.hash && (navType === 'reload' || navType === 'back_forward')) {
-			let saved = 0;
-			try {
-				saved = Number(sessionStorage.getItem(scrollKey)) || 0;
-			} catch {
-				saved = 0;
-			}
-			if (saved > 0) {
-				const restore = () => {
-					content.scrollTop = saved;
-					update();
-				};
-				requestAnimationFrame(restore);
-				if (document.readyState !== 'complete') window.addEventListener('load', restore, { once: true });
-			}
-		}
+		restoreSavedScroll();
 	}
 
-	onAnchorClick = e => {
-		if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-		const a = e.target.closest('a[href]');
-		if (!a) return;
-		const target = targetFor(a.getAttribute('href'));
-		if (!target) return;
-		e.preventDefault();
-		target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-		history.replaceState(history.state, '', a.getAttribute('href'));
-		setActive(target.id);
-	};
-	document.addEventListener('click', onAnchorClick);
-
 	const initial = targetFor(location.hash);
-	if (initial) requestAnimationFrame(() => initial.scrollIntoView({ block: 'start' }));
+	if (initial) requestAnimationFrame(() => scrollToTarget(initial));
 	update();
+};
 
+const initDrawer = signal => {
 	const toggleBtn = document.getElementById('docs-mobile-toc-btn');
 	const backdrop = document.getElementById('docs-mobile-toc-backdrop');
 	const sidebar = document.getElementById('docs-sidebar');
-	if (toggleBtn && backdrop && sidebar) {
-		const closeDrawer = () => {
-			sidebar.classList.remove('is-open');
-			backdrop.hidden = true;
-			toggleBtn.setAttribute('aria-expanded', 'false');
-		};
+	if (!toggleBtn || !backdrop || !sidebar) return;
 
-		onToggleClick = () => {
-			const open = sidebar.classList.toggle('is-open');
-			backdrop.hidden = !open;
-			toggleBtn.setAttribute('aria-expanded', String(open));
-		};
-		toggleBtn.addEventListener('click', onToggleClick);
+	const closeDrawer = () => {
+		sidebar.classList.remove('is-open');
+		backdrop.hidden = true;
+		toggleBtn.setAttribute('aria-expanded', 'false');
+	};
 
-		onBackdropClick = closeDrawer;
-		backdrop.addEventListener('click', onBackdropClick);
+	toggleBtn.addEventListener('click', () => {
+		const open = sidebar.classList.toggle('is-open');
+		backdrop.hidden = !open;
+		toggleBtn.setAttribute('aria-expanded', String(open));
+	}, { signal });
+	backdrop.addEventListener('click', closeDrawer, { signal });
+	sidebar.addEventListener('click', e => {
+		if (e.target.closest('a')) closeDrawer();
+	}, { signal });
+	document.addEventListener('keydown', e => {
+		if (e.key === 'Escape') closeDrawer();
+	}, { signal });
+};
 
-		onSidebarClick = e => {
-			if (e.target.closest('a')) closeDrawer();
-		};
-		sidebar.addEventListener('click', onSidebarClick);
+const init = () => {
+	destroy();
 
-		onKeydown = e => {
-			if (e.key === 'Escape') closeDrawer();
-		};
-		document.addEventListener('keydown', onKeydown);
-	}
+	const content = document.getElementById('docs-content');
+	if (!content) return;
+
+	import(`${document.body.dataset.cdn}/js/codeBlocks.js`)
+		.then(({ highlightCodeBlocks }) => highlightCodeBlocks(content))
+		.catch(err => console.error('Nie udało się załadować podświetlania składni:', err));
+
+	controller = new AbortController();
+	initScroll(content, controller.signal);
+	initDrawer(controller.signal);
 };
 
 definePage(import.meta.url, { init, destroy });
