@@ -164,14 +164,14 @@ const renderOutput = () => {
 	setCommand('ng-command', valid ? `set name ${name}` : '');
 	const counter = byId('ng-bytes');
 	counter.textContent = `Długość: ${bytes} B (limit: ${MAX_BYTES_WITH_LOCATION} B z lokalizacją w advercie, ${MAX_BYTES} B bez niej)`;
-	counter.classList.toggle('ng-over-limit', bytes > MAX_BYTES_WITH_LOCATION);
+	counter.hidden = bytes > MAX_BYTES_WITH_LOCATION;
 
 	const problems = [];
 	if (forbidden.length) problems.push(`Usuń niedozwolone znaki: ${forbidden.join(' ')}`);
 	if (EMOJI_RE.test(name)) problems.push('Nie zalecamy używania emoji w nazwach repeaterów, ponieważ niektóre urządzenia z wbudowanym ekranem mogą je wyświetlać niepoprawnie. Używaj ich wyłącznie w nazwie swojego companiona.');
 	if (REDUNDANT_RE.test(name)) problems.push('Dopiski „Repeater” i „RPT” są zbędne, możesz je pominąć.');
-	if (bytes > MAX_BYTES) problems.push('Nazwa jest za długa i zostanie ucięta. Skróć ją.');
-	else if (bytes > MAX_BYTES_WITH_LOCATION) problems.push('Jeśli repeater rozgłasza lokalizację, końcówka nazwy zostanie ucięta!');
+	if (bytes > MAX_BYTES) problems.push(`Nazwa ma ${bytes} B i zostanie ucięta. Skróć ją.`);
+	else if (bytes > MAX_BYTES_WITH_LOCATION) problems.push(`Nazwa ma ${bytes} B. Jeśli repeater rozgłasza lokalizację, końcówka nazwy zostanie ucięta!`);
 	renderProblems(problems, valid);
 
 	copyButton.disabled = !valid;
@@ -183,6 +183,7 @@ const renderInfo = () => {
 	const excess = bytes - MAX_INFO_BYTES;
 
 	byId('ng-info-result').hidden = !info;
+	byId('ng-info').textContent = info.replaceAll('|', '\n');
 	const counter = byId('ng-info-bytes');
 	setText(counter, `Długość: ${bytes}/${MAX_INFO_BYTES} B${excess > 0 ? `. Opis jest za długi, skróć go o ${excess} B.` : ''}`);
 	counter.classList.toggle('ng-over-limit', excess > 0);
