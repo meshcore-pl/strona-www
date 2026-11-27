@@ -3,7 +3,7 @@ title: Lista zmian na stronie
 description: Historia aktualizacji strony meshcorepolska.org, wersja po wersji - nowe funkcje, poprawki i zmiany w kodzie oraz treści.
 canonical: /dokumentacja/spolecznosc/lista-zmian
 createdAt: 2.08.2026
-updatedAt: 26.11.2026
+updatedAt: 27.11.2026
 themeColor: '#10131b'
 ---
 
@@ -15,28 +15,34 @@ Zmiany dotyczące `mapa.meshcorepolska.org` znajdziesz osobno: kliknij ikonę `i
 > Jeśli po aktualizacji strona nie wyświetla się poprawnie, wykonaj twarde odświeżenie kombinacją `CTRL + F5`.
 
 ## v1.11.0 (27.11.2026)
-Więcej o zmianach w generatorze i o tym, jak skorzystać z eksportu, przeczytasz we wpisie [Odświeżony generator regionów MeshCore](https://meshcorepolska.org/aktualnosci/spolecznosc/nowy-generator-regionow).
-
-1. **[Generator regionów](https://meshcorepolska.org/generator-regionow)**
-   - Podzielono konfigurację na kroki. Ich zakres zależy od tego, czy konfigurujesz repeater i companiona, czy tylko companiona.
+1. [Generator regionów](https://meshcorepolska.org/generator-regionow) (więcej we wpisie [Odświeżony generator regionów MeshCore](https://meshcorepolska.org/aktualnosci/spolecznosc/nowy-generator-regionow))
+   - Podzielono konfigurację na kroki, zależne od tego, czy konfigurujesz repeater i companiona, czy tylko companiona.
    - Dodano regiony lokalne dla wszystkich powiatów i miast na prawach powiatu.
-   - Dodano eksport kanałów wraz z ich regionami do pliku, który można zaimportować w aplikacji MeshCore. Do pliku można też dołączyć kontakty repeaterów i preset radiowy EU/UK Narrow.
-   - Przeniesiono narzędzie do usuwania starych regionów do kroku „Przygotuj repeater”. Narzędzie ostrzega, gdy wynik komendy `region` może być niepełny.
-   - Dodano instrukcję ręcznego dodawania kanałów i doprecyzowano komunikaty generatora.
-2. **Statystyki.** Dodano mapę i tabelę, które pozwalają porównać liczbę urządzeń w poszczególnych województwach. [Urządzenia według województw](https://meshcorepolska.org/statystyki#stats-voivodeships)
-3. **Województwa.** Dodano [strony województw](https://meshcorepolska.org/wojewodztwa) z liczbą urządzeń, kanałami, regionami lokalnymi i społecznościami. Prowadzą do nich także mapa i tabela w statystykach, a z każdej strony można otworzyć generator regionów z wybranym województwem.
-4. **[Publiczne API](https://meshcorepolska.org/dokumentacja/spolecznosc/api)**
-   - Udostępniono dokumentację publicznego API.
-   - Dodano `/api/v1/regions` z danymi o regionach i kanałach, `/api/v1/nodes` z listą węzłów oraz `/api/v1/stats/voivodeships` ze statystykami województw.
-   - Bieżące statystyki są teraz dostępne pod `/api/v1/stats`. Adres `/api/v1/repeater-stats` działa jako alias.
-5. **Dokumentacja i Aktualności**
-   - Dodano [kanał RSS z aktualnościami](https://meshcorepolska.org/aktualnosci/rss.xml) oraz osobne kanały dla poszczególnych tagów.
+   - Dodano eksport kanałów wraz z regionami do pliku importowanego w aplikacji MeshCore, opcjonalnie z kontaktami repeaterów i presetem radiowym EU/UK Narrow.
+   - Przeniesiono narzędzie do usuwania starych regionów do kroku „Przygotuj repeater”. Ostrzega ono, gdy wynik komendy `region` może być niepełny.
+   - Dodano instrukcję ręcznego dodawania kanałów.
+   - Doprecyzowano komunikaty.
+2. Statystyki i województwa
+   - Dodano mapę i tabelę [urządzeń według województw](https://meshcorepolska.org/statystyki#stats-voivodeships).
+   - Dodano [strony województw](https://meshcorepolska.org/wojewodztwa) z liczbą urządzeń, kanałami, regionami lokalnymi i społecznościami.
+   - Z każdej strony województwa można otworzyć generator regionów z już wybranym województwem.
+3. [Publiczne API](https://meshcorepolska.org/dokumentacja/spolecznosc/api)
+   - Udostępniono dokumentację.
+   - Dodano `/api/v1/regions` z danymi o regionach i kanałach.
+   - Dodano `/api/v1/nodes` z listą węzłów.
+   - Dodano `/api/v1/stats/voivodeships` ze statystykami województw.
+   - Przeniesiono bieżące statystyki pod `/api/v1/stats`. Adres `/api/v1/repeater-stats` działa jako alias.
+4. Dokumentacja i Aktualności
+   - Dodano [kanał RSS](https://meshcorepolska.org/aktualnosci/rss.xml) oraz osobne kanały dla tagów.
+   - Dodano [FAQ](https://meshcorepolska.org/dokumentacja/meshcore/faq).
    - Rozbudowano artykuł [Regionalizacja wiadomości](https://meshcorepolska.org/dokumentacja/meshcore/regionalizacja-wiadomosci).
-   - Dodano [Najczęściej zadawane pytania (FAQ)](https://meshcorepolska.org/dokumentacja/meshcore/faq).
    - Dodano wpis [Aktualizacja aplikacji MeshCore 1.52.0](https://meshcorepolska.org/aktualnosci/lista-zmian/aktualizacja-aplikacji-meshcore-1-52-0).
-   - Opublikowano polskie tłumaczenie poradnika [Czujnik obecności LD2410S w MeshCore](https://meshcorepolska.org/aktualnosci/poradnik/czujnik-obecnosci-ld2410s).
-   - Uzupełniono opisy plików do pobrania i dodano przycisk do drukowania etykiety do paczek. [Materiały graficzne](https://meshcorepolska.org/dokumentacja/spolecznosc/materialy-graficzne)
-6. **Pozostałe zmiany.** Poprawiono wygląd tabel i uporządkowano kod backendu, w tym generowanie mapy witryny. Wprowadzono także inne zmiany jakościowe.
+   - Opublikowano tłumaczenie poradnika [Czujnik obecności LD2410S w MeshCore](https://meshcorepolska.org/aktualnosci/poradnik/czujnik-obecnosci-ld2410s).
+   - Uzupełniono opisy plików w [materiałach graficznych](https://meshcorepolska.org/dokumentacja/spolecznosc/materialy-graficzne) i dodano przycisk drukowania etykiety do paczek.
+5. Pozostałe zmiany
+   - Poprawiono wygląd strony i niektórych komponentów.
+   - Uporządkowano kod backendu, w tym generowanie mapy witryny.
+   - Inne zmiany jakościowe.
 
 ## v1.10.6 (22.11.2026)
 1. Dodano opisy kanałów oraz kanał `#emergency` w Generatorze regionów.
