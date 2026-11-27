@@ -12,7 +12,7 @@ const METRICS = [
 const section = document.getElementById('stats-voivodeships');
 const metricSelect = document.getElementById('stats-metric');
 const readout = document.getElementById('stats-map-readout');
-const areas = [...section.querySelectorAll('.stats-map__area')];
+const areas = new Map([...section.querySelectorAll('.stats-map__area')].map(area => [area.dataset.code, area]));
 
 let rows = [];
 let selectedCode = null;
@@ -22,7 +22,7 @@ const getMetric = () => METRICS.find(metric => metric.key === metricSelect.value
 
 const createVoivodeshipLink = (code, text) => {
 	const link = document.createElement('a');
-	link.href = `/wojewodztwa/${code}`;
+	link.href = `/wojewodztwa/${areas.get(code).dataset.slug}`;
 	link.textContent = text;
 	return link;
 };
@@ -40,7 +40,7 @@ const describe = code => {
 
 const select = code => {
 	selectedCode = code;
-	for (const area of areas) area.setAttribute('aria-pressed', area.dataset.code === code);
+	for (const [areaCode, area] of areas) area.setAttribute('aria-pressed', areaCode === code);
 	describe(code);
 };
 
@@ -55,7 +55,7 @@ const render = () => {
 
 	for (const row of rows) {
 		const value = metric.get(row);
-		areas.find(area => area.dataset.code === row.code)?.setAttribute('fill-opacity', MIN_OPACITY + (MAX_OPACITY - MIN_OPACITY) * value / max);
+		areas.get(row.code).setAttribute('fill-opacity', MIN_OPACITY + (MAX_OPACITY - MIN_OPACITY) * value / max);
 		section.querySelector(`.stats-map__label[data-code="${row.code}"]`).textContent = formatNumber(value);
 	}
 
@@ -85,8 +85,7 @@ metricSelect.addEventListener('change', () => {
 	if (rows.length) render();
 });
 
-areas.forEach(area => {
-	const { code } = area.dataset;
+areas.forEach((area, code) => {
 	for (const type of ['pointerenter', 'focus']) area.addEventListener(type, () => preview(code));
 	area.addEventListener('click', () => select(code));
 	area.addEventListener('keydown', event => {

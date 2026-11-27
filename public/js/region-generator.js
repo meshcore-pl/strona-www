@@ -517,7 +517,7 @@ const renderNeighbors = (home, selected = null) => {
 	}));
 };
 
-const getVoivodeshipUrl = code => `/wojewodztwa/${code}`;
+const getVoivodeshipUrl = code => `/wojewodztwa/${regionData.voivodeships[code].slug}`;
 
 const renderOutput = () => {
 	const firmware = document.getElementById('rg-fw').value;

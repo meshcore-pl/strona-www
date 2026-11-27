@@ -32,9 +32,12 @@ const shapes = borders.map(([code, rings]) => {
 	const simplified = rings.map(simplify);
 	const [labelX, labelY] = getCentroid(simplified.reduce((a, b) => b.length > a.length ? b : a));
 
+	const { slug, name } = getVoivodeship(code);
+
 	return {
 		code,
-		name: getVoivodeship(code).name,
+		slug,
+		name,
 		path: simplified.map(toPath).join(''),
 		labelX: labelX.toFixed(1),
 		labelY: labelY.toFixed(1),
@@ -44,7 +47,7 @@ const shapes = borders.map(([code, rings]) => {
 
 const voivodeshipMap = {
 	viewBox: getViewBox(shapes.flatMap(shape => shape.points), MAP_PADDING),
-	areas: shapes.map(({ code, name, path, labelX, labelY }) => ({ code, name, path, labelX, labelY })),
+	areas: shapes.map(({ code, slug, name, path, labelX, labelY }) => ({ code, slug, name, path, labelX, labelY })),
 };
 
 export default voivodeshipMap;

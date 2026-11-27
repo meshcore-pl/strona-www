@@ -1,4 +1,4 @@
-import { regions, voivodeshipList, getVoivodeship, getLocalRegions } from '../services/regions.js';
+import { regions, voivodeshipList, getVoivodeship, getVoivodeshipBySlug, getLocalRegions } from '../services/regions.js';
 import { getVoivodeshipStats } from '../services/voivodeshipStats.js';
 import voivodeshipMap from '../services/voivodeshipMap.js';
 import { getLocodes } from '../services/locodes.js';
@@ -17,7 +17,7 @@ export const index = async (req, res) => {
 
 	res.set('Cache-Control', 'no-cache');
 	res.render('voivodeships/index.ejs', {
-		voivodeships: voivodeshipList.map(({ code, name }) => ({ code, name: capitalize(name), stats: statsByCode.get(code) })),
+		voivodeships: voivodeshipList.map(({ code, slug, name }) => ({ slug, name: capitalize(name), stats: statsByCode.get(code) })),
 		hasStats: Boolean(stats),
 		getOpacity: code => (stats ? (0.08 + 0.77 * getRepeaters(code) / maxRepeaters).toFixed(2) : 0.2),
 		getLabel: code => getRepeaters(code).toLocaleString('pl-PL'),
@@ -27,7 +27,7 @@ export const index = async (req, res) => {
 };
 
 export const page = async (req, res) => {
-	const voivodeship = getVoivodeship(req.params.code);
+	const voivodeship = getVoivodeshipBySlug(req.params.slug);
 	if (!voivodeship) return RenderError(res, 404);
 
 	const stats = await getVoivodeshipStats();
@@ -53,7 +53,10 @@ export const page = async (req, res) => {
 			{ name, url: voivodeship.socials.discord },
 			...localRegions.filter(region => region.socials.discord).map(region => ({ name: region.name, url: region.socials.discord })),
 		],
-		neighbors: voivodeship.neighbors.map(code => ({ code, name: capitalize(getVoivodeship(code).name) })),
+		neighbors: voivodeship.neighbors.map(code => {
+			const { slug, name: neighborName } = getVoivodeship(code);
+			return { slug, name: capitalize(neighborName) };
+		}),
 		voivodeshipMap,
 	});
 };

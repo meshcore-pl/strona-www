@@ -83,6 +83,7 @@ W przykładzie odpowiedzi na `GET /regions/voivodeships/zp` lista `localRegions`
   "message": "OK",
   "data": {
     "code": "zp",
+    "slug": "zachodniopomorskie",
     "name": "zachodniopomorskie",
     "scope": "pl-zp",
     "parentScope": "pl",
@@ -108,6 +109,7 @@ W przykładzie odpowiedzi na `GET /regions/voivodeships/zp` lista `localRegions`
 | Pole | Opis |
 |---|---|
 | `code` | kod używany w adresach API |
+| `slug` | nazwa województwa używana w adresie jego strony (tylko województwa) |
 | `name` | nazwa województwa lub obszaru |
 | `scope` | nazwa regionu w MeshCore |
 | `parentScope` | nazwa regionu nadrzędnego w MeshCore |

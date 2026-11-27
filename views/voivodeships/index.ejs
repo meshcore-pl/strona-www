@@ -13,7 +13,7 @@
 <main>
 	<div class="section section--legal">
 		<div class="section__inner">
-			<div class="prose prose--narrow">
+			<div class="prose prose--content">
 				<p class="eyebrow">Sieć w regionach</p>
 				<h1>MeshCore w województwach</h1>
 				<p>Wybierz województwo, aby sprawdzić liczbę urządzeń, nazwy regionów, kanały i lokalne społeczności.</p>
@@ -28,9 +28,9 @@
 				}) %>
 
 				<ul class="voivodeship-list">
-					<% voivodeships.forEach(({ code, name, stats }) => { %>
+					<% voivodeships.forEach(({ slug, name, stats }) => { %>
 						<li>
-							<a href="/wojewodztwa/<%= code %>">
+							<a href="/wojewodztwa/<%= slug %>">
 								<strong><%= name %></strong>
 								<% if (stats) { %><span><%= stats.nodes.toLocaleString('pl-PL') %> <%= pluralizePolish(stats.nodes, { one: 'urządzenie', few: 'urządzenia', many: 'urządzeń' }) %>, <%= stats.types.repeater.toLocaleString('pl-PL') %> <%= pluralizePolish(stats.types.repeater, { one: 'repeater', few: 'repeatery', many: 'repeaterów' }) %></span><% } %>
 							</a>

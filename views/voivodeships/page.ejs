@@ -1,13 +1,13 @@
 <%- include('../includes/header.ejs', {
 	title: `Województwo ${voivodeship.name} | MeshCore Polska`,
 	description: `Sieć MeshCore w województwie ${locative}: liczba urządzeń, nazwy regionów, kanały i lokalne społeczności.`,
-	canonical: `/wojewodztwa/${voivodeship.code}`,
+	canonical: `/wojewodztwa/${voivodeship.slug}`,
 	css: ['content', 'stats', 'voivodeships'],
 	page: 'voivodeships',
 	breadcrumbs: [
 		{ name: 'Strona główna', url: '/' },
 		{ name: 'Województwa', url: '/wojewodztwa' },
-		{ name, url: `/wojewodztwa/${voivodeship.code}` },
+		{ name, url: `/wojewodztwa/${voivodeship.slug}` },
 	]
 }) %>
 
@@ -109,7 +109,7 @@
 
 				<h2>Sąsiednie województwa</h2>
 				<ul>
-					<% neighbors.forEach(neighbor => { %><li><a href="/wojewodztwa/<%= neighbor.code %>"><%= neighbor.name %></a></li><% }) %>
+					<% neighbors.forEach(neighbor => { %><li><a href="/wojewodztwa/<%= neighbor.slug %>"><%= neighbor.name %></a></li><% }) %>
 				</ul>
 			</div>
 		</div>

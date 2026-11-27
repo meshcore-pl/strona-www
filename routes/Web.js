@@ -31,7 +31,7 @@ router.get('/aktualnosci/:tag/rss.xml', news.feed);
 router.get('/aktualnosci/:tag/:title', news.post);
 
 router.get('/wojewodztwa', voivodeships.index);
-router.get('/wojewodztwa/:code', voivodeships.page);
+router.get('/wojewodztwa/:slug', voivodeships.page);
 
 router.get('/kontakt', contact.form);
 
