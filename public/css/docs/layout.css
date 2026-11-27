@@ -1,4 +1,4 @@
-body[data-page='docs'] #nav {
+body:has(#docs-layout) #nav {
 	--nav-min: .7;
 }
 

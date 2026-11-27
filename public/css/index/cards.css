@@ -324,4 +324,13 @@
 	.equipment-card, .equipment-checklist, .equipment-help, #print-offer {
 		padding: 20px;
 	}
+
+	.equipment-help, #print-offer {
+		align-items: center;
+		text-align: center;
+	}
+
+	#print-offer__actions {
+		justify-content: center;
+	}
 }
