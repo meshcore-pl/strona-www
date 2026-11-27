@@ -13,6 +13,57 @@ Nie. MeshCore i Meshtastic to dwa osobne projekty, które wykorzystują LoRa do 
 
 Ten sam sprzęt często może jednak działać z jednym albo drugim oprogramowaniem. Nie oznacza to obsługi obu sieci jednocześnie. Jeśli Twój model jest obsługiwany przez [flasher MeshCore](https://flasher.meshcore.io), możesz zastąpić Meshtastic oprogramowaniem MeshCore i dołączyć do sieci MeshCore.
 
+## Czy do korzystania z MeshCore potrzebuję licencji lub internetu?
+
+Nie. MeshCore w Polsce działa w paśmie bezlicencyjnym, więc nie potrzebujesz licencji krótkofalarskiej. Musisz jednak przestrzegać limitów: do `500 mW ERP` mocy i do `10%` duty cycle, czyli około 6 minut nadawania na godzinę. Pamiętaj, że na moc `ERP` wpływa również zysk anteny. Zapoznaj się z sekcją [Legalność i duty cycle](/dokumentacja/meshcore/wprowadzenie#legalnosc-i-duty-cycle).
+
+Wiadomości są przesyłane drogą radiową, bez internetu i sieci komórkowej. Internet przyda się natomiast do pobrania aplikacji, wgrania oprogramowania przez flasher czy przeglądania mapy węzłów.
+
+## Jaki zasięg ma MeshCore?
+
+Nie ma jednej wartości. Zasięg między dwoma urządzeniami zależy przede wszystkim od:
+
+- **wysokości i miejsca montażu** - im lepsza widoczność między antenami, tym lepiej;
+- **terenu i zabudowy** - budynki, wzniesienia i drzewa tłumią sygnał;
+- **anteny** - liczy się jej jakość, dopasowanie do pasma (SWR) i charakterystyka, zobacz [Wszystko o antenach](/dokumentacja/meshcore/anteny);
+- **zakłóceń i ustawień radiowych**.
+
+Companion trzymany w mieszkaniu będzie miał zwykle znacznie mniejszy zasięg niż repeater umieszczony wysoko na zewnątrz. Dzięki repeaterom wiadomość może pokonać wiele przeskoków (hopów) i dotrzeć dużo dalej, niż sięga pojedyncze urządzenie.
+
+## Jak sprawdzić, czy w mojej okolicy jest zasięg?
+
+Najpewniejszym sposobem sprawdzenia zasięgu jest wykonanie testu łączności. Ustaw na companionie [właściwy preset radiowy](/dokumentacja/meshcore/aktualne-presety) i wyślij wiadomość na kanale `#test`.
+
+Zwróć uwagę na status widoczny pod wysłaną wiadomością:
+- **Wysłano** - wiadomość została nadana, ale companion nie usłyszał żadnej jej retransmisji.
+- **Odebrano: 1 repeater** - companion odebrał retransmisję wysłanej wiadomości. Oznacza to, że masz łączność z pobliskim repeaterem.
+- **Odebrano: 3 repeatery** lub więcej - companion usłyszał kilka retransmisji. To dobry znak, bo wiadomość ma więcej niż jedną drogę w głąb sieci.
+
+Brak odebranych retransmisji nie musi oznaczać całkowitego braku zasięgu. Powtórz test w kilku miejscach, np. przy oknie, na zewnątrz lub na wyższej kondygnacji budynku. Nawet niewielka zmiana położenia [anteny](/dokumentacja/meshcore/anteny) może poprawić łączność.
+
+## Czym różni się companion od repeatera i room serwera?
+
+O roli urządzenia decyduje wgrane oprogramowanie, nie sama płytka.
+
+- **Companion** to Twoje osobiste urządzenie do wysyłania i odbierania wiadomości przez aplikację. Domyślnie nie przekazuje wiadomości innych użytkowników.
+- **Repeater** to przekaźnik, który rozszerza zasięg sieci: odbiera pakiety i nadaje je dalej. Nie przechowuje historii wiadomości.
+- **Room serwer** działa jak lokalna tablica ogłoszeń: przechowuje historię wiadomości grupowych i udostępnia ją po podaniu hasła.
+
+Na początek zwykle wystarczy sam companion. Więcej na ten temat dowiesz się z dokumentu [Role urządzeń](/dokumentacja/meshcore/wprowadzenie#role-urzadzen).
+
+## Jakie ustawienia radiowe wybrać w Polsce?
+
+Przyjętym standardem ogólnopolskiej sieci jest preset **EU/UK Narrow**:
+
+| Parametr | Wartość |
+| --- | --- |
+| Częstotliwość | `869,618 MHz` |
+| Szerokość pasma (BW) | `62,5 kHz` |
+| Współczynnik rozpraszania (SF) | `8` |
+| Współczynnik kodowania (CR) | `8` (można też użyć np. `5`, różne wartości CR są ze sobą kompatybilne) |
+
+Część sieci na południu Polski korzysta z `SF6`. Urządzenia na `SF6` i `SF8` nie mogą się bezpośrednio komunikować. Na repeaterze ustaw też duty cycle na `10%`, ponieważ domyślna wartość przekracza [limit prawny](/dokumentacja/meshcore/wprowadzenie#legalnosc-i-duty-cycle). Szczegóły i zalecane komendy znajdziesz na stronie [Presety i konfiguracja radia](/dokumentacja/meshcore/aktualne-presety).
+
 ## Czym różnią się płytki z nRF52 i ESP32?
 
 To dwie najpopularniejsze rodziny mikrokontrolerów w urządzeniach dla MeshCore: nRF52 od Nordic Semiconductor i ESP32 od Espressif. Żaden z nich nie ma wbudowanego radia LoRa, odpowiada za nie osobny układ, np. `SX1262`. Sam wybór mikrokontrolera nie decyduje więc o zasięgu.
@@ -29,11 +80,11 @@ To dwie najpopularniejsze rodziny mikrokontrolerów w urządzeniach dla MeshCore
 | Aktualizacja bez kabla (OTA) | Przez Bluetooth | Przez Wi-Fi |
 | Typowe zastosowanie w MeshCore | Przenośne companiony, trackery, repeatery solarne | Tanie companiony, repeatery i room serwery ze stałym zasilaniem |
 
-Jeśli najważniejszy jest długi czas pracy na baterii, wybierz nRF52. Jeśli chcesz mieć połączenie z companionem w całym domu przez Wi-Fi (BLE ma mniejszy zasięg), wybierz ESP32. Rzeczywisty pobór prądu zależy też od konkretnej płytki, ekranu, GPS, wersji oprogramowania i natężenia ruchu w sieci.
+Jeśli najważniejszy jest długi czas pracy na baterii, wybierz nRF52. Jeśli zależy Ci na niskiej cenie albo chcesz mieć połączenie z companionem w całym domu przez Wi-Fi (BLE ma mniejszy zasięg), wybierz ESP32. Rzeczywisty pobór prądu zależy też od konkretnej płytki, ekranu, GPS, wersji oprogramowania i natężenia ruchu w sieci.
 
 Poradniki aktualizacji OTA: [nRF52](/aktualnosci/poradnik/aktualizacje-ota-nrf) · [ESP32](/aktualnosci/poradnik/aktualizacje-ota-esp)
 
-## Dlaczego komputer nie widzi płytki do sflashowania?
+## Dlaczego mój komputer nie widzi płytki?
 
 Najczęstszą przyczyną problemu jest kabel USB. Oba rodzaje kabli mogą wyglądać identycznie, ale różnić się przeznaczeniem:
 
