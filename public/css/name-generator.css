@@ -41,9 +41,30 @@
 	border-color: var(--red);
 }
 
+.ng-result:focus-visible {
+	outline-offset: -2px;
+}
+
 .ng-result[aria-pressed="true"] {
 	border-color: var(--red-bright);
 	background: var(--red-glow-bg);
+}
+
+#ng-custom-field {
+	text-align: center;
+}
+
+#ng-custom {
+	display: block;
+	max-width: calc(50% - 10px);
+	margin-inline: auto;
+}
+
+.prose .ng-selected {
+	margin: 0 0 22px;
+	text-align: center;
+	font-weight: 600;
+	overflow-wrap: anywhere;
 }
 
 .prose .ng-output {
@@ -63,5 +84,9 @@
 @media (max-width: 800px) {
 	.ng-grid {
 		grid-template-columns: minmax(0, 1fr);
+	}
+
+	#ng-custom {
+		max-width: none;
 	}
 }

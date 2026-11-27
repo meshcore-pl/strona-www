@@ -95,7 +95,7 @@ Najprościej skorzystać z [generatora nazw](/generator-nazw). Wyszukasz w nim s
 
 Nazwa zaczyna się od **skrótu miejscowości** (np. `GDN`). Po spacji dodaj wyróżnik, np. nazwę dzielnicy, pobliskiej miejscowości, punktu orientacyjnego albo swój znak wywoławczy (jeśli go posiadasz). Dopiski `Repeater` i `RPT` możesz pominąć, gdyż są zbędne.
 
-Jako skrótu użyj trzyznakowego kodu z międzynarodowego wykazu [UN/LOCODE](https://unlocode.unece.org/directory/locodes/?country=PL). Listę dla swojego regionu znajdziesz też na [stronie województwa](/wojewodztwa).
+Jako skrótu użyj trzyznakowego kodu z międzynarodowego wykazu [UN/LOCODE](https://unlocode.unece.org/directory/locodes/?country=PL). Listę dla swojego regionu znajdziesz też na [stronie województwa](/wojewodztwa). Jeśli Twojej miejscowości nie ma w wykazie, wystarczy skrót jej nazwy, który każdy zrozumie.
 
 | Przykładowa nazwa | Co oznacza |
 | --- | --- |
@@ -108,7 +108,7 @@ Jeśli antena repeatera jest skierowana w konkretną stronę, możesz dopisać p
 
 Zadbaj, by nazwa była krótka. Jeśli repeater rozgłasza swoją lokalizację, w advercie mieszczą się 23 bajty nazwy, a bez lokalizacji 31. Polskie litery zajmują po 2 bajty. Komenda `set name` nie przyjmuje znaków `[ ] \ : , ? *`.
 
-Dopisek `SOL` na końcu nazwy oznacza stałą instalację z panelem słonecznym i akumulatorem, która działa niezależnie od sieci energetycznej. Nie zastępuj go emoji, bo mogą się źle wyświetlać na ekranach niektórych urządzeń. [Oznaczenia repeaterów](/dokumentacja/meshcore/aktualne-presety#oznaczenia-repeaterow)
+Dopisek `SOL` na końcu nazwy oznacza stałą instalację z panelem słonecznym i akumulatorem, która działa niezależnie od sieci energetycznej. Nie zastępuj go emoji, bo mogą się źle wyświetlać na ekranach niektórych urządzeń. Zobacz też: [oznaczenia repeaterów](/dokumentacja/meshcore/aktualne-presety#oznaczenia-repeaterow).
 
 ## Jakie ustawienia radiowe wybrać w Polsce?
 

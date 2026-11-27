@@ -52,15 +52,17 @@
 							</div>
 						</div>
 						<ul class="ng-results" id="ng-results"></ul>
-						<p class="form-hint" id="ng-no-results" role="status" hidden>Brak pasujących miejscowości.</p>
+						<p class="form-hint" id="ng-results-hint" role="status" hidden></p>
+						<div class="form-field" id="ng-custom-field" hidden>
+							<p class="form-hint" id="ng-custom-hint" role="status">Brak pasujących miejscowości. Jeśli Twojej nie ma w wykazie, wpisz skrót jej nazwy, który każdy zrozumie.</p>
+							<label for="ng-custom">Skrót nazwy miejscowości</label>
+							<input class="form-control" type="text" id="ng-custom" maxlength="31" spellcheck="false" aria-describedby="ng-custom-hint">
+						</div>
 					</section>
 
 					<section class="form-card panel">
+						<p class="ng-selected" id="ng-selected" role="status">Nie wybrano miejscowości.</p>
 						<div class="ng-grid">
-							<div class="form-field">
-								<label for="ng-code">Miejscowość</label>
-								<input class="form-control" type="text" id="ng-code" readonly tabindex="-1" placeholder="Wybierz miejscowość z wyników">
-							</div>
 							<div class="form-field">
 								<label for="ng-suffix">Wyróżnik lub znak wywoławczy</label>
 								<input class="form-control" type="text" id="ng-suffix" maxlength="31" spellcheck="false" placeholder="np. Podczele lub SQ9XYZ">

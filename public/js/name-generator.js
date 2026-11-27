@@ -13,17 +13,19 @@ const byId = id => document.getElementById(id);
 const form = byId('ng-form');
 const voivodeshipSelect = byId('ng-voivodeship');
 const searchInput = byId('ng-search');
-const codeInput = byId('ng-code');
 const suffixInput = byId('ng-suffix');
 const directionSelect = byId('ng-direction');
 const solarInput = byId('ng-solar');
 const results = byId('ng-results');
 const copyButton = byId('ng-copy');
+const customInput = byId('ng-custom');
+const customField = byId('ng-custom-field');
 const encoder = new TextEncoder();
 
 const voivodeshipNames = new Map([...voivodeshipSelect.options].filter(option => option.value).map(option => [option.value, option.text]));
 
 let entries = [];
+let selectedCode = '';
 let highlighterPromise = null;
 
 const setCommand = command => {
@@ -50,8 +52,13 @@ const getVoivodeshipName = ({ voivodeship }) => (voivodeship ? voivodeshipNames.
 
 const selectCode = code => {
 	const entry = entries.find(item => item.code === code);
-	codeInput.dataset.code = entry?.code ?? '';
-	codeInput.value = entry ? `${entry.name} - ${entry.code} (${getVoivodeshipName(entry)})` : '';
+	selectedCode = entry?.code ?? '';
+};
+
+const describeSelection = custom => {
+	const entry = entries.find(item => item.code === selectedCode);
+	if (entry) return `Miejscowość: ${entry.name} - ${entry.code} (${getVoivodeshipName(entry)})`;
+	return custom ? `Skrót miejscowości: ${custom}` : 'Nie wybrano miejscowości.';
 };
 
 const findMatches = () => {
@@ -79,7 +86,7 @@ const createResult = entry => {
 	button.type = 'button';
 	button.className = 'ng-result';
 	button.dataset.code = entry.code;
-	button.setAttribute('aria-pressed', String(entry.code === codeInput.dataset.code));
+	button.setAttribute('aria-pressed', String(entry.code === selectedCode));
 
 	const code = document.createElement('code');
 	code.textContent = entry.code;
@@ -98,30 +105,40 @@ const renderResults = () => {
 	const matches = findMatches();
 	results.replaceChildren(...matches.slice(0, MAX_RESULTS).map(createResult));
 	results.hidden = !matches.length;
-	byId('ng-no-results').hidden = matches.length > 0;
+
+	const hint = byId('ng-results-hint');
+	hint.textContent = `Wyświetlono ${MAX_RESULTS} z ${matches.length} wyników. Zawęź wyszukiwanie, aby zobaczyć pozostałe.`;
+	hint.hidden = matches.length <= MAX_RESULTS;
+	customField.hidden = Boolean(matches.length);
 };
 
+const normalizeSpaces = value => value.trim().replace(/\s+/g, ' ');
+
 const renderOutput = () => {
-	const code = codeInput.dataset.code ?? '';
-	const suffix = suffixInput.value.trim().replace(/\s+/g, ' ');
-	const name = code && suffix ? [code, suffix, directionSelect.value, solarInput.checked && 'SOL'].filter(Boolean).join(' ') : '';
+	const custom = customField.hidden ? '' : normalizeSpaces(customInput.value);
+	const prefix = selectedCode || custom;
+	const suffix = normalizeSpaces(suffixInput.value);
+	const name = prefix && suffix ? [prefix, suffix, directionSelect.value, solarInput.checked && 'SOL'].filter(Boolean).join(' ') : '';
 	const forbidden = [...new Set(name.match(FORBIDDEN_RE))];
 	const bytes = encoder.encode(name).length;
 	const valid = Boolean(name) && !forbidden.length && bytes <= MAX_BYTES;
 
-	results.querySelectorAll('.ng-result').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.code === code)));
+	results.querySelectorAll('.ng-result').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.code === selectedCode)));
 
+	byId('ng-selected').textContent = describeSelection(custom);
 	const empty = byId('ng-empty');
-	empty.textContent = code ? 'Wpisz wyróżnik lub znak wywoławczy.' : 'Wybierz miejscowość, aby zacząć.';
+	empty.textContent = prefix ? 'Wpisz wyróżnik lub znak wywoławczy.' : 'Wybierz miejscowość, aby zacząć.';
 	empty.hidden = Boolean(name);
 	byId('ng-result').hidden = !name;
 	byId('ng-name').textContent = name;
 	setCommand(valid ? `set name ${name}` : '');
-	byId('ng-bytes').textContent = `Długość w bajtach: ${bytes}. Limit to ${MAX_BYTES_WITH_LOCATION} z lokalizacją w advercie i ${MAX_BYTES} bez niej. Polskie znaki zajmują po 2 bajty.`;
+	const counter = byId('ng-bytes');
+	counter.textContent = `Długość: ${bytes} B (limit: ${MAX_BYTES_WITH_LOCATION} B z lokalizacją w advercie, ${MAX_BYTES} B bez niej)`;
+	counter.classList.toggle('ng-problem', bytes > MAX_BYTES_WITH_LOCATION);
 
 	const problems = [];
 	if (forbidden.length) problems.push(`Usuń niedozwolone znaki: ${forbidden.join(' ')}`);
-	if (bytes > MAX_BYTES) problems.push('Nazwa jest za długa i zostanie ucięta. Skróć wyróżnik.');
+	if (bytes > MAX_BYTES) problems.push('Nazwa jest za długa i zostanie ucięta. Skróć ją.');
 	else if (bytes > MAX_BYTES_WITH_LOCATION) problems.push('Jeśli repeater rozgłasza lokalizację, końcówka nazwy zostanie ucięta!');
 	const problem = byId('ng-problem');
 	problem.textContent = problems.join(' ');
@@ -141,6 +158,7 @@ const loadSettings = () => {
 			voivodeship: voivodeshipNames.has(settings.voivodeship) ? settings.voivodeship : '',
 			search: getString(settings.search),
 			code: getString(settings.code),
+			custom: getString(settings.custom).slice(0, customInput.maxLength),
 			suffix: getString(settings.suffix).slice(0, suffixInput.maxLength),
 			direction: [...directionSelect.options].some(option => option.value === settings.direction) ? settings.direction : '',
 			solar: settings.solar === true,
@@ -158,7 +176,8 @@ const saveSettings = () => {
 		localStorage.setItem(SETTINGS_KEY, JSON.stringify({
 			voivodeship: voivodeshipSelect.value,
 			search: searchInput.value,
-			code: codeInput.dataset.code,
+			code: selectedCode,
+			custom: customInput.value,
 			suffix: suffixInput.value,
 			direction: directionSelect.value,
 			solar: solarInput.checked,
@@ -179,6 +198,7 @@ const restoreForm = () => {
 	voivodeshipSelect.value = voivodeship ?? settings.voivodeship ?? '';
 	searchInput.value = requested?.code ?? (sameVoivodeship ? settings.search ?? '' : '');
 	selectCode(code);
+	customInput.value = !requested && sameVoivodeship ? settings.custom ?? '' : '';
 	suffixInput.value = code === (settings.code ?? '') ? settings.suffix ?? '' : '';
 	directionSelect.value = settings.direction ?? '';
 	solarInput.checked = settings.solar ?? false;
@@ -221,16 +241,23 @@ const init = async () => {
 
 	[voivodeshipSelect, searchInput].forEach(field => field.addEventListener('input', () => {
 		renderResults();
+		renderOutput();
 		handleChange();
 	}));
 	[suffixInput, directionSelect, solarInput].forEach(field => field.addEventListener('input', () => {
 		renderOutput();
 		handleChange();
 	}));
+	customInput.addEventListener('input', () => {
+		if (customInput.value.trim()) selectCode('');
+		renderOutput();
+		handleChange();
+	});
 	results.addEventListener('click', event => {
 		const button = event.target.closest('.ng-result');
 		if (!button) return;
-		selectCode(button.dataset.code);
+		selectCode(button.dataset.code === selectedCode ? '' : button.dataset.code);
+		if (selectedCode) customInput.value = '';
 		renderOutput();
 		handleChange();
 	});
