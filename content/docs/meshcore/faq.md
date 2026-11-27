@@ -139,10 +139,11 @@ Najczęstszą przyczyną problemu jest kabel USB. Oba rodzaje kabli mogą wyglą
 
 Najlepiej weź sprawdzony kabel, przez który udało Ci się już przesłać pliki, np. z telefonu na komputer. Jeśli płytka nadal nie jest widoczna:
 
-1. Podłącz płytkę bezpośrednio do portu w komputerze, bez huba. Sprawdź inny port.
-2. Zainstaluj sterownik konwertera USB-UART, jeśli Twoja płytka go używa: [CP210x](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers), [CH343/CH9102](https://www.wch-ic.com/downloads/CH343SER_EXE.html) lub [CH340/CH341](https://www.wch-ic.com/downloads/CH341SER_EXE.html).
-3. Wprowadź urządzenie w tryb wgrywania oprogramowania. Sprawdź instrukcję swojego modelu, procedura zależy od płytki i bootloadera.
-   - **ESP32:** na płytkach z przyciskami `BOOT` (lub `PRG`) i `RST` zwykle wystarczy przytrzymać `BOOT`, nacisnąć i puścić `RST`, a potem puścić `BOOT`.
-   - **nRF52:** na wielu płytkach z bootloaderem UF2 dwukrotne naciśnięcie `RST` udostępnia dysk USB. W SenseCAP T1000-E przytrzymaj przycisk urządzenia i dwukrotnie szybko podłącz kabel. [Instrukcja Seeed](https://wiki.seeedstudio.com/sensecap_t1000_e_meshcore/)
+1. **Sprawdź port USB.** Podłącz płytkę bezpośrednio do komputera. Jeśli nadal jej nie wykrywa, spróbuj innego portu.
+2. **Sprawdź sterownik.** Jeśli płytka korzysta z konwertera USB-UART, zainstaluj sterownik odpowiedni dla jej układu. [CP210x](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers) · [CH343/CH9102](https://www.wch-ic.com/downloads/CH343SER_EXE.html) · [CH340/CH341](https://www.wch-ic.com/downloads/CH341SER_EXE.html)
+3. **Uruchom tryb wgrywania.** Sposób wejścia w ten tryb zależy od modelu płytki i bootloadera.
+   - **ESP32:** W większości przypadków wystarczy wykonać następującą sekwencję. Przytrzymaj `BOOT` (lub `PRG`), naciśnij i puść `RST`, a następnie puść `BOOT`.
+   - **nRF52 z bootloaderem UF2:** na wielu płytkach wystarczy szybko nacisnąć `RST` dwa razy, aby w systemie pojawił się dysk USB.
+   - **SenseCAP T1000-E:** przytrzymaj przycisk urządzenia. Cały czas trzymając przycisk, podłącz kabel USB, odłącz go i od razu podłącz ponownie. [Instrukcja Seeed Studio](https://wiki.seeedstudio.com/sensecap_t1000_e_meshcore/)
 
-Do wgrywania przez [flasher MeshCore](https://flasher.meshcore.io) użyj przeglądarki Chrome lub Edge i zamknij inne programy, które mogą korzystać z portu szeregowego.
+Otwórz [flasher MeshCore](https://flasher.meshcore.io) w Chrome lub Edge. Jeśli system wykrywa port szeregowy, ale flasher nie może się z nim połączyć, zamknij programy, które mogą go używać.
