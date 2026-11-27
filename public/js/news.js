@@ -22,7 +22,9 @@ if (searchFields.length && list) {
 
 		const noResults = query.length > 0 && visible === 0;
 		if (empty) empty.hidden = !noResults;
-		const message = !query ? '' : noResults ? 'Brak wyników dla podanej frazy.' : `Wyświetlono wyników: ${visible}.`;
+		let message = '';
+		if (noResults) message = 'Brak wyników dla podanej frazy.';
+		else if (query) message = `Wyświetlono wyników: ${visible}.`;
 
 		for (const field of searchFields) {
 			if (field !== source) field.input.value = value;

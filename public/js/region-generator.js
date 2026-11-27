@@ -79,7 +79,9 @@ const getScenarioInputs = () => [...document.querySelectorAll('input[name="rg-sc
 const getScenario = () => getScenarioInputs().find(input => input.checked).value;
 const applyScenario = () => {
 	const scenario = getScenario();
-	document.querySelectorAll('[data-rg-scenario]').forEach(element => element.hidden = element.dataset.rgScenario !== scenario);
+	document.querySelectorAll('[data-rg-scenario]').forEach(element => {
+		element.hidden = element.dataset.rgScenario !== scenario;
+	});
 };
 
 const parseCurrentRegions = text => {
@@ -213,7 +215,9 @@ const bindNumberLimits = input => {
 	input.addEventListener('input', () => {
 		if (input.value) input.value = Math.min(Math.max(Math.trunc(input.valueAsNumber), Number(input.min)), Number(input.max));
 	});
-	input.addEventListener('blur', () => input.value ||= input.defaultValue);
+	input.addEventListener('blur', () => {
+		input.value ||= input.defaultValue;
+	});
 };
 
 const createScopeControl = channel => {
@@ -478,7 +482,9 @@ const saveSettings = () => {
 const limitNeighbors = () => {
 	const inputs = [...document.querySelectorAll('#rg-neighbors input')];
 	const limitReached = inputs.filter(input => input.checked).length >= RG_MAX_NEIGHBORS;
-	inputs.forEach(input => input.disabled = limitReached && !input.checked);
+	inputs.forEach(input => {
+		input.disabled = limitReached && !input.checked;
+	});
 };
 
 const renderNeighbors = (home, selected = null) => {
@@ -622,7 +628,11 @@ const initGenerator = async () => {
 
 	const settings = loadSettings();
 	if (settings) {
-		if (!cleanupRequested && !scenarioPicked) getScenarioInputs().forEach(input => input.checked = input.value === settings.scenario);
+		if (!cleanupRequested && !scenarioPicked) {
+			getScenarioInputs().forEach(input => {
+				input.checked = input.value === settings.scenario;
+			});
+		}
 		homeSelect.value = settings.home;
 		document.getElementById('rg-fw').value = settings.firmware;
 		document.getElementById('rg-default').checked = settings.setDefault;

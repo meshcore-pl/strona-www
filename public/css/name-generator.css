@@ -60,6 +60,14 @@
 	margin-inline: auto;
 }
 
+.prose #ng-results-hint {
+	text-align: center;
+}
+
+.prose #ng-results-hint:empty {
+	margin: 0;
+}
+
 .prose .ng-selected {
 	margin: 0 0 22px;
 	text-align: center;

@@ -68,7 +68,9 @@ map.addEventListener('pointermove', event => {
 	zoom(`${x + dragStart.point.x - current.x} ${y + dragStart.point.y - current.y} ${width} ${height}`);
 });
 
-['pointerup', 'pointercancel'].forEach(type => map.addEventListener(type, () => dragStart = null));
+['pointerup', 'pointercancel'].forEach(type => map.addEventListener(type, () => {
+	dragStart = null;
+}));
 
 document.querySelectorAll('[data-zoom]').forEach(button => button.addEventListener('click', () => {
 	const { x, y, width, height } = map.viewBox.baseVal;

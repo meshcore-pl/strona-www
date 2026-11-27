@@ -33,7 +33,7 @@ const collectAssets = async () => {
 
 	const assets = await Promise.all(files.map(async file => {
 		const { size, mtimeMs } = await fs.stat(file);
-		const urlPath = '/' + path.relative(PUBLIC_DIR, file).replaceAll('\\', '/');
+		const urlPath = `/${path.relative(PUBLIC_DIR, file).replaceAll('\\', '/')}`;
 		return { urlPath: encodeURI(urlPath), signature: `${urlPath}:${size}:${mtimeMs}` };
 	}));
 
@@ -57,10 +57,11 @@ let cached;
 
 const getScript = () => {
 	if (!isProd) return build();
-	return cached ??= build().catch(err => {
+	cached ??= build().catch(err => {
 		cached = null;
 		throw err;
 	});
+	return cached;
 };
 
 export { getScript, ENDPOINTS, OFFLINE_HEADER };

@@ -52,6 +52,10 @@ const setCommand = command => {
 
 const getVoivodeshipName = ({ voivodeship }) => (voivodeship ? voivodeshipNames.get(voivodeship) : 'województwo nieustalone');
 
+const setText = (element, text) => {
+	if (element.textContent !== text) element.textContent = text;
+};
+
 const selectCode = code => {
 	const entry = entries.find(item => item.code === code);
 	selectedCode = entry?.code ?? '';
@@ -101,6 +105,11 @@ const createResult = entry => {
 	return item;
 };
 
+const describeResults = count => {
+	if (!count) return 'Brak pasujących miejscowości. Jeśli Twojej nie ma w wykazie, wpisz skrót jej nazwy, który każdy zrozumie.';
+	return count > MAX_RESULTS ? `Wyświetlono ${MAX_RESULTS} z ${count} wyników. Zawęź wyszukiwanie, aby zobaczyć pozostałe.` : '';
+};
+
 const renderResults = () => {
 	if (!entries.length) return;
 
@@ -108,9 +117,7 @@ const renderResults = () => {
 	results.replaceChildren(...matches.slice(0, MAX_RESULTS).map(createResult));
 	results.hidden = !matches.length;
 
-	const hint = byId('ng-results-hint');
-	hint.textContent = `Wyświetlono ${MAX_RESULTS} z ${matches.length} wyników. Zawęź wyszukiwanie, aby zobaczyć pozostałe.`;
-	hint.hidden = matches.length <= MAX_RESULTS;
+	setText(byId('ng-results-hint'), describeResults(matches.length));
 	customField.hidden = Boolean(matches.length);
 };
 
@@ -122,7 +129,12 @@ const renderProblems = (problems, valid) => {
 	alert.className = `docs-alert docs-alert--${type}`;
 	alert.hidden = !problems.length;
 	byId('ng-problem-icon').setAttribute('href', `/icons.svg#alert-${type}`);
-	byId('ng-problem-list').replaceChildren(...problems.map(text => {
+
+	const list = byId('ng-problem-list');
+	const key = problems.join('\n');
+	if (list.dataset.key === key) return;
+	list.dataset.key = key;
+	list.replaceChildren(...problems.map(text => {
 		const paragraph = document.createElement('p');
 		paragraph.textContent = text;
 		return paragraph;
@@ -140,7 +152,7 @@ const renderOutput = () => {
 
 	results.querySelectorAll('.ng-result').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.code === selectedCode)));
 
-	byId('ng-selected').textContent = describeSelection(custom);
+	setText(byId('ng-selected'), describeSelection(custom));
 	const empty = byId('ng-empty');
 	empty.textContent = prefix ? 'Wpisz wyróżnik lub znak wywoławczy.' : 'Wybierz miejscowość, aby zacząć.';
 	empty.hidden = Boolean(name);
@@ -164,10 +176,12 @@ const renderOutput = () => {
 
 const getString = value => (typeof value === 'string' ? value : '');
 
+const DEFAULT_SETTINGS = Object.freeze({ voivodeship: '', search: '', code: '', custom: '', suffix: '', direction: '', solar: false });
+
 const loadSettings = () => {
 	try {
 		const settings = JSON.parse(localStorage.getItem(SETTINGS_KEY));
-		if (!settings || typeof settings !== 'object') return {};
+		if (!settings || typeof settings !== 'object') return DEFAULT_SETTINGS;
 
 		return {
 			voivodeship: voivodeshipNames.has(settings.voivodeship) ? settings.voivodeship : '',
@@ -180,7 +194,7 @@ const loadSettings = () => {
 		};
 	} catch (err) {
 		console.warn('Nie udało się odczytać ustawień:', err);
-		return {};
+		return DEFAULT_SETTINGS;
 	}
 };
 
@@ -208,15 +222,16 @@ const restoreForm = () => {
 	const requested = entries.find(entry => entry.code === params.get('kod'));
 	const settings = loadSettings();
 	const sameVoivodeship = voivodeship === null || voivodeship === settings.voivodeship;
-	const code = requested?.code ?? (sameVoivodeship ? settings.code ?? '' : '');
+	const saved = sameVoivodeship ? settings : DEFAULT_SETTINGS;
+	const code = requested?.code ?? saved.code;
 
-	voivodeshipSelect.value = voivodeship ?? settings.voivodeship ?? '';
-	searchInput.value = requested?.code ?? (sameVoivodeship ? settings.search ?? '' : '');
+	voivodeshipSelect.value = voivodeship ?? settings.voivodeship;
+	searchInput.value = requested?.code ?? saved.search;
 	selectCode(code);
-	customInput.value = !requested && sameVoivodeship ? settings.custom ?? '' : '';
-	suffixInput.value = code === (settings.code ?? '') ? settings.suffix ?? '' : '';
-	directionSelect.value = settings.direction ?? '';
-	solarInput.checked = settings.solar ?? false;
+	customInput.value = requested ? '' : saved.custom;
+	suffixInput.value = code === settings.code ? settings.suffix : '';
+	directionSelect.value = settings.direction;
+	solarInput.checked = settings.solar;
 	if (requested) saveSettings();
 };
 
@@ -233,7 +248,9 @@ const copyName = async () => {
 		console.error('Nie udało się skopiować nazwy:', err);
 		copyButton.textContent = 'Nie udało się skopiować';
 	}
-	setTimeout(() => copyButton.textContent = 'Kopiuj nazwę', 2000);
+	setTimeout(() => {
+		copyButton.textContent = 'Kopiuj nazwę';
+	}, 2000);
 };
 
 const loadEntries = async () => {

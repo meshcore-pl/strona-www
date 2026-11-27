@@ -52,6 +52,19 @@
 	margin: 0 0 24px;
 }
 
+.voivodeship-locodes a:hover {
+	text-decoration: none;
+}
+
+.voivodeship-locodes a code {
+	transition: background-color .15s ease, border-color .15s ease;
+}
+
+.voivodeship-locodes a:hover code, .voivodeship-locodes a:focus-visible code {
+	border-color: var(--red-bright);
+	background: var(--red-glow);
+}
+
 .voivodeship-locodes summary {
 	margin-bottom: 12px;
 	color: var(--text);

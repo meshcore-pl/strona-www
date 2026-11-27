@@ -10,7 +10,7 @@ const initLightbox = () => {
 	const open = (src, source, label = '') => {
 		image.src = src;
 		image.alt = source?.alt || label;
-		image.toggleAttribute('data-transparent', !!source?.hasAttribute('data-transparent'));
+		image.toggleAttribute('data-transparent', Boolean(source?.hasAttribute('data-transparent')));
 		dialog.showModal();
 	};
 

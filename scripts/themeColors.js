@@ -1,6 +1,7 @@
 import '../loadEnv.js';
 import fs from 'node:fs';
 import path from 'node:path';
+import { setTimeout as sleep } from 'node:timers/promises';
 import parseFrontmatter from 'frontmatter-md';
 import { marked, resolvePageImage } from '../services/markdown.js';
 import * as tcpClient from '../global/services/tcpClient.js';
@@ -25,7 +26,7 @@ const listMarkdown = dir => fs.readdirSync(dir, { withFileTypes: true }).flatMap
 });
 
 const waitForConnection = async () => {
-	for (let i = 0; i < 50 && !tcpClient.isClientConnected(); i++) await new Promise(resolve => setTimeout(resolve, 200));
+	for (let i = 0; i < 50 && !tcpClient.isClientConnected(); i++) await sleep(200);
 	return tcpClient.isClientConnected();
 };
 

@@ -130,7 +130,7 @@
 	const createNodes = (seed, spacing) => {
 		const result = CITIES.map(([code, lon, lat, below]) => {
 			const [x, y] = normalize(project(lon, lat));
-			return { x, y, lon, lat, code, city: true, below: !!below };
+			return { x, y, lon, lat, code, city: true, below: Boolean(below) };
 		});
 		const rand = mulberry32(seed);
 		const candidates = [];
@@ -277,7 +277,8 @@
 		c.beginPath();
 		borderPath.forEach(([nx, ny], i) => {
 			const x = offsetX + nx * scale, y = offsetY + ny * scale;
-			i === 0 ? c.moveTo(x, y) : c.lineTo(x, y);
+			if (i === 0) c.moveTo(x, y);
+			else c.lineTo(x, y);
 		});
 		c.closePath();
 	};

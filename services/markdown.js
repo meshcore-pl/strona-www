@@ -51,10 +51,13 @@ const slugify = text => text.toLowerCase()
 
 const PLAIN_TOKEN_TYPES = new Set(['text', 'codespan', 'escape']);
 const toPlainText = tokens => tokens
-	.map(t => (t.tokens ? toPlainText(t.tokens) : PLAIN_TOKEN_TYPES.has(t.type) ? t.text : ''))
+	.map(t => {
+		if (t.tokens) return toPlainText(t.tokens);
+		return PLAIN_TOKEN_TYPES.has(t.type) ? t.text : '';
+	})
 	.join('');
 
-const TOC_LABEL_RE = /\s*\{toc:\s*([^}]+)\}\s*$/;
+const TOC_LABEL_RE = /\s*\{toc:\s*([^}]+)}\s*$/;
 const tocLabels = new WeakMap();
 const plainTexts = new WeakMap();
 const headingIds = new WeakMap();
