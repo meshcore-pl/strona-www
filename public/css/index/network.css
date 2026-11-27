@@ -29,11 +29,12 @@
 	font-family: var(--font-mono);
 	font-size: 38px;
 	font-weight: 700;
+	line-height: 1.2;
 }
 
 .network-stat span {
 	color: var(--text-muted);
-	font-size: var(--fs-md);
+	font-size: var(--fs-base);
 }
 
 #network-health {
@@ -93,7 +94,7 @@
 	gap: 10px 22px;
 	margin: 0;
 	padding: 0;
-	font-size: var(--fs-sm);
+	font-size: var(--fs-md);
 	list-style: none;
 }
 
@@ -138,7 +139,7 @@
 
 #network-health__legend span {
 	color: var(--text-muted);
-	font-size: var(--fs-xs);
+	font-size: var(--fs-sm);
 }
 
 #network-stats-updated {
