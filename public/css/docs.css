@@ -49,6 +49,23 @@
 	gap: 20px;
 }
 
+#docs-hero__actions .btn {
+	text-align: center;
+	white-space: normal;
+}
+
+@media (max-width: 480px) {
+	#docs-hero__head {
+		flex-wrap: wrap;
+		gap: 14px;
+	}
+
+	#docs-hero__icon, #docs-hero__icon img {
+		width: 64px;
+		height: 64px;
+	}
+}
+
 #docs-quickstart {
 	margin-top: 32px;
 }

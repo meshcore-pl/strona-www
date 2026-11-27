@@ -26,7 +26,7 @@ Kod źródłowy witryny i treść dokumentacji znajdziesz na [GitHubie](https://
 ## Podstawowe pojęcia
 Niektóre polskie określenia zostały przyjęte przez naszą społeczność. Nazwy w kolumnie „Pojęcie” odpowiadają tłumaczeniu używanemu w polskiej wersji aplikacji MeshCore, co ułatwia odnalezienie opisanych funkcji.
 
-| Pojęcie                        | Angielska nazwa          | Co oznacza?                                                                                                                                                                  |
+| Pojęcie                        | Angielska nazwa          | Znaczenie                                                                                                                                                                  |
 |--------------------------------|:-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Preset                         |                          | Ustawienia radia (częstotliwość, szerokość pasma, SF, CR). Do komunikacji urządzenia potrzebują tego samego presetu, z wyjątkiem CR.                         |
 | Współczynnik rozpraszania (SF) | Spreading Factor         | Wyższa wartość ułatwia odbiór słabszego sygnału, ale wydłuża czas nadawania.                                                                                                 |

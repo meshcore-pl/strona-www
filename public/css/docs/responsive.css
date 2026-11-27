@@ -62,6 +62,10 @@
 		text-align: left;
 	}
 
+	.docs-pagination__link--next .docs-card-desc {
+		padding-right: 0;
+	}
+
 	#docs-mobile-toc-btn {
 		position: fixed;
 		right: 20px;

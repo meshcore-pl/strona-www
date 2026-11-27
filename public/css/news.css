@@ -102,7 +102,6 @@
 
 .news-source {
 	display: inline-flex;
-	flex-shrink: 0;
 	align-items: center;
 	padding: 3px 11px;
 	font-size: var(--fs-2xs);
@@ -139,7 +138,7 @@ a.news-source--spolecznosc:hover {
 
 @media (max-width: 800px) {
 	#news-list {
-		grid-template-columns: 1fr;
+		grid-template-columns: minmax(0, 1fr);
 	}
 }
 
@@ -178,6 +177,7 @@ a.news-source--spolecznosc:hover {
 
 .news-post-card__tags {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
 	gap: 8px;

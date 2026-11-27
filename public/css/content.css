@@ -203,6 +203,10 @@
 	margin: 0;
 }
 
+.prose :is(p, li) :is(a, code) {
+	overflow-wrap: anywhere;
+}
+
 .prose code {
 	padding: 1px 6px;
 	border: 1px solid rgba(255, 51, 82, .3);

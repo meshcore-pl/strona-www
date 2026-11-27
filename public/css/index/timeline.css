@@ -88,7 +88,8 @@
 	}
 
 	.quickstart__shot {
-		max-width: 220px;
+		width: 100%;
+		max-width: 360px;
 	}
 
 	#timeline {

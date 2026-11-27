@@ -103,6 +103,12 @@
 		grid-template-columns: 1fr;
 	}
 
+	.about__photo, #cta__photo {
+		justify-self: center;
+		width: 100%;
+		max-width: 520px;
+	}
+
 	.about__caption, .profile__caption {
 		text-align: center;
 	}

@@ -87,6 +87,10 @@
 	text-align: right;
 }
 
+.docs-pagination__link--next .docs-card-desc {
+	padding-right: 20px;
+}
+
 #docs-toc {
 	position: sticky;
 	top: var(--nav-h);

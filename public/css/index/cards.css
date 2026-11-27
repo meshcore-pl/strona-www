@@ -302,8 +302,15 @@
 	}
 }
 
+@media (max-width: 900px) {
+	.equipment-checklist ol {
+		grid-template-columns: 1fr;
+		gap: 16px;
+	}
+}
+
 @media (max-width: 760px) {
-	.equipment-roles, .equipment-checklist ol, .equipment-support {
+	.equipment-roles, .equipment-support {
 		grid-template-columns: 1fr;
 		gap: 16px;
 	}
