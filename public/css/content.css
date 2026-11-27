@@ -411,7 +411,8 @@
 	padding-left: 16px;
 }
 
-.docs-alert__body > :last-child {
+.docs-alert__body > :last-child,
+.docs-alert__body > div:last-child > :last-child {
 	margin-bottom: 0;
 }
 

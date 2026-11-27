@@ -85,15 +85,6 @@
 	overflow-wrap: anywhere;
 }
 
-.prose .ng-info-preview {
-	margin: 0 0 12px;
-	padding: 14px 18px;
-	border-radius: 8px;
-	color: var(--text);
-	overflow-wrap: anywhere;
-	white-space: pre-wrap;
-}
-
 .prose .ng-empty {
 	padding: 24px 0;
 	text-align: center;

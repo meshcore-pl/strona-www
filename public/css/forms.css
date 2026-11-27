@@ -112,6 +112,10 @@
 	transform: translateY(-50%);
 }
 
+.prose.form-page h2[id] {
+	scroll-margin-top: calc(var(--nav-h) + 24px);
+}
+
 .form-page [hidden] {
 	display: none;
 }

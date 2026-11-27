@@ -1,6 +1,6 @@
 <%- include('./includes/header.ejs', {
 	title: 'Generator nazw i opisów repeaterów | MeshCore Polska',
-	description: 'Ułóż nazwę i opis właściciela repeatera MeshCore, a potem skopiuj komendy set name i set owner.info.',
+	description: 'Ułóż nazwę i opis repeatera MeshCore, a potem skopiuj gotowe komendy set name i set owner.info.',
 	canonical: '/generator-nazw',
 	breadcrumbs: [
 		{ name: 'Strona główna', url: '/' },
@@ -16,7 +16,7 @@
 			<div class="prose prose--content form-page">
 				<p class="eyebrow">Narzędzie</p>
 				<h1>Generator nazw i opisów repeaterów</h1>
-				<p>Wybierz miejscowość i dodaj wyróżnik, np. nazwę dzielnicy, nazwę punktu orientacyjnego albo swój znak wywoławczy. Generator połączy kod miejscowości z wyróżnikiem i przygotuje komendę do ustawienia nazwy. Więcej przykładów nazw znajdziesz w <a href="/dokumentacja/meshcore/faq#jak-nazwac-swoj-repeater">FAQ</a>. Niżej ułożysz też <a href="#opis">opis repeatera</a> z kontaktem do siebie.</p>
+				<p>Wybierz miejscowość i wpisz wyróżnik. Może to być nazwa dzielnicy, nazwa charakterystycznego miejsca lub Twój znak wywoławczy. Generator połączy kod miejscowości z wyróżnikiem i przygotuje komendę do ustawienia nazwy. Przykłady nazw znajdziesz w <a href="/dokumentacja/meshcore/faq#jak-nazwac-swoj-repeater">FAQ</a>. Poniżej możesz też przygotować <a href="#opis">opis repeatera</a> z danymi kontaktowymi.</p>
 
 				<noscript>
 					<div class="docs-alert docs-alert--warning">
@@ -57,7 +57,10 @@
 							<label for="ng-custom">Skrót nazwy miejscowości</label>
 							<input class="form-control" type="text" id="ng-custom" maxlength="31" spellcheck="false" aria-describedby="ng-results-hint">
 						</div>
-						<p class="form-hint" id="ng-source">Kody pochodzą z wykazu <a href="https://unlocode.unece.org/directory/locodes/?country=PL" target="_blank" rel="noopener">UN/LOCODE</a>, a nazwy i województwa z Państwowego Rejestru Nazw Geograficznych (GUGiK, 25.11.2026). Widzisz błąd? <a href="/kontakt">Daj nam znać</a>.</p>
+						<p class="form-hint" id="ng-source">
+							Kody pochodzą z wykazu <a href="https://unlocode.unece.org/directory/locodes/?country=PL" target="_blank" rel="noopener">UN/LOCODE</a>. Nazwy miejscowości i ich przypisanie do województw pochodzą z Państwowego Rejestru Nazw Geograficznych (GUGiK, 25.11.2026).<br>
+							Widzisz błąd? <a href="/kontakt">Daj nam znać</a>.
+						</p>
 					</section>
 
 					<section class="form-card panel">
@@ -70,7 +73,7 @@
 							<div class="form-field">
 								<label for="ng-direction">Kierunek anteny (opcjonalnie)</label>
 								<select class="form-control" id="ng-direction">
-									<option value="">Bez kierunku</option>
+									<option value="">Pomiń kierunek</option>
 									<option value="N">N (północ)</option>
 									<option value="NE">NE (północny wschód)</option>
 									<option value="E">E (wschód)</option>
@@ -111,12 +114,12 @@
 					</div>
 
 					<h2 id="opis">Opis repeatera</h2>
-					<p>Zostaw na repeaterze kontakt do siebie i kilka informacji o instalacji. Wszystkie pola są opcjonalne, a każde z nich trafi do osobnej linii.</p>
+					<p>W opisie możesz podać dane kontaktowe i informacje o instalacji. Wszystkie pola są opcjonalne. Każde wypełnione pole pojawi się w osobnym wierszu opisu.</p>
 					<div class="docs-alert docs-alert--warning">
 						<svg class="docs-alert__icon" aria-hidden="true"><use href="/icons.svg#alert-warning"></use></svg>
 						<div class="docs-alert__body">
 							<p class="docs-alert__title">Te dane są publiczne</p>
-							<p>Każdy może je odczytać z repeatera bez logowania. Nie wpisuj numeru telefonu ani dokładnego adresu.</p>
+							<p>Każdy może odczytać opis repeatera bez logowania. Nie wpisuj numeru telefonu ani dokładnego adresu!</p>
 						</div>
 					</div>
 					<section class="form-card panel">
@@ -126,19 +129,17 @@
 						</div>
 						<div class="form-field">
 							<label for="ng-contact">Kontakt</label>
-							<input class="form-control" type="text" id="ng-contact" maxlength="119" spellcheck="false" placeholder="np. znak wywoławczy, nick na Discordzie, e-mail">
+							<input class="form-control" type="text" id="ng-contact" maxlength="119" spellcheck="false" placeholder="np. znak wywoławczy, nick na Discordzie lub e-mail">
 						</div>
 						<div class="form-field">
 							<label for="ng-details">Dodatkowe informacje</label>
-							<input class="form-control" type="text" id="ng-details" maxlength="119" placeholder="np. antena dookólna, kierunkowa, zasilanie solarne">
+							<input class="form-control" type="text" id="ng-details" maxlength="119" placeholder="np. antena dookólna o zysku 5,5 dBi">
 						</div>
 					</section>
 					<div id="ng-info-result" hidden>
-						<h3>Podgląd opisu</h3>
-						<p class="ng-info-preview panel" id="ng-info"></p>
 						<p class="form-hint" id="ng-info-bytes" role="status"></p>
 						<div id="ng-info-cli" hidden>
-							<h3>Komenda do ustawienia</h3>
+							<h3>Komenda do ustawienia opisu</h3>
 							<div class="command-list" id="ng-info-command"></div>
 						</div>
 					</div>

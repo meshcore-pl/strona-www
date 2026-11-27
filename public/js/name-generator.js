@@ -183,7 +183,6 @@ const renderInfo = () => {
 	const excess = bytes - MAX_INFO_BYTES;
 
 	byId('ng-info-result').hidden = !info;
-	byId('ng-info').textContent = info.replaceAll('|', '\n');
 	const counter = byId('ng-info-bytes');
 	setText(counter, `Długość: ${bytes}/${MAX_INFO_BYTES} B${excess > 0 ? `. Opis jest za długi, skróć go o ${excess} B.` : ''}`);
 	counter.classList.toggle('ng-over-limit', excess > 0);
@@ -216,13 +215,13 @@ const loadSettings = () => {
 };
 
 const saveSettings = () => {
-	if (!entries.length) return;
+	const code = entries.length ? selectedCode : loadSettings().code;
 
 	try {
 		localStorage.setItem(SETTINGS_KEY, JSON.stringify({
 			voivodeship: voivodeshipSelect.value,
 			search: searchInput.value,
-			code: selectedCode,
+			code,
 			custom: customInput.value,
 			suffix: suffixInput.value,
 			direction: directionSelect.value,
