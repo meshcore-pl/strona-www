@@ -96,7 +96,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-	#docs-sidebar, .docs-group-card, .docs-page-card, .docs-page-card__arrow {
+	#docs-sidebar, .docs-page-card__arrow {
 		transition: none;
 	}
 }

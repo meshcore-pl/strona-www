@@ -33,15 +33,12 @@
 	align-content: start;
 	gap: 0 12px;
 	padding: 18px 20px;
-	border: 1px solid var(--border-strong);
-	border-radius: var(--radius);
-	background: var(--glass-bg);
 	cursor: pointer;
 	transition: border-color .2s, background-color .2s;
 }
 
 .rg-scenario__option:hover {
-	border-color: var(--red);
+	border-color: var(--red-bright);
 }
 
 .rg-scenario__option:has(input:checked) {

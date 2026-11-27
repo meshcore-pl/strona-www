@@ -35,7 +35,7 @@
 				<%- include('./_search-box.ejs', { heroVariant: true }) %>
 
 				<div id="docs-hero__actions">
-					<a href="/dokumentacja/<%= group.slug %>/<%= group.visiblePages[0].slug %>" class="btn btn--primary">Zacznij od: <%= group.visiblePages[0].title %></a>
+					<a href="/dokumentacja/<%= group.slug %>/<%= group.visiblePages[0].slug %>" class="btn btn--primary btn--sm">Zacznij od: <%= group.visiblePages[0].title %></a>
 					<span id="docs-hero__count"><%= group.visiblePages.length %> <%= pluralizePolish(group.visiblePages.length, { one: 'strona', few: 'strony', many: 'stron' }) %></span>
 				</div>
 			</div>

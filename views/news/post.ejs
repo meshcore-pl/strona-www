@@ -43,13 +43,13 @@
 					<span class="news-post-card__date"><%= post.updatedAt ? `Zaktualizowano: ${post.updatedAt}` : `Opublikowano: ${post.createdAt}` %></span>
 					<div class="news-post-card__tags">
 						<div class="news-post-card__tags-list">
-							<% post.tags.forEach(tag => { %><a href="/aktualnosci/<%= tag.slug %>" class="pill news-tag"><%= tag.label %></a><% }) %>
+							<% post.tags.forEach(tag => { %><a href="/aktualnosci/<%= tag.slug %>" class="panel pill news-tag"><%= tag.label %></a><% }) %>
 						</div>
 
 						<% if (post.sourceUrl) { %>
-							<a href="<%= post.sourceUrl %>" class="news-source news-source--<%= post.source.slug %>" title="Zobacz oryginalny wpis na <%= post.source.label %>" target="_blank" rel="<%= post.sourceRel %>">Źródło & oryginał: <%= post.source.label %></a>
+							<a href="<%= post.sourceUrl %>" class="pill news-source news-source--<%= post.source.slug %>" title="Zobacz oryginalny wpis na <%= post.source.label %>" target="_blank" rel="<%= post.sourceRel %>">Źródło & oryginał: <%= post.source.label %></a>
 						<% } else { %>
-							<span class="news-source news-source--<%= post.source.slug %>" title="<%= post.source.description %>"><%= post.source.label %></span>
+							<span class="pill news-source news-source--<%= post.source.slug %>" title="<%= post.source.description %>"><%= post.source.label %></span>
 						<% } %>
 					</div>
 				</div>

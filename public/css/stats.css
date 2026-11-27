@@ -5,10 +5,6 @@
 	margin: 20px 0 32px;
 }
 
-.stats-tile, .stats-chart-card {
-	box-shadow: var(--shadow-card);
-}
-
 .stats-tile {
 	padding: 15px;
 	text-align: center;
@@ -48,23 +44,6 @@
 	justify-content: center;
 	gap: 6px;
 	margin-bottom: 20px;
-}
-
-.stats-range button {
-	background: var(--glass-bg);
-	transition: background .15s ease, color .15s ease, border-color .15s ease;
-	cursor: pointer;
-}
-
-.stats-range button:hover {
-	border-color: var(--border-strong);
-	color: var(--text);
-}
-
-.stats-range button.is-active {
-	border-color: var(--red-bright);
-	background: rgba(255, 51, 82, .12);
-	color: var(--text);
 }
 
 #stats-chart-wrap {
@@ -178,9 +157,6 @@
 .stats-notes {
 	margin-top: 28px;
 	padding: 20px;
-	border: 1px solid var(--border);
-	border-radius: var(--radius);
-	background: var(--glass-bg);
 }
 
 .stats-notes p {

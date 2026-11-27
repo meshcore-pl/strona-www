@@ -11,30 +11,7 @@
 }
 
 #docs-search {
-	position: relative;
 	margin-top: 24px;
-}
-
-#docs-search-input {
-	width: 100%;
-	padding: 8px 12px 8px 34px;
-	border: 1px solid var(--border-strong);
-	border-radius: 8px;
-	background: var(--bg);
-	color: var(--text);
-	font-family: var(--font-body);
-	font-size: var(--fs-md);
-	transition: border-color .15s ease, box-shadow .15s ease, padding-left .18s ease;
-}
-
-#docs-search.has-value #docs-search-input {
-	padding-left: 12px;
-}
-
-#docs-search-input:focus {
-	border-color: var(--red-bright);
-	outline: 0;
-	box-shadow: var(--focus-ring);
 }
 
 #docs-search-results {
@@ -99,11 +76,6 @@
 
 #docs-hero__search-row #docs-hero__actions {
 	margin-top: 0;
-}
-
-#docs-hero__search-row .btn {
-	padding: 8px 18px;
-	font-size: var(--fs-md);
 }
 
 #docs-search.docs-search--hero {

@@ -13,7 +13,6 @@
 .network-stat {
 	padding: 24px 16px;
 	text-align: center;
-	box-shadow: var(--shadow-card);
 	transition: border-color .2s ease, transform .2s ease, box-shadow .25s ease;
 }
 

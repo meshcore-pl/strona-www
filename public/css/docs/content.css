@@ -38,13 +38,6 @@
 	flex-direction: column;
 	gap: 3px;
 	padding: 16px 19px;
-	color: var(--text);
-	transition: border-color .2s ease;
-}
-
-.docs-pagination__link:hover {
-	border-color: var(--red-bright);
-	text-decoration: none;
 }
 
 .docs-pagination__link span {

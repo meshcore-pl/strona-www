@@ -1,6 +1,6 @@
 const searchFields = [...document.querySelectorAll('.news-search')].map(wrapper => ({
 	wrapper,
-	input: wrapper.querySelector('.news-search__input'),
+	input: wrapper.querySelector('.search-input'),
 	status: wrapper.querySelector('.news-search__status'),
 }));
 const list = document.getElementById('news-list');

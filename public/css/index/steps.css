@@ -20,7 +20,6 @@
 	padding: 17px 21px;
 	color: var(--text);
 	font-size: var(--fs-lg);
-	box-shadow: var(--shadow-card);
 }
 
 @media (min-width: 900px) {

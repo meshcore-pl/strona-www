@@ -123,6 +123,7 @@
 }
 
 .section--photo .card {
+	--glass-blur: 2px;
 	padding: 24px;
 	background: rgba(18, 21, 30, .55);
 	box-shadow: 0 0 14px #0006;

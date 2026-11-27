@@ -93,7 +93,7 @@ const findMatches = () => {
 const createResult = entry => {
 	const button = document.createElement('button');
 	button.type = 'button';
-	button.className = 'ng-result';
+	button.className = 'panel ng-result';
 	button.dataset.code = entry.code;
 	button.setAttribute('aria-pressed', String(entry.code === selectedCode));
 

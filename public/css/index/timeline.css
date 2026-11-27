@@ -51,7 +51,7 @@
 	font-size: var(--fs-2xl);
 }
 
-.timeline__step-body p {
+.timeline__step-body p, #timeline__tip p {
 	margin: 0;
 	color: var(--text-muted);
 	font-size: var(--fs-base);
@@ -134,13 +134,6 @@
 	margin: 40px auto 0;
 	padding: 18px 22px;
 	border-left: 3px solid var(--red);
-}
-
-#timeline__tip p {
-	margin: 0;
-	color: var(--text-muted);
-	font-size: var(--fs-base);
-	line-height: 1.6;
 }
 
 #timeline__tip strong {

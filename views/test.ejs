@@ -28,7 +28,7 @@
 			</div>
 			<p class="test-readout" id="test-map-readout">-</p>
 
-			<div class="test-map">
+			<div class="panel test-map">
 				<svg id="test-map" viewBox="<%= map.viewBox %>" data-viewbox="<%= map.viewBox %>" data-x-scale="<%= map.xScale %>" data-y-scale="<%= map.yScale %>" role="img" aria-label="Mapa granic województw">
 					<% map.areas.forEach(area => { %>
 						<path class="test-map__area" d="<%= area.path %>" fill="<%= area.color %>" stroke="<%= area.color %>" data-code="<%= area.code %>" data-name="<%= area.name %>" data-viewbox="<%= area.viewBox %>"></path>

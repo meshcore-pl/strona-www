@@ -22,7 +22,7 @@
 				<%- include('./_search-box.ejs', { heroVariant: true }) %>
 
 				<div id="docs-hero__actions">
-					<a href="/#od-zera-do-pierwszej-wiadomosci" class="btn btn--primary">Szybki start</a>
+					<a href="/#od-zera-do-pierwszej-wiadomosci" class="btn btn--primary btn--sm">Szybki start</a>
 				</div>
 			</div>
 		</div>
@@ -39,7 +39,7 @@
 						<div class="docs-group-card__body">
 							<div class="docs-group-card__head">
 								<h2 class="card-title"><%= group.title %></h2>
-								<span class="docs-group-card__badge"><%= group.visiblePages.length %> <%= pluralizePolish(group.visiblePages.length, { one: 'strona', few: 'strony', many: 'stron' }) %></span>
+								<span class="pill docs-group-card__badge"><%= group.visiblePages.length %> <%= pluralizePolish(group.visiblePages.length, { one: 'strona', few: 'strony', many: 'stron' }) %></span>
 							</div>
 							<p><%= group.description %></p>
 						</div>

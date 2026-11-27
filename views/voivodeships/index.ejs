@@ -30,7 +30,7 @@
 				<ul class="voivodeship-list">
 					<% voivodeships.forEach(({ slug, name, stats }) => { %>
 						<li>
-							<a href="/wojewodztwa/<%= slug %>">
+							<a href="/wojewodztwa/<%= slug %>" class="panel">
 								<strong><%= name %></strong>
 								<% if (stats) { %><span><%= stats.nodes.toLocaleString('pl-PL') %> <%= pluralizePolish(stats.nodes, { one: 'urządzenie', few: 'urządzenia', many: 'urządzeń' }) %>, <%= stats.types.repeater.toLocaleString('pl-PL') %> <%= pluralizePolish(stats.types.repeater, { one: 'repeater', few: 'repeatery', many: 'repeaterów' }) %></span><% } %>
 							</a>

@@ -23,9 +23,6 @@
 
 .test-map {
 	margin-bottom: 24px;
-	border: 1px solid var(--border);
-	border-radius: var(--radius);
-	background: var(--glass-bg);
 }
 
 .test-map > svg {

@@ -1,7 +1,6 @@
 .form-card {
 	margin: 0 0 32px;
 	padding: 25px;
-	box-shadow: var(--shadow-card);
 }
 
 .form-card > :nth-last-child(1 of :not([hidden])) {
@@ -101,7 +100,6 @@
 .command-list pre {
 	margin: 0;
 	padding: 8px 100px 8px 14px;
-	border-radius: 8px;
 	font-size: var(--fs-md);
 	line-height: 1.5;
 }
