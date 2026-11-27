@@ -22,24 +22,31 @@ Zmiany dotyczące `mapa.meshcorepolska.org` znajdziesz osobno: kliknij ikonę `i
    - Przeniesiono narzędzie do usuwania starych regionów do kroku „Przygotuj repeater”. Ostrzega ono, gdy wynik komendy `region` może być niepełny.
    - Dodano instrukcję ręcznego dodawania kanałów.
    - Doprecyzowano komunikaty.
-2. Statystyki i województwa
+2. [Generator nazw](https://meshcorepolska.org/generator-nazw)
+   - Dodano generator nazw i opisów (`owner.info`) repeaterów z wyszukiwarką kodów UN/LOCODE.
+   - Listę kodów dla województwa można też przeglądać na jego stronie.
+3. Statystyki i województwa
    - Dodano mapę i tabelę [urządzeń według województw](https://meshcorepolska.org/statystyki#stats-voivodeships).
    - Dodano [strony województw](https://meshcorepolska.org/wojewodztwa) z liczbą urządzeń, kanałami, regionami lokalnymi i społecznościami.
    - Z każdej strony województwa można otworzyć generator regionów z już wybranym województwem.
-3. [Publiczne API](https://meshcorepolska.org/dokumentacja/spolecznosc/api)
+4. [Publiczne API](https://meshcorepolska.org/dokumentacja/spolecznosc/api)
    - Udostępniono dokumentację.
    - Dodano `/api/v1/regions` z danymi o regionach i kanałach.
    - Dodano `/api/v1/nodes` z listą węzłów.
    - Dodano `/api/v1/stats/voivodeships` ze statystykami województw.
+   - Dodano `/api/v1/locodes` z kodami UN/LOCODE.
    - Przeniesiono bieżące statystyki pod `/api/v1/stats`. Adres `/api/v1/repeater-stats` działa jako alias.
-4. Dokumentacja i Aktualności
+5. Dokumentacja i Aktualności
    - Dodano [kanał RSS](https://meshcorepolska.org/aktualnosci/rss.xml) oraz osobne kanały dla tagów.
    - Dodano [FAQ](https://meshcorepolska.org/dokumentacja/meshcore/faq).
    - Rozbudowano artykuł [Regionalizacja wiadomości](https://meshcorepolska.org/dokumentacja/meshcore/regionalizacja-wiadomosci).
    - Dodano wpis [Aktualizacja aplikacji MeshCore 1.52.0](https://meshcorepolska.org/aktualnosci/lista-zmian/aktualizacja-aplikacji-meshcore-1-52-0).
    - Opublikowano tłumaczenie poradnika [Czujnik obecności LD2410S w MeshCore](https://meshcorepolska.org/aktualnosci/poradnik/czujnik-obecnosci-ld2410s).
    - Uzupełniono opisy plików w [materiałach graficznych](https://meshcorepolska.org/dokumentacja/spolecznosc/materialy-graficzne) i dodano przycisk drukowania etykiety do paczek.
-5. Pozostałe zmiany
+6. Urządzenia mobilne i dostępność
+   - Poprawiono responsywność strony na urządzeniach mobilnych.
+   - Przy włączonym w systemie ograniczeniu animacji mapa na stronie głównej jest teraz ukryta (wcześniej wyświetlała się jako nieruchoma).
+7. Pozostałe zmiany
    - Poprawiono wygląd strony i niektórych komponentów.
    - Uporządkowano kod backendu, w tym generowanie mapy witryny.
    - Inne zmiany jakościowe.
