@@ -15,9 +15,9 @@ Ten sam sprzęt często może jednak działać z jednym albo drugim oprogramowan
 
 ## Czy do korzystania z MeshCore potrzebuję licencji lub internetu?
 
-Nie. MeshCore w Polsce działa w paśmie bezlicencyjnym, więc nie potrzebujesz licencji krótkofalarskiej. Musisz jednak przestrzegać limitów: do `500 mW ERP` mocy i do `10%` duty cycle, czyli około 6 minut nadawania na godzinę. Pamiętaj, że na moc `ERP` wpływa również zysk anteny. Zapoznaj się z sekcją [Legalność i duty cycle](/dokumentacja/meshcore/wprowadzenie#legalnosc-i-duty-cycle).
+Nie. W Polsce na presecie EU/UK Narrow możesz nadawać bez pozwolenia radiowego. Obowiązują limity prawne. Dla zakresu `869,40-869,65 MHz` maksymalna moc to `500 mW ERP`. W polskiej sieci MeshCore stosujemy limit czasu nadawania (duty cycle) do `10%`, czyli maksymalnie 6 minut nadawania na godzinę. Na moc `ERP` wpływa również zysk anteny. Szczegóły znajdziesz w sekcji [Legalność i duty cycle](/dokumentacja/meshcore/wprowadzenie#legalnosc-i-duty-cycle) oraz w [decyzji UE 2025/105 (zakres 54)](https://eur-lex.europa.eu/eli/dec_impl/2025/105/oj).
 
-Wiadomości są przesyłane drogą radiową, bez internetu i sieci komórkowej. Internet przyda się natomiast do pobrania aplikacji, wgrania oprogramowania przez flasher czy przeglądania mapy węzłów.
+Wiadomości są przesyłane drogą radiową, bez internetu i sieci komórkowej. Internet przyda się natomiast do pobrania aplikacji, wgrania oprogramowania przez [flasher](https://flasher.meshcore.io) czy przeglądania [mapy węzłów](https://mapa.meshcorepolska.org).
 
 ## Czy wiadomości są szyfrowane?
 
@@ -44,12 +44,15 @@ Companion trzymany w mieszkaniu będzie miał zwykle znacznie mniejszy zasięg n
 
 ## Jak sprawdzić, czy w mojej okolicy jest zasięg?
 
-Najpewniejszym sposobem sprawdzenia zasięgu jest wykonanie testu łączności. Ustaw na companionie [właściwy preset radiowy](/dokumentacja/meshcore/aktualne-presety) i wyślij wiadomość na kanale `#test`.
+Najpewniejszym sposobem sprawdzenia zasięgu jest wykonanie testu łączności. Ustaw na companionie [właściwy preset radiowy](/dokumentacja/meshcore/aktualne-presety) i wyślij wiadomość na kanale `#test` np. samą literę `t`.
 
 Zwróć uwagę na status widoczny pod wysłaną wiadomością:
-- **Wysłano** - wiadomość została nadana, ale companion nie usłyszał żadnej jej retransmisji.
-- **Odebrano: 1 repeater** - companion odebrał retransmisję wysłanej wiadomości. Oznacza to, że masz łączność z pobliskim repeaterem.
-- **Odebrano: 3 repeatery** lub więcej - companion usłyszał kilka retransmisji. To dobry znak, bo wiadomość ma więcej niż jedną drogę w głąb sieci.
+
+- **Wysłano** - wiadomość została nadana, ale companion nie usłyszał żadnej jej retransmisji. [Dlaczego nikt mi nie odpowiada?](#dlaczego-nikt-mi-nie-odpowiada)
+- **Odebrano: 1 repeater** - companion odebrał jedną retransmisję wysłanej wiadomości.
+- **Odebrano: 3 repeatery** - companion odebrał trzy retransmisje. Mogły one pochodzić z kolejnych repeaterów na tej samej trasie.
+
+[Odpowiedź od innego użytkownika](#co-oznacza-odpowiedz-np-kolobrzeg-4h) potwierdzi, że wiadomość do niego dotarła.
 
 Brak odebranych retransmisji nie musi oznaczać całkowitego braku zasięgu. Powtórz test w kilku miejscach, np. przy oknie, na zewnątrz lub na wyższej kondygnacji budynku. Nawet niewielka zmiana położenia [anteny](/dokumentacja/meshcore/anteny) może poprawić łączność.
 
@@ -64,7 +67,7 @@ Najpierw sprawdź, czy Twoja wiadomość jest retransmitowana. Wykonaj [test zas
 - **Jeśli nie widzisz retransmisji**, upewnij się, że [antena](/dokumentacja/meshcore/anteny) jest poprawnie podłączona, i porównaj konfigurację z [ustawieniami radiowymi używanymi w Polsce](#jakie-ustawienia-radiowe-wybrac-w-polsce). Warto też zajrzeć na [mapę węzłów](https://mapa.meshcorepolska.org), żeby sprawdzić, gdzie są najbliższe repeatery.
 - **Jeśli problem dotyczy konkretnego kanału**, sprawdź, czy jego [ustawienie regionu](#czym-sa-regiony-i-czy-musze-je-ustawiac) zgadza się z konfiguracją używaną przez lokalną społeczność.
 
-Sprawdź też w aplikacji **Ustawienia → Domyślny rozmiar hasha ścieżki**. Ustaw `2` lub `3` bajty, zgodnie z ustaleniami lokalnej społeczności. Nie używaj `1`.
+Sprawdź też w aplikacji **Ustawienia → Domyślny rozmiar hasha ścieżki**. W polskiej sieci używamy hashy 2- lub 3-bajtowych. Ustaw `2` lub `3` bajty zgodnie z ustaleniami lokalnej społeczności.
 
 Jeśli widzisz retransmisję, daj rozmówcom trochę czasu. Możliwe, że akurat nikt nie zagląda na kanał.
 
@@ -97,7 +100,7 @@ Przyjętym standardem ogólnopolskiej sieci jest preset **EU/UK Narrow**:
 | Współczynnik rozpraszania (SF) | `8` |
 | Współczynnik kodowania (CR) | `8` (można też użyć np. `5`, różne wartości CR są ze sobą kompatybilne) |
 
-Część sieci na południu Polski korzysta z `SF6`. Urządzenia na `SF6` i `SF8` nie mogą się bezpośrednio komunikować. Na repeaterze ustaw też duty cycle na `10%`, ponieważ domyślna wartość przekracza [limit prawny](/dokumentacja/meshcore/wprowadzenie#legalnosc-i-duty-cycle). Szczegóły i zalecane komendy znajdziesz na stronie [Presety i konfiguracja radia](/dokumentacja/meshcore/aktualne-presety).
+Część sieci na południu Polski korzysta z `SF6`. Urządzenia na `SF6` i `SF8` nie mogą się bezpośrednio komunikować. Na repeaterze ustaw duty cycle na `10%`. Domyślne `50%` przekracza [limit czasu nadawania](/dokumentacja/meshcore/wprowadzenie#legalnosc-i-duty-cycle) dla tego zakresu. Szczegóły i zalecane komendy znajdziesz na stronie [Presety i konfiguracja radia](/dokumentacja/meshcore/aktualne-presety).
 
 ## Czym są regiony i czy muszę je ustawiać?
 
@@ -138,8 +141,8 @@ Najlepiej weź sprawdzony kabel, przez który udało Ci się już przesłać pli
 
 1. Podłącz płytkę bezpośrednio do portu w komputerze, bez huba. Sprawdź inny port.
 2. Zainstaluj sterownik konwertera USB-UART, jeśli Twoja płytka go używa: [CP210x](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers), [CH343/CH9102](https://www.wch-ic.com/downloads/CH343SER_EXE.html) lub [CH340/CH341](https://www.wch-ic.com/downloads/CH341SER_EXE.html).
-3. Wprowadź urządzenie w tryb wgrywania oprogramowania (DFU). W tym trybie płytka nie uruchomi dotychczasowego oprogramowania, będzie oczekiwać na wgranie nowego:
-   - **ESP32:** zwykle trzeba przytrzymać przycisk `PRG` (lub `BOOT`), nacisnąć `RST`, a następnie puścić pierwszy przycisk.
-   - **nRF52:** zwykle wystarczy dwukrotnie nacisnąć `RST`, a w systemie pojawi się nowy dysk USB.
+3. Wprowadź urządzenie w tryb wgrywania oprogramowania. Sprawdź instrukcję swojego modelu, procedura zależy od płytki i bootloadera.
+   - **ESP32:** na płytkach z przyciskami `BOOT` (lub `PRG`) i `RST` zwykle wystarczy przytrzymać `BOOT`, nacisnąć i puścić `RST`, a potem puścić `BOOT`.
+   - **nRF52:** na wielu płytkach z bootloaderem UF2 dwukrotne naciśnięcie `RST` udostępnia dysk USB. W SenseCAP T1000-E przytrzymaj przycisk urządzenia i dwukrotnie szybko podłącz kabel. [Instrukcja Seeed](https://wiki.seeedstudio.com/sensecap_t1000_e_meshcore/)
 
 Do wgrywania przez [flasher MeshCore](https://flasher.meshcore.io) użyj przeglądarki Chrome lub Edge i zamknij inne programy, które mogą korzystać z portu szeregowego.
