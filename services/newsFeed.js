@@ -1,5 +1,6 @@
 import { escapeXml } from '../utils/sitemap.js';
 import getSeoImage from '../utils/seoImage.js';
+import { toStandaloneHtml } from '../utils/html.js';
 
 const MAX_ITEMS = 25;
 const TITLE = 'Aktualności MeshCore Polska';
@@ -7,25 +8,16 @@ const DESCRIPTION = 'Newsy, changelogi aplikacji i firmware MeshCore, tłumaczen
 
 const INVALID_XML_RE = /[^\t\n\r\u0020-\uD7FF\uE000-\uFFFD\u{10000}-\u{10FFFF}]/gu;
 const LEADING_H1_RE = /^\s*<h1\b[^>]*>[\s\S]*?<\/h1>\s*/;
-const SVG_RE = /<svg\b[\s\S]*?<\/svg>\s*/g;
-const HEADING_ANCHOR_RE = /<a\b[^>]*\sclass="docs-anchor"[^>]*><\/a>/g;
-const TAG_RE = /<[a-z][^>]*>/gi;
-const URL_ATTR_RE = /(\s(?:href|src|poster)=")([^"]*)"/gi;
 
 const getFeedPath = tag => (tag ? `/aktualnosci/${tag.slug}/rss.xml` : '/aktualnosci/rss.xml');
-
-const absolutizeUrls = (html, baseUrl) => html.replace(TAG_RE, element => element.replace(URL_ATTR_RE, (match, attr, value) => {
-	const url = URL.parse(value, baseUrl);
-	return url ? `${attr}${url.href.replaceAll('"', '%22')}"` : match;
-}));
 
 const toCdata = str => `<![CDATA[${str.replaceAll(']]>', ']]]]><![CDATA[>')}]]>`;
 
 const renderContent = (post, url) => {
-	const body = absolutizeUrls(post.html.replace(LEADING_H1_RE, '').replace(SVG_RE, '').replace(HEADING_ANCHOR_RE, ''), url);
+	const body = toStandaloneHtml(post.html.replace(LEADING_H1_RE, ''), url);
 	if (!post.sourceUrl) return body;
 
-	return `${body}<p>~ Tłumaczenie na język polski: MeshCore Polska<br><a href="${escapeXml(post.sourceUrl)}">Źródło i oryginał: ${escapeXml(post.source.label)}</a></p>\n`;
+	return `${body}<p>~ Autor oryginału: ${escapeXml(post.sourceAuthor.name)}. Tłumaczenie na język polski: MeshCore Polska<br><a href="${escapeXml(post.sourceUrl)}">Źródło i oryginał: ${escapeXml(post.source.label)}</a></p>\n`;
 };
 
 const renderItem = (domain, post) => {
@@ -39,7 +31,7 @@ const renderItem = (domain, post) => {
 		`<guid isPermaLink="false">tag:meshcorepolska.org,2026-07-31:aktualnosci/${escapeXml(post.slug)}</guid>`,
 		`<pubDate>${post.publishedAt.toUTCString()}</pubDate>`,
 		`<atom:updated>${post.date.toISOString()}</atom:updated>`,
-		`<dc:creator>${escapeXml(post.source.label)}</dc:creator>`,
+		`<dc:creator>${escapeXml(post.sourceAuthor?.name || post.source.label)}</dc:creator>`,
 		...post.tags.map(tag => `<category>${escapeXml(tag.label)}</category>`),
 		`<description>${escapeXml(post.description || post.title)}</description>`,
 		`<content:encoded>${toCdata(renderContent(post, url))}</content:encoded>`,

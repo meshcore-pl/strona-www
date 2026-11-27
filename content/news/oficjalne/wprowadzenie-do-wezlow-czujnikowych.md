@@ -4,6 +4,7 @@ description: Jak zbudować firmware węzła czujnikowego MeshCore na bazie simpl
 createdAt: 14.09.2026
 themeColor: '#031327'
 sourceUrl: https://blog.meshcore.io/2026/09/14/sensor-intro
+sourceAuthor: scott-powell
 tags: [Poradnik, Oprogramowanie]
 ---
 

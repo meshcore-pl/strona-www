@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import parseFrontmatter from 'frontmatter-md';
 import tagDescriptions from '../content/newsTags.js';
+import authors from '../content/newsAuthors.js';
 import { marked, renderer, resolvePageImage, assignHeadingIds, addHeadingAnchors, slugify, getExternalRel, parseDMYDate } from './markdown.js';
 
 const NEWS_DIR = path.join(import.meta.dirname, '../content/news');
@@ -31,6 +32,10 @@ const build = () => {
 			const slug = file.slice(0, -3);
 			const raw = fs.readFileSync(path.join(NEWS_DIR, dir.name, file), 'utf8');
 			const { data, content } = parseFrontmatter(raw);
+			if (data.sourceUrl && !Object.hasOwn(authors, data.sourceAuthor)) {
+				throw new Error(`content/news/${dir.name}/${file}: pole sourceUrl wymaga pola sourceAuthor z content/newsAuthors.js`);
+			}
+
 			const tokens = marked.lexer(content);
 			assignHeadingIds(tokens);
 			addHeadingAnchors(tokens);
@@ -45,6 +50,7 @@ const build = () => {
 				description: data.description || '',
 				source,
 				sourceUrl: data.sourceUrl || null,
+				sourceAuthor: data.sourceUrl ? authors[data.sourceAuthor] : null,
 				sourceRel: data.sourceUrl ? getExternalRel(data.sourceUrl) : null,
 				tagSlug,
 				canonical: tagSlug ? `/aktualnosci/${tagSlug}/${slug}` : `/aktualnosci/${slug}`,

@@ -4,6 +4,7 @@ description: Ripple UI 12.3 wprowadza dithering map na ekranach ePaper, pobieran
 createdAt: 03.11.2026
 themeColor: '#99a0a7'
 sourceUrl: https://blog.meshcore.io/2026/11/03/ripple-12.3
+sourceAuthor: scott-powell
 tags: [Oprogramowanie, Lista zmian]
 ---
 

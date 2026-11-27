@@ -5,6 +5,8 @@
 	canonical: `/aktualnosci/${tag.slug}`,
 	css: ['docs', 'news'],
 	page: 'news',
+	pageType: 'CollectionPage',
+	itemList: tag.posts.map(post => ({ name: post.title, url: post.canonical })),
 	breadcrumbs: [
 		{ name: 'Strona główna', url: '/' },
 		{ name: 'Aktualności', url: '/aktualnosci' },

@@ -8,6 +8,8 @@ updatedAt: 27.11.2026
 
 # Spis publicznych analizatorów sieci MeshCore {toc: Spis analizatorów}
 
+Wiadomości z kanału `Public` i kanałów z hashtagiem mogą pojawić się w publicznych analizatorach. Zobacz, [kto może odczytać wiadomości w MeshCore](/dokumentacja/meshcore/faq#czy-wiadomosci-sa-szyfrowane).
+
 ## Globalne
 - [analyzer.marwoj.net](https://analyzer.marwoj.net) (analizator marwoja korzysta z danych meshcorekrk)
 

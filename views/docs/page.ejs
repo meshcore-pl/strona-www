@@ -1,15 +1,16 @@
 <%- include('../includes/header.ejs', {
 	title,
-	articleTitle: page.title,
+	articleTitle,
+	articleSection,
 	description,
 	canonical,
 	css: [`${cdn}/css/code-viewer.css`, 'content', 'docs'],
 	page: 'docs',
 	breadcrumbs,
-	datePublished: page.publishedAt.toISOString().slice(0, 10),
-	dateModified: page.date.toISOString().slice(0, 10),
-	faq: page.faq,
-	image: page.image,
+	datePublished,
+	dateModified,
+	faq,
+	image,
 	themeColor: page.themeColor
 }) %>
 

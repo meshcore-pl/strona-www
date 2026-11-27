@@ -5,6 +5,7 @@ createdAt: 14.08.2026
 updatedAt: 22.08.2026
 themeColor: '#21263d'
 sourceUrl: https://blog.meshcore.io/2026/08/14/release-1-17-1
+sourceAuthor: meshcore
 tags: [Lista zmian, Oprogramowanie]
 ---
 
@@ -28,7 +29,7 @@ Najnowszy firmware pobierzesz z [flasher.meshcore.io](https://flasher.meshcore.i
 ## Poprawki błędów i pozostałe zmiany
 - Piny T-Echo Lite dostosowane do zaktualizowanego schematu Lilygo, napięcie TCXO ustawione na 3,0 V ([#3140](https://github.com/meshcore-dev/MeshCore/pull/3140))
 - Poprawka budowania dla R1 Neo i repeatera Minewsemi ([#3142](https://github.com/meshcore-dev/MeshCore/pull/3142))
-- Podbite wzmocnienie odbioru (Rx boosted gain) nie jest już resetowane do wartości skompilowanej po resecie AGC ([#3158](https://github.com/meshcore-dev/MeshCore/pull/3158))
+- Podbite wzmocnienie odbioru (Rx boosted gain) nie jest już resetowane do wartości skompilowanej po resecie AGC ([#3158](https://github.com/meshcore-dev/MeshCore/commit/f6c25e6a25247c8cf8f68889e9e78d4220bb54e1))
 - Poprawka wyświetlacza T-Beam Supreme S3 ([#3164](https://github.com/meshcore-dev/MeshCore/pull/3164))
 - Porządki w mapie pinów ProMicro, piny LoRa przeniesione do variant.h ([#3170](https://github.com/meshcore-dev/MeshCore/pull/3170))
 - T-Echo Card - napięcie TCXO ustawione na 3,0 V, analogicznie do [#3140](https://github.com/meshcore-dev/MeshCore/pull/3140) ([#3185](https://github.com/meshcore-dev/MeshCore/pull/3185))

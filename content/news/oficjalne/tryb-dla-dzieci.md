@@ -5,6 +5,7 @@ createdAt: 2.10.2025
 updatedAt: 22.08.2026
 themeColor: '#000000'
 sourceUrl: https://blog.meshcore.io/2025/10/02/kid-mode
+sourceAuthor: scott-powell
 tags: [Oprogramowanie, Poradnik]
 ---
 

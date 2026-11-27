@@ -5,6 +5,7 @@ createdAt: 23.04.2026
 updatedAt: 22.08.2026
 themeColor: '#242428'
 sourceUrl: https://blog.meshcore.io/2026/04/23/the-split
+sourceAuthor: meshcore
 tags: [Społeczność]
 ---
 

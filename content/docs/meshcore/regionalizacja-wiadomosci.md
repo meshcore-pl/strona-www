@@ -32,7 +32,7 @@ Wiadomość z regionem dociera więc tylko tak daleko, jak sięga łańcuch repe
 
 > [!NOTE]
 > - Do kanału można przypisać maksymalnie jeden region. Region wiadomości prywatnych i advertów określa [domyślny region](#domyslny-region).
-> - Kanał `Public` powinien być zawsze bez regionu. Do rozmów regionalnych służą inne, dedykowane kanały. W niektórych częściach Polski bywa mimo to przypisany do regionu (np. `pl`, `wlkp`, `pl-mz`, `zachod`), co nie jest dobrą praktyką.
+> - Kanał `Public` powinien być zawsze bez regionu. Do rozmów regionalnych służą inne, dedykowane kanały. W niektórych częściach Polski bywa mimo to przypisany do regionu (np. `pl`, `wlkp`, `pl-mz`, `zachod`), co nie jest dobrą praktyką. Zobacz, [dlaczego warto ograniczać ruch na kanale Public](/dokumentacja/meshcore/faq#dlaczego-nie-powinienem-wysylac-wszystkiego-na-kanal-public).
 > - Ruch bez regionu (`*`) można zablokować komendą `region denyf *`, ale obecnie nie jest to zalecane. Łagodniejszą alternatywą (firmware 1.16+) jest ograniczenie jego zasięgu, np. `set flood.max.unscoped 3`.
 > - Region to tylko etykieta, **nie** szyfrowanie.
 

@@ -5,6 +5,7 @@ createdAt: 1.04.2026
 updatedAt: 23.11.2026
 themeColor: '#d4cadb'
 sourceUrl: https://blog.meshcore.io/2026/04/01/esp-ota-update
+sourceAuthor: scott-powell
 tags: [Poradnik, Oprogramowanie]
 ---
 

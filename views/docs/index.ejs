@@ -5,6 +5,8 @@
 	canonical: '/dokumentacja',
 	css: 'docs',
 	page: 'docs',
+	pageType: 'CollectionPage',
+	itemList: groups.map(group => ({ name: group.title, url: `/dokumentacja/${group.slug}` })),
 	breadcrumbs: [
 		{ name: 'Strona główna', url: '/' },
 		{ name: 'Dokumentacja', url: '/dokumentacja' },

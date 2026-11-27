@@ -5,6 +5,7 @@ createdAt: 22.06.2026
 updatedAt: 22.08.2026
 themeColor: '#8f7c6c'
 sourceUrl: https://blog.meshcore.io/2026/06/22/drone-ota
+sourceAuthor: recrof
 tags: [Poradnik, Oprogramowanie]
 ---
 

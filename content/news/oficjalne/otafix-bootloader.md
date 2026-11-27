@@ -5,6 +5,7 @@ createdAt: 6.04.2026
 updatedAt: 22.08.2026
 themeColor: '#202536'
 sourceUrl: https://blog.meshcore.io/2026/04/06/otafix-bootloader
+sourceAuthor: taco
 tags: [Poradnik, Oprogramowanie]
 ---
 

@@ -5,6 +5,7 @@ createdAt: 2.04.2026
 updatedAt: 23.11.2026
 themeColor: '#0fa1c0'
 sourceUrl: https://blog.meshcore.io/2026/04/02/nrf-ota-update
+sourceAuthor: scott-powell
 tags: [Poradnik, Oprogramowanie]
 ---
 

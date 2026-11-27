@@ -4,6 +4,7 @@ description: Czym jest modem KISS w MeshCore i komu się przyda? Poznaj protokó
 createdAt: 27.08.2026
 themeColor: '#f1f0e6'
 sourceUrl: https://blog.meshcore.io/2026/08/27/kiss-modem-intro
+sourceAuthor: viezevingertjes
 tags: [Oprogramowanie, Narzędzia, Poradnik]
 ---
 

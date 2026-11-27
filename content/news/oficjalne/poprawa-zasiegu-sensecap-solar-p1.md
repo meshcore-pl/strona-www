@@ -5,13 +5,14 @@ createdAt: 20.10.2026
 updatedAt: 23.11.2026
 themeColor: '#95ab62'
 sourceUrl: https://blog.meshcore.io/2026/10/20/boost-sensecap-solar
+sourceAuthor: seeed-studio
 tags: [Poradnik, Sprzęt]
 ---
 
 # Jak poprawić zasięg i sprawdzić repeater SenseCAP Solar Node P1-Pro?
 ![SenseCAP Solar Node P1-Pro](https://blog.meshcore.io/assets/images/2026/10/20/image.png)
 
-[Solar Node P1-Pro](https://www.seeedstudio.com/SenseCAP-Solar-Node-P1-Pro-for-MeshCore-p-6741.html?sensecap_affiliate=lLZqP0c&referring_service=blog.meshcore.io) to wydajny, off-gridowy repeater, który zwykle spełnia wszystkie potrzeby związane z niezawodnym zasięgiem sieci mesh LoRa. Możesz też zamontować antenę o odpowiednio większym zysku, aby jeszcze bardziej poprawić jego osiągi.
+[Solar Node P1-Pro](https://www.seeedstudio.com/SenseCAP-Solar-Node-P1-Pro-for-Meshcore-p-6741.html?sensecap_affiliate=lLZqP0c&referring_service=blog.meshcore.io) to wydajny, off-gridowy repeater, który zwykle spełnia wszystkie potrzeby związane z niezawodnym zasięgiem sieci mesh LoRa. Możesz też zamontować antenę o odpowiednio większym zysku, aby jeszcze bardziej poprawić jego osiągi.
 
 Ten poradnik krok po kroku pokaże, jak poprawić działanie anteny i jak sprawdzić, czy Twój Solar Node P1-Pro działa prawidłowo.
 
@@ -397,6 +398,6 @@ Jeśli używasz dodatkowej obudowy, unikaj metalowych obudów wokół anteny LoR
 Jeśli używana jest antena zewnętrzna, umieść ją poza obudową.
 
 ## Linki do zakupu
-- [Solar Node P1-Pro](https://www.seeedstudio.com/SenseCAP-Solar-Node-P1-Pro-for-MeshCore-p-6741.html?sensecap_affiliate=lLZqP0c&referring_service=blog.meshcore.io)
+- [Solar Node P1-Pro](https://www.seeedstudio.com/SenseCAP-Solar-Node-P1-Pro-for-Meshcore-p-6741.html?sensecap_affiliate=lLZqP0c&referring_service=blog.meshcore.io)
 - [Adapter RP-SMA na N-type](https://www.seeedstudio.com/RF-Cable-RP-SMA-Male-to-N-Type-SMA-Female-300mm.html?sensecap_affiliate=lLZqP0c&referring_service=blog.meshcore.io)
 - [Antena z włókna szklanego 868-915 MHz](https://s.click.aliexpress.com/e/_c3GtNzkN)

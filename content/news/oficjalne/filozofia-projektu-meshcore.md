@@ -5,6 +5,7 @@ createdAt: 1.03.2025
 updatedAt: 22.08.2026
 themeColor: '#4f7694'
 sourceUrl: https://blog.meshcore.io/2025/03/01/meshcore-philosophy
+sourceAuthor: scott-powell
 tags: [Społeczność]
 ---
 

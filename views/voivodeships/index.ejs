@@ -4,6 +4,8 @@
 	canonical: '/wojewodztwa',
 	css: ['content', 'stats', 'voivodeships'],
 	page: 'voivodeships',
+	pageType: 'CollectionPage',
+	itemList: voivodeships.map(({ name, slug }) => ({ name, url: `/wojewodztwa/${slug}` })),
 	breadcrumbs: [
 		{ name: 'Strona główna', url: '/' },
 		{ name: 'Województwa', url: '/wojewodztwa' },

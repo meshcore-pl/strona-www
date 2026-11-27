@@ -5,6 +5,7 @@ createdAt: 28.03.2026
 updatedAt: 22.08.2026
 themeColor: '#bfa280'
 sourceUrl: https://blog.meshcore.io/2026/03/28/twatch-s3-plus
+sourceAuthor: scott-powell
 tags: [Oprogramowanie, Sprzęt, Poradnik]
 ---
 

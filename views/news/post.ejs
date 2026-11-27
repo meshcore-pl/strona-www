@@ -8,8 +8,11 @@
 	articleType: 'BlogPosting',
 	articleTitle: post.title,
 	articleSourceUrl: post.sourceUrl,
-	datePublished: post.publishedAt.toISOString().slice(0, 10),
-	dateModified: post.date.toISOString().slice(0, 10),
+	articleAuthor: post.sourceAuthor,
+	articleSection: post.tags[0]?.label,
+	articleTags: post.tags.map(tag => tag.label),
+	datePublished: post.publishedAt.toISOString(),
+	dateModified: post.date.toISOString(),
 	image: post.image,
 	themeColor: post.themeColor
 }) %>
@@ -33,7 +36,7 @@
 		<div class="section__inner">
 			<div class="news-content prose">
 				<%- post.html %>
-				<% if (post.sourceUrl) { %><p>~ Tłumaczenie na język polski: MeshCore Polska</p><% } %>
+				<% if (post.sourceUrl) { %><p>~ Autor oryginału: <%= post.sourceAuthor.name %>. Tłumaczenie na język polski: MeshCore Polska</p><% } %>
 			</div>
 
 			<div id="news-post__footer">

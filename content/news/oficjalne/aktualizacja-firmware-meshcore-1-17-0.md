@@ -5,6 +5,7 @@ createdAt: 9.08.2026
 updatedAt: 22.08.2026
 themeColor: '#21263d'
 sourceUrl: https://blog.meshcore.io/2026/08/09/release-1-17-0
+sourceAuthor: meshcore
 tags: [Lista zmian, Oprogramowanie]
 ---
 

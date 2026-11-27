@@ -5,6 +5,7 @@ createdAt: 19.04.2026
 updatedAt: 22.08.2026
 themeColor: '#21263d'
 sourceUrl: https://blog.meshcore.io/2026/04/19/release-1-15-0
+sourceAuthor: meshcore
 tags: [Lista zmian, Oprogramowanie]
 ---
 
@@ -36,6 +37,6 @@ Najnowszy firmware pobierzesz z [flasher.meshcore.io](https://flasher.meshcore.i
 - Poprawka bootloopa na Xiao C3 ([#2328](https://github.com/meshcore-dev/MeshCore/pull/2328))
 
 ## Dokumentacja domyślnego zakresu i pakietów GROUP_DATA
-Więcej o nowej funkcji domyślnego zakresu (Default Scope) znajdziesz w [tym artykule](https://blog.meshcore.io/2026/04/20/default-scope) (w języku angielskim).
+Więcej o nowej funkcji domyślnego zakresu (Default Scope) znajdziesz w [tym artykule](https://blog.meshcore.io/2026/04/17/default-scope) (w języku angielskim).
 
 Niskopoziomowy format pakietów GROUP_DATA opisany jest w [dokumentacji](https://docs.meshcore.io/payloads/?h=group+datagram#group-datagram) (w języku angielskim).

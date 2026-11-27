@@ -5,6 +5,8 @@
 	canonical: '/aktualnosci',
 	css: ['docs', 'news'],
 	page: 'news',
+	pageType: 'CollectionPage',
+	itemList: posts.map(post => ({ name: post.title, url: post.canonical })),
 	breadcrumbs: [
 		{ name: 'Strona główna', url: '/' },
 		{ name: 'Aktualności', url: '/aktualnosci' },

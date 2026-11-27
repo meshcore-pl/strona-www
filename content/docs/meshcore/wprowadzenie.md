@@ -59,7 +59,7 @@ O roli urządzenia decyduje oprogramowanie (firmware), nie sama płytka. Ten sam
 
 ### Companion (kompan)
 - Osobiste urządzenie do komunikacji w sieci MeshCore. Umożliwia wysyłanie i odbieranie wiadomości za pomocą aplikacji na telefonie lub komputerze. W zależności od modelu i wersji oprogramowania obsługuje Bluetooth LE (BLE), USB, [Wi-Fi](/aktualnosci/lista-zmian/aktualizacja-firmware-meshcore-1-18-0#firmware-companiona-z-wieloma-interfejsami-ble-wi-fi) lub Ethernet.
-- Odbiera i przechowuje wiadomości również bez połączenia z aplikacją. Gdy pamięć się zapełni, nowe wiadomości zastępują najstarsze. Po ponownym połączeniu zapisane wiadomości pojawią się w aplikacji.
+- Odbiera i przechowuje wiadomości również bez połączenia z aplikacją. Gdy pamięć się zapełni, nowe wiadomości zastępują najstarsze wiadomości z kanałów. Po ponownym połączeniu zapisane wiadomości pojawią się w aplikacji. Zobacz [jak companion przechowuje wiadomości po rozłączeniu telefonu](/dokumentacja/meshcore/faq#czy-companion-zapisuje-wiadomosci-gdy-telefon-jest-rozlaczony).
 - Nie przekazuje wiadomości innych użytkowników. Komunikacja z osobami poza bezpośrednim zasięgiem radiowym wymaga pośrednictwa repeatera lub room-peatera.
 
 ### Repeater (RPT)
@@ -87,7 +87,7 @@ To wariant, w którym companion dodatkowo przekazuje cudze wiadomości, czyli cz
 W praktyce raczej rzadko ma to realne zastosowanie.
 
 ### Zmiana roli
-Zmiana roli to w zdecydowanej większości przypadków przeflashowanie urządzenia innym firmware.
+Zmiana roli to w zdecydowanej większości przypadków przeflashowanie urządzenia innym firmware. Jeśli masz problem z połączeniem przez USB, sprawdź, [co zrobić, gdy komputer nie widzi płytki](/dokumentacja/meshcore/faq#dlaczego-moj-komputer-nie-widzi-plytki-przy-flashowaniu).
 Wyjątkiem jest przełączanie między room serwerem a room-peaterem. Wystarczy komenda CLI, bez ponownego flashowania:
 ```mccli
 set repeat on   # włącza tryb room-peater

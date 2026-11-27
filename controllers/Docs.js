@@ -34,6 +34,12 @@ export const page = (req, res) => {
 		groups: docs.groups,
 		group: docsGroup,
 		page: docsPage,
+		articleTitle: docsPage.title,
+		articleSection: docsGroup.title,
+		datePublished: docsPage.publishedAt.toISOString(),
+		dateModified: docsPage.date.toISOString(),
+		faq: docsPage.faq,
+		image: docsPage.image,
 		breadcrumbs: [
 			{ name: 'Strona główna', url: '/' },
 			{ name: 'Dokumentacja', url: '/dokumentacja' },
@@ -50,28 +56,18 @@ export const page = (req, res) => {
 
 		const domain = req.app.locals.domain;
 		const ogImage = getSeoImage(domain, docsPage.image, docsPage.title);
-		const schema = buildSchema({
-			domain,
-			breadcrumbs: locals.breadcrumbs,
-			article: {
-				title: docsPage.title,
-				description: locals.description,
-				datePublished: docsPage.publishedAt.toISOString().slice(0, 10),
-				dateModified: docsPage.date.toISOString().slice(0, 10),
-				url: docsPage.canonical,
-				image: ogImage.url,
-			},
-			faq: docsPage.faq,
-		});
 
 		res.json({
 			title: locals.title,
 			description: locals.description,
 			canonicalUrl: `${domain}${docsPage.canonical}`,
 			image: ogImage.url,
+			datePublished: locals.datePublished,
+			dateModified: locals.dateModified,
+			articleSection: locals.articleSection,
 			themeColor: docsPage.themeColor || DEFAULT_THEME_COLOR,
 			imageAlt: ogImage.alt,
-			schema: JSON.stringify(schema),
+			schema: JSON.stringify(buildSchema(domain, locals)),
 			html,
 		});
 	});

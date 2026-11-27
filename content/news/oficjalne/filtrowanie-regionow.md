@@ -5,6 +5,7 @@ createdAt: 20.01.2026
 updatedAt: 22.08.2026
 themeColor: '#0c0b08'
 sourceUrl: https://blog.meshcore.io/2026/01/20/region-filtering
+sourceAuthor: scott-powell
 tags: [Oprogramowanie, Aplikacja]
 ---
 

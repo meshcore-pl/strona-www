@@ -5,6 +5,7 @@ createdAt: 4.07.2026
 updatedAt: 22.08.2026
 themeColor: '#101725'
 sourceUrl: https://blog.meshcore.io/2026/07/04/help-us-save-meshcore
+sourceAuthor: meshcore
 tags: [Społeczność]
 ---
 

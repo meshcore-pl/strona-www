@@ -4,7 +4,8 @@ description: Mapy na Heltec V4 Expansion Kit z firmware Ripple 9.4 - wybór wari
 createdAt: 5.04.2026
 updatedAt: 22.08.2026
 themeColor: '#668496'
-sourceUrl: https://blog.meshcore.io/2026/04/04/heltecv4-maps
+sourceUrl: https://blog.meshcore.io/2026/04/05/heltecv4-maps
+sourceAuthor: scott-powell
 tags: [Oprogramowanie, Sprzęt, Poradnik]
 ---
 

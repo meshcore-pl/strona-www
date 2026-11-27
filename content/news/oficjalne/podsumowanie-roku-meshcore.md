@@ -5,6 +5,7 @@ createdAt: 12.12.2025
 updatedAt: 22.08.2026
 themeColor: '#2e274a'
 sourceUrl: https://blog.meshcore.io/2025/12/12/the-year-in-review
+sourceAuthor: scott-powell
 tags: [Społeczność]
 ---
 

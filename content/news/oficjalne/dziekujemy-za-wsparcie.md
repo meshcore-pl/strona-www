@@ -4,7 +4,8 @@ description: Zbiórka prawna została zamknięta, a wsparcie społeczności prze
 createdAt: 28.07.2026
 updatedAt: 22.08.2026
 themeColor: '#ec7115'
-sourceUrl: https://blog.meshcore.io/2026/07/29/thankyou
+sourceUrl: https://blog.meshcore.io/2026/07/28/thankyou
+sourceAuthor: meshcore
 tags: [Społeczność]
 ---
 

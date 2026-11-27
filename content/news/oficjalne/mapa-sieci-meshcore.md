@@ -5,6 +5,7 @@ createdAt: 4.04.2026
 updatedAt: 23.11.2026
 themeColor: '#abd1db'
 sourceUrl: https://blog.meshcore.io/2026/04/04/meshcore-map
+sourceAuthor: recrof
 tags: [Mapa, Poradnik]
 ---
 

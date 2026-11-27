@@ -13,7 +13,7 @@ const collectActiveModules = () => [...view.querySelectorAll('script[type="modul
 	.filter(hasPage)
 	.map(url => ({ url, api: getPage(url) }));
 
-const syncMeta = ({ title, description, canonicalUrl, image, imageAlt, themeColor }) => {
+const syncMeta = ({ title, description, canonicalUrl, image, imageAlt, themeColor, datePublished, dateModified, articleSection }) => {
 	document.title = title;
 
 	const setAttr = (selector, attr, value) => {
@@ -29,6 +29,9 @@ const syncMeta = ({ title, description, canonicalUrl, image, imageAlt, themeColo
 	setAttr('meta[name="twitter:title"]', 'content', title);
 	setAttr('meta[name="twitter:description"]', 'content', description);
 	setAttr('meta[name="theme-color"]', 'content', themeColor);
+	setAttr('meta[property="article:published_time"]', 'content', datePublished);
+	setAttr('meta[property="article:modified_time"]', 'content', dateModified);
+	setAttr('meta[property="article:section"]', 'content', articleSection);
 	setAttr('meta[property="og:image"]', 'content', image);
 	setAttr('meta[property="og:image:alt"]', 'content', imageAlt);
 	setAttr('meta[name="twitter:image"]', 'content', image);

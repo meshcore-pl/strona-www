@@ -23,7 +23,9 @@ Kolory na diagramie oznaczają typ pinu: `Pin fizyczny`, `Zasilanie`, `GND`, `GP
 > Ze względu na wbudowany wzmacniacz LNA [noise floor (NF)](/dokumentacja/meshcore/noise-floor) na tej płytce jest zwykle gorszy (wyższy) niż na płytkach bez wzmacniacza - to normalne. Zwykle nie wpływa to jednak na jakość TX/RX ani realny zasięg.
 
 > [!TIP]
-> `ESP32` zużywa więcej energii niż moduły oparte na układach `nRF` (np. `RAK4630`/`RAK4631`, `XIAO nRF52840`). Warto to uwzględnić przy wyborze sprzętu do repeatera zasilanego bateryjnie.
+> `ESP32` zużywa więcej energii niż moduły oparte na układach `nRF` (np. `RAK4630`/`RAK4631`, `XIAO nRF52840`). Warto to uwzględnić przy wyborze sprzętu do repeatera zasilanego solarnie.
+>
+> Zobacz [porównanie płytek z nRF52 i ESP32](/dokumentacja/meshcore/faq#czym-roznia-sie-plytki-z-nrf52-i-esp32).
 
 [Pełna dokumentacja PDF (Heltec, Rev. 1.4, 16 stron)](/pliki/schematy/pdf/heltec-wifi-lora-32-v4-3-1-dokumentacja.pdf) - zawiera m.in. dokładny opis pinów, charakterystykę RF i wymiary fizyczne.
 
