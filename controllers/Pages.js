@@ -1,11 +1,13 @@
 import { getScript, OFFLINE_HEADER } from '../services/serviceWorker/index.js';
 import RenderError from '../utils/renderError.js';
 import voivodeshipMap from '../services/voivodeshipMap.js';
+import { voivodeshipList } from '../services/regions.js';
 
 const regionGeneratorBlocked = false;
 const VIEW_LOCALS = {
 	'/generator-regionow': { regionGeneratorBlocked },
 	'/statystyki': { voivodeshipMap },
+	'/generator-nazw': { voivodeships: voivodeshipList },
 };
 
 export const renderPage = ({ path, view }) => (req, res) => res.render(view, VIEW_LOCALS[path] ?? {});

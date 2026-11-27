@@ -39,15 +39,15 @@
 				<% if (stats) { %>
 					<div class="stats-summary">
 						<% [
-							[stats.nodes, { one: 'urządzenie łącznie', few: 'urządzenia łącznie', many: 'urządzeń łącznie' }],
+							[stats.nodes, 'urządzeń łącznie'],
 							[stats.types.repeater, { one: 'repeater', few: 'repeatery', many: 'repeaterów' }],
 							[stats.active, { one: 'aktywny repeater', few: 'aktywne repeatery', many: 'aktywnych repeaterów' }],
 							[stats.types.roomServer, { one: 'room serwer', few: 'room serwery', many: 'room serwerów' }],
 							[stats.types.client, { one: 'companion', few: 'companiony', many: 'companionów' }],
-						].forEach(([value, forms]) => { %>
+						].forEach(([value, label]) => { %>
 							<div class="stats-tile">
 								<strong><%= value.toLocaleString('pl-PL') %></strong>
-								<span><%= pluralizePolish(value, forms) %></span>
+								<span><%= typeof label === 'string' ? label : pluralizePolish(value, label) %></span>
 							</div>
 						<% }) %>
 					</div>
@@ -77,6 +77,25 @@
 					</div>
 				<% } else { %><p>Nie znamy jeszcze regionów lokalnych w tym województwie.</p><% } %>
 
+				<h2 id="kody-miejscowosci">Kody miejscowości</h2>
+				<p>Kliknij kod, aby ułożyć nazwę repeatera w <a href="/generator-nazw?wojewodztwo=<%= voivodeship.code %>">generatorze nazw</a>.</p>
+				<details class="voivodeship-locodes">
+					<summary>Pokaż listę (<%= locodes.length %>)</summary>
+					<div class="voivodeship-locodes__filter" hidden>
+						<label for="locodes-filter">Filtruj po nazwie lub kodzie</label>
+						<input class="form-control" type="search" id="locodes-filter" spellcheck="false" autocomplete="off">
+					</div>
+					<div class="docs-table">
+						<table>
+							<thead><tr><th>Kod</th><th>Miejscowość</th></tr></thead>
+							<tbody id="locodes-rows">
+							<% locodes.forEach(({ code, name }) => { %><tr><td><a href="/generator-nazw?wojewodztwo=<%= voivodeship.code %>&amp;kod=<%= code %>"><code><%= code %></code></a></td><td><%= name %></td></tr><% }) %>
+							</tbody>
+						</table>
+					</div>
+					<p id="locodes-empty" role="status" hidden>Brak pasujących miejscowości.</p>
+				</details>
+
 				<h2>Społeczność</h2>
 				<div class="docs-table">
 					<table>
@@ -97,4 +116,4 @@
 	</div>
 </main>
 
-<%- include('../includes/footer.ejs') %>
+<%- include('../includes/footer.ejs', { scripts: ['/js/voivodeship-locodes.js'] }) %>

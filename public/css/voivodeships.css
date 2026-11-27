@@ -5,6 +5,7 @@
 .voivodeship-actions {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
 	gap: 12px;
 }
 
@@ -14,9 +15,6 @@
 
 .voivodeship-map a {
 	outline: 0;
-}
-
-.voivodeship-map a:hover {
 	text-decoration: none;
 }
 
@@ -55,4 +53,27 @@
 .voivodeship-list span {
 	color: var(--text-muted);
 	font-size: var(--fs-base);
+}
+
+.voivodeship-locodes {
+	margin: 0 0 24px;
+}
+
+.voivodeship-locodes summary {
+	margin-bottom: 12px;
+	color: var(--text);
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.voivodeship-locodes__filter:not([hidden]) {
+	display: grid;
+	gap: 6px;
+	margin-bottom: 12px;
+}
+
+.voivodeship-locodes .docs-table {
+	max-height: 420px;
+	overflow-y: auto;
+	margin-bottom: 0;
 }

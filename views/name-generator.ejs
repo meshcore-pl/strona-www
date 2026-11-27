@@ -1,0 +1,109 @@
+<%- include('./includes/header.ejs', {
+	title: 'Generator nazw repeaterów | MeshCore Polska',
+	description: 'Znajdź kod swojej miejscowości i ułóż nazwę repeatera MeshCore zgodnie ze schematem stosowanym w Polsce.',
+	canonical: '/generator-nazw',
+	breadcrumbs: [
+		{ name: 'Strona główna', url: '/' },
+		{ name: 'Generator nazw', url: '/generator-nazw' },
+	],
+	css: [`${cdn}/css/code-viewer.css`, 'content', 'region-generator', 'name-generator'],
+	page: 'name-generator'
+}) %>
+
+<main>
+	<div class="section section--legal">
+		<div class="section__inner">
+			<div class="prose prose--content rg-page">
+				<p class="eyebrow">Narzędzie</p>
+				<h1>Generator nazw repeaterów</h1>
+				<p>Nazwa składa się ze skrótu miejscowości i wyróżnika, np. dzielnicy, punktu orientacyjnego lub znaku wywoławczego. Zasady opisaliśmy w <a href="/dokumentacja/meshcore/faq#jak-nazwac-swoj-repeater">FAQ</a>.</p>
+
+				<noscript>
+					<div class="docs-alert docs-alert--warning">
+						<svg class="docs-alert__icon" aria-hidden="true"><use href="/icons.svg#alert-warning"></use></svg>
+						<div class="docs-alert__body">
+							<p class="docs-alert__title">Włącz JavaScript</p>
+							<p>Do korzystania z generatora potrzebny jest JavaScript. Włącz go w ustawieniach przeglądarki.</p>
+						</div>
+					</div>
+				</noscript>
+
+				<div class="docs-alert docs-alert--caution" id="ng-load-error" role="alert" hidden>
+					<svg class="docs-alert__icon" aria-hidden="true"><use href="/icons.svg#alert-caution"></use></svg>
+					<div class="docs-alert__body">
+						<p class="docs-alert__title">Nie udało się pobrać listy miejscowości</p>
+						<p>Sprawdź połączenie z internetem i odśwież stronę.</p>
+					</div>
+				</div>
+
+				<form id="ng-form" autocomplete="off">
+					<section class="rg-card" id="ng-picker">
+						<div class="ng-grid">
+							<div class="rg-field">
+								<label for="ng-voivodeship">Województwo</label>
+								<select class="form-control" id="ng-voivodeship">
+									<option value="">Cała Polska</option>
+									<% voivodeships.forEach(({ code, name }) => { %><option value="<%= code %>"><%= name %></option><% }) %>
+								</select>
+							</div>
+							<div class="rg-field">
+								<label for="ng-search">Miejscowość lub kod</label>
+								<input class="form-control" type="search" id="ng-search" spellcheck="false" placeholder="np. Kołobrzeg">
+							</div>
+						</div>
+						<ul class="ng-results" id="ng-results"></ul>
+						<p class="rg-hint" id="ng-no-results" role="status" hidden>Brak pasujących miejscowości.</p>
+					</section>
+
+					<section class="rg-card">
+						<div class="ng-grid">
+							<div class="rg-field">
+								<label for="ng-code">Skrót miejscowości</label>
+								<input class="form-control" type="text" id="ng-code" readonly tabindex="-1" placeholder="Wybierz miejscowość z listy powyżej" aria-describedby="ng-code-hint">
+								<p class="rg-hint" id="ng-code-hint"></p>
+							</div>
+							<div class="rg-field">
+								<label for="ng-suffix">Wyróżnik</label>
+								<input class="form-control" type="text" id="ng-suffix" maxlength="31" spellcheck="false" placeholder="np. Podczele">
+							</div>
+							<div class="rg-field">
+								<label for="ng-direction">Kierunek (opcjonalnie)</label>
+								<select class="form-control" id="ng-direction">
+									<option value="">Bez kierunku</option>
+									<option>Północ</option>
+									<option>Południe</option>
+									<option>Wschód</option>
+									<option>Zachód</option>
+								</select>
+							</div>
+						</div>
+						<div class="rg-option">
+							<label class="rg-check">
+								<input type="checkbox" id="ng-solar">
+								<span>Repeater jest w pełni off-grid i zasilany solarnie</span>
+							</label>
+							<p class="rg-hint">Stała instalacja z panelem słonecznym i akumulatorem, niezależna od sieci energetycznej. Generator dopisze <code>SOL</code> na końcu nazwy.</p>
+						</div>
+					</section>
+
+					<h2>Gotowa nazwa</h2>
+					<p class="ng-empty" id="ng-empty">Oczekiwanie na dostarczenie danych</p>
+					<div id="ng-result" hidden>
+						<p class="ng-output"><code id="ng-name">-</code></p>
+						<p class="rg-hint" id="ng-bytes"></p>
+						<p class="rg-hint ng-problem" id="ng-problem" role="status" hidden></p>
+						<p class="rg-actions"><button type="button" class="btn btn--primary btn--sm" id="ng-copy" disabled>Kopiuj nazwę</button></p>
+						<div id="ng-cli" hidden>
+							<h3>Komenda dla repeatera</h3>
+							<div class="rg-commands" id="ng-command"></div>
+						</div>
+					</div>
+				</form>
+
+				<p class="rg-hint">Kody pochodzą z wykazu <a href="https://unlocode.unece.org/directory/locodes/?country=PL" target="_blank" rel="noopener">UN/LOCODE</a>. Nazwy i województwa opracowaliśmy na podstawie Państwowego Rejestru Nazw Geograficznych (GUGiK, stan na 25.11.2026). Widzisz błąd? <a href="/kontakt">Daj nam znać</a>.</p>
+			</div>
+		</div>
+	</div>
+</main>
+
+<%- include('./includes/footer.ejs', { scripts: ['/js/name-generator.js'] }) %>

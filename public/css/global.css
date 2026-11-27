@@ -53,7 +53,6 @@
 	--fs-lg: 16px;
 	--fs-xl: 17px;
 	--fs-2xl: 18px;
-	--fs-3xl: 20px;
 	--fs-4xl: 22px;
 	--fs-heading-sm: 26px;
 	--fs-heading-md: 30px;
@@ -390,6 +389,16 @@ select.form-control option {
 	border-color: var(--red-bright);
 	outline: 0;
 	box-shadow: 0 0 0 3px var(--red-glow);
+}
+
+.form-control[readonly] {
+	color: var(--text-muted);
+	pointer-events: none;
+}
+
+.form-control[readonly]:focus {
+	border-color: var(--border-strong);
+	box-shadow: none;
 }
 
 .btn--primary {

@@ -11,11 +11,6 @@
 	padding-bottom: 0;
 }
 
-.news-hero--post .docs-breadcrumb {
-	max-width: var(--container-wide);
-	margin: 0 auto;
-}
-
 .news-hero--post + .section {
 	padding-top: 26px;
 }
@@ -272,7 +267,7 @@ a.news-source--spolecznosc:hover {
 
 .news-post-card__title {
 	margin: 0;
-	font-size: var(--fs-3xl);
+	font-size: var(--fs-2xl);
 	font-weight: 700;
 	font-style: normal;
 	letter-spacing: normal;
@@ -310,11 +305,6 @@ a.news-source--spolecznosc:hover {
 	scroll-margin-top: calc(var(--nav-h) + 24px);
 }
 
-.news-content {
-	max-width: var(--container-wide);
-	margin: 0 auto;
-}
-
 .news-video {
 	display: block;
 	width: min(100%, 360px);
@@ -330,8 +320,7 @@ a.news-source--spolecznosc:hover {
 	justify-content: space-between;
 	align-items: center;
 	gap: 16px;
-	max-width: var(--container-wide);
-	margin: 32px auto 0;
+	margin-top: 32px;
 }
 
 #news-post__footer .btn {

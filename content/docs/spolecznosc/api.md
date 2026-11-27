@@ -58,7 +58,7 @@ Z tych danych korzysta [Generator regionów](/generator-regionow). Schemat regio
 | `/regions/local?voivodeship={code}` | regiony lokalne wybranego województwa |
 | `/regions/local/{code}` | jeden region lokalny |
 
-Kody województw składają się z dwóch liter, np. `zp`. W API województwo wielkopolskie ma kod `wp`, a w MeshCore jego region nazywa się `wlkp`. Przykładowy kod regionu lokalnego to `zp-zkl`.
+Kody województw składają się z dwóch liter, np. `zp`. Wyjątkiem jest województwo wielkopolskie z kodem `wlkp`. Przykładowy kod regionu lokalnego to `zp-zkl`.
 
 ### Pełna lista regionów i kanałów
 Odpowiedź na `GET /regions` zawiera w obiekcie `data` poniższe pola.
@@ -87,7 +87,7 @@ W przykładzie odpowiedzi na `GET /regions/voivodeships/zp` lista `localRegions`
     "scope": "pl-zp",
     "parentScope": "pl",
     "channels": ["#zachodniopomorskie"],
-    "neighbors": ["pm", "wp", "lb"],
+    "neighbors": ["pm", "wlkp", "lb"],
     "socials": {},
     "localRegions": [
       {
@@ -132,7 +132,7 @@ Wiele nazw regionów powiatowych ma charakter roboczy i czeka na uzgodnienie z l
 
 Kilka województw lub typów węzłów podaj po przecinku, bez spacji. API zwraca wyniki w kolejności podanych województw. W obrębie każdego województwa na początku listy są węzły z ostatnio aktualizowanymi wpisami.
 
-Przykładowe żądanie to `GET /nodes?voivodeship=zp,wp&type=repeater&days=7&limit=100`.
+Przykładowe żądanie to `GET /nodes?voivodeship=zp,wlkp&type=repeater&days=7&limit=100`.
 
 ```json
 {
@@ -221,6 +221,17 @@ Pole `data` zawiera dzienne statystyki w kolejności od najstarszych do najnowsz
 Pole `data` zawiera listę `voivodeships` i czas ostatniego odświeżenia danych w polu `lastRefreshedAt`. Każdy wpis zawiera kod (`code`), nazwę (`name`) i te same pola statystyk co w sekcji „Stan bieżący”. API przypisuje węzły do województw na podstawie współrzędnych. Jeśli dane nie są dostępne, serwer zwraca `503`.
 
 Granice województw: © autorzy [OpenStreetMap](https://www.openstreetmap.org/copyright), licencja ODbL.
+
+
+## Kody miejscowości
+Z tych danych korzysta [Generator nazw](/generator-nazw).
+
+| Adres | Zwraca |
+|---|---|
+| `/locodes` | wszystkie kody miejscowości |
+| `/locodes?voivodeship={code}` | kody z wybranego województwa |
+
+Pole `data` zawiera listę wpisów z polami `code` (kod UN/LOCODE bez `PL`), `name` i `voivodeship`. Pole `voivodeship` ma wartość `null`, jeśli województwa nie udało się ustalić.
 
 
 ## Aktualności

@@ -91,18 +91,24 @@ Jeśli mimo wszystko chcesz uruchomić własny repeater, postaraj się wybrać l
 
 ## Jak nazwać swój repeater?
 
-Zacznij od **skrótu miejscowości**, np. `GDN` dla Gdańska albo `KRK` dla Krakowa. Po spacji dodaj wyróżnik, np. nazwę dzielnicy, pobliskiej miejscowości, punktu orientacyjnego albo swój znak wywoławczy. Dopiski `Repeater` i `RPT` możesz pominąć.
+Najprościej skorzystać z [generatora nazw](/generator-nazw). Wyszukasz w nim skrót swojej miejscowości, dodasz wyróżnik i skopiujesz gotową nazwę lub komendę `set name`.
+
+Nazwa zaczyna się od **skrótu miejscowości** (np. `GDN`). Po spacji dodaj wyróżnik, np. nazwę dzielnicy, pobliskiej miejscowości, punktu orientacyjnego albo swój znak wywoławczy (jeśli go posiadasz). Dopiski `Repeater` i `RPT` możesz pominąć, gdyż są zbędne.
+
+Jako skrótu użyj trzyznakowego kodu z międzynarodowego wykazu [UN/LOCODE](https://unlocode.unece.org/directory/locodes/?country=PL). Listę dla swojego regionu znajdziesz też na [stronie województwa](/wojewodztwa).
 
 | Przykładowa nazwa | Co oznacza |
 | --- | --- |
 | `GDN Oliwa` | Repeater w gdańskiej Oliwie. |
 | `KRK SQ9XYZ` | Repeater w Krakowie oznaczony znakiem wywoławczym operatora. |
 | `GDN Wrzeszcz Północ` | Repeater we Wrzeszczu z anteną skierowaną na północ. |
-| `KOL Podczele*` | Repeater w kołobrzeskim Podczelu zamontowany na stałe i zasilany niezależnie od sieci energetycznej. |
+| `KOL Podczele SOL` | Repeater w kołobrzeskim Podczelu zamontowany na stałe i zasilany niezależnie od sieci energetycznej. |
 
 Jeśli repeater obsługuje głównie jeden kierunek, możesz dopisać go po wyróżniku, np. `Północ`, `Południe`, `Wschód` lub `Zachód`. Przydaje się to zwłaszcza przy antenach kierunkowych.
 
-Gwiazdka `*` na końcu nazwy oznacza stałą instalację z panelem słonecznym i akumulatorem, która działa niezależnie od sieci energetycznej. Użyj zwykłej gwiazdki, bo emoji mogą się źle wyświetlać na ekranach niektórych urządzeń. [Oznaczenia repeaterów](/dokumentacja/meshcore/aktualne-presety#oznaczenia-repeaterow)
+Zadbaj, by nazwa była krótka. Jeśli repeater rozgłasza swoją lokalizację, w advercie mieszczą się 23 bajty nazwy, a bez lokalizacji 31. Polskie litery zajmują po 2 bajty. Komenda `set name` nie przyjmuje znaków `[ ] \ : , ? *`.
+
+Dopisek `SOL` na końcu nazwy oznacza stałą instalację z panelem słonecznym i akumulatorem, która działa niezależnie od sieci energetycznej. Nie zastępuj go emoji, bo mogą się źle wyświetlać na ekranach niektórych urządzeń. [Oznaczenia repeaterów](/dokumentacja/meshcore/aktualne-presety#oznaczenia-repeaterow)
 
 ## Jakie ustawienia radiowe wybrać w Polsce?
 

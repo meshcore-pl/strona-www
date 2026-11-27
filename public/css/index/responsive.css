@@ -19,7 +19,6 @@
 
 	#hero h1 {
 		margin-bottom: 23px;
-		font-size: 46px;
 	}
 
 	.section h2 {
@@ -28,7 +27,7 @@
 
 	#callout h2 {
 		margin-bottom: 9px;
-		font-size: 25px;
+		font-size: var(--fs-heading-sm);
 	}
 
 	#cta h2 {
@@ -51,7 +50,7 @@
 	}
 
 	.section h2 {
-		font-size: 25px;
+		font-size: var(--fs-heading-sm);
 	}
 
 	#callout h2 {
@@ -60,7 +59,7 @@
 	}
 
 	#cta h2 {
-		font-size: 29px;
+		font-size: var(--fs-heading-md);
 	}
 
 	.about h2, #profile h2 {

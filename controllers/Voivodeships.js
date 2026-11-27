@@ -1,6 +1,7 @@
 import { regions, voivodeshipList, getVoivodeship, getLocalRegions } from '../services/regions.js';
 import { getVoivodeshipStats } from '../services/voivodeshipStats.js';
 import voivodeshipMap from '../services/voivodeshipMap.js';
+import { getLocodes } from '../services/locodes.js';
 import RenderError from '../utils/renderError.js';
 
 const dateFormat = new Intl.DateTimeFormat('pl-PL', { dateStyle: 'long', timeStyle: 'short', timeZone: 'Europe/Warsaw' });
@@ -44,6 +45,7 @@ export const page = async (req, res) => {
 		getMapLabel: code => [getVoivodeship(code).scope, ...(stats ? [statsByCode.get(code).nodes.toLocaleString('pl-PL')] : [])],
 		refreshedAt: formatRefreshedAt(stats?.lastRefreshedAt),
 		localRegions,
+		locodes: getLocodes(voivodeship.code),
 		channels: [...new Set(['Public', ...commonChannels, ...country.channels, ...voivodeship.channels])]
 			.map(channel => ({ channel, description: channelDescriptions[channel] ?? 'Kanał regionalny.' })),
 		communities: [

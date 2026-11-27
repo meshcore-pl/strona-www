@@ -23,6 +23,7 @@
 	font-family: var(--font-mono);
 	font-size: var(--fs-heading-lg);
 	font-weight: 700;
+	line-height: 1.2;
 }
 
 .stats-tile span {

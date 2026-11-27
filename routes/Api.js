@@ -3,6 +3,7 @@ import * as limiter from '../middlewares/ratelimit.js';
 import * as stats from '../controllers/api/Stats.js';
 import * as news from '../controllers/api/News.js';
 import * as regions from '../controllers/api/Regions.js';
+import * as locodes from '../controllers/api/Locodes.js';
 import * as nodes from '../controllers/api/Nodes.js';
 import * as docs from '../controllers/api/Docs.js';
 import * as contact from '../controllers/api/Contact.js';
@@ -19,6 +20,8 @@ router.get('/regions/voivodeships', regions.getVoivodeships);
 router.get('/regions/voivodeships/:code', regions.getOneVoivodeship);
 router.get('/regions/local', regions.getLocal);
 router.get('/regions/local/:code', regions.getOneLocal);
+
+router.get('/locodes', locodes.getAll);
 
 router.get('/nodes', nodes.getNodes);
 

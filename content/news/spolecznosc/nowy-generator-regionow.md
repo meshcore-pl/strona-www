@@ -58,7 +58,7 @@ Poniższe polecenia pobierają kolejno dane o regionach i kanałach województwa
 
 ```bash
 curl "https://meshcorepolska.org/api/v1/regions/voivodeships/zp"
-curl "https://meshcorepolska.org/api/v1/nodes?voivodeship=zp,wp&type=repeater&days=5&limit=80"
+curl "https://meshcorepolska.org/api/v1/nodes?voivodeship=zp,wlkp&type=repeater&days=5&limit=80"
 curl "https://meshcorepolska.org/api/v1/stats/voivodeships"
 ```
 

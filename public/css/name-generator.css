@@ -1,0 +1,67 @@
+.ng-grid {
+	display: grid;
+	gap: 0 20px;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.prose .ng-results:not([hidden]) {
+	display: grid;
+	gap: 8px;
+	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+	max-height: 300px;
+	overflow-y: auto;
+	margin: 0;
+	padding: 2px;
+	list-style: none;
+}
+
+.prose .ng-results li {
+	margin: 0;
+}
+
+.ng-result {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	width: 100%;
+	height: 100%;
+	padding: 9px 12px;
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	background: var(--bg);
+	color: var(--text);
+	font-family: var(--font-body);
+	font-size: var(--fs-base);
+	line-height: 1.35;
+	text-align: left;
+	cursor: pointer;
+}
+
+.ng-result:hover {
+	border-color: var(--red);
+}
+
+.ng-result[aria-pressed="true"] {
+	border-color: var(--red-bright);
+	background: var(--red-glow-bg);
+}
+
+.prose .ng-output {
+	margin: 0 0 12px;
+	overflow-wrap: anywhere;
+}
+
+.prose .ng-empty {
+	padding: 24px 0;
+	text-align: center;
+}
+
+.prose .ng-problem {
+	color: var(--alert-warning);
+}
+
+@media (max-width: 800px) {
+	.ng-grid {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}

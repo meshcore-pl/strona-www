@@ -16,7 +16,7 @@
 
 #callout h2 {
 	margin-bottom: 10px;
-	font-size: 29px;
+	font-size: var(--fs-heading-md);
 }
 
 #callout p:not(.eyebrow) {
