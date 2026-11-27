@@ -3,7 +3,7 @@ const tips = [
 	'Czy wiesz, że Meshtastic powstał na początku 2020 roku, a konkurencyjny MeshCore dopiero pod koniec 2024?',
 	'Czy wiesz, że repeatery zwykle są zasilane ogniwami i panelami słonecznymi, niezależnie od dostawców energii?',
 	'Czy wiesz, że kod tej strony jest publicznie dostępny na GitHubie?',
-	'Czy wiesz, że MeshCore Południe (Bielsko-Biała, Śląsk, Małopolska) używa SF6 zamiast SF8 jak reszta Polski?',
+	'Czy wiesz, że MeshCore Południe (głównie Śląsk, Opolszczyzna i część Małopolski) używa SF6 zamiast SF8 jak reszta Polski?',
 	'Czy wiesz, że MeshCore działa bez internetu i zasięgu sieci komórkowej? Wiadomości są przesyłane drogą radiową.',
 	'Czy wiesz, że domyślnie urządzenia klienckie MeshCore nie retransmitują pakietów? Za rozszerzanie zasięgu odpowiadają repeatery.',
 	'Czy wiesz, że room serwer przechowuje historię wiadomości?',

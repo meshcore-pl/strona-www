@@ -50,6 +50,10 @@
 	margin-top: 24px;
 }
 
+#docs-quickstart {
+	margin-top: 32px;
+}
+
 #docs-hero__count {
 	color: var(--text-muted);
 	font-family: var(--font-mono);

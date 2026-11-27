@@ -3,7 +3,7 @@ title: Analizatory sieci w Polsce i Europie
 description: Lista publicznych analizatorów sieci MeshCore w Polsce i Europie oraz nasze zastrzeżenia dotyczące prywatności, archiwizowania danych i profilowania aktywności.
 canonical: /dokumentacja/meshcore/lista-analizatorow
 createdAt: 17.07.2026
-updatedAt: 26.11.2026
+updatedAt: 27.11.2026
 ---
 
 # Spis publicznych analizatorów sieci MeshCore {toc: Spis analizatorów}
@@ -16,7 +16,7 @@ updatedAt: 26.11.2026
 - Piła: [corescope.epila.pl](https://corescope.epila.pl)
 - Konin: [meshcorekonin.ddns.net](https://meshcorekonin.ddns.net)
 - Kraków: [meshcorekrk.cma.pl](https://meshcorekrk.cma.pl) (nie działa od jakiegoś czasu)
-- Południe: analizatory dla sieci [MeshCore Południe](https://meshcoresouth.pl) (Bielsko-Biała, Śląsk, Małopolska), działającej na innym presecie niż zalecany [EU/UK Narrow](https://meshcorepolska.org/dokumentacja/meshcore/aktualne-presety).
+- Południe: analizatory dla sieci [MeshCore Południe](https://meshcoresouth.pl) (głównie Śląsk, Opolszczyzna i część Małopolski), działającej na innym presecie niż zalecany [EU/UK Narrow](https://meshcorepolska.org/dokumentacja/meshcore/aktualne-presety).
   - Śląsk, częściowo także Wrocław i okolice: [live.meshcorekk.xyz](https://live.meshcorekk.xyz), [mc.inside.net.pl](https://mc.inside.net.pl)
   - Oficjalne (MeshCore Południe): [live.meshcoresouth.pl](https://live.meshcoresouth.pl), [stats.meshcoresouth.pl](https://stats.meshcoresouth.pl)
 

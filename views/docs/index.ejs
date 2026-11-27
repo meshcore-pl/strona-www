@@ -18,12 +18,8 @@
 			<h1>Poradniki i dokumentacja sieci MeshCore</h1>
 			<p class="docs-hero__lead">Znajdziesz tu informacje o naszym serwerze Discord oraz materiały o MeshCore, choć te wciąż nie są kompletne i cały czas nad nimi pracujemy. Strona jest jeszcze w budowie. Jeśli masz jakieś propozycje, podziel się nimi na naszym Discordzie.</p>
 
-			<div id="docs-hero__search-row">
+			<div id="docs-hero__search-row" class="actions">
 				<%- include('./_search-box.ejs', { heroVariant: true }) %>
-
-				<div id="docs-hero__actions">
-					<a href="/#od-zera-do-pierwszej-wiadomosci" class="btn btn--primary btn--sm">Szybki start</a>
-				</div>
 			</div>
 		</div>
 	</section>
@@ -45,6 +41,10 @@
 						</div>
 					</a>
 				<% }) %>
+			</div>
+
+			<div id="docs-quickstart" class="actions">
+				<a href="/#od-zera-do-pierwszej-wiadomosci" class="btn btn--primary">Szybki start</a>
 			</div>
 
 			<% if (tip) { %>
