@@ -18,6 +18,8 @@
 				<h1>Generator nazw i opisów repeaterów</h1>
 				<p>Wybierz miejscowość i wpisz wyróżnik. Może to być nazwa dzielnicy, nazwa charakterystycznego miejsca lub Twój znak wywoławczy. Generator połączy kod miejscowości z wyróżnikiem i przygotuje komendę do ustawienia nazwy. Przykłady nazw znajdziesz w <a href="/dokumentacja/meshcore/faq#jak-nazwac-swoj-repeater">FAQ</a>. Poniżej możesz też przygotować <a href="#opis">opis repeatera</a> z danymi kontaktowymi.</p>
 
+				<p>Pamiętaj, że wyniki generatora to tylko propozycje. Ostatecznie to Ty decydujesz, jaką nazwę i opis ustawisz w swoim repeaterze.</p>
+
 				<noscript>
 					<div class="docs-alert docs-alert--warning">
 						<svg class="docs-alert__icon" aria-hidden="true"><use href="/icons.svg#alert-warning"></use></svg>
@@ -97,7 +99,7 @@
 					<h2>Gotowa nazwa</h2>
 					<p class="ng-empty" id="ng-empty">Wybierz miejscowość, aby zacząć.</p>
 					<div id="ng-result" hidden>
-						<p class="ng-output"><code id="ng-name">-</code></p>
+						<p class="ng-preview panel" id="ng-name"></p>
 						<p class="form-hint" id="ng-bytes"></p>
 						<div class="docs-alert docs-alert--warning" id="ng-problem" role="status" hidden>
 							<svg class="docs-alert__icon" aria-hidden="true"><use id="ng-problem-icon" href="/icons.svg#alert-warning"></use></svg>
@@ -119,7 +121,7 @@
 						<svg class="docs-alert__icon" aria-hidden="true"><use href="/icons.svg#alert-warning"></use></svg>
 						<div class="docs-alert__body">
 							<p class="docs-alert__title">Te dane są publiczne</p>
-							<p>Każdy może odczytać opis repeatera bez logowania. Nie wpisuj numeru telefonu ani dokładnego adresu!</p>
+							<p>Każdy może odczytać opis Twojego repeatera bez logowania i znajomości hasła. Nie umieszczaj w opisie numeru telefonu, dokładnego adresu zamieszkania ani innych danych!</p>
 						</div>
 					</div>
 					<section class="form-card panel">
@@ -138,7 +140,7 @@
 					</section>
 					<div id="ng-info-result" hidden>
 						<h3>Podgląd opisu</h3>
-						<p class="ng-info-preview panel" id="ng-info"></p>
+						<p class="ng-preview panel" id="ng-info"></p>
 						<p class="form-hint" id="ng-info-bytes" role="status"></p>
 						<div id="ng-info-cli" hidden>
 							<h3>Komenda do ustawienia opisu</h3>
