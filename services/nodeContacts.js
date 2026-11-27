@@ -14,7 +14,7 @@ const toContact = node => ({
 	flags: 0,
 	latitude: String(node.lat),
 	longitude: String(node.lon),
-	last_advert: Math.min(toUnixSeconds(node.la), toUnixSeconds(Date.now())),
+	last_advert: Math.max(0, Math.min(toUnixSeconds(node.la), toUnixSeconds(Date.now()))),
 	last_modified: toUnixSeconds(node.ud),
 	out_path_list: null,
 });

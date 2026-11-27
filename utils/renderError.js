@@ -4,6 +4,7 @@ const MESSAGES = {
 	400: 'Nieprawidłowe żądanie.',
 	404: 'Nie znaleziono strony. Wróć na stronę główną.',
 	413: 'Przesłane dane są zbyt duże.',
+	415: 'Nieobsługiwany format danych.',
 	429: 'Ups. Zbyt wiele żądań. Spróbuj ponownie za chwilę.',
 	500: 'Wystąpił nieoczekiwany błąd serwera. Spróbuj ponownie za chwilę.',
 	503: 'Serwer jest chwilowo niedostępny. Spróbuj ponownie za chwilę.',

@@ -241,6 +241,6 @@ Pole `data` zawiera listę wpisów z polami `code` (kod UN/LOCODE bez `PL`), `na
 | Adres | Zwraca |
 |---|---|
 | `/news/sources` | obiekt, w którym kluczem jest adres oryginalnego wpisu, a wartością ścieżka jego polskiej wersji |
-| `/news/post?sourceUrl={url}` | ścieżkę (`url`), tytuł (`title`) i treść w formacie Markdown (`markdown`) polskiej wersji wskazanego wpisu |
+| `/news/post?sourceUrl={url}` | ścieżkę (`url`), tytuł (`title`) i treść w formacie Markdown (`markdown`) polskiej wersji wskazanego wpisu. Linki i adresy plików z tego serwisu w polu `markdown` są pełne |
 
 W parametrze `sourceUrl` podaj dokładnie taki adres, jaki zwraca `GET /news/sources`. Wartość parametru zakoduj np. za pomocą `URLSearchParams`. Jeśli API nie znajdzie polskiej wersji podanego wpisu, zwróci `404`.
