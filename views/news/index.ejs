@@ -25,11 +25,11 @@
 				<% if (tags.length) { %>
 				<div id="news-tags">
 					<% tags.forEach(tag => { %>
-					<a href="/aktualnosci/<%= tag.slug %>" class="news-tag"><%= tag.label %> <span class="news-tag__count"><%= tag.posts.length %></span></a>
+					<a href="/aktualnosci/<%= tag.slug %>" class="pill news-tag"><%= tag.label %> <span class="news-tag__count"><%= tag.posts.length %></span></a>
 					<% }) %>
 				</div>
 				<% } %>
-				<a href="/aktualnosci/rss.xml" class="news-tag news-rss" type="application/rss+xml" title="Kanał RSS ze wszystkimi aktualnościami"><svg class="news-rss__icon" aria-hidden="true"><use href="/icons.svg#rss"></use></svg> RSS</a>
+				<a href="/aktualnosci/rss.xml" class="pill news-tag news-rss" type="application/rss+xml" title="Kanał RSS ze wszystkimi aktualnościami"><svg class="news-rss__icon" aria-hidden="true"><use href="/icons.svg#rss"></use></svg> RSS</a>
 			</div>
 		</div>
 	</section>
@@ -41,13 +41,13 @@
 				<% posts.forEach(post => { %>
 				<a href="<%= post.canonical %>" class="news-post-card panel" data-search="<%= [post.title, post.description, ...post.tags.map(t => t.label)].join(' ').toLowerCase() %>">
 					<div class="news-post-card__head">
-						<h2 class="news-post-card__title"><%= post.title %></h2>
+						<h2 class="card-title"><%= post.title %></h2>
 						<span class="news-post-card__date">Opublikowano: <%= post.createdAt %></span>
 					</div>
 					<% if (post.description) { %><p class="news-post-card__desc"><%= post.description %></p><% } %>
 					<div class="news-post-card__tags">
 						<div class="news-post-card__tags-list">
-							<% post.tags.forEach(tag => { %><span class="news-tag"><%= tag.label %></span><% }) %>
+							<% post.tags.forEach(tag => { %><span class="pill news-tag"><%= tag.label %></span><% }) %>
 						</div>
 						<span class="news-source news-source--<%= post.source.slug %>" title="<%= post.source.description %>"><%= post.source.label %></span>
 					</div>

@@ -96,7 +96,13 @@
 					<div id="ng-result" hidden>
 						<p class="ng-output"><code id="ng-name">-</code></p>
 						<p class="form-hint" id="ng-bytes"></p>
-						<p class="form-hint ng-problem" id="ng-problem" role="status" hidden></p>
+						<div class="docs-alert docs-alert--warning" id="ng-problem" role="status" hidden>
+							<svg class="docs-alert__icon" aria-hidden="true"><use id="ng-problem-icon" href="/icons.svg#alert-warning"></use></svg>
+							<div class="docs-alert__body">
+								<p class="docs-alert__title">Sprawdź nazwę</p>
+								<div id="ng-problem-list"></div>
+							</div>
+						</div>
 						<p class="actions"><button type="button" class="btn btn--primary btn--sm" id="ng-copy" disabled>Kopiuj nazwę</button></p>
 						<div id="ng-cli" hidden>
 							<h3>Komenda do ustawienia nazwy</h3>

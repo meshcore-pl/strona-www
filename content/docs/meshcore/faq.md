@@ -13,11 +13,11 @@ Nie. MeshCore i Meshtastic to dwa osobne projekty, które wykorzystują LoRa do 
 
 Ten sam sprzęt często może jednak działać z jednym albo drugim oprogramowaniem. Nie oznacza to obsługi obu sieci jednocześnie. Jeśli Twój model jest obsługiwany przez [flasher MeshCore](https://flasher.meshcore.io), możesz zastąpić Meshtastic oprogramowaniem MeshCore i dołączyć do sieci MeshCore.
 
-## Czy do korzystania z MeshCore potrzebuję licencji lub internetu?
+## Czy do korzystania z MeshCore potrzebuję pozwolenia radiowego lub internetu?
 
-Nie. W Polsce na presecie EU/UK Narrow możesz nadawać bez pozwolenia radiowego. Obowiązują limity prawne. Dla zakresu `869,40-869,65 MHz` maksymalna moc to `500 mW ERP`. W polskiej sieci MeshCore stosujemy limit czasu nadawania (duty cycle) do `10%`, czyli maksymalnie 6 minut nadawania na godzinę. Na moc `ERP` wpływa również zysk anteny. Szczegóły znajdziesz w sekcji [Legalność i duty cycle](/dokumentacja/meshcore/wprowadzenie#legalnosc-i-duty-cycle) oraz w [decyzji UE 2025/105 (zakres 54)](https://eur-lex.europa.eu/eli/dec_impl/2025/105/oj).
+Nie. W Polsce na presecie **EU/UK Narrow** możesz nadawać bez pozwolenia radiowego, jeśli używasz urządzenia klasy 1 i przestrzegasz warunków dla pasma `869,40-869,65 MHz`. Maksymalna moc to `500 mW ERP`, z uwzględnieniem zysku anteny. W polskiej sieci MeshCore stosujemy limit czasu nadawania (duty cycle) do `10%`, czyli maksymalnie 6 minut nadawania na godzinę. Szczegóły znajdziesz w sekcji [Legalność i duty cycle](/dokumentacja/meshcore/wprowadzenie#legalnosc-i-duty-cycle).
 
-Wiadomości są przesyłane drogą radiową, bez internetu i sieci komórkowej. Internet przyda się natomiast do pobrania aplikacji, wgrania oprogramowania przez [flasher](https://flasher.meshcore.io) czy przeglądania [mapy węzłów](https://mapa.meshcorepolska.org).
+Wiadomości są przesyłane drogą radiową, bez internetu i sieci komórkowej. Internet przyda się do pobrania aplikacji, wgrania oprogramowania przez [flasher](https://flasher.meshcore.io) czy przeglądania [mapy węzłów](https://mapa.meshcorepolska.org).
 
 ## Czy wiadomości są szyfrowane?
 
@@ -26,7 +26,7 @@ Tak. Kto może odczytać treść, zależy od tego, gdzie wysyłasz wiadomość.
 - **Wiadomość prywatną** mogą odczytać tylko nadawca i odbiorca.
 - **Na kanale prywatnym** wiadomości może odczytać każdy, kto ma klucz kanału.
 - **Na room serwerze** historię wiadomości mogą przeczytać osoby z dostępem do serwera, np. te, które znają hasło.
-- **Kanał `Public` i kanały z hashtagiem** traktuj jak publiczne.
+- **Kanał `Public`** używa powszechnie znanego klucza, a klucz **kanału z hashtagiem** można wyliczyć z jego nazwy. Treść wiadomości na tych kanałach jest publiczna.
 
 > [!WARNING]
 > Wiadomości z kanału `Public` i kanałów z hashtagiem mogą trafić do [publicznych analizatorów](/dokumentacja/meshcore/lista-analizatorow) w internecie. Jeśli się tam pojawią, każdy może je przeczytać, nawet bez własnego companiona.
@@ -44,13 +44,13 @@ Companion trzymany w mieszkaniu będzie miał zwykle znacznie mniejszy zasięg n
 
 ## Jak sprawdzić, czy w mojej okolicy jest zasięg?
 
-Najpewniejszym sposobem sprawdzenia zasięgu jest wykonanie testu łączności. Ustaw na companionie [właściwy preset radiowy](/dokumentacja/meshcore/aktualne-presety) i wyślij wiadomość na kanale `#test` np. samą literę `t`.
+Ustaw na companionie [preset radiowy używany w Twojej okolicy](/dokumentacja/meshcore/aktualne-presety) i wyślij krótką wiadomość na kanale `#test`, np. samą literę `t`. Użyj [regionu przyjętego lokalnie dla tego kanału](/dokumentacja/meshcore/regionalizacja-wiadomosci), jeśli społeczność go ustaliła.
 
 Zwróć uwagę na status widoczny pod wysłaną wiadomością:
 
 - **Wysłano** - wiadomość została nadana, ale companion nie usłyszał żadnej jej retransmisji. [Dlaczego nikt mi nie odpowiada?](#dlaczego-nikt-mi-nie-odpowiada)
 - **Odebrano: 1 repeater** - companion odebrał jedną retransmisję wysłanej wiadomości.
-- **Odebrano: 3 repeatery** - companion odebrał trzy retransmisje. Mogły one pochodzić z kolejnych repeaterów na tej samej trasie.
+- **Odebrano: 3 repeatery** - companion usłyszał trzy retransmisje. Mogły pochodzić z różnych tras lub z kolejnych repeaterów na tej samej trasie.
 
 [Odpowiedź od innego użytkownika](#co-oznacza-odpowiedz-np-kolobrzeg-4h) potwierdzi, że wiadomość do niego dotarła.
 
@@ -83,11 +83,9 @@ Na początek zwykle wystarczy sam companion. Więcej na ten temat dowiesz się z
 
 ## Czy potrzebuję własnego repeatera?
 
-To zależy od zasięgu sieci w Twojej okolicy. Jeśli masz stabilną łączność z pobliskimi repeaterami, do korzystania z sieci wystarczy companion. Sprawdź rozmieszczenie repeaterów na [mapie węzłów](https://mapa.meshcorepolska.org) i [przetestuj zasięg w swojej okolicy](#jak-sprawdzic-czy-w-mojej-okolicy-jest-zasieg).
-Własny repeater warto uruchomić, jeśli może rozszerzyć zasięg sieci, poprawić lokalną łączność lub połączyć odseparowane fragmenty sieci. Kluczowe znaczenie ma jego lokalizacja oraz wysokość montażu anteny.
-Większa liczba repeaterów nie zawsze oznacza lepsze działanie sieci. Zbyt duże ich zagęszczenie może powodować zbędne retransmisje, zwiększać zajętość kanału radiowego. Pojawia się również ryzyko kolizji pakietów.
+Jeśli masz stabilną łączność z pobliskimi repeaterami, wystarczy companion. Sprawdź rozmieszczenie repeaterów na [mapie węzłów](https://mapa.meshcorepolska.org) i [przetestuj zasięg w swojej okolicy](#jak-sprawdzic-czy-w-mojej-okolicy-jest-zasieg).
 
-Jeśli mimo wszystko chcesz uruchomić własny repeater, postaraj się wybrać lokalizację, w której uzupełni on istniejącą infrastrukturę.
+Własny repeater warto uruchomić tam, gdzie poprawi lokalną łączność, rozszerzy zasięg lub połączy odseparowane części sieci. Znaczenie mają lokalizacja i wysokość montażu anteny. Na obszarach o dobrym pokryciu sieci dodatkowy repeater może niepotrzebnie obciążać kanał i zwiększać ryzyko kolizji pakietów.
 
 ## Jak nazwać swój repeater?
 
@@ -114,7 +112,7 @@ Dopisek `SOL` na końcu nazwy oznacza stałą instalację z panelem słonecznym 
 
 Przyjętym standardem ogólnopolskiej sieci jest preset **EU/UK Narrow**. Parametry znajdziesz w sekcji [Dokładne ustawienia](/dokumentacja/meshcore/aktualne-presety#dokladne-ustawienia).
 
-Część sieci na południu Polski korzysta z `SF6`. Urządzenia na `SF6` i `SF8` nie mogą się bezpośrednio komunikować. Na repeaterze ustaw duty cycle na `10%`. Domyślne `50%` przekracza [limit czasu nadawania](/dokumentacja/meshcore/wprowadzenie#legalnosc-i-duty-cycle) dla tego zakresu. Szczegóły i zalecane komendy znajdziesz na stronie [Presety i konfiguracja radia](/dokumentacja/meshcore/aktualne-presety).
+Część sieci na południu Polski korzysta z `SF6`. Urządzenia na `SF6` i `SF8` nie mogą się bezpośrednio komunikować. Na repeaterze zmień domyślny duty cycle z `50%` na `10%`. Szczegóły i zalecane komendy znajdziesz na stronie [Presety i konfiguracja radia](/dokumentacja/meshcore/aktualne-presety).
 
 ## Czym są regiony i czy muszę je ustawiać?
 

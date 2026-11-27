@@ -15,23 +15,6 @@
 	margin-top: 24px;
 }
 
-#docs-search__icon {
-	position: absolute;
-	top: 50%;
-	left: 11px;
-	width: 15px;
-	height: 15px;
-	color: var(--text-muted);
-	transform: translateY(-50%);
-	transition: opacity .18s ease, transform .18s ease;
-	pointer-events: none;
-}
-
-#docs-search.has-value #docs-search__icon {
-	opacity: 0;
-	transform: translateY(-50%) translateX(-4px) scale(.8);
-}
-
 #docs-search-input {
 	width: 100%;
 	padding: 8px 12px 8px 34px;

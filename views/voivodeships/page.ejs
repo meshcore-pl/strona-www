@@ -45,7 +45,7 @@
 							[stats.types.roomServer, { one: 'room serwer', few: 'room serwery', many: 'room serwerów' }],
 							[stats.types.client, { one: 'companion', few: 'companiony', many: 'companionów' }],
 						].forEach(([value, label]) => { %>
-							<div class="stats-tile">
+							<div class="stats-tile panel">
 								<strong><%= value.toLocaleString('pl-PL') %></strong>
 								<span><%= typeof label === 'string' ? label : pluralizePolish(value, label) %></span>
 							</div>

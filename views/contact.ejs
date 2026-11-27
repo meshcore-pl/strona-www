@@ -6,7 +6,7 @@
 		{ name: 'Strona główna', url: '/' },
 		{ name: 'Kontakt', url: '/kontakt' },
 	],
-	css: 'contact',
+	css: ['forms', 'contact'],
 	page: 'contact'
 }) %>
 
@@ -22,18 +22,18 @@
 
 			<div id="contact-card" class="panel">
 				<form id="contact-form" method="post" action="/api/v1/contact">
-					<div class="contact-form__field">
+					<div class="form-field">
 						<label for="username">Nazwa użytkownika</label>
 						<input class="form-control" type="text" id="username" name="username" value="<%= values.username %>" minlength="2" maxlength="45" required>
 					</div>
 
-					<div class="contact-form__field">
+					<div class="form-field">
 						<label for="email">Adres e-mail</label>
 						<input class="form-control" type="email" id="email" name="email" value="<%= values.email %>" maxlength="254" required>
 					</div>
 
 					<% if (values.subject) { %>
-						<div class="contact-form__field">
+						<div class="form-field">
 							<label for="subject">Tytuł</label>
 							<input class="form-control" type="text" id="subject" name="subject" value="<%= values.subject %>" maxlength="120">
 						</div>
@@ -44,7 +44,7 @@
 						<input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
 					</div>
 
-					<div class="contact-form__field">
+					<div class="form-field">
 						<label for="message">Wiadomość</label>
 						<textarea class="form-control" id="message" name="message" rows="7" minlength="10" maxlength="4000" required><%= values.message %></textarea>
 					</div>

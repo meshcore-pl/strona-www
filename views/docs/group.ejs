@@ -49,7 +49,7 @@
 					<a href="/dokumentacja/<%= group.slug %>/<%= p.slug %>" class="docs-page-card panel">
 						<span class="docs-page-card__num"><%= String(i + 1).padStart(2, '0') %></span>
 						<span class="docs-page-card__title"><%= p.title %></span>
-						<% if (p.description) { %><p class="docs-page-card__desc"><%= p.description %></p><% } %>
+						<% if (p.description) { %><p class="docs-page-card__desc docs-card-desc"><%= p.description %></p><% } %>
 						<span class="docs-page-card__footer">
 							<% if (p.updatedAt) { %><span class="docs-page-card__date">Ostatnia aktualizcja: <%= p.updatedAt %></span>
 							<% } else if (p.createdAt) { %><span class="docs-page-card__date">Data utworzenia: <%= p.createdAt %></span>

@@ -209,16 +209,19 @@
 	font-size: var(--fs-md);
 }
 
-.prose pre {
-	position: relative;
-	overflow-x: auto;
-	margin: 0 0 20px;
-	padding: 18px 21px;
+.prose pre, .docs-table {
 	border: 1px solid var(--border);
 	border-radius: var(--radius);
 	background: var(--glass-bg);
 	-webkit-backdrop-filter: blur(4px);
 	backdrop-filter: blur(4px);
+}
+
+.prose pre {
+	position: relative;
+	overflow-x: auto;
+	margin: 0 0 20px;
+	padding: 18px 21px;
 	tab-size: 3;
 }
 
@@ -289,11 +292,6 @@
 	overflow-x: auto;
 	overflow-y: hidden;
 	margin: 0 0 24px;
-	border: 1px solid var(--border);
-	border-radius: var(--radius);
-	background: var(--glass-bg);
-	-webkit-backdrop-filter: blur(4px);
-	backdrop-filter: blur(4px);
 }
 
 .docs-table table {

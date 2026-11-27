@@ -43,7 +43,7 @@
 					<span class="news-post-card__date"><%= post.updatedAt ? `Zaktualizowano: ${post.updatedAt}` : `Opublikowano: ${post.createdAt}` %></span>
 					<div class="news-post-card__tags">
 						<div class="news-post-card__tags-list">
-							<% post.tags.forEach(tag => { %><a href="/aktualnosci/<%= tag.slug %>" class="news-tag"><%= tag.label %></a><% }) %>
+							<% post.tags.forEach(tag => { %><a href="/aktualnosci/<%= tag.slug %>" class="pill news-tag"><%= tag.label %></a><% }) %>
 						</div>
 
 						<% if (post.sourceUrl) { %>

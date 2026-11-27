@@ -77,7 +77,7 @@
 	text-align: center;
 }
 
-.prose .ng-problem {
+.prose .ng-over-limit {
 	color: var(--alert-warning);
 }
 

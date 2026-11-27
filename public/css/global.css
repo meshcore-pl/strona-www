@@ -291,6 +291,42 @@ p {
 	gap: 12px;
 }
 
+.card-title {
+	margin: 0;
+	font-size: var(--fs-2xl);
+	font-weight: 700;
+	font-style: normal;
+	letter-spacing: normal;
+	word-spacing: normal;
+	text-transform: none;
+}
+
+.pill {
+	padding: 6px 14px;
+	border: 1px solid var(--border);
+	border-radius: 999px;
+	color: var(--text-muted);
+	font-family: var(--font-mono);
+	font-size: var(--fs-xs);
+}
+
+.search-icon {
+	position: absolute;
+	top: 50%;
+	left: 12px;
+	width: 15px;
+	height: 15px;
+	color: var(--text-muted);
+	transform: translateY(-50%);
+	transition: opacity .18s ease, transform .18s ease;
+	pointer-events: none;
+}
+
+.has-value > .search-icon {
+	opacity: 0;
+	transform: translateY(-50%) translateX(-4px) scale(.8);
+}
+
 .eyebrow {
 	margin: 0 0 18px;
 	color: var(--text-muted);
@@ -375,7 +411,8 @@ html {
 
 .form-control {
 	width: 100%;
-	padding: 11px 14px;
+	height: var(--control-height, 42px);
+	padding: 0 14px;
 	border: 1px solid var(--border-strong);
 	border-radius: 10px;
 	background: var(--bg);
@@ -383,6 +420,11 @@ html {
 	font-family: var(--font-body);
 	font-size: var(--fs-base);
 	transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+textarea.form-control {
+	height: auto;
+	padding-block: 11px;
 }
 
 select.form-control {

@@ -119,6 +119,12 @@
 	margin-bottom: 0;
 }
 
+#rc-current {
+	min-height: 120px;
+	font-family: var(--font-mono);
+	font-size: var(--fs-md);
+}
+
 .form-field:has(+ #rg-custom-region:not([hidden])) {
 	margin-bottom: 12px;
 }
@@ -195,8 +201,8 @@
 }
 
 .rg-scope-select {
+	--control-height: 32px;
 	min-width: 140px;
-	padding-block: 5px;
 	font-size: var(--fs-md);
 }
 

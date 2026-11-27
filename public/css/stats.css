@@ -5,15 +5,13 @@
 	margin: 20px 0 32px;
 }
 
+.stats-tile, .stats-chart-card {
+	box-shadow: var(--shadow-card);
+}
+
 .stats-tile {
 	padding: 15px;
-	border: 1px solid var(--border);
-	border-radius: var(--radius);
-	background: var(--glass-bg);
 	text-align: center;
-	box-shadow: var(--shadow-card);
-	-webkit-backdrop-filter: blur(1px);
-	backdrop-filter: blur(1px);
 }
 
 .stats-tile strong {
@@ -33,12 +31,6 @@
 
 .stats-chart-card {
 	padding: 24px;
-	border: 1px solid var(--border);
-	border-radius: var(--radius);
-	background: var(--glass-bg);
-	box-shadow: var(--shadow-card);
-	-webkit-backdrop-filter: blur(1px);
-	backdrop-filter: blur(1px);
 }
 
 .stats-chart-card h2 {
@@ -59,13 +51,7 @@
 }
 
 .stats-range button {
-	padding: 6px 14px;
-	border: 1px solid var(--border);
-	border-radius: 999px;
 	background: var(--glass-bg);
-	color: var(--text-muted);
-	font-family: var(--font-mono);
-	font-size: var(--fs-xs);
 	transition: background .15s ease, color .15s ease, border-color .15s ease;
 	cursor: pointer;
 }
@@ -120,8 +106,8 @@
 }
 
 .stats-metric .form-control {
+	--control-height: 34px;
 	width: auto;
-	padding-block: 6px;
 	font-size: var(--fs-base);
 }
 
