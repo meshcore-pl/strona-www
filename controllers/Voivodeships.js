@@ -42,7 +42,7 @@ export const page = async (req, res) => {
 		name,
 		locative: voivodeship.name.replace(/ie$/, 'im'),
 		stats: statsByCode.get(voivodeship.code),
-		getMapLabel: code => [getVoivodeship(code).scope, ...(stats ? [statsByCode.get(code).nodes.toLocaleString('pl-PL')] : [])],
+		getMapLabel: code => [getVoivodeship(code).scope, ...(stats ? [statsByCode.get(code).types.repeater.toLocaleString('pl-PL')] : [])],
 		refreshedAt: formatRefreshedAt(stats?.lastRefreshedAt),
 		localRegions,
 		locodes: getLocodes(voivodeship.code),

@@ -367,6 +367,14 @@ a.pill:active, button.pill:active {
 	color: var(--red-bright);
 }
 
+.map-glass {
+	position: absolute;
+	inset: 0;
+	-webkit-backdrop-filter: blur(var(--glass-blur));
+	backdrop-filter: blur(var(--glass-blur));
+	pointer-events: none;
+}
+
 .search-field {
 	position: relative;
 }

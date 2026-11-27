@@ -2,8 +2,22 @@
 	margin-bottom: 8px;
 }
 
+.voivodeship-map-frame {
+	position: relative;
+	max-width: 680px;
+	margin: 28px auto 0;
+}
+
+.voivodeship-map-clip {
+	position: absolute;
+}
+
+.voivodeship-map-frame .map-glass {
+	clip-path: url('#voivodeship-map-outline');
+}
+
 .voivodeship-map {
-	margin-top: 28px;
+	position: relative;
 }
 
 .voivodeship-map a {

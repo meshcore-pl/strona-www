@@ -3,6 +3,7 @@
 	if (!canvas || !canvas.getContext || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
 	const ctx = canvas.getContext('2d');
+	const glass = document.getElementById('mesh-map-glass');
 
 	const RED = '255, 51, 82';
 	const BRIGHT = '255, 92, 112';
@@ -267,10 +268,6 @@
 	const cityHitAreas = [];
 
 	const toPx = n => [offsetX + n.x * scale, offsetY + n.y * scale];
-	const geoToPx = (lon, lat) => {
-		const [nx, ny] = normalize(project(lon, lat));
-		return [offsetX + nx * scale, offsetY + ny * scale];
-	};
 
 	const traceBorder = c => {
 		c.beginPath();
@@ -301,25 +298,6 @@
 		fill.addColorStop(1, 'rgba(148, 166, 204, 0.012)');
 		s.fillStyle = fill;
 		s.fillRect(0, 0, width, height);
-
-		s.strokeStyle = 'rgba(148, 166, 204, 0.045)';
-		s.lineWidth = 1;
-		for (let lon = 15; lon <= 24; lon++) {
-			const [x1, y1] = geoToPx(lon, 48.9);
-			const [x2, y2] = geoToPx(lon, 55);
-			s.beginPath();
-			s.moveTo(x1, y1);
-			s.lineTo(x2, y2);
-			s.stroke();
-		}
-		for (let lat = 49; lat <= 55; lat++) {
-			const [x1, y1] = geoToPx(14, lat);
-			const [x2, y2] = geoToPx(24.3, lat);
-			s.beginPath();
-			s.moveTo(x1, y1);
-			s.lineTo(x2, y2);
-			s.stroke();
-		}
 		s.restore();
 
 		s.save();
@@ -381,6 +359,7 @@
 		scale = Math.min(width, height) * 0.94;
 		offsetX = (width - scale) / 2;
 		offsetY = (height - scale) / 2;
+		if (glass) glass.style.clipPath = `polygon(${borderPath.map(([x, y]) => `${offsetX + x * scale}px ${offsetY + y * scale}px`).join(',')})`;
 		buildStatic();
 		return true;
 	};

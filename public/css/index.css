@@ -86,7 +86,12 @@
 	aspect-ratio: 1.02 / 1;
 }
 
+#mesh-map-glass {
+	clip-path: inset(50%);
+}
+
 #hero__map canvas {
+	position: relative;
 	display: block;
 	width: 100%;
 	height: 100%;

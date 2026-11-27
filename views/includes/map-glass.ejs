@@ -1,0 +1,8 @@
+<% const [minX, minY, width, height] = voivodeshipMap.viewBox.split(' ').map(Number); %>
+<% const transform = `scale(${1 / width} ${1 / height}) translate(${-minX} ${-minY})`; %>
+<svg class="voivodeship-map-clip" width="0" height="0" aria-hidden="true">
+	<clipPath id="voivodeship-map-outline" clipPathUnits="objectBoundingBox">
+		<% voivodeshipMap.areas.forEach(({ code }) => { %><use href="#map-area-<%= code %>" transform="<%= transform %>"></use><% }) %>
+	</clipPath>
+</svg>
+<div class="map-glass" aria-hidden="true"></div>
