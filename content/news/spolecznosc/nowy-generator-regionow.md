@@ -2,7 +2,7 @@
 title: Odświeżony generator regionów MeshCore
 description: Wygeneruj plik z kanałami, repeaterami i presetem radiowym do aplikacji MeshCore. Sprawdź też strony województw, kanał RSS i zmiany w publicznym API.
 createdAt: 26.11.2026
-image: /images/screens/nowy-generator-regionow.png
+image: /images/screens/nowy-generator-regionow.jpg
 imageAlt: Generator regionów MeshCore z wyborem sprzętu i ustawieniami repeatera
 tags: [Społeczność, Narzędzia]
 ---
